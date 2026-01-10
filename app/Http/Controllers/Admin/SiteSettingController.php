@@ -1,0 +1,129 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\SiteSetting;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class SiteSettingController extends Controller
+{
+    /**
+     * Display site settings page
+     */
+    public function index()
+    {
+        $settings = SiteSetting::getAllSettings();
+        $generalSettings = SiteSetting::getByGroup('general');
+        $contactSettings = SiteSetting::getByGroup('contact');
+        $socialSettings = SiteSetting::getByGroup('social');
+        $bannerSettings = SiteSetting::getByGroup('banner');
+
+        return view('admin.site-settings.index', compact(
+            'settings',
+            'generalSettings',
+            'contactSettings',
+            'socialSettings',
+            'bannerSettings'
+        ));
+    }
+
+    /**
+     * Update site settings
+     */
+    public function update(Request $request)
+    {
+        $request->validate([
+            'site_name' => 'nullable|string|max:255',
+            'site_tagline' => 'nullable|string|max:255',
+            'contact_email' => 'nullable|email',
+            'contact_phone' => 'nullable|string|max:50',
+            'contact_address' => 'nullable|string',
+            'facebook_url' => 'nullable|url',
+            'twitter_url' => 'nullable|url',
+            'instagram_url' => 'nullable|url',
+            'linkedin_url' => 'nullable|url',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'favicon' => 'nullable|image|mimes:png,ico|max:1024',
+            'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Text settings
+        $textSettings = [
+            'site_name', 'site_tagline',
+            'contact_email', 'contact_phone', 'contact_address',
+            'facebook_url', 'twitter_url', 'instagram_url', 'linkedin_url'
+        ];
+
+        foreach ($textSettings as $key) {
+            if ($request->has($key)) {
+                $group = $this->getGroupForKey($key);
+                SiteSetting::set($key, $request->$key, 'text', $group);
+            }
+        }
+
+        // Image settings
+        $imageSettings = ['logo', 'favicon', 'footer_logo'];
+        foreach ($imageSettings as $key) {
+            if ($request->hasFile($key)) {
+                // Delete old image
+                $oldSetting = SiteSetting::where('key', $key)->first();
+                if ($oldSetting && $oldSetting->value && Storage::disk('public')->exists($oldSetting->value)) {
+                    Storage::disk('public')->delete($oldSetting->value);
+                }
+
+                $path = $request->file($key)->store('settings', 'public');
+                SiteSetting::set($key, $path, 'image', 'general');
+            }
+        }
+
+        return redirect()->route('admin.site-settings.index')->with('success', 'Settings updated successfully!');
+    }
+
+    /**
+     * Update banner settings
+     */
+    public function updateBanner(Request $request)
+    {
+        $request->validate([
+            'banner_title' => 'nullable|string|max:500',
+            'banner_subtitle' => 'nullable|string|max:500',
+            'banner_stats_text' => 'nullable|string|max:100',
+            'banner_rating' => 'nullable|string|max:10',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+        ]);
+
+        // Text settings
+        $bannerTextSettings = ['banner_title', 'banner_subtitle', 'banner_stats_text', 'banner_rating'];
+        foreach ($bannerTextSettings as $key) {
+            if ($request->has($key)) {
+                SiteSetting::set($key, $request->$key, 'text', 'banner');
+            }
+        }
+
+        // Banner image
+        if ($request->hasFile('banner_image')) {
+            $oldSetting = SiteSetting::where('key', 'banner_image')->first();
+            if ($oldSetting && $oldSetting->value && Storage::disk('public')->exists($oldSetting->value)) {
+                Storage::disk('public')->delete($oldSetting->value);
+            }
+
+            $path = $request->file('banner_image')->store('settings', 'public');
+            SiteSetting::set('banner_image', $path, 'image', 'banner');
+        }
+
+        return redirect()->route('admin.site-settings.index')->with('success', 'Banner settings updated successfully!');
+    }
+
+    /**
+     * Get group for a setting key
+     */
+    private function getGroupForKey($key)
+    {
+        if (str_starts_with($key, 'contact_')) return 'contact';
+        if (str_ends_with($key, '_url')) return 'social';
+        if (str_starts_with($key, 'banner_')) return 'banner';
+        return 'general';
+    }
+}

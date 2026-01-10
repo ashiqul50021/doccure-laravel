@@ -1,0 +1,121 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Frontend Routes
+|--------------------------------------------------------------------------
+*/
+
+// Home
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Search & Booking
+Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('search');
+Route::get('/booking/{doctor_id}', [App\Http\Controllers\BookingController::class, 'index'])->name('booking');
+Route::post('/booking/{doctor_id}', [App\Http\Controllers\BookingController::class, 'bookAppointment'])->name('booking.submit');
+Route::get('/checkout', [App\Http\Controllers\BookingController::class, 'checkout'])->name('checkout');
+Route::post('/checkout', [App\Http\Controllers\BookingController::class, 'processPayment'])->name('booking.payment');
+Route::view('/booking-success', 'frontend.booking-success')->name('booking.success');
+
+// Products & Cart
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
+Route::get('/products/{id}', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
+Route::post('/cart/add', [App\Http\Controllers\ProductController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('cart');
+Route::post('/cart/remove', [App\Http\Controllers\ProductController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/cart/update', [App\Http\Controllers\ProductController::class, 'updateCart'])->name('cart.update');
+Route::get('/product-checkout', [App\Http\Controllers\ProductController::class, 'checkout'])->name('product.checkout');
+Route::post('/place-order', [App\Http\Controllers\ProductController::class, 'placeOrder'])->name('order.place');
+Route::get('/order-success', [App\Http\Controllers\ProductController::class, 'orderSuccess'])->name('order.success');
+
+// Doctor Pages
+Route::get('/doctor-profile/{id}', [App\Http\Controllers\DoctorController::class, 'show'])->name('doctor.profile');
+Route::view('/doctor-dashboard', 'frontend.doctor-dashboard')->name('doctor.dashboard');
+Route::view('/doctor-register', 'frontend.doctor-register')->name('doctor.register');
+Route::view('/doctor-profile-settings', 'frontend.doctor-profile-settings')->name('doctor.profile.settings');
+Route::view('/doctor-change-password', 'frontend.doctor-change-password')->name('doctor.change.password');
+
+// Patient Pages
+Route::view('/patient-dashboard', 'frontend.patient-dashboard')->name('patient.dashboard');
+Route::view('/patient-profile', 'frontend.patient-profile')->name('patient.profile');
+Route::view('/profile-settings', 'frontend.profile-settings')->name('profile.settings');
+Route::view('/change-password', 'frontend.change-password')->name('change.password');
+Route::view('/favourites', 'frontend.favourites')->name('favourites');
+Route::view('/my-patients', 'frontend.my-patients')->name('my.patients');
+
+// Appointments & Schedule
+Route::view('/appointments', 'frontend.appointments')->name('appointments');
+Route::view('/schedule-timings', 'frontend.schedule-timings')->name('schedule.timings');
+Route::view('/calendar', 'frontend.calendar')->name('calendar');
+
+// Invoices & Billing
+Route::view('/invoices', 'frontend.invoices')->name('invoices');
+Route::view('/invoice-view', 'frontend.invoice-view')->name('invoice.view');
+Route::view('/add-billing', 'frontend.add-billing')->name('add.billing');
+Route::view('/edit-billing', 'frontend.edit-billing')->name('edit.billing');
+
+// Prescriptions
+Route::view('/add-prescription', 'frontend.add-prescription')->name('add.prescription');
+Route::view('/edit-prescription', 'frontend.edit-prescription')->name('edit.prescription');
+
+// Chat & Calls
+Route::view('/chat', 'frontend.chat')->name('chat');
+Route::view('/chat-doctor', 'frontend.chat-doctor')->name('chat.doctor');
+Route::view('/voice-call', 'frontend.voice-call')->name('voice.call');
+Route::view('/video-call', 'frontend.video-call')->name('video.call');
+
+// Reviews
+Route::view('/reviews', 'frontend.reviews')->name('reviews');
+
+// Auth Pages
+Route::view('/login', 'frontend.login')->name('login');
+Route::view('/register', 'frontend.register')->name('register');
+Route::view('/forgot-password', 'frontend.forgot-password')->name('forgot.password');
+
+// Static Pages
+Route::view('/components', 'frontend.components')->name('components');
+Route::view('/blank-page', 'frontend.blank-page')->name('blank.page');
+Route::view('/privacy-policy', 'frontend.privacy-policy')->name('privacy');
+Route::view('/terms-condition', 'frontend.term-condition')->name('terms');
+Route::view('/social-media', 'frontend.social-media')->name('social.media');
+
+// API Routes for AJAX
+Route::get('/api/areas/{district}', function (App\Models\District $district) {
+    return response()->json($district->areas()->orderBy('name')->get());
+})->name('api.areas');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::view('/', 'admin.dashboard')->name('dashboard');
+    Route::resource('doctors', App\Http\Controllers\Admin\DoctorController::class);
+    Route::view('/patients', 'admin.patient-list')->name('patients');
+    Route::view('/appointments', 'admin.appointment-list')->name('appointments');
+    Route::resource('specialities', App\Http\Controllers\Admin\SpecialityController::class);
+    Route::view('/reviews', 'admin.reviews')->name('reviews');
+    Route::view('/transactions', 'admin.transactions-list')->name('transactions');
+    Route::resource('product-categories', App\Http\Controllers\Admin\ProductCategoryController::class);
+    Route::resource('products', App\Http\Controllers\Admin\ProductController::class);
+    Route::view('/invoice-report', 'admin.invoice-report')->name('invoice.report');
+    Route::view('/invoice', 'admin.invoice')->name('invoice');
+    Route::view('/profile', 'admin.profile')->name('profile');
+    Route::view('/login', 'admin.login')->name('login');
+    Route::view('/register', 'admin.register')->name('register');
+    Route::view('/forgot-password', 'admin.forgot-password')->name('forgot.password');
+    Route::resource('advertisements', App\Http\Controllers\Admin\AdvertisementController::class);
+
+    // Site Settings
+    Route::get('/site-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'index'])->name('site-settings.index');
+    Route::put('/site-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'update'])->name('site-settings.update');
+    Route::put('/site-settings/banner', [App\Http\Controllers\Admin\SiteSettingController::class, 'updateBanner'])->name('site-settings.update-banner');
+
+    // Menu Manager
+    Route::get('menus/{menu}/delete', [App\Http\Controllers\Admin\MenuController::class, 'delete'])->name('menus.delete');
+    Route::resource('menus', App\Http\Controllers\Admin\MenuController::class);
+});
