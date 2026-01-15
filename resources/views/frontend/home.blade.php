@@ -123,6 +123,29 @@
 </section>
 <!-- /Home Banner -->
 
+<!-- Doctor Registration CTA -->
+<section class="section-doctor-cta">
+    <div class="container">
+        <div class="doctor-cta-wrapper">
+            <div class="doctor-cta-content">
+                <div class="doctor-cta-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div class="doctor-cta-text">
+                    <h3>Are you a Doctor?</h3>
+                    <p>Join thousands of doctors on our platform and grow your practice. Get more patients and manage your appointments easily.</p>
+                </div>
+            </div>
+            <div class="doctor-cta-action">
+                <a href="{{ route('doctor.register') }}" class="btn-doctor-register">
+                    <i class="fas fa-stethoscope"></i> Register as Doctor
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Doctor Registration CTA -->
+
 <!-- Clinic and Specialities -->
 <section class="section section-specialities">
     <div class="container">
@@ -157,125 +180,198 @@
 <!-- Clinic and Specialities -->
 
 <!-- Medical Products -->
-<section class="section section-products" style="background-color: #fff;">
+<section class="section section-products" style="background-color: #f8f9fa;">
     <div class="container">
         <div class="section-header text-center">
             <h2>Featured Medical Products</h2>
             <p class="sub-title">Order medicines and health products from our trusted pharmacy store.</p>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="product-slider slider">
+        <div class="row">
+            <!-- Sidebar Filter -->
+            <div class="col-lg-3 col-md-4 mb-4">
+                <div class="product-filter-card">
+                    <!-- Search -->
+                    <div class="filter-section">
+                        <h5 class="filter-title"><i class="fas fa-search"></i> Search</h5>
+                        <div class="search-input-wrapper">
+                            <input type="text" class="form-control" id="productSearchInput" placeholder="Search products...">
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="filter-section">
+                        <h5 class="filter-title"><i class="fas fa-list"></i> Categories</h5>
+                        <div class="category-list">
+                            <label class="category-item">
+                                <input type="radio" name="product_category" value="all" checked>
+                                <span class="category-name">All Products</span>
+                            </label>
+                            @foreach($productCategories as $category)
+                            <label class="category-item">
+                                <input type="radio" name="product_category" value="{{ $category->id }}">
+                                <span class="category-name">{{ $category->name }}</span>
+                            </label>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Sidebar Filter -->
+
+            <!-- Products Grid -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row" id="productsGrid">
                     @foreach($products as $product)
-                    <div class="product-item">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <a href="#">
+                    <div class="col-lg-4 col-md-6 col-sm-6 mb-4 product-grid-item">
+                        <div class="product-card-new">
+                            <div class="product-img-wrapper">
+                                <a href="{{ route('products.show', $product->id) }}">
                                     @php
                                         $image = $product->image;
                                         if(!$image && !empty($product->gallery) && is_array($product->gallery)) {
                                             $image = $product->gallery[0] ?? null;
                                         }
                                     @endphp
-                                    <img src="{{ $image ? asset('storage/'.$image) : asset('assets/img/products/product.jpg') }}" class="img-fluid" alt="{{ $product->name }}">
+                                    <img src="{{ $image ? asset('storage/'.$image) : asset('assets/img/products/product.jpg') }}" class="product-img" alt="{{ $product->name }}">
                                 </a>
                                 @if($product->discount_percentage > 0)
-                                <span class="badge badge-danger product-badge">-{{ $product->discount_percentage }}% Off</span>
+                                <span class="product-badge badge-discount">-{{ $product->discount_percentage }}%</span>
                                 @elseif($product->is_featured)
-                                <span class="badge badge-success product-badge">Featured</span>
+                                <span class="product-badge badge-featured">Featured</span>
                                 @endif
-                                <div class="product-actions">
-                                    <a href="#" class="btn-action" title="Add to Cart"><i class="fas fa-shopping-cart"></i></a>
-                                    <a href="#" class="btn-action" title="View Details"><i class="fas fa-eye"></i></a>
-                                </div>
                             </div>
-                            <div class="product-content">
-                                <span class="category-name">{{ $product->category->name ?? 'Medicine' }}</span>
-                                <h4><a href="#">{{ $product->name }}</a></h4>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <span class="d-inline-block average-rating">(5.0)</span>
-                                </div>
-                                <div class="price-box">
+                            <div class="product-info">
+                                <span class="product-category">{{ $product->category->name ?? 'Medicine' }}</span>
+                                <h4 class="product-title">
+                                    <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
+                                </h4>
+                                <div class="product-price">
                                     @if($product->sale_price)
-                                        <span class="price">৳{{ number_format($product->sale_price, 0) }}</span>
-                                        <span class="strike">৳{{ number_format($product->price, 0) }}</span>
+                                        <span class="current-price">৳{{ number_format($product->sale_price, 0) }}</span>
+                                        <span class="original-price">৳{{ number_format($product->price, 0) }}</span>
                                     @else
-                                        <span class="price">৳{{ number_format($product->price, 0) }}</span>
+                                        <span class="current-price">৳{{ number_format($product->price, 0) }}</span>
                                     @endif
                                 </div>
+                                <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn-add-cart">
+                                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
 
-                <div class="view-all text-center mt-4">
-                    <a href="#" class="btn btn-primary">View All Products</a>
+                <!-- View All Button -->
+                <div class="text-center mt-4">
+                    <a href="{{ route('products') }}" class="btn btn-primary btn-lg view-all-btn">
+                        <i class="fas fa-th-large mr-2"></i> View All Products
+                    </a>
                 </div>
             </div>
+            <!-- /Products Grid -->
         </div>
     </div>
 </section>
 <!-- /Medical Products -->
 
 <!-- Popular Doctors -->
-<section class="section section-doctor">
+<section class="section section-doctor" style="background-color: #f8f9fa;">
     <div class="container">
         <div class="section-header text-center">
             <h2>Book Our Doctors</h2>
             <p class="sub-title">Meet our expert doctors and book your appointment today</p>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="doctor-slider slider">
-                    @foreach($doctors as $doctor)
-                    <div class="doctor-profile-widget">
-                        <div class="doc-pro-img">
-                            <a href="{{ route('doctor.profile', $doctor->id) }}">
-                                <div class="doctor-profile-img">
-                                    <img src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" class="img-fluid" alt="User Image">
-                                </div>
-                            </a>
-                            <div class="doctor-amount">
-                                <span>৳ {{ $doctor->pricing === 'free' ? 'Free' : ($doctor->pricing === 'custom_price' ? number_format($doctor->custom_price, 0) : '0') }}</span>
-                            </div>
+
+        <div class="row">
+            <!-- Sidebar Filter -->
+            <div class="col-lg-3 col-md-4 mb-4">
+                <div class="doctor-filter-card">
+                    <!-- Search -->
+                    <div class="filter-section">
+                        <h5 class="filter-title"><i class="fas fa-search"></i> Search Doctor</h5>
+                        <div class="search-input-wrapper">
+                            <input type="text" class="form-control" id="doctorSearchInput" placeholder="Search by name...">
                         </div>
-                        <div class="doc-pro-info">
-                            <div class="doc-speciality">
-                                <span class="badge badge-soft-blue">{{ $doctor->speciality->name ?? 'General' }}</span>
-                            </div>
-                            <h4 class="doc-name">
-                                <a href="{{ route('doctor.profile', $doctor->id) }}">Dr. {{ $doctor->user->name }}</a>
-                                <i class="fas fa-check-circle verified-icon ml-1" title="Verified"></i>
-                            </h4>
-                            <div class="doc-rating">
-                                <i class="fas fa-star filled"></i>
-                                <i class="fas fa-star filled"></i>
-                                <i class="fas fa-star filled"></i>
-                                <i class="fas fa-star filled"></i>
-                                <i class="fas fa-star filled"></i>
-                                <span class="rating-count">(5.0)</span>
-                            </div>
+                    </div>
 
-                            <div class="doc-location">
-                                <p><i class="fas fa-map-marker-alt"></i> {{ $doctor->clinic_name ?? ($doctor->clinic_city ?? 'Dhaka, Bangladesh') }}</p>
-                            </div>
+                    <!-- Specialities -->
+                    <div class="filter-section">
+                        <h5 class="filter-title"><i class="fas fa-stethoscope"></i> Speciality</h5>
+                        <div class="category-list">
+                            <label class="category-item">
+                                <input type="radio" name="doctor_speciality" value="all" checked>
+                                <span class="category-name">All Doctors</span>
+                            </label>
+                            @foreach($searchSpecialities->take(6) as $speciality)
+                            <label class="category-item">
+                                <input type="radio" name="doctor_speciality" value="{{ $speciality->id }}">
+                                <span class="category-name">{{ $speciality->name }}</span>
+                            </label>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Sidebar Filter -->
 
-                            <div class="doc-pro-footer">
-                                <a href="{{ route('booking', $doctor->id) }}" class="btn btn-primary btn-block">Book Appointment</a>
+            <!-- Doctors Grid -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row" id="doctorsGrid">
+                    @foreach($doctors as $doctor)
+                    <div class="col-lg-4 col-md-6 col-sm-6 mb-4 doctor-grid-item">
+                        <div class="doctor-card-new">
+                            <div class="doctor-img-wrapper">
+                                <a href="{{ route('doctor.profile', $doctor->id) }}">
+                                    <img src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" class="doctor-img" alt="{{ $doctor->user->name }}">
+                                </a>
+                                <div class="doctor-fee-badge">
+                                    <span>৳ {{ $doctor->pricing === 'free' ? 'Free' : number_format($doctor->custom_price, 0) }}</span>
+                                </div>
+                            </div>
+                            <div class="doctor-info">
+                                <span class="doctor-speciality">{{ $doctor->speciality->name ?? 'General' }}</span>
+                                <h4 class="doctor-name">
+                                    <a href="{{ route('doctor.profile', $doctor->id) }}">Dr. {{ $doctor->user->name }}</a>
+                                    <i class="fas fa-check-circle verified-badge" title="Verified"></i>
+                                </h4>
+                                <div class="doctor-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>{{ number_format($doctor->average_rating, 1) }}</span>
+                                    <span class="rating-count">({{ $doctor->review_count }} reviews)</span>
+                                </div>
+                                <div class="doctor-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>{{ $doctor->clinic_name ?? ($doctor->area->name ?? 'Dhaka') }}</span>
+                                </div>
+                                <div class="doctor-buttons">
+                                    <a href="{{ route('doctor.profile', $doctor->id) }}" class="btn-view-details">
+                                        <i class="fas fa-user"></i> Details
+                                    </a>
+                                    <a href="{{ route('booking', $doctor->id) }}" class="btn-book-appointment">
+                                        <i class="fas fa-calendar-check"></i> Appointment
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
+
+                <!-- View All Button -->
+                <div class="text-center mt-4">
+                    <a href="{{ route('search') }}" class="btn btn-primary btn-lg view-all-btn">
+                        <i class="fas fa-user-md mr-2"></i> View All Doctors
+                    </a>
                 </div>
             </div>
+            <!-- /Doctors Grid -->
         </div>
     </div>
 </section>
@@ -685,8 +781,786 @@ $(document).ready(function() {
             areaSelect.prop('disabled', true).trigger('change');
         }
     });
+
+    // Product filtering functionality
+    var searchTimeout;
+
+    function filterProducts() {
+        var category = $('input[name="product_category"]:checked').val();
+        var search = $('#productSearchInput').val();
+
+        $.ajax({
+            url: '/api/products/filter',
+            type: 'GET',
+            data: { category: category, search: search },
+            success: function(products) {
+                renderProducts(products);
+            }
+        });
+    }
+
+    function renderProducts(products) {
+        var grid = $('#productsGrid');
+        grid.empty();
+
+        if (products.length === 0) {
+            grid.html('<div class="col-12"><div class="alert alert-info text-center">No products found.</div></div>');
+            return;
+        }
+
+        products.forEach(function(product) {
+            var image = product.image || 'assets/img/products/product.jpg';
+            var imageSrc = image.startsWith('http') ? image : '/storage/' + image;
+            if (!product.image) imageSrc = '/assets/img/products/product.jpg';
+
+            var priceHtml = '';
+            if (product.sale_price) {
+                priceHtml = '<span class="current-price">৳' + numberFormat(product.sale_price) + '</span>' +
+                           '<span class="original-price">৳' + numberFormat(product.price) + '</span>';
+            } else {
+                priceHtml = '<span class="current-price">৳' + numberFormat(product.price) + '</span>';
+            }
+
+            var badgeHtml = '';
+            if (product.discount_percentage > 0) {
+                badgeHtml = '<span class="product-badge badge-discount">-' + product.discount_percentage + '%</span>';
+            } else if (product.is_featured) {
+                badgeHtml = '<span class="product-badge badge-featured">Featured</span>';
+            }
+
+            var html = `
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4 product-grid-item">
+                    <div class="product-card-new">
+                        <div class="product-img-wrapper">
+                            <a href="/products/${product.id}">
+                                <img src="${imageSrc}" class="product-img" alt="${product.name}">
+                            </a>
+                            ${badgeHtml}
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">${product.category ? product.category.name : 'Medicine'}</span>
+                            <h4 class="product-title">
+                                <a href="/products/${product.id}">${product.name}</a>
+                            </h4>
+                            <div class="product-price">${priceHtml}</div>
+                            <form action="/cart/add" method="POST" class="add-to-cart-form">
+                                <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
+                                <input type="hidden" name="product_id" value="${product.id}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn-add-cart">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.append(html);
+        });
+    }
+
+    function numberFormat(num) {
+        return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    // Category filter change
+    $('input[name="product_category"]').on('change', function() {
+        filterProducts();
+    });
+
+    // Search input with debounce
+    $('#productSearchInput').on('keyup', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+            filterProducts();
+        }, 300);
+    });
+    // Doctor filtering functionality
+    var doctorSearchTimeout;
+
+    function filterDoctors() {
+        var speciality = $('input[name="doctor_speciality"]:checked').val();
+        var search = $('#doctorSearchInput').val();
+
+        $.ajax({
+            url: '/api/doctors/filter',
+            type: 'GET',
+            data: { speciality: speciality, search: search },
+            success: function(doctors) {
+                renderDoctors(doctors);
+            }
+        });
+    }
+
+    function renderDoctors(doctors) {
+        var grid = $('#doctorsGrid');
+        grid.empty();
+
+        if (doctors.length === 0) {
+            grid.html('<div class="col-12"><div class="alert alert-info text-center">No doctors found.</div></div>');
+            return;
+        }
+
+        doctors.forEach(function(doctor) {
+            var imageSrc = doctor.profile_image ? '/storage/' + doctor.profile_image : '/assets/img/doctors/doctor-thumb-01.jpg';
+            var fee = doctor.pricing === 'free' ? 'Free' : '৳ ' + numberFormat(doctor.custom_price || 0);
+
+            var html = `
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4 doctor-grid-item">
+                    <div class="doctor-card-new">
+                        <div class="doctor-img-wrapper">
+                            <a href="/doctor-profile/${doctor.id}">
+                                <img src="${imageSrc}" class="doctor-img" alt="${doctor.name}">
+                            </a>
+                            <div class="doctor-fee-badge">
+                                <span>${fee}</span>
+                            </div>
+                        </div>
+                        <div class="doctor-info">
+                            <span class="doctor-speciality">${doctor.speciality}</span>
+                            <h4 class="doctor-name">
+                                <a href="/doctor-profile/${doctor.id}">Dr. ${doctor.name}</a>
+                                <i class="fas fa-check-circle verified-badge" title="Verified"></i>
+                            </h4>
+                            <div class="doctor-rating">
+                                <i class="fas fa-star"></i>
+                                <span>${parseFloat(doctor.average_rating || 0).toFixed(1)}</span>
+                                <span class="rating-count">(${doctor.review_count || 0} reviews)</span>
+                            </div>
+                            <div class="doctor-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${doctor.clinic_name || doctor.area_name}</span>
+                            </div>
+                            <div class="doctor-buttons">
+                                <a href="/doctor-profile/${doctor.id}" class="btn-view-details">
+                                    <i class="fas fa-user"></i> Details
+                                </a>
+                                <a href="/booking/${doctor.id}" class="btn-book-appointment">
+                                    <i class="fas fa-calendar-check"></i> Appointment
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.append(html);
+        });
+    }
+
+    // Doctor speciality filter change
+    $('input[name="doctor_speciality"]').on('change', function() {
+        filterDoctors();
+    });
+
+    // Doctor search input with debounce
+    $('#doctorSearchInput').on('keyup', function() {
+        clearTimeout(doctorSearchTimeout);
+        doctorSearchTimeout = setTimeout(function() {
+            filterDoctors();
+        }, 300);
+    });
 });
 </script>
+@endpush
+
+@push('styles')
+<style>
+/* Header For Doctors Button */
+.btn-for-doctors {
+    border: 2px solid #28a745 !important;
+    color: #28a745 !important;
+    border-radius: 25px !important;
+    padding: 8px 18px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    margin-right: 10px;
+}
+
+.btn-for-doctors:hover {
+    background: #28a745 !important;
+    color: #fff !important;
+}
+
+.btn-for-doctors i {
+    margin-right: 5px;
+}
+
+/* Doctor Registration CTA Section */
+.section-doctor-cta {
+    background: linear-gradient(135deg, #0066ff 0%, #00c6ff 100%);
+    padding: 25px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-doctor-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+}
+
+.section-doctor-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+}
+
+.doctor-cta-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.doctor-cta-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.doctor-cta-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.doctor-cta-icon i {
+    font-size: 28px;
+    color: #fff;
+}
+
+.doctor-cta-text h3 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.doctor-cta-text p {
+    color: rgba(255,255,255,0.85);
+    font-size: 14px;
+    margin: 0;
+    max-width: 500px;
+}
+
+.btn-doctor-register {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    background: #fff;
+    color: #0066ff;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.btn-doctor-register:hover {
+    background: #272b41;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    text-decoration: none;
+}
+
+.btn-doctor-register i {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .doctor-cta-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .doctor-cta-content {
+        flex-direction: column;
+    }
+
+    .doctor-cta-text p {
+        max-width: 100%;
+    }
+}
+
+/* Product Filter Card */
+.product-filter-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    padding: 25px;
+    position: sticky;
+    top: 100px;
+}
+
+.filter-section {
+    margin-bottom: 25px;
+}
+
+.filter-section:last-child {
+    margin-bottom: 0;
+}
+
+.filter-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #272b41;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-title i {
+    color: #0066ff;
+}
+
+.search-input-wrapper input {
+    border-radius: 10px;
+    padding: 12px 15px;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+}
+
+.search-input-wrapper input:focus {
+    border-color: #0066ff;
+    box-shadow: 0 0 0 3px rgba(0,102,255,0.1);
+}
+
+/* Category List */
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 0;
+}
+
+.category-item:hover {
+    background: #f5f8ff;
+}
+
+.category-item input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #0066ff;
+}
+
+.category-item .category-name {
+    font-size: 14px;
+    color: #555;
+}
+
+.category-item input:checked + .category-name {
+    color: #0066ff;
+    font-weight: 600;
+}
+
+/* Product Card New */
+.section-products .row {
+    margin: 0 -10px;
+}
+
+.section-products .product-grid-item {
+    padding: 0 10px;
+}
+
+.product-card-new {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0f0f0;
+}
+
+.product-card-new:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,102,255,0.15);
+    border-color: #0066ff;
+}
+
+.product-img-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+}
+
+.product-img-wrapper .product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.product-card-new:hover .product-img {
+    transform: scale(1.05);
+}
+
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-discount {
+    background: #ff4d4d;
+    color: #fff;
+}
+
+.badge-featured {
+    background: #0066ff;
+    color: #fff;
+}
+
+.product-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-category {
+    font-size: 11px;
+    color: #0066ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.product-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    min-height: 45px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-title a {
+    color: #272b41;
+    text-decoration: none;
+}
+
+.product-title a:hover {
+    color: #0066ff;
+}
+
+.product-price {
+    margin-bottom: 15px;
+    min-height: 28px;
+}
+
+.current-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0066ff;
+}
+
+.original-price {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 8px;
+}
+
+.btn-add-cart {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: auto;
+}
+
+.btn-add-cart:hover {
+    background: linear-gradient(135deg, #0052cc, #00a8e0);
+    transform: translateY(-2px);
+}
+
+.btn-add-cart i {
+    margin-right: 5px;
+}
+
+/* View All Button */
+.view-all-btn {
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+}
+
+.view-all-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,102,255,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-filter-card,
+    .doctor-filter-card {
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .category-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .category-item {
+        flex: 0 0 auto;
+    }
+}
+
+/* Doctor Filter Card */
+.doctor-filter-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    padding: 25px;
+    position: sticky;
+    top: 100px;
+}
+
+/* Doctor Card New */
+.section-doctor .row {
+    margin: 0 -10px;
+}
+
+.section-doctor .doctor-grid-item {
+    padding: 0 10px;
+}
+
+.doctor-card-new {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0f0f0;
+}
+
+.doctor-card-new:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,102,255,0.15);
+    border-color: #0066ff;
+}
+
+.doctor-img-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e8f4ff 0%, #f0f8ff 100%);
+}
+
+.doctor-img-wrapper .doctor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.doctor-card-new:hover .doctor-img {
+    transform: scale(1.05);
+}
+
+.doctor-fee-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(0,102,255,0.3);
+}
+
+.doctor-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.doctor-speciality {
+    font-size: 11px;
+    color: #0066ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    display: inline-block;
+    background: #e8f4ff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+.doctor-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    min-height: 25px;
+}
+
+.doctor-name a {
+    color: #272b41;
+    text-decoration: none;
+}
+
+.doctor-name a:hover {
+    color: #0066ff;
+}
+
+.verified-badge {
+    color: #0066ff;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.doctor-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.doctor-rating i {
+    color: #ffc107;
+}
+
+.doctor-rating .rating-count {
+    color: #888;
+    font-size: 12px;
+}
+
+.doctor-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+.doctor-location i {
+    color: #0066ff;
+}
+/* Doctor Buttons Container */
+.doctor-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-view-details {
+    flex: 1;
+    padding: 10px 8px;
+    background: transparent;
+    border: 2px solid #0066ff;
+    border-radius: 8px;
+    color: #0066ff;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-view-details:hover {
+    background: #0066ff;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-view-details i {
+    margin-right: 4px;
+}
+
+.btn-book-appointment {
+    flex: 1;
+    padding: 10px 8px;
+    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-book-appointment:hover {
+    background: linear-gradient(135deg, #0052cc, #00a8e0);
+    transform: translateY(-2px);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 8px 25px rgba(0,102,255,0.3);
+}
+
+.btn-book-appointment i {
+    margin-right: 4px;
+}
+</style>
 @endpush
 
 

@@ -86,6 +86,41 @@ Route::get('/api/areas/{district}', function (App\Models\District $district) {
     return response()->json($district->areas()->orderBy('name')->get());
 })->name('api.areas');
 
+Route::get('/api/products/filter', [App\Http\Controllers\ProductController::class, 'filter'])->name('api.products.filter');
+
+Route::get('/api/doctors/filter', function (Illuminate\Http\Request $request) {
+    $query = App\Models\Doctor::with(['user', 'speciality', 'area', 'reviews'])
+        ->where('status', 'approved')
+        ->whereHas('user');
+
+    if ($request->speciality && $request->speciality !== 'all') {
+        $query->where('speciality_id', $request->speciality);
+    }
+
+    if ($request->search) {
+        $query->whereHas('user', function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->search . '%');
+        });
+    }
+
+    $doctors = $query->take(9)->get()->map(function ($doctor) {
+        return [
+            'id' => $doctor->id,
+            'name' => $doctor->user->name ?? 'Unknown',
+            'speciality' => $doctor->speciality->name ?? 'General',
+            'profile_image' => $doctor->profile_image,
+            'pricing' => $doctor->pricing,
+            'custom_price' => $doctor->custom_price,
+            'average_rating' => $doctor->average_rating,
+            'review_count' => $doctor->review_count,
+            'clinic_name' => $doctor->clinic_name,
+            'area_name' => $doctor->area->name ?? 'Dhaka',
+        ];
+    });
+
+    return response()->json($doctors);
+})->name('api.doctors.filter');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

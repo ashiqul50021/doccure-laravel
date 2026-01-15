@@ -40,6 +40,23 @@ class ProductController extends Controller
         return view('frontend.products.show', compact('product', 'relatedProducts'));
     }
 
+    public function filter(Request $request)
+    {
+        $query = Product::with('category')->where('is_active', true);
+
+        if ($request->category && $request->category !== 'all') {
+            $query->where('product_category_id', $request->category);
+        }
+
+        if ($request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $products = $query->take(8)->latest()->get();
+
+        return response()->json($products);
+    }
+
     public function addToCart(Request $request)
     {
         $request->validate([

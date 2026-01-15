@@ -78,6 +78,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link btn-for-doctors" href="{{ route('doctor.register') }}">
+                    <i class="fas fa-stethoscope"></i> For Doctors
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link btn-signup" href="{{ route('register') }}"><i class="fas fa-lock"></i> Sign Up</a>
             </li>
             <li class="nav-item">
