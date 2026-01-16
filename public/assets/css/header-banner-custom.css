@@ -89,8 +89,10 @@
     right: 0;
     z-index: 1000;
     transition: var(--transition-smooth);
-    background: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }
 
 .header-nav {
@@ -146,7 +148,7 @@
 
 /* Logo */
 .header-nav .logo img {
-    height: 42px;
+    height: 50px;
     transition: var(--transition-smooth);
 }
 
@@ -157,6 +159,26 @@
     font-size: 15px !important;
     padding: 10px 16px !important;
     transition: var(--transition-smooth);
+    position: relative;
+}
+
+.main-nav>li>a::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.main-nav>li>a:hover::after,
+.main-nav>li.active>a::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .main-nav>li>a:hover,
@@ -201,6 +223,56 @@
     display: none !important;
 }
 
+/* For Doctors Button - Gradient Style */
+.btn-for-doctors {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #00d4ff 100%) !important;
+    color: var(--white) !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-for-doctors:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+    color: var(--white) !important;
+}
+
+.btn-for-doctors i {
+    font-size: 14px;
+}
+
+/* Cart Icon Styling */
+.header-navbar-rht .nav-link.position-relative {
+    color: var(--text-dark);
+    font-size: 18px;
+    padding: 8px 12px !important;
+    transition: var(--transition-smooth);
+}
+
+.header-navbar-rht .nav-link.position-relative:hover {
+    color: var(--primary-blue);
+}
+
+.header-navbar-rht .nav-link .badge {
+    background: var(--primary-blue) !important;
+    font-size: 10px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
 /* Sign Up Button */
 .btn-signup {
     background: var(--primary-blue) !important;
@@ -225,12 +297,12 @@
     font-size: 12px;
 }
 
-/* Register Button */
+/* Login Button - Outlined Style */
 .header-navbar-rht li a.header-login {
-    background: var(--secondary-dark) !important;
-    color: var(--white) !important;
-    border: none !important;
-    padding: 10px 24px !important;
+    background: transparent !important;
+    color: var(--secondary-dark) !important;
+    border: 2px solid var(--secondary-dark) !important;
+    padding: 8px 22px !important;
     border-radius: 8px !important;
     font-weight: 600 !important;
     font-size: 14px !important;
@@ -244,7 +316,8 @@
 }
 
 .header-navbar-rht li a.header-login:hover {
-    background: #374151 !important;
+    background: var(--secondary-dark) !important;
+    color: var(--white) !important;
     transform: translateY(-1px);
 }
 
@@ -741,6 +814,66 @@
 
     .header-nav {
         padding: 0 20px !important;
+        height: 65px !important;
+    }
+
+    /* Hide header right buttons on mobile - they go in hamburger menu */
+    .header-navbar-rht {
+        position: fixed !important;
+        top: 70px !important;
+        right: 0 !important;
+        left: 0 !important;
+        flex-direction: column !important;
+        background: var(--white) !important;
+        padding: 15px !important;
+        gap: 10px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+        display: none !important;
+        z-index: 999 !important;
+    }
+
+    .header-navbar-rht.show {
+        display: flex !important;
+    }
+
+    .header-navbar-rht>li {
+        width: 100% !important;
+    }
+
+    .header-navbar-rht .btn-for-doctors,
+    .header-navbar-rht .btn-signup,
+    .header-navbar-rht li a.header-login {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    /* Cart icon - keep visible on mobile */
+    .header-navbar-rht>li:first-child {
+        display: none !important;
+    }
+
+    /* Logo on mobile */
+    .header-nav .logo img {
+        height: 40px;
+    }
+
+    /* Main nav centering fix */
+    .main-nav {
+        height: auto !important;
+    }
+
+    .main-nav>li {
+        height: auto !important;
+    }
+
+    .main-nav>li>a {
+        height: auto !important;
+        padding: 12px 20px !important;
+    }
+
+    .main-nav>li>a::after {
+        display: none;
     }
 
     .section-search {

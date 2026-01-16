@@ -66,6 +66,15 @@
                     </li>
                 @endif
             </ul>
+
+            <!-- Mobile Menu Buttons -->
+            <div class="mobile-menu-buttons">
+                <a class="mobile-btn-for-doctors" href="{{ route('doctor.register') }}">
+                    <i class="fas fa-stethoscope"></i> For Doctors
+                </a>
+                <a class="mobile-btn-signup" href="{{ route('register') }}">Sign Up</a>
+                <a class="mobile-btn-login" href="{{ route('login') }}">Login</a>
+            </div>
         </div>
         <ul class="nav header-navbar-rht">
             <li class="nav-item">
@@ -83,11 +92,11 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn-signup" href="{{ route('register') }}"><i class="fas fa-lock"></i> Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link header-login" href="{{ route('login') }}"><i class="fas fa-user"></i> Login</a>
-            </li>
+            <a class="nav-link btn-signup" href="{{ route('register') }}">Sign Up</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link header-login" href="{{ route('login') }}">Login</a>
+        </li>
         </ul>
     </nav>
 </header>
