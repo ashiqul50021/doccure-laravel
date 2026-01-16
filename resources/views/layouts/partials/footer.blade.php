@@ -13,7 +13,7 @@
                             <img src="{{ asset('assets/img/footer-logo.png') }}" alt="logo">
                         </div>
                         <div class="footer-about-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            <p>Book appointments with the best doctors and specialists nearest to you. </p>
                             <div class="social-icon">
                                 <ul>
                                     <li>

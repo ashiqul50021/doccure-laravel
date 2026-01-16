@@ -62,7 +62,7 @@
                         <a href="{{ route('search') }}">Doctors</a>
                     </li>
                     <li class="{{ request()->routeIs('products*') ? 'active' : '' }}">
-                        <a href="{{ route('products') }}">Products</a>
+                        <a href="{{ route('products') }}" style="text-transform: capitalize;">Products</a>
                     </li>
                 @endif
             </ul>

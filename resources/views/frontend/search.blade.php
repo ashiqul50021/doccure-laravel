@@ -14,41 +14,10 @@
 @endpush
 
 @section('content')
-<!-- Breadcrumb -->
-<div class="breadcrumb-bar">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-8 col-12">
-                <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Search</li>
-                    </ol>
-                </nav>
-                <h2 class="breadcrumb-title">2245 matches found for : Dentist In Bangalore</h2>
-            </div>
-            <div class="col-md-4 col-12 d-md-block d-none">
-                <div class="sort-by">
-                    <span class="sort-title">Sort by</span>
-                    <span class="sortby-fliter">
-                        <select class="select">
-                            <option>Select</option>
-                            <option class="sorting">Rating</option>
-                            <option class="sorting">Popular</option>
-                            <option class="sorting">Latest</option>
-                            <option class="sorting">Free</option>
-                        </select>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Breadcrumb -->
 
 <!-- Page Content -->
 <div class="content">
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="row">
             <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
@@ -107,7 +76,7 @@
                         'name' => 'Dr. ' . $doctor->user->name,
                         'speciality' => $doctor->speciality->name ?? 'General',
                         'department' => $doctor->speciality->name ?? 'General',
-                        'departmentIcon' => ($doctor->speciality && $doctor->speciality->image) ? asset('storage/'.$doctor->speciality->image) : asset('assets/img/specialities/specialities-05.png'),
+                        'departmentIcon' => ($doctor->speciality && $doctor->speciality->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($doctor->speciality->image)) ? asset('storage/'.$doctor->speciality->image) : asset('assets/img/specialities/specialities-05.png'),
                         'rating' => $doctor->average_rating,
                         'reviews' => $doctor->review_count,
                         'location' => $doctor->clinic_name ?? ($doctor->clinic_city ?? 'Location'),
@@ -133,9 +102,7 @@
                     {{ $doctors->withQueryString()->links() }}
                 </div>
 
-                <div class="load-more text-center">
-                    <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
-                </div>
+
             </div>
         </div>
 
