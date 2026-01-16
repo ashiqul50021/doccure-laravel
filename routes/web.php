@@ -148,7 +148,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Site Settings
     Route::get('/site-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'index'])->name('site-settings.index');
     Route::put('/site-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'update'])->name('site-settings.update');
-    Route::put('/site-settings/banner', [App\Http\Controllers\Admin\SiteSettingController::class, 'updateBanner'])->name('site-settings.update-banner');
+
+    // Banner Settings (separate page)
+    Route::get('/banner-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'bannerIndex'])->name('banner-settings.index');
+    Route::put('/banner-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'updateBanner'])->name('banner-settings.update');
 
     // Menu Manager
     Route::get('menus/{menu}/delete', [App\Http\Controllers\Admin\MenuController::class, 'delete'])->name('menus.delete');

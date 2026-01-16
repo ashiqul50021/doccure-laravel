@@ -43,6 +43,9 @@
                 <li class="{{ request()->routeIs('admin.site-settings.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.site-settings.index') }}"><i class="fe fe-settings"></i> <span>Site Settings</span></a>
                 </li>
+                <li class="{{ request()->routeIs('admin.banner-settings.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.banner-settings.index') }}"><i class="fe fe-image"></i> <span>Banner Settings</span></a>
+                </li>
                 <li class="{{ request()->routeIs('admin.menus.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.menus.index') }}"><i class="fe fe-list"></i> <span>Menu Manager</span></a>
                 </li>

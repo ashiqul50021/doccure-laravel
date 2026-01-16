@@ -30,6 +30,15 @@ class SiteSettingController extends Controller
     }
 
     /**
+     * Display banner settings page (dedicated)
+     */
+    public function bannerIndex()
+    {
+        $bannerSettings = SiteSetting::getByGroup('banner');
+        return view('admin.banner-settings.index', compact('bannerSettings'));
+    }
+
+    /**
      * Update site settings
      */
     public function update(Request $request)
@@ -88,14 +97,17 @@ class SiteSettingController extends Controller
     {
         $request->validate([
             'banner_title' => 'nullable|string|max:500',
-            'banner_subtitle' => 'nullable|string|max:500',
+            'banner_subtitle' => 'nullable|string|max:1000',
+            'banner_feature_1' => 'nullable|string|max:100',
+            'banner_feature_2' => 'nullable|string|max:100',
+            'banner_feature_3' => 'nullable|string|max:100',
             'banner_stats_text' => 'nullable|string|max:100',
             'banner_rating' => 'nullable|string|max:10',
             'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         // Text settings
-        $bannerTextSettings = ['banner_title', 'banner_subtitle', 'banner_stats_text', 'banner_rating'];
+        $bannerTextSettings = ['banner_title', 'banner_subtitle', 'banner_feature_1', 'banner_feature_2', 'banner_feature_3', 'banner_stats_text', 'banner_rating'];
         foreach ($bannerTextSettings as $key) {
             if ($request->has($key)) {
                 SiteSetting::set($key, $request->$key, 'text', 'banner');
@@ -113,7 +125,7 @@ class SiteSettingController extends Controller
             SiteSetting::set('banner_image', $path, 'image', 'banner');
         }
 
-        return redirect()->route('admin.site-settings.index')->with('success', 'Banner settings updated successfully!');
+        return redirect()->route('admin.banner-settings.index')->with('success', 'Banner settings updated successfully!');
     }
 
     /**

@@ -120,7 +120,7 @@ a {
     color: #2E3842;
 }
 a:hover {
-	color: #09dca4;
+	color: #00B4B4;
 }
 a:hover,
 a:active,
@@ -252,7 +252,7 @@ table.table td h2 a {
 	color: #272b41;
 }
 table.table td h2 a:hover {
-	color: #09dca4;
+	color: #00B4B4;
 }
 table.table td h2 span {
 	color: #888;
@@ -344,7 +344,7 @@ a.bg-primary:focus,
 a.bg-primary:hover, 
 button.bg-primary:focus, 
 button.bg-primary:hover {
-    background-color: #09dca4 !important;
+    background-color: #00B4B4 !important;
 }
 .bg-success,
 .badge-success {
@@ -429,8 +429,8 @@ button.bg-danger:hover {
 .btn-primary.active,
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
-	background-color: #09dca4;
-	border: 1px solid #09dca4;
+	background-color: #00B4B4;
+	border: 1px solid #00B4B4;
 }
 .btn-primary.active.focus,
 .btn-primary.active:focus,
@@ -441,14 +441,14 @@ button.bg-danger:hover {
 .open > .dropdown-toggle.btn-primary.focus,
 .open > .dropdown-toggle.btn-primary:focus,
 .open > .dropdown-toggle.btn-primary:hover {
-	background-color: #09dca4;
-	border: 1px solid #09dca4;
+	background-color: #00B4B4;
+	border: 1px solid #00B4B4;
 }
 .btn-primary.active:not(:disabled):not(.disabled),
 .btn-primary:active:not(:disabled):not(.disabled),
 .show > .btn-primary.dropdown-toggle {
-	background-color: #09dca4;
-	border-color: #09dca4;
+	background-color: #00B4B4;
+	border-color: #00B4B4;
 	color: #fff;
 }
 .btn-primary.active:focus:not(:disabled):not(.disabled), 
@@ -790,22 +790,22 @@ button.bg-danger:hover {
 .pagination > .active > span,
 .pagination > .active > span:focus,
 .pagination > .active > span:hover {
-	background-color: #20c0f3;
-	border-color: #20c0f3;
+	background-color: #00B4B4;
+	border-color: #00B4B4;
 }
 .pagination > li > a, 
 .pagination > li > span {
-	color: #20c0f3;
+	color: #00B4B4;
 }
 .page-link:hover {
-	color: #20c0f3;
+	color: #00B4B4;
 }
 .page-link:focus {
 	box-shadow: unset;
 }
 .page-item.active .page-link {
-	background-color: #20c0f3;
-	border-color: #20c0f3;
+	background-color: #00B4B4;
+	border-color: #00B4B4;
 }
 .dropdown-menu {
     background-color: #fff;
@@ -854,11 +854,11 @@ button.bg-danger:hover {
 	color: #a6a6a6;
 }
 .bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
-	background-color: #20c0f3;
+	background-color: #00B4B4;
 	text-shadow: unset;
 }
 .bootstrap-datetimepicker-widget table td.today::before{
-	border-bottom-color: #20c0f3;
+	border-bottom-color: #00B4B4;
 }
 .bg-info-light {
 	background-color: rgba(2, 182, 179,0.12) !important;
@@ -928,7 +928,7 @@ button.bg-danger:hover {
 .avatar-title {
 	width: 100%;
 	height: 100%;
-	background-color: #20c0f3;
+	background-color: #00B4B4;
 	color: #fff;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -1126,7 +1126,7 @@ button.bg-danger:hover {
 	line-height: 44px;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-	background-color: #20c0f3;
+	background-color: #00B4B4;
 }
 .select2-container--default .select2-selection--multiple {
 	border: 1px solid #dcdcdc;
@@ -1162,8 +1162,8 @@ button.bg-danger:hover {
 .nav-tabs.nav-tabs-solid > .active > a,
 .nav-tabs.nav-tabs-solid > .active > a:hover,
 .nav-tabs.nav-tabs-solid > .active > a:focus {
-	background-color: #20c0f3;
-	border-color: #20c0f3;
+	background-color: #00B4B4;
+	border-color: #00B4B4;
 	color: #fff;
 }
 .tab-content {
@@ -1194,8 +1194,8 @@ button.bg-danger:hover {
 .nav-tabs.nav-tabs-solid > li > a.active,
 .nav-tabs.nav-tabs-solid > li > a.active:hover,
 .nav-tabs.nav-tabs-solid > li > a.active:focus {
-	background-color: #20c0f3;
-	border-color: #20c0f3;
+	background-color: #00B4B4;
+	border-color: #00B4B4;
 	color: #fff;
 }
 .nav-tabs.nav-tabs-solid.nav-tabs-rounded {
@@ -1247,14 +1247,14 @@ button.bg-danger:hover {
 .nav-tabs.nav-tabs-top > li > a.active,
 .nav-tabs.nav-tabs-top > li > a.active:hover,
 .nav-tabs.nav-tabs-top > li > a.active:focus {
-	border-top-color: #20c0f3;
+	border-top-color: #00B4B4;
 }
 .nav-tabs.nav-tabs-bottom > li > a.active, 
 .nav-tabs.nav-tabs-bottom > li > a.active:hover, 
 .nav-tabs.nav-tabs-bottom > li > a.active:focus {
 	border-bottom-width: 2px;
 	border-color: transparent;
-	border-bottom-color: #20c0f3;
+	border-bottom-color: #00B4B4;
 	background-color: transparent;
 	transition: none 0s ease 0s; 
 	-moz-transition: none 0s ease 0s; 
@@ -1361,7 +1361,7 @@ button.bg-danger:hover {
     color: #272b41;
 }
 .line {
-    background-color: #20c0f3;
+    background-color: #00B4B4;
     height: 2px;
     margin: 0;
     width: 60px;
@@ -1694,7 +1694,7 @@ button.bg-danger:hover {
 	padding: 0;
 }
 .main-nav > li.active > a {
-	color: #09dca4;
+	color: #00B4B4;
 }
 .main-nav > li .submenu li a {
     display: block;
@@ -1814,7 +1814,7 @@ button.bg-danger:hover {
     color: #fff;
 }
 .header-navbar-rht li .dropdown-menu a:hover {
-    color: #09dca4;
+    color: #00B4B4;
 	letter-spacing: 0.5px;
 	padding-left: 20px;
 	background-color: #fff;
@@ -1910,7 +1910,7 @@ button.bg-danger:hover {
     padding: 10px 15px;
 }
 .header-navbar-rht .dropdown-menu .dropdown-item:hover {
-    color: #09dca4;
+    color: #00B4B4;
 }
 .user-header {
 	display: -webkit-box;
@@ -2184,7 +2184,7 @@ html.menu-opened body {
     font-size: 13px;
 }
 .login-right .dont-have a {
-	color: #09dca4;
+	color: #00B4B4;
 }
 .login-btn {
     font-size: 18px;
@@ -2895,7 +2895,7 @@ html.menu-opened body {
 	border-radius: 5px;
 }
 .doc-department {
-    color: #20c0f3;
+    color: #00B4B4;
     font-size: 14px;
     margin-bottom: 8px;
 }
@@ -2999,9 +2999,9 @@ html.menu-opened body {
 }
 .clinic-booking a {
     background-color: #fff;
-    border: 2px solid #20c0f3;
+    border: 2px solid #00B4B4;
     border-radius: 4px;
-    color: #20c0f3;
+    color: #00B4B4;
     display: block;
     font-size: 14px;
     font-weight: 500;
@@ -3012,11 +3012,11 @@ html.menu-opened body {
     width: 100%;
 }
 .clinic-booking a.view-pro-btn:hover, .clinic-booking a.view-pro-btn:focus {
-	background: #20c0f3; 
+	background: #00B4B4; 
 	color: #fff;
 }
 .clinic-booking a.apt-btn {
-    background-color: #20c0f3;
+    background-color: #00B4B4;
     color: #fff;
 }
 .clinic-booking a.apt-btn:hover, .clinic-booking a.apt-btn:focus {
@@ -3078,7 +3078,7 @@ html.menu-opened body {
 .user-tabs .nav-tabs.nav-tabs-bottom > li > a.active:hover, 
 .user-tabs .nav-tabs.nav-tabs-bottom > li > a.active:focus {
 	border-bottom-width: 3px;
-	color: #20c0f3;
+	color: #00B4B4;
 }
 .user-tabs .med-records {
 	display: inline-block;
@@ -3086,7 +3086,7 @@ html.menu-opened body {
 }
 .user-tabs .nav-tabs > li > a:hover {
 	background-color: unset;
-	color: #20c0f3;
+	color: #00B4B4;
 }
 .widget {
 	margin-bottom: 30px;
@@ -3156,10 +3156,10 @@ html.menu-opened body {
     border-radius: 50%;
     height: 12px;
     width: 12px;
-    border: 2px solid #20c0f3;
+    border: 2px solid #00B4B4;
 }
 .exp-year {
-    color: #20c0f3;
+    color: #00B4B4;
     margin-bottom: 2px;
 }
 .exp-title {
@@ -3286,7 +3286,7 @@ html.menu-opened body {
     font-size: 14px;
 }
 .review-listing > ul li .comment .comment-body .comment-reply .comment-btn {
-    color: #20c0f3;
+    color: #00B4B4;
     display: inline-block;
     font-weight: 500;
     font-size: 15px;
@@ -3354,7 +3354,7 @@ html.menu-opened body {
     color: #f2b600
 }
 .terms-accept a {
-	color: #20c0f3;
+	color: #00B4B4;
 	font-weight: 500;
 }
 .business-widget {
@@ -3585,7 +3585,7 @@ html.menu-opened body {
     width: 100%;
 }
 .exist-customer a {
-	color: #20c0f3;
+	color: #00B4B4;
 	font-weight: 500;
 }
 .payment-widget .payment-list + .payment-list {
@@ -3635,7 +3635,7 @@ html.menu-opened body {
     transition: all .3s;
 }
 .payment-radio input:checked ~ .checkmark {
-    border-color: #20c0f3;
+    border-color: #00B4B4;
 }
 .payment-radio .checkmark::after {
     position: absolute;
@@ -3644,7 +3644,7 @@ html.menu-opened body {
     content: '';
     width: 9px;
     height: 9px;
-    background-color: #20c0f3;
+    background-color: #00B4B4;
     opacity: 0;
     visibility: hidden;
     -webkit-transform: scale(0.1);
@@ -3722,7 +3722,7 @@ html.menu-opened body {
     color: #272b41;
 }
 .booking-total ul li .total-cost {
-    color: #20c0f3;
+    color: #00B4B4;
     font-size: 16px;
     float: right;
 }
@@ -3937,7 +3937,7 @@ html.menu-opened body {
 	-ms-flex-pack: center;
 }
 .edit-link {
-    color: #20c0f3;
+    color: #00B4B4;
     font-size: 16px;
     margin-top: 4px;
 }
@@ -4763,7 +4763,7 @@ html.menu-opened body {
 	margin-bottom: 1.5rem;
 }
 .change-photo-btn {
-    background-color: #20c0f3;
+    background-color: #00B4B4;
     border-radius: 50px;
     color: #fff;
     cursor: pointer;
@@ -4850,7 +4850,7 @@ html.menu-opened body {
 	-ms-flex-pack: center;
 }
 .add-more a {
-	color: #20c0f3;
+	color: #00B4B4;
 }
 .bootstrap-tagsinput {
     border-color: #dcdcdc;
@@ -4863,7 +4863,7 @@ html.menu-opened body {
 	border-color: #bbb;
 }
 .bootstrap-tagsinput .tag {
-    background-color: #20c0f3;
+    background-color: #00B4B4;
     color: #fff;
     display: inline-block;
     font-size: 14px;
@@ -4978,7 +4978,7 @@ html.menu-opened body {
 .fc-state-down,
 .fc-state-active,
 .fc-state-disabled {
-	background-color: #20c0f3 !important;
+	background-color: #00B4B4 !important;
 	color: #fff !important;
 	text-shadow: none !important;
 }
@@ -5313,7 +5313,7 @@ html.menu-opened body {
     font-weight: 500;
 }
 .typing-text {
-	color: #20c0f3;
+	color: #00B4B4;
 	font-size: 12px;
 	text-transform: lowercase;
 }
@@ -5813,10 +5813,10 @@ html.menu-opened body {
 		transform: translateY(0);
 	}
 	.main-nav .has-submenu.active > a {
-		color: #09dca4;
+		color: #00B4B4;
 	}
 	.main-nav .has-submenu.active .submenu li.active > a {
-		color: #09dca4;
+		color: #00B4B4;
 	}
 	.main-nav > li .submenu li:first-child a {
 		border-top: 0;
@@ -5833,7 +5833,7 @@ html.menu-opened body {
 		margin-top: 10px;
 	}
 	.main-nav li .submenu a:hover {
-		color: #09dca4;
+		color: #00B4B4;
 		letter-spacing: 0.5px;
 		padding-left: 20px;
 	}
@@ -5967,10 +5967,10 @@ html.menu-opened body {
 		content: "\f078";
 	}
 	.main-nav .has-submenu.active > a {
-		color: #09dca4;
+		color: #00B4B4;
 	}
 	.main-nav .has-submenu.active .submenu li.active > a {
-		color: #09dca4;
+		color: #00B4B4;
 	}
 	.login-left {
 		display: none;
@@ -6304,7 +6304,7 @@ html.menu-opened body {
 	.nav-tabs.nav-justified > li > a.active,
 	.nav-tabs.nav-justified > li > a.active:hover,
 	.nav-tabs.nav-justified > li > a.active:focus {
-		border-color: transparent transparent transparent #20c0f3;
+		border-color: transparent transparent transparent #00B4B4;
 		border-left-width: 2px;
 	}
 	.nav-tabs {
@@ -6334,7 +6334,7 @@ html.menu-opened body {
 	.nav-tabs > li > a.active,
 	.nav-tabs > li > a.active:hover,
 	.nav-tabs > li > a.active:focus {
-		border-color: transparent transparent transparent #20c0f3 !important;
+		border-color: transparent transparent transparent #00B4B4 !important;
 		border-left-width: 2px;
 	}
 	.nav-tabs > li.open:not(.active) > a,
@@ -6358,7 +6358,7 @@ html.menu-opened body {
 	.nav-tabs-justified > li > a.active:hover,
 	.nav-tabs-justified > li > a.active:focus {
 		border-width: 0 0 0 2px;
-		border-left-color: #20c0f3;
+		border-left-color: #00B4B4;
 	}
 	.review-listing > ul li .comment .comment-body .meta-data span.comment-date {
 		margin-bottom: 5px;
@@ -6397,7 +6397,7 @@ html.menu-opened body {
 	.user-tabs .nav-tabs.nav-tabs-bottom > li > a.active:hover, 
 	.user-tabs .nav-tabs.nav-tabs-bottom > li > a.active:focus {
 		border-left-width: 2px;
-		color: #20c0f3;
+		color: #00B4B4;
 	}
 	.doctor-widget {
 		-ms-flex-direction: column;

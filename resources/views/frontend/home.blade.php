@@ -15,36 +15,37 @@
             <!-- Left Content -->
             <div class="banner-content-left">
                 <h1 class="banner-headline">
-                    Get best <span class="text-highlight">quality</span><br>
-                    health <span class="text-highlight">care</span> services<br>
-                    at reasonable cost
+                    {!! $bannerSettings['banner_title'] ?? 'Get best <span class="text-highlight">quality</span><br>health <span class="text-highlight">care</span> services<br>at reasonable cost' !!}
                 </h1>
 
                 <p class="banner-subtitle">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    {{ $bannerSettings['banner_subtitle'] ?? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s' }}
                 </p>
 
                 <!-- Feature Highlights -->
                 <div class="feature-highlights">
                     <div class="feature-item">
                         <i class="fas fa-check-circle"></i>
-                        <span>Reasonable cost</span>
+                        <span>{{ $bannerSettings['banner_feature_1'] ?? 'Reasonable cost' }}</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle"></i>
-                        <span>Qualified doctor</span>
+                        <span>{{ $bannerSettings['banner_feature_2'] ?? 'Qualified doctor' }}</span>
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle"></i>
-                        <span>Hi-tech machine</span>
+                        <span>{{ $bannerSettings['banner_feature_3'] ?? 'Hi-tech machine' }}</span>
                     </div>
                 </div>
             </div>
 
             <!-- Right Image -->
             <div class="banner-content-right">
-                <img src="{{ asset('assets/img/doctors-hero.png') }}" alt="Professional Doctors" class="hero-doctors-img">
+                @if(!empty($bannerSettings['banner_image']))
+                    <img src="{{ asset('storage/' . $bannerSettings['banner_image']) }}" alt="Professional Doctors" class="hero-doctors-img">
+                @else
+                    <img src="{{ asset('assets/img/doctors-hero.png') }}" alt="Professional Doctors" class="hero-doctors-img">
+                @endif
             </div>
         </div>
 
