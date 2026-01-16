@@ -817,6 +817,64 @@
         height: 65px !important;
     }
 
+    /* Mobile Menu Wrapper - Full Height */
+    .main-menu-wrapper {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 280px !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        background-color: #15558d !important;
+        z-index: 1060 !important;
+        transform: translateX(-280px);
+        transition: transform 0.4s ease !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .menu-opened .main-menu-wrapper {
+        transform: translateX(0) !important;
+    }
+
+    /* Sidebar Overlay - Dark background behind menu */
+    .sidebar-overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1050 !important;
+        display: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.opened {
+        display: none !important;
+    }
+
+    /* Menu Header */
+    .menu-header {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #fff !important;
+        height: 60px;
+        min-height: 60px;
+        padding: 0 20px;
+        border-bottom: 1px solid #f0f0f0;
+        flex-shrink: 0;
+    }
+
+    .menu-close {
+        color: #333;
+        font-size: 20px;
+    }
+
     /* Hide header right buttons on mobile - they go in hamburger menu */
     .header-navbar-rht {
         position: fixed !important;
@@ -858,18 +916,51 @@
         height: 40px;
     }
 
-    /* Main nav centering fix */
+    /* Main Nav - Premium Mobile Styling */
     .main-nav {
         height: auto !important;
+        padding: 15px 0 !important;
+        flex: 1;
     }
 
     .main-nav>li {
         height: auto !important;
+        margin: 0 15px;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .main-nav>li:hover {
+        background: rgba(255, 255, 255, 0.1);
     }
 
     .main-nav>li>a {
         height: auto !important;
-        padding: 12px 20px !important;
+        padding: 14px 20px !important;
+        color: #fff !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .main-nav>li>a::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .main-nav>li:hover>a::before,
+    .main-nav>li.active>a::before {
+        background: #00d4ff;
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
     }
 
     .main-nav>li>a::after {
@@ -942,6 +1033,113 @@
     .hero-wave {
         height: 60px;
     }
+
+    /* Mobile Menu Buttons - Premium Design */
+    .mobile-menu-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 25px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: auto;
+        background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+    }
+
+    .mobile-menu-buttons::before {
+        content: 'Get Started';
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 8px;
+    }
+
+    .mobile-btn-for-doctors {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: linear-gradient(135deg, #fff 0%, #f0f4ff 100%);
+        color: var(--primary-blue) !important;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .mobile-btn-for-doctors::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .mobile-btn-for-doctors:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        color: var(--primary-blue) !important;
+    }
+
+    .mobile-btn-for-doctors:hover::after {
+        left: 100%;
+    }
+
+    .mobile-btn-signup {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--primary-blue) 0%, #00d4ff 100%);
+        color: var(--white) !important;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+    }
+
+
+    .mobile-btn-signup:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+        color: var(--white) !important;
+    }
+
+    .mobile-btn-login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--white) !important;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 14px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+    }
+
+    .mobile-btn-login:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        color: var(--white) !important;
+    }
 }
 
 @media (max-width: 767px) {
@@ -952,6 +1150,13 @@
     .search-box {
         padding: 15px !important;
         border-radius: 12px !important;
+    }
+}
+
+/* Hide mobile buttons on desktop - must come before media queries */
+@media (min-width: 992px) {
+    .mobile-menu-buttons {
+        display: none !important;
     }
 }
 

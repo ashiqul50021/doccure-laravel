@@ -72,8 +72,12 @@
                 <a class="mobile-btn-for-doctors" href="{{ route('doctor.register') }}">
                     <i class="fas fa-stethoscope"></i> For Doctors
                 </a>
-                <a class="mobile-btn-signup" href="{{ route('register') }}">Sign Up</a>
-                <a class="mobile-btn-login" href="{{ route('login') }}">Login</a>
+                <a class="mobile-btn-signup" href="{{ route('register') }}">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </a>
+                <a class="mobile-btn-login" href="{{ route('login') }}">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
             </div>
         </div>
         <ul class="nav header-navbar-rht">
