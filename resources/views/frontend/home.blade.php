@@ -41,7 +41,7 @@
 
             <!-- Right Image -->
             <div class="banner-content-right">
-                @if(!empty($bannerSettings['banner_image']))
+                @if(!empty($bannerSettings['banner_image']) && \Illuminate\Support\Facades\Storage::disk('public')->exists($bannerSettings['banner_image']))
                     <img src="{{ asset('storage/' . $bannerSettings['banner_image']) }}" alt="Professional Doctors" class="hero-doctors-img">
                 @else
                     <img src="{{ asset('assets/img/doctors-hero.png') }}" alt="Professional Doctors" class="hero-doctors-img">

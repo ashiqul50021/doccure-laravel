@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -156,4 +157,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Menu Manager
     Route::get('menus/{menu}/delete', [App\Http\Controllers\Admin\MenuController::class, 'delete'])->name('menus.delete');
     Route::resource('menus', App\Http\Controllers\Admin\MenuController::class);
+});
+
+// Temporary route to fix storage link on live server
+Route::get('/fix-storage', function () {
+    try {
+        Illuminate\Support\Facades\Artisan::call('storage:link');
+        return 'The [public/storage] link has been connected to [storage/app/public].';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
+
+Route::get('/link', function () {
+    Artisan::call('storage:link');
+    return 'Storage linked successfully!';
 });
