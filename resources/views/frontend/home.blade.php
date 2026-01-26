@@ -3,71 +3,95 @@
 @section('title', 'Doccure - Doctor Appointment Booking')
 
 @section('content')
-<!-- Home Banner -->
-<section class="section section-search-new">
-    <!-- Decorative Elements -->
-    <div class="hero-dots"></div>
-    <div class="hero-cross hero-cross-1">+</div>
-    <div class="hero-cross hero-cross-2">+</div>
+<!-- Home Banner - DocTime Inspired -->
+<section class="section-hero-doctime">
+    <!-- Background Wave Pattern -->
+    <div class="hero-wave-pattern"></div>
 
     <div class="container">
-        <div class="banner-wrapper-new">
-            <!-- Left Content -->
-            <div class="banner-content-left">
-                <h1 class="banner-headline">
-                    {!! $bannerSettings['banner_title'] ?? 'Get best <span class="text-highlight">quality</span><br>health <span class="text-highlight">care</span> services<br>at reasonable cost' !!}
-                </h1>
+        <!-- Hero Slider -->
+        <div class="hero-slider">
+            @if(isset($banners) && $banners->count() > 0)
+                @foreach($banners as $banner)
+                    @if($banner->type == 'content_image')
+                    <!-- Content + Image Slide -->
+                    <div class="hero-slide-item">
+                        <div class="hero-main-wrapper">
+                            <div class="hero-content-left">
+                                <h1 class="hero-main-title">
+                                    {!! $banner->title !!}
+                                </h1>
+                                @if($banner->subtitle)
+                                <p class="mb-4 text-muted">{{ $banner->subtitle }}</p>
+                                @endif
 
-                <p class="banner-subtitle">
-                    {{ $bannerSettings['banner_subtitle'] ?? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s' }}
-                </p>
+                                @if($banner->stats_text)
+                                <div class="hero-trust-badge">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Trusted By <strong>{{ $banner->stats_text }}</strong></span>
+                                </div>
+                                @endif
 
-                <!-- Feature Highlights -->
-                <div class="feature-highlights">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>{{ $bannerSettings['banner_feature_1'] ?? 'Reasonable cost' }}</span>
+                                @if($banner->button_text && $banner->button_link)
+                                <a href="{{ $banner->button_link }}" class="btn-hero-cta">
+                                    {{ $banner->button_text }} <i class="fas fa-arrow-right"></i>
+                                </a>
+                                @endif
+                            </div>
+                            <div class="hero-content-right">
+                                <img src="{{ asset($banner->image) }}" alt="{{ $banner->title }}" class="hero-doctors-img">
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>{{ $bannerSettings['banner_feature_2'] ?? 'Qualified doctor' }}</span>
+                    @elseif($banner->type == 'image_only')
+                    <!-- Image Only Slide -->
+                    <div class="hero-slide-item">
+                        <div class="hero-full-image" style="background-image: url('{{ asset($banner->image) }}'); height: 500px; background-size: cover; background-position: center; border-radius: 20px; position: relative;">
+                            @if($banner->button_link)
+                            <a href="{{ $banner->button_link }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+                            @endif
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>{{ $bannerSettings['banner_feature_3'] ?? 'Hi-tech machine' }}</span>
+                    @endif
+                @endforeach
+            @else
+                <!-- Fallback Static Slides (Keep original if no dynamic banners) -->
+                <!-- Slide 1 -->
+                <div class="hero-slide-item">
+                    <div class="hero-main-wrapper">
+                        <div class="hero-content-left">
+                            <h1 class="hero-main-title">
+                                {!! $bannerSettings['banner_title'] ?? 'The Largest Online<br><span class="text-blue">Doctor Platform</span><br>Of The Country' !!}
+                            </h1>
+                            <div class="hero-trust-badge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Trusted By <strong>{{ $bannerSettings['banner_stats_text'] ?? '700,000' }}</strong> Patients</span>
+                            </div>
+                            <a href="{{ route('search') }}" class="btn-hero-cta">
+                                Consult a Doctor Now <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="hero-content-right">
+                            @if(!empty($bannerSettings['banner_image']))
+                                <img src="{{ asset($bannerSettings['banner_image']) }}" alt="Professional Doctors" class="hero-doctors-img">
+                            @else
+                                <img src="{{ asset('assets/img/doctors-hero.png') }}" alt="Professional Doctors" class="hero-doctors-img">
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Right Image -->
-            <div class="banner-content-right">
-                @if(!empty($bannerSettings['banner_image']) && \Illuminate\Support\Facades\Storage::disk('public')->exists($bannerSettings['banner_image']))
-                    <img src="{{ asset('storage/' . $bannerSettings['banner_image']) }}" alt="Professional Doctors" class="hero-doctors-img">
-                @else
-                    <img src="{{ asset('assets/img/doctors-hero.png') }}" alt="Professional Doctors" class="hero-doctors-img">
-                @endif
-            </div>
+                <!-- Other static slides can be removed or kept as backups -->
+            @endif
         </div>
 
         <!-- Search Section -->
-        <div class="search-section-new">
-            <!-- Filter Search: Speciality, District, Area -->
-            <div class="search-container-new">
-                <form action="{{ route('search') }}" class="search-form-new" id="filterSearchForm">
-                    <!-- Speciality -->
-                    <div class="search-input-group">
-                        <i class="fas fa-stethoscope search-icon"></i>
-                        <select class="form-control" name="speciality_id" id="search_speciality">
-                            <option value="">Speciality</option>
-                            @foreach($searchSpecialities as $speciality)
-                                <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
+        <div class="hero-search-section">
+            <!-- Main Search Bar -->
+            <div class="hero-search-bar">
+                <form action="{{ route('search') }}" class="hero-search-form" id="filterSearchForm">
                     <!-- District -->
-                    <div class="search-input-group">
-                        <i class="fas fa-map-marker-alt search-icon"></i>
+                    <div class="search-field search-select">
+                        <i class="fas fa-map-marker-alt"></i>
                         <select class="form-control" name="district_id" id="district_select">
                             <option value="">District</option>
                             @foreach($districts as $district)
@@ -77,49 +101,38 @@
                     </div>
 
                     <!-- Area -->
-                    <div class="search-input-group location-group">
-                        <i class="fas fa-location-arrow search-icon"></i>
+                    <div class="search-field search-select">
+                        <i class="fas fa-location-arrow"></i>
                         <select class="form-control" name="area_id" id="area_select" disabled>
                             <option value="">Area</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn search-btn-new">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Divider -->
-            <div class="search-divider-new">or</div>
-
-            <!-- Keyword Search -->
-            <div class="search-container-new">
-                <form action="{{ route('search') }}" class="search-form-new" id="keywordSearchForm">
-                    <div class="search-input-group keyword-group">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" class="form-control" name="keywords" placeholder="Search doctors, clinics, specialities...">
+                    <!-- Speciality -->
+                    <div class="search-field search-select">
+                        <i class="fas fa-stethoscope"></i>
+                        <select class="form-control" name="speciality_id" id="search_speciality">
+                            <option value="">Speciality</option>
+                            @foreach($searchSpecialities as $speciality)
+                                <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
-                    <button type="submit" class="btn search-btn-new">
+                    <!-- Keyword Input (Search by doctor) -->
+                    <div class="search-field search-keyword">
+                        <i class="fas fa-search"></i>
+                        <input type="text" name="keywords" placeholder="Search by doctor name/code" class="form-control">
+                    </div>
+
+                    <button type="submit" class="btn-hero-search">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-            </div>
-
-            <!-- Quick Search Tags -->
-            <div class="quick-search-tags">
-                <span class="tags-label">You may be looking for</span>
-                <div class="tags-container">
-                    @foreach($searchSpecialities->take(7) as $speciality)
-                        <a href="{{ route('search', ['speciality_id' => $speciality->id]) }}" class="quick-tag">
-                            {{ $speciality->name }}
-                        </a>
-                    @endforeach
-                </div>
             </div>
         </div>
 
+        <!-- Service Cards Removed -->
     </div>
 </section>
 <!-- /Home Banner -->
@@ -746,6 +759,31 @@
 @push('scripts')
 <script>
 $(document).ready(function() {
+    // Hero Slider Initialization - Explicit Call
+    if($('.hero-slider').length > 0) {
+        $('.hero-slider').slick({
+            dots: false,
+            autoplay: true,
+            autoplaySpeed: 4000,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear',
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+            prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+            nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+            responsive: [{
+                breakpoint: 768,
+                settings: {
+                    arrows: false
+                }
+            }]
+        });
+        console.log('Hero Slider Initialized Successfully');
+    }
+
     // Initialize Select2 on new banner search dropdowns
     $('.search-input-group select').select2({
         minimumResultsForSearch: 5,

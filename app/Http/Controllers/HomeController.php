@@ -36,6 +36,9 @@ class HomeController extends Controller
         // Get banner settings
         $bannerSettings = SiteSetting::getByGroup('banner');
 
+        // Get active banners
+        $banners = \App\Models\Banner::active()->ordered()->get();
+
         // Get all districts for search dropdown
         $districts = District::orderBy('name')->get();
 
@@ -63,6 +66,7 @@ class HomeController extends Controller
             'productCategories',
             'topCategories',
             'bannerSettings',
+            'banners',
             'districts',
             'products' // Added products
         ));

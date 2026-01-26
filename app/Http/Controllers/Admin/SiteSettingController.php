@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 
 class SiteSettingController extends Controller
 {
@@ -78,11 +78,11 @@ class SiteSettingController extends Controller
             if ($request->hasFile($key)) {
                 // Delete old image
                 $oldSetting = SiteSetting::where('key', $key)->first();
-                if ($oldSetting && $oldSetting->value && Storage::disk('public')->exists($oldSetting->value)) {
-                    Storage::disk('public')->delete($oldSetting->value);
+                if ($oldSetting && $oldSetting->value) {
+                    ImageService::delete($oldSetting->value);
                 }
 
-                $path = $request->file($key)->store('settings', 'public');
+                $path = ImageService::upload($request->file($key), 'settings');
                 SiteSetting::set($key, $path, 'image', 'general');
             }
         }
@@ -117,11 +117,11 @@ class SiteSettingController extends Controller
         // Banner image
         if ($request->hasFile('banner_image')) {
             $oldSetting = SiteSetting::where('key', 'banner_image')->first();
-            if ($oldSetting && $oldSetting->value && Storage::disk('public')->exists($oldSetting->value)) {
-                Storage::disk('public')->delete($oldSetting->value);
+            if ($oldSetting && $oldSetting->value) {
+                ImageService::delete($oldSetting->value);
             }
 
-            $path = $request->file('banner_image')->store('settings', 'public');
+            $path = ImageService::upload($request->file('banner_image'), 'settings');
             SiteSetting::set('banner_image', $path, 'image', 'banner');
         }
 

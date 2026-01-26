@@ -5,7 +5,7 @@ namespace Modules\Doctors\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 use Modules\Doctors\Models\Speciality;
 
 class SpecialityController extends Controller
@@ -31,7 +31,7 @@ class SpecialityController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('specialities', 'public');
+            $imagePath = ImageService::upload($request->file('image'), 'specialities');
         }
 
         Speciality::create([
@@ -72,10 +72,8 @@ class SpecialityController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            if ($speciality->image) {
-                Storage::disk('public')->delete($speciality->image);
-            }
-            $data['image'] = $request->file('image')->store('specialities', 'public');
+            ImageService::delete($speciality->image);
+            $data['image'] = ImageService::upload($request->file('image'), 'specialities');
         }
 
         $speciality->update($data);
@@ -85,9 +83,7 @@ class SpecialityController extends Controller
 
     public function destroy(Speciality $speciality)
     {
-        if ($speciality->image) {
-            Storage::disk('public')->delete($speciality->image);
-        }
+        ImageService::delete($speciality->image);
         $speciality->delete();
 
         return redirect()->route('doctors.admin.specialities.index')->with('success', 'Speciality deleted successfully.');

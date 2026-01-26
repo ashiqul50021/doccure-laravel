@@ -5,7 +5,7 @@ namespace Modules\Ecommerce\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 use Modules\Ecommerce\Models\Product;
 use Modules\Ecommerce\Models\ProductCategory;
 
@@ -35,7 +35,7 @@ class ProductController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
+            $imagePath = ImageService::upload($request->file('image'), 'products');
         }
 
         Product::create([
@@ -88,10 +88,8 @@ class ProductController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
-            }
-            $data['image'] = $request->file('image')->store('products', 'public');
+            ImageService::delete($product->image);
+            $data['image'] = ImageService::upload($request->file('image'), 'products');
         }
 
         $product->update($data);
@@ -101,9 +99,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        if ($product->image) {
-            Storage::disk('public')->delete($product->image);
-        }
+        ImageService::delete($product->image);
         $product->delete();
 
         return redirect()->route('ecommerce.admin.products.index')->with('success', 'Product deleted successfully.');

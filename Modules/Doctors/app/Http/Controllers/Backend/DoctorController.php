@@ -5,7 +5,7 @@ namespace Modules\Doctors\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 use Modules\Doctors\Models\Doctor;
 use Modules\Doctors\Models\Speciality;
 use App\Models\User;
@@ -45,7 +45,7 @@ class DoctorController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('doctors', 'public');
+            $imagePath = ImageService::upload($request->file('image'), 'doctors');
         }
 
         Doctor::create([
@@ -104,10 +104,8 @@ class DoctorController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            if ($doctor->profile_image) {
-                Storage::disk('public')->delete($doctor->profile_image);
-            }
-            $data['profile_image'] = $request->file('image')->store('doctors', 'public');
+            ImageService::delete($doctor->profile_image);
+            $data['profile_image'] = ImageService::upload($request->file('image'), 'doctors');
         }
 
         $doctor->update($data);
@@ -117,9 +115,7 @@ class DoctorController extends Controller
 
     public function destroy(Doctor $doctor)
     {
-        if ($doctor->profile_image) {
-            Storage::disk('public')->delete($doctor->profile_image);
-        }
+        ImageService::delete($doctor->profile_image);
         $doctor->user->delete();
 
         return redirect()->route('doctors.admin.doctors.index')->with('success', 'Doctor deleted successfully.');

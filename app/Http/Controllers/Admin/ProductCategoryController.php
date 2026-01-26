@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 
 class ProductCategoryController extends Controller
 {
@@ -40,7 +40,7 @@ class ProductCategoryController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('product_categories', 'public');
+            $imagePath = ImageService::upload($request->file('image'), 'product_categories');
         }
 
         ProductCategory::create([
@@ -91,9 +91,9 @@ class ProductCategoryController extends Controller
 
         if ($request->hasFile('image')) {
             if ($productCategory->image) {
-                Storage::disk('public')->delete($productCategory->image);
+                ImageService::delete($productCategory->image);
             }
-            $data['image'] = $request->file('image')->store('product_categories', 'public');
+            $data['image'] = ImageService::upload($request->file('image'), 'product_categories');
         }
 
         $productCategory->update($data);
@@ -107,7 +107,7 @@ class ProductCategoryController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         if ($productCategory->image) {
-            Storage::disk('public')->delete($productCategory->image);
+            ImageService::delete($productCategory->image);
         }
         $productCategory->delete();
 

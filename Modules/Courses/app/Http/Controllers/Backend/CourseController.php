@@ -5,7 +5,7 @@ namespace Modules\Courses\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 use Modules\Courses\Models\Course;
 use Modules\Courses\Models\CourseCategory;
 
@@ -34,7 +34,7 @@ class CourseController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('courses', 'public');
+            $imagePath = ImageService::upload($request->file('image'), 'courses');
         }
 
         Course::create([
@@ -86,10 +86,8 @@ class CourseController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            if ($course->image) {
-                Storage::disk('public')->delete($course->image);
-            }
-            $data['image'] = $request->file('image')->store('courses', 'public');
+            ImageService::delete($course->image);
+            $data['image'] = ImageService::upload($request->file('image'), 'courses');
         }
 
         $course->update($data);
@@ -99,9 +97,7 @@ class CourseController extends Controller
 
     public function destroy(Course $course)
     {
-        if ($course->image) {
-            Storage::disk('public')->delete($course->image);
-        }
+        ImageService::delete($course->image);
         $course->delete();
 
         return redirect()->route('courses.admin.courses.index')->with('success', 'Course deleted successfully.');

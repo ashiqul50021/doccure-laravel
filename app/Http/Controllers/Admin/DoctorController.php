@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 use Illuminate\Support\Str;
 
 class DoctorController extends Controller
@@ -56,7 +56,7 @@ class DoctorController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('doctors', 'public');
+            $imagePath = ImageService::upload($request->file('image'), 'doctors');
         }
 
         Doctor::create([
@@ -125,9 +125,9 @@ class DoctorController extends Controller
 
         if ($request->hasFile('image')) {
             if ($doctor->profile_image) {
-                Storage::disk('public')->delete($doctor->profile_image);
+                ImageService::delete($doctor->profile_image);
             }
-            $data['profile_image'] = $request->file('image')->store('doctors', 'public');
+            $data['profile_image'] = ImageService::upload($request->file('image'), 'doctors');
         }
 
         $doctor->update($data);
@@ -141,7 +141,7 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
         if ($doctor->profile_image) {
-            Storage::disk('public')->delete($doctor->profile_image);
+            ImageService::delete($doctor->profile_image);
         }
         $doctor->user->delete(); // This cascades to doctor
         // or $doctor->delete(); if user should remain. But usually user is deleted.
