@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="col-sm-5 col">
-            <a href="{{ route('admin.advertisements.create') }}" class="btn btn-primary float-right mt-2">Add Ad</a>
+            <a href="{{ route('admin.advertisements.create') }}" class="btn btn-primary float-end mt-2">Add Ad</a>
         </div>
     </div>
 </div>
@@ -35,7 +35,7 @@
                                 <th>Speciality</th>
                                 <th>Priority</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                <th class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,7 +44,7 @@
                                 <td>#AD{{ $ad->id }}</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="#" class="avatar avatar-sm mr-2">
+                                        <a href="#" class="avatar avatar-sm me-2">
                                             <img class="avatar-img" src="{{ asset('storage/'.$ad->image) }}" alt="Ad Image">
                                         </a>
                                         <a href="#">{{ $ad->title }}</a>
@@ -58,7 +58,7 @@
                                         <label for="status_{{ $ad->id }}" class="checktoggle">checkbox</label>
                                     </div>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <div class="actions">
                                         <a class="btn btn-sm bg-success-light" href="{{ route('admin.advertisements.edit', $ad->id) }}">
                                             <i class="fe fe-pencil"></i> Edit

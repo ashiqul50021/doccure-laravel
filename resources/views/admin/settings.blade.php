@@ -26,16 +26,16 @@
                 <div class="card-body">
                     <form action="#">
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>Website Name</label>
                             <input type="text" class="form-control" value="Doccure">
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>Website Logo</label>
                             <input type="file" class="form-control">
                             <small class="text-secondary">Recommended image size is 150px x 150px</small>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>Favicon</label>
                             <input type="file" class="form-control">
                             <small class="text-secondary">Recommended image size is 16px x 16px or 32px x 32px</small>

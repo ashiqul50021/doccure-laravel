@@ -26,11 +26,11 @@
 
                             <!-- Forgot Password Form -->
                             <form action="{{ route('login') }}">
-                                <div class="form-group form-focus">
+                                <div class="mb-3 form-focus">
                                     <input type="email" class="form-control floating">
                                     <label class="focus-label">Email</label>
                                 </div>
-                                <div class="text-right">
+                                <div class="text-end">
                                     <a class="forgot-link" href="{{ route('login') }}">Remember your password?</a>
                                 </div>
                                 <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Reset Password</button>

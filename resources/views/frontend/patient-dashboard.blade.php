@@ -83,16 +83,16 @@
                         <nav class="user-tabs mb-4">
                             <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments</a>
+                                    <a class="nav-link active" href="#pat_appointments" data-bs-toggle="tab">Appointments</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#pat_prescriptions" data-toggle="tab">Prescriptions</a>
+                                    <a class="nav-link" href="#pat_prescriptions" data-bs-toggle="tab">Prescriptions</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#pat_medical_records" data-toggle="tab"><span class="med-records">Medical Records</span></a>
+                                    <a class="nav-link" href="#pat_medical_records" data-bs-toggle="tab"><span class="med-records">Medical Records</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#pat_billing" data-toggle="tab">Billing</a>
+                                    <a class="nav-link" href="#pat_billing" data-bs-toggle="tab">Billing</a>
                                 </li>
                             </ul>
                         </nav>
@@ -122,7 +122,7 @@
                                                     <tr>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm mr-2">
+                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm me-2">
                                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                                                 </a>
                                                                 <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin <span>Dental</span></a>
@@ -133,7 +133,7 @@
                                                         <td>$160</td>
                                                         <td>16 Nov 2019</td>
                                                         <td><span class="badge badge-pill bg-success-light">Confirm</span></td>
-                                                        <td class="text-right">
+                                                        <td class="text-end">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                                     <i class="fas fa-print"></i> Print
@@ -172,13 +172,13 @@
                                                         <td>Prescription 1</td>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm mr-2">
+                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm me-2">
                                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                                                 </a>
                                                                 <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin <span>Dental</span></a>
                                                             </h2>
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-end">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                                     <i class="fas fa-print"></i> Print
@@ -221,13 +221,13 @@
                                                         <td><a href="#">dental-test.pdf</a></td>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm mr-2">
+                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm me-2">
                                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                                                 </a>
                                                                 <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin <span>Dental</span></a>
                                                             </h2>
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-end">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                                     <i class="far fa-eye"></i> View
@@ -268,7 +268,7 @@
                                                         </td>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm mr-2">
+                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm me-2">
                                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                                                 </a>
                                                                 <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin <span>Dental</span></a>
@@ -276,7 +276,7 @@
                                                         </td>
                                                         <td>$450</td>
                                                         <td>14 Nov 2019</td>
-                                                        <td class="text-right">
+                                                        <td class="text-end">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                                     <i class="far fa-eye"></i> View

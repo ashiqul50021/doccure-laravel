@@ -24,24 +24,24 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><i class="fas fa-cog mr-2"></i>General Settings</h4>
+                <h4 class="card-title"><i class="fas fa-cog me-2"></i>General Settings</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.site-settings.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Website Name</label>
                         <input type="text" class="form-control" name="site_name" value="{{ $generalSettings['site_name'] ?? 'Doccure' }}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Tagline</label>
                         <input type="text" class="form-control" name="site_tagline" value="{{ $generalSettings['site_tagline'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Website Logo</label>
                         @if(!empty($generalSettings['logo']))
                             <div class="mb-2">
@@ -52,7 +52,7 @@
                         <small class="text-muted">Recommended size: 200px x 50px</small>
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Favicon</label>
                         @if(!empty($generalSettings['favicon']))
                             <div class="mb-2">
@@ -73,24 +73,24 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><i class="fas fa-phone mr-2"></i>Contact Settings</h4>
+                <h4 class="card-title"><i class="fas fa-phone me-2"></i>Contact Settings</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.site-settings.update') }}" method="POST">
                     @csrf
                     @method('PUT')
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Contact Email</label>
                         <input type="email" class="form-control" name="contact_email" value="{{ $contactSettings['contact_email'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Contact Phone</label>
                         <input type="text" class="form-control" name="contact_phone" value="{{ $contactSettings['contact_phone'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Address</label>
                         <textarea class="form-control" name="contact_address" rows="3">{{ $contactSettings['contact_address'] ?? '' }}</textarea>
                     </div>
@@ -107,30 +107,30 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><i class="fas fa-share-alt mr-2"></i>Social Links</h4>
+                <h4 class="card-title"><i class="fas fa-share-alt me-2"></i>Social Links</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.site-settings.update') }}" method="POST">
                     @csrf
                     @method('PUT')
 
-                    <div class="form-group">
-                        <label><i class="fab fa-facebook mr-1"></i>Facebook URL</label>
+                    <div class="mb-3">
+                        <label><i class="fab fa-facebook me-1"></i>Facebook URL</label>
                         <input type="url" class="form-control" name="facebook_url" value="{{ $socialSettings['facebook_url'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
-                        <label><i class="fab fa-twitter mr-1"></i>Twitter URL</label>
+                    <div class="mb-3">
+                        <label><i class="fab fa-twitter me-1"></i>Twitter URL</label>
                         <input type="url" class="form-control" name="twitter_url" value="{{ $socialSettings['twitter_url'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
-                        <label><i class="fab fa-instagram mr-1"></i>Instagram URL</label>
+                    <div class="mb-3">
+                        <label><i class="fab fa-instagram me-1"></i>Instagram URL</label>
                         <input type="url" class="form-control" name="instagram_url" value="{{ $socialSettings['instagram_url'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
-                        <label><i class="fab fa-linkedin mr-1"></i>LinkedIn URL</label>
+                    <div class="mb-3">
+                        <label><i class="fab fa-linkedin me-1"></i>LinkedIn URL</label>
                         <input type="url" class="form-control" name="linkedin_url" value="{{ $socialSettings['linkedin_url'] ?? '' }}">
                     </div>
 
@@ -144,34 +144,34 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><i class="fas fa-image mr-2"></i>Banner Settings</h4>
+                <h4 class="card-title"><i class="fas fa-image me-2"></i>Banner Settings</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.site-settings.update-banner') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Banner Title</label>
                         <input type="text" class="form-control" name="banner_title" value="{{ $bannerSettings['banner_title'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Banner Subtitle</label>
                         <input type="text" class="form-control" name="banner_subtitle" value="{{ $bannerSettings['banner_subtitle'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Stats Text (e.g., "5K+ Appointments")</label>
                         <input type="text" class="form-control" name="banner_stats_text" value="{{ $bannerSettings['banner_stats_text'] ?? '' }}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Rating</label>
                         <input type="text" class="form-control" name="banner_rating" value="{{ $bannerSettings['banner_rating'] ?? '5.0' }}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Banner Image</label>
                         @if(!empty($bannerSettings['banner_image']))
                             <div class="mb-2">

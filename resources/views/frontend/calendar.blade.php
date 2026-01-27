@@ -34,7 +34,7 @@
                                 Remove after drop
                             </label>
                         </div>
-                        <a href="#" data-toggle="modal" data-target="#add_new_event" class="btn btn-primary btn-block">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#add_new_event" class="btn btn-primary btn-block">
                             <i class="fas fa-plus"></i> Add Category
                         </a>
                     </div>
@@ -65,17 +65,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Event</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Event Name <span class="text-danger">*</span></label>
                         <input class="form-control" type="text">
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Event Date <span class="text-danger">*</span></label>
                         <div class="cal-icon">
                             <input class="form-control datetimepicker" type="text">
@@ -97,12 +95,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Event</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body"></div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-success save-event submit-btn">Create event</button>
-                <button type="button" class="btn btn-danger delete-event submit-btn" data-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-danger delete-event submit-btn" data-bs-dismiss="modal">Delete</button>
             </div>
         </div>
     </div>
@@ -115,15 +113,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Category</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Category Name</label>
                         <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Choose Category Color</label>
                         <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
                             <option value="success">Success</option>
@@ -135,7 +133,7 @@
                         </select>
                     </div>
                     <div class="submit-section text-center">
-                        <button type="button" class="btn btn-primary save-category submit-btn" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-primary save-category submit-btn" data-bs-dismiss="modal">Save</button>
                     </div>
                 </form>
             </div>

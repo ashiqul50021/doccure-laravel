@@ -34,7 +34,7 @@
                         <div class="col-md-8">
                             <h5 class="mb-3">Banner Text</h5>
 
-                            <div class="form-group mb-3">
+                            <div class="mb-3 mb-3">
                                 <label for="banner_title">Banner Title</label>
                                 <input type="text" class="form-control" id="banner_title" name="banner_title"
                                     value="{{ $bannerSettings['banner_title'] ?? '' }}"
@@ -42,7 +42,7 @@
                                 <small class="text-muted">Main heading displayed on the banner</small>
                             </div>
 
-                            <div class="form-group mb-3">
+                            <div class="mb-3 mb-3">
                                 <label for="banner_subtitle">Banner Subtitle</label>
                                 <textarea class="form-control" id="banner_subtitle" name="banner_subtitle" rows="3"
                                     placeholder="Description text below the title">{{ $bannerSettings['banner_subtitle'] ?? '' }}</textarea>
@@ -54,7 +54,7 @@
 
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-group mb-3">
+                                    <div class="mb-3 mb-3">
                                         <label for="banner_feature_1">Feature 1</label>
                                         <input type="text" class="form-control" id="banner_feature_1" name="banner_feature_1"
                                             value="{{ $bannerSettings['banner_feature_1'] ?? 'Reasonable cost' }}"
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group mb-3">
+                                    <div class="mb-3 mb-3">
                                         <label for="banner_feature_2">Feature 2</label>
                                         <input type="text" class="form-control" id="banner_feature_2" name="banner_feature_2"
                                             value="{{ $bannerSettings['banner_feature_2'] ?? 'Qualified doctor' }}"
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group mb-3">
+                                    <div class="mb-3 mb-3">
                                         <label for="banner_feature_3">Feature 3</label>
                                         <input type="text" class="form-control" id="banner_feature_3" name="banner_feature_3"
                                             value="{{ $bannerSettings['banner_feature_3'] ?? 'Hi-tech machine' }}"
@@ -82,7 +82,7 @@
                             <h5 class="mb-3 mt-4">Stats Badge</h5>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group mb-3">
+                                    <div class="mb-3 mb-3">
                                         <label for="banner_stats_text">Stats Text</label>
                                         <input type="text" class="form-control" id="banner_stats_text" name="banner_stats_text"
                                             value="{{ $bannerSettings['banner_stats_text'] ?? '10K+ Happy Patients' }}"
@@ -90,7 +90,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group mb-3">
+                                    <div class="mb-3 mb-3">
                                         <label for="banner_rating">Rating</label>
                                         <input type="text" class="form-control" id="banner_rating" name="banner_rating"
                                             value="{{ $bannerSettings['banner_rating'] ?? '4.9' }}"
@@ -104,7 +104,7 @@
                         <div class="col-md-4">
                             <h5 class="mb-3">Banner Image</h5>
 
-                            <div class="form-group mb-3">
+                            <div class="mb-3 mb-3">
                                 <label for="banner_image">Hero Image</label>
                                 <input type="file" class="form-control" id="banner_image" name="banner_image" accept="image/*">
                                 <small class="text-muted">Recommended: 600x600px or larger</small>

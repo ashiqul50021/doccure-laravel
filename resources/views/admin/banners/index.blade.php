@@ -11,7 +11,7 @@
             </ul>
         </div>
         <div class="col-sm-5 col">
-            <a href="{{ route('admin.banners.create') }}" class="btn btn-primary float-right mt-2">Add Banner</a>
+            <a href="{{ route('admin.banners.create') }}" class="btn btn-primary float-end mt-2">Add Banner</a>
         </div>
     </div>
 </div>
@@ -33,7 +33,7 @@
                                 <th>Type</th>
                                 <th>Title</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                <th class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +42,7 @@
                                 <td>{{ $banner->order }}</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="{{ asset($banner->image) }}" class="avatar avatar-sm mr-2" target="_blank">
+                                        <a href="{{ asset($banner->image) }}" class="avatar avatar-sm me-2" target="_blank">
                                             <img class="avatar-img rounded-circle" src="{{ asset($banner->image) }}" alt="Banner Image">
                                         </a>
                                     </h2>
@@ -62,7 +62,7 @@
                                         <span class="badge badge-danger">Inactive</span>
                                     @endif
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <div class="actions">
                                         <a class="btn btn-sm bg-success-light" href="{{ route('admin.banners.edit', $banner->id) }}">
                                             <i class="fe fe-pencil"></i> Edit

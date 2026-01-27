@@ -24,19 +24,19 @@
                     @csrf
                     <div class="row form-row">
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Title</label>
                                 <input type="text" name="title" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Link (URL)</label>
                                 <input type="url" name="link" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Speciality (Optional)</label>
                                 <select name="speciality_id" class="form-control">
                                     <option value="">All Specialities</option>
@@ -47,31 +47,31 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Priority</label>
                                 <input type="number" name="priority" class="form-control" value="0" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Start Date</label>
                                 <input type="date" name="start_date" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>End Date</label>
                                 <input type="date" name="end_date" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Image</label>
                                 <input type="file" name="image" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="is_active" id="is_active" checked>
                                     <label class="form-check-label" for="is_active">

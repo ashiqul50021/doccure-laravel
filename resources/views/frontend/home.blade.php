@@ -285,7 +285,7 @@
                 <!-- View All Button -->
                 <div class="text-center mt-4">
                     <a href="{{ route('products') }}" class="btn btn-primary btn-lg view-all-btn">
-                        <i class="fas fa-th-large mr-2"></i> View All Products
+                        <i class="fas fa-th-large me-2"></i> View All Products
                     </a>
                 </div>
             </div>
@@ -381,7 +381,7 @@
                 <!-- View All Button -->
                 <div class="text-center mt-4">
                     <a href="{{ route('search') }}" class="btn btn-primary btn-lg view-all-btn">
-                        <i class="fas fa-user-md mr-2"></i> View All Doctors
+                        <i class="fas fa-user-md me-2"></i> View All Doctors
                     </a>
                 </div>
             </div>
@@ -402,9 +402,9 @@
                     <p class="mb-4 text-muted">Doccure provides progressive, and affordable healthcare, accessible on mobile and online for everyone. To us, it's not just work. We take pride in the solutions we deliver</p>
 
                     <ul class="video-promo-list list-unstyled mb-4">
-                        <li><i class="fas fa-check-circle text-primary mr-2"></i> Leading Healthcare Provider</li>
-                        <li><i class="fas fa-check-circle text-primary mr-2"></i> 24/7 Support Available</li>
-                        <li><i class="fas fa-check-circle text-primary mr-2"></i> Experienced Doctors</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i> Leading Healthcare Provider</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i> 24/7 Support Available</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i> Experienced Doctors</li>
                     </ul>
 
                     <a href="{{ route('search') }}" class="btn btn-primary">Book Now</a>
@@ -632,25 +632,25 @@
         <div class="row text-center text-white">
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <div class="counter-box">
-                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-user-md mr-2"></i>500+</h2>
+                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-user-md me-2"></i>500+</h2>
                     <p class="mb-0" style="font-size: 18px;">Expert Doctors</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <div class="counter-box">
-                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-users mr-2"></i>10K+</h2>
+                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-users me-2"></i>10K+</h2>
                     <p class="mb-0" style="font-size: 18px;">Happy Patients</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <div class="counter-box">
-                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-hospital mr-2"></i>100+</h2>
+                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-hospital me-2"></i>100+</h2>
                     <p class="mb-0" style="font-size: 18px;">Clinics & Hospitals</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="counter-box">
-                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-award mr-2"></i>15+</h2>
+                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-award me-2"></i>15+</h2>
                     <p class="mb-0" style="font-size: 18px;">Years of Experience</p>
                 </div>
             </div>
@@ -679,7 +679,7 @@
                         </div>
                         <p class="card-text text-muted">"Excellent service! The doctor was very professional and the booking process was seamless. Highly recommend Doccure to everyone."</p>
                         <div class="d-flex align-items-center mt-4">
-                            <img src="{{ asset('assets/img/patients/patient1.jpg') }}" class="rounded-circle mr-3" alt="Patient" style="width: 50px; height: 50px; object-fit: cover;">
+                            <img src="{{ asset('assets/img/patients/patient1.jpg') }}" class="rounded-circle me-3" alt="Patient" style="width: 50px; height: 50px; object-fit: cover;">
                             <div>
                                 <h6 class="mb-0 font-weight-bold">Sarah Johnson</h6>
                                 <small class="text-muted">Cardiology Patient</small>
@@ -700,7 +700,7 @@
                         </div>
                         <p class="card-text text-muted">"Found the best dentist through Doccure. The platform is easy to use and the doctor profiles are very detailed. Great experience!"</p>
                         <div class="d-flex align-items-center mt-4">
-                            <img src="{{ asset('assets/img/patients/patient2.jpg') }}" class="rounded-circle mr-3" alt="Patient" style="width: 50px; height: 50px; object-fit: cover;">
+                            <img src="{{ asset('assets/img/patients/patient2.jpg') }}" class="rounded-circle me-3" alt="Patient" style="width: 50px; height: 50px; object-fit: cover;">
                             <div>
                                 <h6 class="mb-0 font-weight-bold">Michael Chen</h6>
                                 <small class="text-muted">Dental Patient</small>
@@ -721,7 +721,7 @@
                         </div>
                         <p class="card-text text-muted">"Very convenient way to book appointments. No more waiting in long queues. The reminder system is also very helpful."</p>
                         <div class="d-flex align-items-center mt-4">
-                            <img src="{{ asset('assets/img/patients/patient3.jpg') }}" class="rounded-circle mr-3" alt="Patient" style="width: 50px; height: 50px; object-fit: cover;">
+                            <img src="{{ asset('assets/img/patients/patient3.jpg') }}" class="rounded-circle me-3" alt="Patient" style="width: 50px; height: 50px; object-fit: cover;">
                             <div>
                                 <h6 class="mb-0 font-weight-bold">Emily Davis</h6>
                                 <small class="text-muted">General Checkup</small>
@@ -747,7 +747,7 @@
         <h2 class="display-5 font-weight-bold mb-3 text-white">Ready to Book Your Appointment?</h2>
         <p class="lead mb-5 text-white-50">Join thousands of patients who trust Doccure for their healthcare needs.</p>
         <a href="{{ route('search') }}" class="btn btn-light cta-btn">
-            <i class="fas fa-calendar-check mr-2"></i> Find a Doctor Now
+            <i class="fas fa-calendar-check me-2"></i> Find a Doctor Now
         </a>
     </div>
 </section>

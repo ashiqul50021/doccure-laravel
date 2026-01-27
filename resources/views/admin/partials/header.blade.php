@@ -34,7 +34,7 @@
 
         <!-- Notifications -->
         <li class="nav-item dropdown noti-dropdown">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                 <i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
             </a>
             <div class="dropdown-menu notifications">
@@ -94,7 +94,7 @@
 
         <!-- User Menu -->
         <li class="nav-item dropdown has-arrow">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                 <span class="user-img"><img class="rounded-circle" src="{{ asset('backend/img/profiles/avatar-01.jpg') }}" width="31" alt="Ryan Taylor"></span>
             </a>
             <div class="dropdown-menu">

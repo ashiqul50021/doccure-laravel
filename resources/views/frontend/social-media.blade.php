@@ -112,7 +112,7 @@
                         <form>
                             <div class="row">
                                 <div class="col-md-12 col-lg-8">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Facebook URL</label>
                                         <input type="text" class="form-control">
                                     </div>
@@ -120,7 +120,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-lg-8">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Twitter URL</label>
                                         <input type="text" class="form-control">
                                     </div>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-lg-8">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Instagram URL</label>
                                         <input type="text" class="form-control">
                                     </div>
@@ -136,7 +136,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-lg-8">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Pinterest URL</label>
                                         <input type="text" class="form-control">
                                     </div>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-lg-8">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Linkedin URL</label>
                                         <input type="text" class="form-control">
                                     </div>
@@ -152,7 +152,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-lg-8">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Youtube URL</label>
                                         <input type="text" class="form-control">
                                     </div>

@@ -125,7 +125,7 @@
                             </div>
                         </div>
                         <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
+                            <a href="#" class="btn btn-sm bg-info-light" data-bs-toggle="modal" data-bs-target="#appt_details">
                                 <i class="far fa-eye"></i> View
                             </a>
                             <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                         <div class="appointment-action">
-                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
+                            <a href="#" class="btn btn-sm bg-info-light" data-bs-toggle="modal" data-bs-target="#appt_details">
                                 <i class="far fa-eye"></i> View
                             </a>
                             <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
@@ -183,9 +183,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Appointment Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <ul class="info-details">
@@ -197,7 +195,7 @@
                                     <span class="text">21 Oct 2019 10:00 AM</span>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="text-right">
+                                    <div class="text-end">
                                         <button type="button" class="btn bg-success-light btn-sm" id="topup_status">Completed</button>
                                     </div>
                                 </div>

@@ -106,7 +106,7 @@
                     <!-- /Schedule Widget -->
 
                     <!-- Submit Section -->
-                    <div class="submit-section proceed-btn text-right">
+                    <div class="submit-section proceed-btn text-end">
                         <button type="submit" class="btn btn-primary submit-btn">Proceed to Pay</button>
                     </div>
                     <!-- /Submit Section -->

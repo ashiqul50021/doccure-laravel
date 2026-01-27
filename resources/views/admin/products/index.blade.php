@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="col-sm-5 col">
-            <a href="{{ route('admin.products.create') }}" class="btn btn-primary float-right mt-2">Add Product</a>
+            <a href="{{ route('admin.products.create') }}" class="btn btn-primary float-end mt-2">Add Product</a>
         </div>
     </div>
 </div>
@@ -36,7 +36,7 @@
                                 <th>Price</th>
                                 <th>Stock</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                <th class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,7 +45,7 @@
                                 <td>#PRO{{ $product->id }}</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="#" class="avatar avatar-sm mr-2">
+                                        <a href="#" class="avatar avatar-sm me-2">
                                             <img class="avatar-img" src="{{ $product->image ? asset('storage/'.$product->image) : asset('assets/img/specialities/specialities-01.png') }}" alt="Product">
                                         </a>
                                         <a href="#">{{ $product->name }}</a>
@@ -60,7 +60,7 @@
                                         <label for="status_{{ $product->id }}" class="checktoggle">checkbox</label>
                                     </div>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <div class="actions">
                                         <a class="btn btn-sm bg-success-light" href="{{ route('admin.products.edit', $product->id) }}">
                                             <i class="fe fe-pencil"></i> Edit

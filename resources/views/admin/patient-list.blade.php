@@ -30,7 +30,7 @@
                                 <th>Address</th>
                                 <th>Phone</th>
                                 <th>Last Visit</th>
-                                <th class="text-right">Paid</th>
+                                <th class="text-end">Paid</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,7 +38,7 @@
                                 <td>#PT001</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient1.jpg') }}" alt="User Image"></a>
+                                        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient1.jpg') }}" alt="User Image"></a>
                                         <a href="profile.html">Charlene Reed </a>
                                     </h2>
                                 </td>
@@ -46,13 +46,13 @@
                                 <td>4417  Goosetown Drive, Taylorsville, NC, 28681</td>
                                 <td>8286329170</td>
                                 <td>20 Oct 2019</td>
-                                <td class="text-right">$100.00</td>
+                                <td class="text-end">$100.00</td>
                             </tr>
                              <tr>
                                 <td>#PT002</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient2.jpg') }}" alt="User Image"></a>
+                                        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient2.jpg') }}" alt="User Image"></a>
                                         <a href="profile.html">Travis Trimble </a>
                                     </h2>
                                 </td>
@@ -60,7 +60,7 @@
                                 <td>4026  Dodge Street, Prescott, AZ, 86301</td>
                                 <td>9283440479</td>
                                 <td>22 Oct 2019</td>
-                                <td class="text-right">$200.00</td>
+                                <td class="text-end">$200.00</td>
                             </tr>
                         </tbody>
                     </table>

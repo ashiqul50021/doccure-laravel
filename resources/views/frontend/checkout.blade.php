@@ -21,25 +21,25 @@
                                 <h4 class="card-title">Personal Information</h4>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
-                                        <div class="form-group card-label">
+                                        <div class="mb-3 card-label">
                                             <label>First Name</label>
                                             <input class="form-control" type="text" name="first_name" value="{{ Auth::user()->name ?? '' }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <div class="form-group card-label">
+                                        <div class="mb-3 card-label">
                                             <label>Last Name</label>
                                             <input class="form-control" type="text" name="last_name">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <div class="form-group card-label">
+                                        <div class="mb-3 card-label">
                                             <label>Email</label>
                                             <input class="form-control" type="email" name="email" value="{{ Auth::user()->email ?? '' }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <div class="form-group card-label">
+                                        <div class="mb-3 card-label">
                                             <label>Phone</label>
                                             <input class="form-control" type="text" name="phone">
                                         </div>
@@ -63,31 +63,31 @@
                                     </label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group card-label">
+                                            <div class="mb-3 card-label">
                                                 <label for="card_name">Name on Card</label>
                                                 <input class="form-control" id="card_name" type="text">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group card-label">
+                                            <div class="mb-3 card-label">
                                                 <label for="card_number">Card Number</label>
                                                 <input class="form-control" id="card_number" placeholder="1234  5678  9876  5432" type="text">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group card-label">
+                                            <div class="mb-3 card-label">
                                                 <label for="expiry_month">Expiry Month</label>
                                                 <input class="form-control" id="expiry_month" placeholder="MM" type="text">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group card-label">
+                                            <div class="mb-3 card-label">
                                                 <label for="expiry_year">Expiry Year</label>
                                                 <input class="form-control" id="expiry_year" placeholder="YY" type="text">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group card-label">
+                                            <div class="mb-3 card-label">
                                                 <label for="cvv">CVV</label>
                                                 <input class="form-control" id="cvv" type="text">
                                             </div>

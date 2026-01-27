@@ -25,7 +25,7 @@
                     @method('PUT')
                     <div class="row form-row">
                         <div class="col-12 col-md-12">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <div class="change-avatar">
                                     <div class="profile-img">
                                         <img src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
@@ -41,19 +41,19 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Name</label>
                                 <input type="text" name="name" class="form-control" value="{{ $doctor->user->name }}" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Email</label>
                                 <input type="email" class="form-control" value="{{ $doctor->user->email }}" readonly>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Speciality</label>
                                 <select name="speciality_id" class="form-control" required>
                                     @foreach($specialities as $speciality)
@@ -63,37 +63,37 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Qualification</label>
                                 <input type="text" name="qualification" class="form-control" value="{{ $doctor->qualification }}" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Consultation Fee</label>
                                 <input type="number" name="consultation_fee" class="form-control" value="{{ $doctor->consultation_fee }}">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Clinic Name</label>
                                 <input type="text" name="clinic_name" class="form-control" value="{{ $doctor->clinic_name }}">
                             </div>
                         </div>
                          <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Clinic Address</label>
                                 <input type="text" name="clinic_address" class="form-control" value="{{ $doctor->clinic_address }}">
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Biography</label>
                                 <textarea name="bio" class="form-control" rows="4">{{ $doctor->bio }}</textarea>
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="is_featured" id="is_featured" {{ $doctor->is_featured ? 'checked' : '' }}>
                                     <label class="form-check-label" for="is_featured">

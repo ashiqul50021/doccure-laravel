@@ -116,20 +116,20 @@
                                 <th>Patient Name</th>
                                 <th>Apointment Time</th>
                                 <th>Status</th>
-                                <th class="text-right">Amount</th>
+                                <th class="text-end">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="table-avatar">
-                                    <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm mr-2">
+                                    <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm me-2">
                                         <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                     </a>
                                     <a href="{{ route('admin.doctors.index') }}">Dr. Ruby Perrin</a>
                                 </td>
                                 <td>Dental</td>
                                 <td>
-                                    <a href="{{ route('admin.patients') }}" class="avatar avatar-sm mr-2">
+                                    <a href="{{ route('admin.patients') }}" class="avatar avatar-sm me-2">
                                         <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient1.jpg') }}" alt="User Image">
                                     </a>
                                     <a href="{{ route('admin.patients') }}">Charlene Reed</a>
@@ -141,18 +141,18 @@
                                         <label for="status_1" class="checktoggle">checkbox</label>
                                     </div>
                                 </td>
-                                <td class="text-right">$200.00</td>
+                                <td class="text-end">$200.00</td>
                             </tr>
                             <tr>
                                 <td class="table-avatar">
-                                    <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm mr-2">
+                                    <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm me-2">
                                         <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image">
                                     </a>
                                     <a href="{{ route('admin.doctors.index') }}">Dr. Darren Elder</a>
                                 </td>
                                 <td>Dental</td>
                                 <td>
-                                    <a href="{{ route('admin.patients') }}" class="avatar avatar-sm mr-2">
+                                    <a href="{{ route('admin.patients') }}" class="avatar avatar-sm me-2">
                                         <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient2.jpg') }}" alt="User Image">
                                     </a>
                                     <a href="{{ route('admin.patients') }}">Travis Trimble</a>
@@ -164,18 +164,18 @@
                                         <label for="status_2" class="checktoggle">checkbox</label>
                                     </div>
                                 </td>
-                                <td class="text-right">$300.00</td>
+                                <td class="text-end">$300.00</td>
                             </tr>
                             <tr>
                                 <td class="table-avatar">
-                                    <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm mr-2">
+                                    <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm me-2">
                                         <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-03.jpg') }}" alt="User Image">
                                     </a>
                                     <a href="{{ route('admin.doctors.index') }}">Dr. Deborah Angel</a>
                                 </td>
                                 <td>Cardiology</td>
                                 <td>
-                                    <a href="{{ route('admin.patients') }}" class="avatar avatar-sm mr-2">
+                                    <a href="{{ route('admin.patients') }}" class="avatar avatar-sm me-2">
                                         <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient3.jpg') }}" alt="User Image">
                                     </a>
                                     <a href="{{ route('admin.patients') }}">Carl Kelly</a>
@@ -187,7 +187,7 @@
                                         <label for="status_3" class="checktoggle">checkbox</label>
                                     </div>
                                 </td>
-                                <td class="text-right">$150.00</td>
+                                <td class="text-end">$150.00</td>
                             </tr>
                         </tbody>
                     </table>

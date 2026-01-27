@@ -121,7 +121,7 @@
                                     <div class="row">
 
                                         <div class="col-lg-4">
-                                            <div class="form-group">
+                                            <div class="mb-3">
                                                 <label>Timing Slot Duration</label>
                                                 <select class="select form-control">
                                                     <option>-</option>
@@ -145,25 +145,25 @@
                                                     <div class="schedule-nav">
                                                         <ul class="nav nav-tabs nav-justified">
                                                             <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_sunday">Sunday</a>
+                                                                <a class="nav-link" data-bs-toggle="tab" href="#slot_sunday">Sunday</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link active" data-toggle="tab" href="#slot_monday">Monday</a>
+                                                                <a class="nav-link active" data-bs-toggle="tab" href="#slot_monday">Monday</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_tuesday">Tuesday</a>
+                                                                <a class="nav-link" data-bs-toggle="tab" href="#slot_tuesday">Tuesday</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_wednesday">Wednesday</a>
+                                                                <a class="nav-link" data-bs-toggle="tab" href="#slot_wednesday">Wednesday</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_thursday">Thursday</a>
+                                                                <a class="nav-link" data-bs-toggle="tab" href="#slot_thursday">Thursday</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_friday">Friday</a>
+                                                                <a class="nav-link" data-bs-toggle="tab" href="#slot_friday">Friday</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_saturday">Saturday</a>
+                                                                <a class="nav-link" data-bs-toggle="tab" href="#slot_saturday">Saturday</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -179,7 +179,7 @@
                                                     <div id="slot_sunday" class="tab-pane fade">
                                                         <h4 class="card-title d-flex justify-content-between">
                                                             <span>Time Slots</span>
-                                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+                                                            <a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
                                                         </h4>
                                                         <p class="text-muted mb-0">Not Available</p>
                                                     </div>
@@ -189,7 +189,7 @@
                                                     <div id="slot_monday" class="tab-pane fade show active">
                                                         <h4 class="card-title d-flex justify-content-between">
                                                             <span>Time Slots</span>
-                                                            <a class="edit-link" data-toggle="modal" href="#edit_time_slot"><i class="fa fa-edit mr-1"></i>Edit</a>
+                                                            <a class="edit-link" data-bs-toggle="modal" href="#edit_time_slot"><i class="fa fa-edit me-1"></i>Edit</a>
                                                         </h4>
 
                                                         <!-- Slot List -->
@@ -228,7 +228,7 @@
                                                     <div id="slot_tuesday" class="tab-pane fade">
                                                         <h4 class="card-title d-flex justify-content-between">
                                                             <span>Time Slots</span>
-                                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+                                                            <a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
                                                         </h4>
                                                         <p class="text-muted mb-0">Not Available</p>
                                                     </div>
@@ -238,7 +238,7 @@
                                                     <div id="slot_wednesday" class="tab-pane fade">
                                                         <h4 class="card-title d-flex justify-content-between">
                                                             <span>Time Slots</span>
-                                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+                                                            <a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
                                                         </h4>
                                                         <p class="text-muted mb-0">Not Available</p>
                                                     </div>
@@ -248,7 +248,7 @@
                                                     <div id="slot_thursday" class="tab-pane fade">
                                                         <h4 class="card-title d-flex justify-content-between">
                                                             <span>Time Slots</span>
-                                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+                                                            <a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
                                                         </h4>
                                                         <p class="text-muted mb-0">Not Available</p>
                                                     </div>
@@ -258,7 +258,7 @@
                                                     <div id="slot_friday" class="tab-pane fade">
                                                         <h4 class="card-title d-flex justify-content-between">
                                                             <span>Time Slots</span>
-                                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+                                                            <a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
                                                         </h4>
                                                         <p class="text-muted mb-0">Not Available</p>
                                                     </div>
@@ -268,7 +268,7 @@
                                                     <div id="slot_saturday" class="tab-pane fade">
                                                         <h4 class="card-title d-flex justify-content-between">
                                                             <span>Time Slots</span>
-                                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+                                                            <a class="edit-link" data-bs-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
                                                         </h4>
                                                         <p class="text-muted mb-0">Not Available</p>
                                                     </div>
@@ -300,9 +300,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Time Slots</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -311,7 +309,7 @@
                             <div class="col-12 col-md-10">
                                 <div class="row form-row">
                                     <div class="col-12 col-md-6">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>Start Time</label>
                                             <select class="form-control">
                                                 <option>-</option>
@@ -323,7 +321,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>End Time</label>
                                             <select class="form-control">
                                                 <option>-</option>
@@ -358,9 +356,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Time Slots</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -369,7 +365,7 @@
                             <div class="col-12 col-md-10">
                                 <div class="row form-row">
                                     <div class="col-12 col-md-6">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>Start Time</label>
                                             <select class="form-control">
                                                 <option>-</option>
@@ -381,7 +377,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>End Time</label>
                                             <select class="form-control">
                                                 <option>-</option>
@@ -400,7 +396,7 @@
                             <div class="col-12 col-md-10">
                                 <div class="row form-row">
                                     <div class="col-12 col-md-6">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>Start Time</label>
                                             <select class="form-control">
                                                 <option>-</option>
@@ -412,7 +408,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>End Time</label>
                                             <select class="form-control">
                                                 <option>-</option>
@@ -432,7 +428,7 @@
                             <div class="col-12 col-md-10">
                                 <div class="row form-row">
                                     <div class="col-12 col-md-6">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>Start Time</label>
                                             <select class="form-control">
                                                 <option>-</option>
@@ -444,7 +440,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label>End Time</label>
                                             <select class="form-control">
                                                 <option>-</option>

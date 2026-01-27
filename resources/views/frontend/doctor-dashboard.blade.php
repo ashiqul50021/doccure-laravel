@@ -170,10 +170,10 @@
                             <!-- Appointment Tab -->
                             <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Upcoming</a>
+                                    <a class="nav-link active" href="#upcoming-appointments" data-bs-toggle="tab">Upcoming</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#today-appointments" data-toggle="tab">Today</a>
+                                    <a class="nav-link" href="#today-appointments" data-bs-toggle="tab">Today</a>
                                 </li>
                             </ul>
                             <!-- /Appointment Tab -->
@@ -200,7 +200,7 @@
                                                         <tr>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient.jpg') }}" alt="User Image"></a>
+                                                                    <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient.jpg') }}" alt="User Image"></a>
                                                                     <a href="{{ route('patient.profile') }}">Richard Wilson <span>#PT0016</span></a>
                                                                 </h2>
                                                             </td>
@@ -208,7 +208,7 @@
                                                             <td>General</td>
                                                             <td>New Patient</td>
                                                             <td class="text-center">$150</td>
-                                                            <td class="text-right">
+                                                            <td class="text-end">
                                                                 <div class="table-action">
                                                                     <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                                         <i class="far fa-eye"></i> View
@@ -251,7 +251,7 @@
                                                         <tr>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient6.jpg') }}" alt="User Image"></a>
+                                                                    <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient6.jpg') }}" alt="User Image"></a>
                                                                     <a href="{{ route('patient.profile') }}">Elsie Gilley <span>#PT0006</span></a>
                                                                 </h2>
                                                             </td>
@@ -259,7 +259,7 @@
                                                             <td>Fever</td>
                                                             <td>Old Patient</td>
                                                             <td class="text-center">$300</td>
-                                                            <td class="text-right">
+                                                            <td class="text-end">
                                                                 <div class="table-action">
                                                                     <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                                         <i class="far fa-eye"></i> View

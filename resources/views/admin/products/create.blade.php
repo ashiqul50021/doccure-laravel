@@ -24,13 +24,13 @@
                     @csrf
                     <div class="row form-row">
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Product Name</label>
                                 <input type="text" name="name" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Category</label>
                                 <select name="product_category_id" class="form-control" required>
                                     @foreach($categories as $category)
@@ -40,37 +40,37 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Price</label>
                                 <input type="number" step="0.01" name="price" class="form-control" required>
                             </div>
                         </div>
                          <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Sale Price (Optional)</label>
                                 <input type="number" step="0.01" name="sale_price" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Stock</label>
                                 <input type="number" name="stock" class="form-control" value="0" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Image</label>
                                 <input type="file" name="image" class="form-control">
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Description</label>
                                 <textarea name="description" class="form-control" rows="4"></textarea>
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="is_featured" id="is_featured">
                                     <label class="form-check-label" for="is_featured">

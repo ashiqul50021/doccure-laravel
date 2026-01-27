@@ -20,7 +20,7 @@
                 <form action="{{ route('admin.banners.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Banner Type <span class="text-danger">*</span></label>
                         <div>
                             <div class="form-check form-check-inline">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Banner Image <span class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="image" required>
                         <small class="form-text text-muted">Recommended Size: 1920x600px (Image Only) or Transparent PNG (Content with Image)</small>
@@ -48,33 +48,33 @@
                     <div id="content_fields">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Title <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="title" placeholder="e.g. The Largest Online Doctor Platform">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Stats Text (Trusted By)</label>
                                     <input type="text" class="form-control" name="stats_text" placeholder="e.g. 700,000 Patients">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>Subtitle / Description</label>
                             <textarea class="form-control" name="subtitle" rows="3"></textarea>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Button Text</label>
                                     <input type="text" class="form-control" name="button_text" placeholder="e.g. Consult Now">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Button Link</label>
                                     <input type="text" class="form-control" name="button_link" placeholder="e.g. /search">
                                 </div>
@@ -84,13 +84,13 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Order Priority</label>
                                 <input type="number" class="form-control" name="order" value="0">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Status</label>
                                 <div class="status-toggle">
                                     <input type="checkbox" id="is_active" class="check" name="is_active" checked>

@@ -30,21 +30,21 @@
                                 <th>Patient Name</th>
                                 <th>Apointment Time</th>
                                 <th>Status</th>
-                                <th class="text-right">Amount</th>
+                                <th class="text-end">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image"></a>
+                                        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image"></a>
                                         <a href="profile.html">Dr. Ruby Perrin</a>
                                     </h2>
                                 </td>
                                 <td>Dental</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient1.jpg') }}" alt="User Image"></a>
+                                        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient1.jpg') }}" alt="User Image"></a>
                                         <a href="profile.html">Charlene Reed </a>
                                     </h2>
                                 </td>
@@ -55,21 +55,21 @@
                                         <label for="status_1" class="checktoggle">checkbox</label>
                                     </div>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     $200.00
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image"></a>
+                                        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image"></a>
                                         <a href="profile.html">Dr. Darren Elder</a>
                                     </h2>
                                 </td>
                                 <td>Dental</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient2.jpg') }}" alt="User Image"></a>
+                                        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient2.jpg') }}" alt="User Image"></a>
                                         <a href="profile.html">Travis Trimble </a>
                                     </h2>
                                 </td>
@@ -80,7 +80,7 @@
                                         <label for="status_2" class="checktoggle">checkbox</label>
                                     </div>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     $300.00
                                 </td>
                             </tr>

@@ -20,20 +20,20 @@
                             <div class="fixed-header">
                                 <div class="navbar">
                                     <div class="user-details">
-                                        <div class="float-left user-img">
-                                            <a class="avatar avatar-sm mr-2" href="{{ route('patient.profile') }}" title="Charlene Reed">
+                                        <div class="float-start user-img">
+                                            <a class="avatar avatar-sm me-2" href="{{ route('patient.profile') }}" title="Charlene Reed">
                                                 <img src="{{ asset('assets/img/patients/patient1.jpg') }}" alt="User Image" class="rounded-circle">
                                                 <span class="status online"></span>
                                             </a>
                                         </div>
-                                        <div class="user-info float-left">
+                                        <div class="user-info float-start">
                                             <a href="{{ route('patient.profile') }}"><span>Charlene Reed</span></a>
                                             <span class="last-seen">Online</span>
                                         </div>
                                     </div>
-                                    <ul class="nav float-right custom-menu">
+                                    <ul class="nav float-end custom-menu">
                                         <li class="nav-item dropdown dropdown-action">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a href="javascript:void(0)" class="dropdown-item">Settings</a>
                                             </div>
@@ -66,22 +66,22 @@
                                     <span class="call-duration">00:59</span>
                                     <ul class="call-items">
                                         <li class="call-item">
-                                            <a href="#" title="Enable Video" data-placement="top" data-toggle="tooltip">
+                                            <a href="#" title="Enable Video" data-placement="top" data-bs-toggle="tooltip">
                                                 <i class="fas fa-video camera"></i>
                                             </a>
                                         </li>
                                         <li class="call-item">
-                                            <a href="#" title="Mute Audio" data-placement="top" data-toggle="tooltip">
+                                            <a href="#" title="Mute Audio" data-placement="top" data-bs-toggle="tooltip">
                                                 <i class="fa fa-microphone microphone"></i>
                                             </a>
                                         </li>
                                         <li class="call-item">
-                                            <a href="#" title="Add User" data-placement="top" data-toggle="tooltip">
+                                            <a href="#" title="Add User" data-placement="top" data-bs-toggle="tooltip">
                                                 <i class="fa fa-user-plus"></i>
                                             </a>
                                         </li>
                                         <li class="call-item">
-                                            <a href="#" title="Full Screen" data-placement="top" data-toggle="tooltip">
+                                            <a href="#" title="Full Screen" data-placement="top" data-bs-toggle="tooltip">
                                                 <i class="fas fa-arrows-alt-v full-screen"></i>
                                             </a>
                                         </li>

@@ -127,7 +127,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Richard Wilson <span>#PT0016</span></a>
@@ -135,7 +135,7 @@
                                         </td>
                                         <td>$450</td>
                                         <td>14 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -152,7 +152,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient1.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Charlene Reed <span>#PT0001</span></a>
@@ -160,7 +160,7 @@
                                         </td>
                                         <td>$200</td>
                                         <td>13 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -177,7 +177,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient2.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Travis Trimble <span>#PT0002</span></a>
@@ -185,7 +185,7 @@
                                         </td>
                                         <td>$100</td>
                                         <td>12 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -202,7 +202,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient3.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Carl Kelly <span>#PT0003</span></a>
@@ -210,7 +210,7 @@
                                         </td>
                                         <td>$350</td>
                                         <td>11 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -227,7 +227,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient4.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Michelle Fairfax <span>#PT0004</span></a>
@@ -235,7 +235,7 @@
                                         </td>
                                         <td>$275</td>
                                         <td>10 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -252,7 +252,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient5.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Gina Moore <span>#PT0005</span></a>
@@ -260,7 +260,7 @@
                                         </td>
                                         <td>$600</td>
                                         <td>9 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -277,7 +277,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient6.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Elsie Gilley <span>#PT0006</span></a>
@@ -285,7 +285,7 @@
                                         </td>
                                         <td>$50</td>
                                         <td>8 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -302,7 +302,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient7.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Joan Gardner <span>#PT0007</span></a>
@@ -310,7 +310,7 @@
                                         </td>
                                         <td>$400</td>
                                         <td>7 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -327,7 +327,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient8.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Daniel Griffing <span>#PT0008</span></a>
@@ -335,7 +335,7 @@
                                         </td>
                                         <td>$550</td>
                                         <td>6 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View
@@ -352,7 +352,7 @@
                                         </td>
                                         <td>
                                             <h2 class="table-avatar">
-                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm mr-2">
+                                                <a href="{{ route('patient.profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/patients/patient9.jpg') }}" alt="User Image">
                                                 </a>
                                                 <a href="{{ route('patient.profile') }}">Walter Roberson <span>#PT0009</span></a>
@@ -360,7 +360,7 @@
                                         </td>
                                         <td>$100</td>
                                         <td>5 Nov 2019</td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <div class="table-action">
                                                 <a href="{{ route('invoice.view') }}" class="btn btn-sm bg-info-light">
                                                     <i class="far fa-eye"></i> View

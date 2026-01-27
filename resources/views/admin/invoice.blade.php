@@ -48,7 +48,7 @@
                 <div class="col-sm-6 col-lg-5 col-xl-4 m-b-20">
                     <h6>Payment Details</h6>
                     <ul class="list-unstyled invoice-payment-details mb-0">
-                        <li><h5>Total Due: <span class="text-right">$200</span></h5></li>
+                        <li><h5>Total Due: <span class="text-end">$200</span></h5></li>
                         <li>Bank name: <span>Profit Bank Europe</span></li>
                         <li>Country: <span>United Kingdom</span></li>
                         <li>City: <span>London E1 8BF</span></li>
@@ -128,15 +128,15 @@
                                     <tbody>
                                         <tr>
                                             <th>Subtotal:</th>
-                                            <td class="text-right">$250</td>
+                                            <td class="text-end">$250</td>
                                         </tr>
                                         <tr>
                                             <th>Tax: <span class="text-regular">(25%)</span></th>
-                                            <td class="text-right">$50</td>
+                                            <td class="text-end">$50</td>
                                         </tr>
                                         <tr>
                                             <th>Total:</th>
-                                            <td class="text-right text-primary"><h5>$200</h5></td>
+                                            <td class="text-end text-primary"><h5>$200</h5></td>
                                         </tr>
                                     </tbody>
                                 </table>

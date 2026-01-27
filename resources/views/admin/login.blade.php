@@ -17,13 +17,13 @@
 
                         <!-- Form -->
                         <form action="{{ route('admin.dashboard') }}">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <input class="form-control" type="text" placeholder="Email">
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <input class="form-control" type="text" placeholder="Password">
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <button class="btn btn-primary btn-block" type="submit">Login</button>
                             </div>
                         </form>

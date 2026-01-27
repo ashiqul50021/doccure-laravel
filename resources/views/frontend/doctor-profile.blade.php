@@ -52,10 +52,10 @@
                             <a href="{{ route('chat') }}" class="btn btn-white msg-btn">
                                 <i class="far fa-comment-alt"></i>
                             </a>
-                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
+                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-bs-toggle="modal" data-bs-target="#voice_call">
                                 <i class="fas fa-phone"></i>
                             </a>
-                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
+                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-bs-toggle="modal" data-bs-target="#video_call">
                                 <i class="fas fa-video"></i>
                             </a>
                         </div>
@@ -76,16 +76,16 @@
                 <nav class="user-tabs mb-4">
                     <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#doc_overview" data-toggle="tab">Overview</a>
+                            <a class="nav-link active" href="#doc_overview" data-bs-toggle="tab">Overview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#doc_locations" data-toggle="tab">Locations</a>
+                            <a class="nav-link" href="#doc_locations" data-bs-toggle="tab">Locations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#doc_reviews" data-toggle="tab">Reviews</a>
+                            <a class="nav-link" href="#doc_reviews" data-bs-toggle="tab">Reviews</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#doc_business_hours" data-toggle="tab">Business Hours</a>
+                            <a class="nav-link" href="#doc_business_hours" data-bs-toggle="tab">Business Hours</a>
                         </li>
                     </ul>
                 </nav>
@@ -202,7 +202,7 @@
 
                             <!-- Write Review Form -->
                             <form>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Review</label>
                                     <div class="star-rating">
                                         <input id="star-5" type="radio" name="rating" value="5">
@@ -227,18 +227,18 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Title of your review</label>
                                     <input class="form-control" type="text" placeholder="If you could say it in one sentence, what would you say?">
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Your review</label>
                                     <textarea id="review_desc" maxlength="100" class="form-control"></textarea>
 
                                     <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
                                 </div>
                                 <hr>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <div class="terms-accept">
                                         <div class="custom-checkbox">
                                            <input type="checkbox" id="terms_accept">

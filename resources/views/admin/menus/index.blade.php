@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="col-sm-5 col">
-            <a href="{{ route('admin.menus.create') }}" class="btn btn-primary float-right mt-2">Add Menu</a>
+            <a href="{{ route('admin.menus.create') }}" class="btn btn-primary float-end mt-2">Add Menu</a>
         </div>
     </div>
 </div>
@@ -35,7 +35,7 @@
                                 <th>URL/Route</th>
                                 <th>Location</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                <th class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,7 +69,7 @@
                                         <span class="badge badge-danger">Inactive</span>
                                     @endif
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <div class="actions">
                                         <a class="btn btn-sm bg-success-light" href="{{ route('admin.menus.edit', $menu->id) }}">
                                             <i class="fe fe-pencil"></i> Edit
@@ -84,8 +84,8 @@
                             {{-- Show children/submenu items --}}
                             @foreach($menu->children as $child)
                             <tr style="background-color: #f9f9f9;">
-                                <td class="pl-4">↳ {{ $child->order }}</td>
-                                <td class="pl-4">{{ $child->title }}</td>
+                                <td class="ps-4">↳ {{ $child->order }}</td>
+                                <td class="ps-4">{{ $child->title }}</td>
                                 <td>
                                     @if($child->route_name)
                                         <span class="badge badge-info">{{ $child->route_name }}</span>
@@ -103,7 +103,7 @@
                                         <span class="badge badge-danger">Inactive</span>
                                     @endif
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <div class="actions">
                                         <a class="btn btn-sm bg-success-light" href="{{ route('admin.menus.edit', $child->id) }}">
                                             <i class="fe fe-pencil"></i> Edit

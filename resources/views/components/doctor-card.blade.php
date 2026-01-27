@@ -29,7 +29,7 @@
             </li>
             <li>
                 <i class="far fa-money-bill-alt"></i> {{ $price }}
-                <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
             </li>
         </ul>
         <div class="row row-sm">

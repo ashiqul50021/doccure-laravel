@@ -48,7 +48,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="media align-items-center">
-                                <div class="mr-3">
+                                <div class="me-3">
                                     <img alt="Image placeholder" src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}" class="avatar  rounded-circle">
                                 </div>
                                 <div class="media-body">
@@ -60,7 +60,7 @@
                         </li>
                         <li class="list-group-item">
                             <div class="media align-items-center">
-                                <div class="mr-3">
+                                <div class="me-3">
                                     <img alt="Image placeholder" src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}" class="avatar  rounded-circle">
                                 </div>
                                 <div class="media-body">
@@ -82,16 +82,16 @@
                         <div class="user-tabs">
                             <ul class="nav nav-tabs nav-tabs-bottom nav-justified flex-wrap">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments</a>
+                                    <a class="nav-link active" href="#pat_appointments" data-bs-toggle="tab">Appointments</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#pres" data-toggle="tab"><span>Prescription</span></a>
+                                    <a class="nav-link" href="#pres" data-bs-toggle="tab"><span>Prescription</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#medical" data-toggle="tab"><span class="med-records">Medical Records</span></a>
+                                    <a class="nav-link" href="#medical" data-bs-toggle="tab"><span class="med-records">Medical Records</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#billing" data-toggle="tab"><span>Billing</span></a>
+                                    <a class="nav-link" href="#billing" data-bs-toggle="tab"><span>Billing</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -118,7 +118,7 @@
                                                     <tr>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm mr-2">
+                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm me-2">
                                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image">
                                                                 </a>
                                                                 <a href="{{ route('doctor.profile') }}">Dr. Darren Elder <span>Dental</span></a>
@@ -129,7 +129,7 @@
                                                         <td>$160</td>
                                                         <td>16 Nov 2019</td>
                                                         <td><span class="badge badge-pill bg-success-light">Confirm</span></td>
-                                                        <td class="text-right">
+                                                        <td class="text-end">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
                                                                     <i class="far fa-edit"></i> Edit
@@ -148,7 +148,7 @@
 
                             <!-- Prescription Tab -->
                             <div class="tab-pane fade" id="pres">
-                                <div class="text-right">
+                                <div class="text-end">
                                     <a href="{{ route('add.prescription') }}" class="add-new-btn">Add Prescription</a>
                                 </div>
                                 <div class="card card-table mb-0">
@@ -169,13 +169,13 @@
                                                         <td>Prescription 1</td>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm mr-2">
+                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm me-2">
                                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                                                 </a>
                                                                 <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin <span>Dental</span></a>
                                                             </h2>
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-end">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                                     <i class="fas fa-print"></i> Print
@@ -197,8 +197,8 @@
 
                             <!-- Medical Records Tab -->
                             <div class="tab-pane fade" id="medical">
-                                <div class="text-right">
-                                    <a href="#" class="add-new-btn" data-toggle="modal" data-target="#add_medical_records">Add Medical Records</a>
+                                <div class="text-end">
+                                    <a href="#" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#add_medical_records">Add Medical Records</a>
                                 </div>
                                 <div class="card card-table mb-0">
                                     <div class="card-body">
@@ -222,13 +222,13 @@
                                                         <td><a href="#">dental-test.pdf</a></td>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm mr-2">
+                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm me-2">
                                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                                                 </a>
                                                                 <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin <span>Dental</span></a>
                                                             </h2>
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-end">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                                     <i class="fas fa-print"></i> Print
@@ -250,7 +250,7 @@
 
                             <!-- Billing Tab -->
                             <div class="tab-pane" id="billing">
-                                <div class="text-right">
+                                <div class="text-end">
                                     <a class="add-new-btn" href="{{ route('add.billing') }}">Add Billing</a>
                                 </div>
                                 <div class="card card-table mb-0">
@@ -274,7 +274,7 @@
                                                         </td>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm mr-2">
+                                                                <a href="{{ route('doctor.profile') }}" class="avatar avatar-sm me-2">
                                                                     <img class="avatar-img rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                                                 </a>
                                                                 <a href="{{ route('doctor.profile') }}">Ruby Perrin <span>Dental</span></a>
@@ -282,7 +282,7 @@
                                                         </td>
                                                         <td>$450</td>
                                                         <td>14 Nov 2019</td>
-                                                        <td class="text-right">
+                                                        <td class="text-end">
                                                             <div class="table-action">
                                                                 <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                                     <i class="fas fa-print"></i> Print
@@ -319,25 +319,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Medical Records</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Date</label>
                         <input type="text" class="form-control datetimepicker" value="31-10-2019">
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Description ( Optional )</label>
                         <textarea class="form-control"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Upload File</label>
                         <input type="file" class="form-control">
                     </div>
                     <div class="submit-section text-center">
                         <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                        <button type="button" class="btn btn-secondary submit-btn" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary submit-btn" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </form>

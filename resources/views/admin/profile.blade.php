@@ -26,7 +26,7 @@
                         <img class="rounded-circle" alt="User Image" src="{{ asset('backend/img/profiles/avatar-01.jpg') }}">
                     </a>
                 </div>
-                <div class="col ml-md-n2 profile-user-info">
+                <div class="col ms-md-n2 profile-user-info">
                     <h4 class="user-name mb-0">Ryan Taylor</h4>
                     <h6 class="text-muted">ryantaylor@admin.com</h6>
                     <div class="user-Location"><i class="fa fa-map-marker"></i> Florida, United States</div>
@@ -43,10 +43,10 @@
         <div class="profile-menu">
             <ul class="nav nav-tabs nav-tabs-solid">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a>
+                    <a class="nav-link active" data-bs-toggle="tab" href="#per_details_tab">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#password_tab">Password</a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#password_tab">Password</a>
                 </li>
             </ul>
         </div>
@@ -62,7 +62,7 @@
                             <div class="card-body">
                                 <h5 class="card-title d-flex justify-content-between">
                                     <span>Personal Details</span>
-                                    <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a>
+                                    <a class="edit-link" data-bs-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit me-1"></i>Edit</a>
                                 </h5>
                                 <div class="row">
                                     <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
@@ -96,27 +96,25 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Personal Details</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <form>
                                             <div class="row form-row">
                                                 <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>First Name</label>
                                                         <input type="text" class="form-control" value="John">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>Last Name</label>
                                                         <input type="text"  class="form-control" value="Doe">
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>Date of Birth</label>
                                                         <div class="cal-icon">
                                                             <input type="text" class="form-control" value="24-07-1983">
@@ -124,13 +122,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>Email ID</label>
                                                         <input type="email" class="form-control" value="johndoe@example.com">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>Mobile</label>
                                                         <input type="text" value="+1 202-555-0125" class="form-control">
                                                     </div>
@@ -139,31 +137,31 @@
                                                     <h5 class="form-title"><span>Address</span></h5>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                     <label>Address</label>
                                                         <input type="text" class="form-control" value="4663 Agriculture Lane">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>City</label>
                                                         <input type="text" class="form-control" value="Miami">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>State</label>
                                                         <input type="text" class="form-control" value="Florida">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>Zip Code</label>
                                                         <input type="text" class="form-control" value="22434">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <label>Country</label>
                                                         <input type="text" class="form-control" value="United States">
                                                     </div>
@@ -193,15 +191,15 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-6">
                                 <form>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Old Password</label>
                                         <input type="password" class="form-control">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>New Password</label>
                                         <input type="password" class="form-control">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Confirm Password</label>
                                         <input type="password" class="form-control">
                                     </div>

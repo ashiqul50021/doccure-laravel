@@ -1,6 +1,7 @@
 <!-- Header -->
 <header class="header">
     <nav class="navbar navbar-expand-lg header-nav">
+        <div class="container">
         <div class="navbar-header">
             <a id="mobile_btn" href="javascript:void(0);">
                 <span class="bar-icon">
@@ -102,6 +103,7 @@
             <a class="nav-link header-login" href="{{ route('login') }}">Login</a>
         </li>
         </ul>
+        </div>
     </nav>
 </header>
 <!-- /Header -->

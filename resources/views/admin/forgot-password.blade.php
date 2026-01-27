@@ -17,10 +17,10 @@
 
                         <!-- Form -->
                         <form action="{{ route('admin.login') }}">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <input class="form-control" type="text" placeholder="Email">
                             </div>
-                            <div class="form-group mb-0">
+                            <div class="mb-3 mb-0">
                                 <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
                             </div>
                         </form>

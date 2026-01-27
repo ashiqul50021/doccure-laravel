@@ -111,15 +111,15 @@
 
                                 <!-- Change Password Form -->
                                 <form>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Old Password</label>
                                         <input type="password" class="form-control">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>New Password</label>
                                         <input type="password" class="form-control">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Confirm Password</label>
                                         <input type="password" class="form-control">
                                     </div>

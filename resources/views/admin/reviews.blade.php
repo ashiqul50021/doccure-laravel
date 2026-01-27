@@ -28,20 +28,20 @@
                                 <th>Ratings</th>
                                 <th>Description</th>
                                 <th>Date</th>
-                                class="text-right">Actions</th>
+                                class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient1.jpg') }}" alt="User Image"></a>
+                                        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/patients/patient1.jpg') }}" alt="User Image"></a>
                                         <a href="profile.html">Charlene Reed </a>
                                     </h2>
                                 </td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image"></a>
+                                        <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{ asset('backend/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image"></a>
                                         <a href="profile.html">Dr. Ruby Perrin</a>
                                     </h2>
                                 </td>
@@ -56,9 +56,9 @@
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit
                                 </td>
                                 <td>3 Nov 2019 <br><small>09.59 AM</small></td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <div class="actions">
-                                        <a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
+                                        <a class="btn btn-sm bg-danger-light" data-bs-toggle="modal" href="#delete_modal">
                                             <i class="fe fe-trash"></i> Delete
                                         </a>
                                     </div>

@@ -107,7 +107,7 @@
                                         <i class="far fa-clock"></i> Available on Fri, 22 Mar
                                     </li>
                                     <li>
-                                        <i class="far fa-money-bill-alt"></i> $300 - $1000 <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                                        <i class="far fa-money-bill-alt"></i> $300 - $1000 <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
                                     </li>
                                 </ul>
                                 <div class="row row-sm">
@@ -156,7 +156,7 @@
                                         <i class="far fa-clock"></i> Available on Fri, 22 Mar
                                     </li>
                                     <li>
-                                        <i class="far fa-money-bill-alt"></i> $50 - $300 <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                                        <i class="far fa-money-bill-alt"></i> $50 - $300 <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
                                     </li>
                                 </ul>
                                 <div class="row row-sm">
@@ -205,7 +205,7 @@
                                         <i class="far fa-clock"></i> Available on Fri, 22 Mar
                                     </li>
                                     <li>
-                                        <i class="far fa-money-bill-alt"></i> $100 - $400 <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                                        <i class="far fa-money-bill-alt"></i> $100 - $400 <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
                                     </li>
                                 </ul>
                                 <div class="row row-sm">
@@ -254,7 +254,7 @@
                                         <i class="far fa-clock"></i> Available on Fri, 22 Mar
                                     </li>
                                     <li>
-                                        <i class="far fa-money-bill-alt"></i> $150 - $250 <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+                                        <i class="far fa-money-bill-alt"></i> $150 - $250 <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
                                     </li>
                                 </ul>
                                 <div class="row row-sm">

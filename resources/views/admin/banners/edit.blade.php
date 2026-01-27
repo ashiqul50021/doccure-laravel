@@ -21,7 +21,7 @@
                     @csrf
                     @method('PUT')
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Banner Type <span class="text-danger">*</span></label>
                         <div>
                             <div class="form-check form-check-inline">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label>Banner Image</label>
                         <input type="file" class="form-control" name="image">
                         <small class="form-text text-muted">Leave empty to keep current image</small>
@@ -54,33 +54,33 @@
                     <div id="content_fields">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Title <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="title" value="{{ $banner->title }}" placeholder="e.g. The Largest Online Doctor Platform">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Stats Text (Trusted By)</label>
                                     <input type="text" class="form-control" name="stats_text" value="{{ $banner->stats_text }}" placeholder="e.g. 700,000 Patients">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>Subtitle / Description</label>
                             <textarea class="form-control" name="subtitle" rows="3">{{ $banner->subtitle }}</textarea>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Button Text</label>
                                     <input type="text" class="form-control" name="button_text" value="{{ $banner->button_text }}" placeholder="e.g. Consult Now">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Button Link</label>
                                     <input type="text" class="form-control" name="button_link" value="{{ $banner->button_link }}" placeholder="e.g. /search">
                                 </div>
@@ -90,13 +90,13 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Order Priority</label>
                                 <input type="number" class="form-control" name="order" value="{{ $banner->order }}">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Status</label>
                                 <div class="status-toggle">
                                     <input type="checkbox" id="is_active" class="check" name="is_active" {{ $banner->is_active ? 'checked' : '' }}>

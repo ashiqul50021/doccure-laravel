@@ -121,7 +121,7 @@
                         <h4 class="card-title">Basic Information</h4>
                         <div class="row form-row">
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <div class="change-avatar">
                                         <div class="profile-img">
                                             <img src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image">
@@ -137,37 +137,37 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Username <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Email <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>First Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Last Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Phone Number</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Gender</label>
                                     <select class="form-control select">
                                         <option>Select</option>
@@ -177,7 +177,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group mb-0">
+                                <div class="mb-3 mb-0">
                                     <label>Date of Birth</label>
                                     <input type="text" class="form-control">
                                 </div>
@@ -191,7 +191,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">About Me</h4>
-                        <div class="form-group mb-0">
+                        <div class="mb-3 mb-0">
                             <label>Biography</label>
                             <textarea class="form-control" rows="5"></textarea>
                         </div>
@@ -205,19 +205,19 @@
                         <h4 class="card-title">Clinic Info</h4>
                         <div class="row form-row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Clinic Name</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Clinic Address</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Clinic Images</label>
                                     <form action="#" class="dropzone"></form>
                                 </div>
@@ -243,38 +243,38 @@
                         <h4 class="card-title">Contact Details</h4>
                         <div class="row form-row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label>Address Line 1</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label class="control-label">Address Line 2</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label class="control-label">City</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label class="control-label">State / Province</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label class="control-label">Country</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <label class="control-label">Postal Code</label>
                                     <input type="text" class="form-control">
                                 </div>
@@ -289,15 +289,15 @@
                     <div class="card-body">
                         <h4 class="card-title">Pricing</h4>
 
-                        <div class="form-group mb-0">
+                        <div class="mb-3 mb-0">
                             <div id="pricing_select">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="price_free" name="rating_option" class="custom-control-input" value="price_free" checked>
-                                    <label class="custom-control-label" for="price_free">Free</label>
+                                <div class="form-check custom-radio form-check-inline">
+                                    <input type="radio" id="price_free" name="rating_option" class="form-check-input" value="price_free" checked>
+                                    <label class="form-check-label" for="price_free">Free</label>
                                 </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="price_custom" name="rating_option" value="custom_price" class="custom-control-input">
-                                    <label class="custom-control-label" for="price_custom">Custom Price (per hour)</label>
+                                <div class="form-check custom-radio form-check-inline">
+                                    <input type="radio" id="price_custom" name="rating_option" value="custom_price" class="form-check-input">
+                                    <label class="form-check-label" for="price_custom">Custom Price (per hour)</label>
                                 </div>
                             </div>
 
@@ -318,12 +318,12 @@
                 <div class="card services-card">
                     <div class="card-body">
                         <h4 class="card-title">Services and Specialization</h4>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>Services</label>
                             <input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Enter Services" name="services" value="Tooth cleaning " id="services">
                             <small class="form-text text-muted">Note : Type & Press enter to add new services</small>
                         </div>
-                        <div class="form-group mb-0">
+                        <div class="mb-3 mb-0">
                             <label>Specialization </label>
                             <input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Enter Specialization" name="specialist" value="Children Care,Dental Care" id="specialist">
                             <small class="form-text text-muted">Note : Type & Press  enter to add new specialization</small>
@@ -341,19 +341,19 @@
                                 <div class="col-12 col-md-10 col-lg-11">
                                     <div class="row form-row">
                                         <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="form-group">
+                                            <div class="mb-3">
                                                 <label>Degree</label>
                                                 <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="form-group">
+                                            <div class="mb-3">
                                                 <label>College/Institute</label>
                                                 <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="form-group">
+                                            <div class="mb-3">
                                                 <label>Year of Completion</label>
                                                 <input type="text" class="form-control">
                                             </div>
@@ -378,25 +378,25 @@
                                 <div class="col-12 col-md-10 col-lg-11">
                                     <div class="row form-row">
                                         <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="form-group">
+                                            <div class="mb-3">
                                                 <label>Hospital Name</label>
                                                 <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="form-group">
+                                            <div class="mb-3">
                                                 <label>From</label>
                                                 <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="form-group">
+                                            <div class="mb-3">
                                                 <label>To</label>
                                                 <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="form-group">
+                                            <div class="mb-3">
                                                 <label>Designation</label>
                                                 <input type="text" class="form-control">
                                             </div>
@@ -419,13 +419,13 @@
                         <div class="awards-info">
                             <div class="row form-row awards-cont">
                                 <div class="col-12 col-md-5">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Awards</label>
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Year</label>
                                         <input type="text" class="form-control">
                                     </div>
@@ -446,7 +446,7 @@
                         <div class="membership-info">
                             <div class="row form-row membership-cont">
                                 <div class="col-12 col-md-10 col-lg-5">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Memberships</label>
                                         <input type="text" class="form-control">
                                     </div>
@@ -467,13 +467,13 @@
                         <div class="registrations-info">
                             <div class="row form-row reg-cont">
                                 <div class="col-12 col-md-5">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Registrations</label>
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Year</label>
                                         <input type="text" class="form-control">
                                     </div>

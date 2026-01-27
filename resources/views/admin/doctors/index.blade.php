@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="col-sm-5 col">
-            <a href="{{ route('admin.doctors.create') }}" class="btn btn-primary float-right mt-2">Add Doctor</a>
+            <a href="{{ route('admin.doctors.create') }}" class="btn btn-primary float-end mt-2">Add Doctor</a>
         </div>
     </div>
 </div>
@@ -42,7 +42,7 @@
                             <tr>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="#" class="avatar avatar-sm mr-2">
+                                        <a href="#" class="avatar avatar-sm me-2">
                                             <img class="avatar-img rounded-circle" src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                         </a>
                                         <a href="#">{{ $doctor->user->name }}</a>

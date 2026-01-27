@@ -113,51 +113,35 @@
 								<div class="card-body">
 									<div class="alert alert-primary alert-dismissible fade show" role="alert">
 										<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 									<div class="alert alert-secondary alert-dismissible fade show" role="alert">
 										<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 									<div class="alert alert-warning alert-dismissible fade show" role="alert">
 										<strong>Warning!</strong> There was a problem with your <a href="#" class="alert-link">network connection</a>.
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 									<div class="alert alert-danger alert-dismissible fade show" role="alert">
 										<strong>Error!</strong> A <a href="#" class="alert-link">problem</a> has been occurred while submitting your data.
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 									<div class="alert alert-success alert-dismissible fade show" role="alert">
 										<strong>Success!</strong> Your <a href="#" class="alert-link">message</a> has been sent successfully.
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 									<div class="alert alert-info alert-dismissible fade show" role="alert">
 										<strong>Note!</strong> Please read the <a href="#" class="alert-link">comments</a> carefully.
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 									<div class="alert alert-light alert-dismissible fade show" role="alert">
 										<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 									<div class="alert alert-dark alert-dismissible fade show mb-0" role="alert">
 										<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>
 								</div>
 							</div>
@@ -505,15 +489,15 @@
 								<div class="col-12 col-md-6 col-lg-4 d-flex">
 									<div class="card flex-fill">
 										<div class="card-header">
-											<ul role="tablist" class="nav nav-tabs card-header-tabs float-right">
+											<ul role="tablist" class="nav nav-tabs card-header-tabs float-end">
 												<li class="nav-item">
-													<a href="#tab-1" data-toggle="tab" class="nav-link active">Active</a>
+													<a href="#tab-1" data-bs-toggle="tab" class="nav-link active">Active</a>
 												</li>
 												<li class="nav-item">
-													<a href="#tab-2" data-toggle="tab" class="nav-link">Link</a>
+													<a href="#tab-2" data-bs-toggle="tab" class="nav-link">Link</a>
 												</li>
 												<li class="nav-item">
-													<a href="#tab-3" data-toggle="tab" class="nav-link disabled">Disabled</a>
+													<a href="#tab-3" data-bs-toggle="tab" class="nav-link disabled">Disabled</a>
 												</li>
 											</ul>
 										</div>
@@ -541,15 +525,15 @@
 								<div class="col-12 col-md-6 col-lg-4 d-flex">
 									<div class="card flex-fill">
 										<div class="card-header">
-											<ul role="tablist" class="nav nav-pills card-header-pills float-right">
+											<ul role="tablist" class="nav nav-pills card-header-pills float-end">
 												<li class="nav-item">
-													<a href="#tab-4" data-toggle="tab" class="nav-link active">Active</a>
+													<a href="#tab-4" data-bs-toggle="tab" class="nav-link active">Active</a>
 												</li>
 												<li class="nav-item">
-													<a href="#tab-5" data-toggle="tab" class="nav-link">Link</a>
+													<a href="#tab-5" data-bs-toggle="tab" class="nav-link">Link</a>
 												</li>
 												<li class="nav-item">
-													<a href="#tab-6" data-toggle="tab" class="nav-link disabled">Disabled</a>
+													<a href="#tab-6" data-bs-toggle="tab" class="nav-link disabled">Disabled</a>
 												</li>
 											</ul>
 										</div>
@@ -588,7 +572,7 @@
 								<div class="card-body">
 									<h4 class="card-title">Dropdowns within Text</h4>
 									<div class="dropdown">
-										<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+										<a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" href="#">Action</a>
 											<a class="dropdown-item" href="#">Another action</a>
@@ -597,7 +581,7 @@
 									<hr>
 									<h4 class="card-title">Dropdowns within Buttons</h4>
 									<div class="btn-group">
-										<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+										<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" href="#">Action</a>
 											<a class="dropdown-item" href="#">Another action</a>
@@ -606,7 +590,7 @@
 										</div>
 									</div>
 									<div class="btn-group">
-										<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+										<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" href="#">Action</a>
 											<a class="dropdown-item" href="#">Another action</a>
@@ -615,7 +599,7 @@
 										</div>
 									</div>
 									<div class="btn-group">
-										<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+										<button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" href="#">Action</a>
 											<a class="dropdown-item" href="#">Another action</a>
@@ -624,7 +608,7 @@
 										</div>
 									</div>
 									<div class="btn-group">
-										<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+										<button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" href="#">Action</a>
 											<a class="dropdown-item" href="#">Another action</a>
@@ -633,7 +617,7 @@
 										</div>
 									</div>
 									<div class="btn-group">
-										<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+										<button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" href="#">Action</a>
 											<a class="dropdown-item" href="#">Another action</a>
@@ -642,7 +626,7 @@
 										</div>
 									</div>
 									<div class="btn-group">
-										<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+										<button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
 										<div class="dropdown-menu">
 											<a class="dropdown-item" href="#">Action</a>
 											<a class="dropdown-item" href="#">Another action</a>
@@ -654,7 +638,7 @@
 									<h4 class="card-title">Split button dropdowns</h4>
 									<div class="btn-group">
 										<button type="button" class="btn btn-primary">Action</button>
-										<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span class="sr-only">Toggle Dropdown</span>
 										</button>
 										<div class="dropdown-menu">
@@ -666,7 +650,7 @@
 									</div>
 									<div class="btn-group">
 										<button type="button" class="btn btn-secondary">Action</button>
-										<button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span class="sr-only">Toggle Dropdown</span>
 										</button>
 										<div class="dropdown-menu">
@@ -678,7 +662,7 @@
 									</div>
 									<div class="btn-group">
 										<button type="button" class="btn btn-info">Action</button>
-										<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span class="sr-only">Toggle Dropdown</span>
 										</button>
 										<div class="dropdown-menu">
@@ -690,7 +674,7 @@
 									</div>
 									<div class="btn-group">
 										<button type="button" class="btn btn-success">Action</button>
-										<button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span class="sr-only">Toggle Dropdown</span>
 										</button>
 										<div class="dropdown-menu">
@@ -702,7 +686,7 @@
 									</div>
 									<div class="btn-group">
 										<button type="button" class="btn btn-warning">Action</button>
-										<button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span class="sr-only">Toggle Dropdown</span>
 										</button>
 										<div class="dropdown-menu">
@@ -714,7 +698,7 @@
 									</div>
 									<div class="btn-group">
 										<button type="button" class="btn btn-danger">Action</button>
-										<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span class="sr-only">Toggle Dropdown</span>
 										</button>
 										<div class="dropdown-menu">
@@ -1057,9 +1041,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs">
-												<li class="nav-item"><a class="nav-link active" href="#basictab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#basictab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#basictab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#basictab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#basictab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#basictab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane show active" id="basictab1">
@@ -1082,13 +1066,13 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-justified">
-												<li class="nav-item"><a class="nav-link active" href="#basic-justified-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#basic-justified-tab2" data-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#basic-justified-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#basic-justified-tab2" data-bs-toggle="tab">Profile</a></li>
 												<li class="nav-item dropdown">
-													<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Dropdown</a>
+													<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">Dropdown</a>
 													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#basic-justified-tab3" data-toggle="tab">Dropdown 1</a>
-														<a class="dropdown-item" href="#basic-justified-tab4" data-toggle="tab">Dropdown 2</a>
+														<a class="dropdown-item" href="#basic-justified-tab3" data-bs-toggle="tab">Dropdown 1</a>
+														<a class="dropdown-item" href="#basic-justified-tab4" data-bs-toggle="tab">Dropdown 2</a>
 													</div>
 												</li>
 											</ul>
@@ -1119,9 +1103,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-tabs-top">
-												<li class="nav-item"><a class="nav-link active" href="#top-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#top-tab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#top-tab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#top-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#top-tab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#top-tab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane show active" id="top-tab1">
@@ -1145,9 +1129,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-tabs-top nav-justified">
-												<li class="nav-item"><a class="nav-link active" href="#top-justified-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#top-justified-tab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#top-justified-tab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#top-justified-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#top-justified-tab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#top-justified-tab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane show active" id="top-justified-tab1">
@@ -1174,9 +1158,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-tabs-bottom">
-												<li class="nav-item"><a class="nav-link active" href="#bottom-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#bottom-tab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#bottom-tab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#bottom-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#bottom-tab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#bottom-tab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 
 											<div class="tab-content">
@@ -1200,9 +1184,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
-												<li class="nav-item"><a class="nav-link active" href="#bottom-justified-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#bottom-justified-tab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#bottom-justified-tab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#bottom-justified-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#bottom-justified-tab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#bottom-justified-tab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane show active" id="bottom-justified-tab1">
@@ -1227,9 +1211,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-tabs-solid">
-												<li class="nav-item"><a class="nav-link active" href="#solid-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#solid-tab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#solid-tab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#solid-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#solid-tab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#solid-tab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane show active" id="solid-tab1">
@@ -1253,9 +1237,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-tabs-solid nav-justified">
-												<li class="nav-item"><a class="nav-link active" href="#solid-justified-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#solid-justified-tab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#solid-justified-tab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#solid-justified-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#solid-justified-tab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#solid-justified-tab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane show active" id="solid-justified-tab1">
@@ -1280,9 +1264,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
-												<li class="nav-item"><a class="nav-link active" href="#solid-rounded-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#solid-rounded-tab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#solid-rounded-tab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#solid-rounded-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#solid-rounded-tab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#solid-rounded-tab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane show active" id="solid-rounded-tab1">
@@ -1305,9 +1289,9 @@
 										</div>
 										<div class="card-body">
 											<ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded nav-justified">
-												<li class="nav-item"><a class="nav-link active" href="#solid-rounded-justified-tab1" data-toggle="tab">Home</a></li>
-												<li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab2" data-toggle="tab">Profile</a></li>
-												<li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab3" data-toggle="tab">Messages</a></li>
+												<li class="nav-item"><a class="nav-link active" href="#solid-rounded-justified-tab1" data-bs-toggle="tab">Home</a></li>
+												<li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab2" data-bs-toggle="tab">Profile</a></li>
+												<li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab3" data-bs-toggle="tab">Messages</a></li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane show active" id="solid-rounded-justified-tab1">

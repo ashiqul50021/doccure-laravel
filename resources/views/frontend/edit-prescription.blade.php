@@ -64,7 +64,7 @@
                         </div>
 
                         <!-- Add Item -->
-                        <div class="add-more-item text-right">
+                        <div class="add-more-item text-end">
                             <a href="#"><i class="fa fa-plus-circle"></i> Add More</a>
                         </div>
                         <!-- /Add Item -->
@@ -165,7 +165,7 @@
 
                         <!-- Signature -->
                         <div class="row">
-                            <div class="col-md-12 text-right">
+                            <div class="col-md-12 text-end">
                                 <div class="signature-wrap">
                                     <div class="signature">
                                         Click here to sign

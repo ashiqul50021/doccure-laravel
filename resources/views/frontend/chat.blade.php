@@ -213,10 +213,10 @@
                                 </div>
                             </div>
                             <div class="chat-options">
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#voice_call">
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#voice_call">
                                     <i class="material-icons">local_phone</i>
                                 </a>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#video_call">
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#video_call">
                                     <i class="material-icons">videocam</i>
                                 </a>
                                 <a href="javascript:void(0)">
@@ -398,7 +398,7 @@
                                                 <div>
                                                     <p>Lorem ipsum dollar sit</p>
                                                     <div class="chat-msg-actions dropdown">
-                                                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <a href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fe fe-elipsis-v"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
@@ -478,7 +478,7 @@
                                 <span>Connecting...</span>
                             </div>
                             <div class="call-items">
-                                <a href="javascript:void(0);" class="btn call-item call-end" data-dismiss="modal" aria-label="Close"><i class="material-icons">call_end</i></a>
+                                <a href="javascript:void(0);" class="btn call-item call-end" data-bs-dismiss="modal" aria-label="Close"><i class="material-icons">call_end</i></a>
                                 <a href="{{ route('voice.call') }}" class="btn call-item call-start"><i class="material-icons">call</i></a>
                             </div>
                         </div>
@@ -508,7 +508,7 @@
                                 <span>Calling ...</span>
                             </div>
                             <div class="call-items">
-                                <a href="javascript:void(0);" class="btn call-item call-end" data-dismiss="modal" aria-label="Close"><i class="material-icons">call_end</i></a>
+                                <a href="javascript:void(0);" class="btn call-item call-end" data-bs-dismiss="modal" aria-label="Close"><i class="material-icons">call_end</i></a>
                                 <a href="{{ route('video.call') }}" class="btn call-item call-start"><i class="material-icons">videocam</i></a>
                             </div>
                         </div>

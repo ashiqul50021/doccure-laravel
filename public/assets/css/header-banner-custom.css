@@ -40,6 +40,7 @@
     align-items: center;
     gap: 6px;
     transition: var(--transition-smooth);
+    text-decoration: none !important;
 }
 
 .top-bar-left a:hover {
@@ -101,12 +102,12 @@
     border-bottom: none !important;
     box-shadow: none !important;
     height: 75px !important;
-    padding: 0 15px !important;
+    padding: 0 !important;
     transition: var(--transition-smooth);
     display: flex !important;
     align-items: center !important;
-    max-width: 1140px !important;
-    margin: 0 auto !important;
+    width: 100% !important;
+    margin: 0 !important;
 }
 
 .header.scrolled .header-nav {
@@ -132,6 +133,8 @@
     display: flex !important;
     align-items: center !important;
     height: 100% !important;
+    text-decoration: none !important;
+    color: var(--text-dark);
 }
 
 /* Header Right Buttons Centering */

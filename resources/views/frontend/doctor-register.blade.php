@@ -22,19 +22,19 @@
 
                             <!-- Register Form -->
                             <form action="{{ route('doctor.dashboard') }}">
-                                <div class="form-group form-focus">
+                                <div class="mb-3 form-focus">
                                     <input type="text" class="form-control floating">
                                     <label class="focus-label">Name</label>
                                 </div>
-                                <div class="form-group form-focus">
+                                <div class="mb-3 form-focus">
                                     <input type="text" class="form-control floating">
                                     <label class="focus-label">Mobile Number</label>
                                 </div>
-                                <div class="form-group form-focus">
+                                <div class="mb-3 form-focus">
                                     <input type="password" class="form-control floating">
                                     <label class="focus-label">Create Password</label>
                                 </div>
-                                <div class="text-right">
+                                <div class="text-end">
                                     <a class="forgot-link" href="{{ route('login') }}">Already have an account?</a>
                                 </div>
                                 <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
@@ -44,10 +44,10 @@
                                 </div>
                                 <div class="row form-row social-login">
                                     <div class="col-6">
-                                        <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
+                                        <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f me-1"></i> Login</a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
+                                        <a href="#" class="btn btn-google btn-block"><i class="fab fa-google me-1"></i> Login</a>
                                     </div>
                                 </div>
                             </form>

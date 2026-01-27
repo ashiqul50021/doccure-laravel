@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="col-sm-5 col">
-            <a href="{{ route('admin.specialities.create') }}" class="btn btn-primary float-right mt-2">Add</a>
+            <a href="{{ route('admin.specialities.create') }}" class="btn btn-primary float-end mt-2">Add</a>
         </div>
     </div>
 </div>
@@ -32,7 +32,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Specialities</th>
-                                <th class="text-right">Actions</th>
+                                <th class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,13 +41,13 @@
                                 <td>#SP{{ $speciality->id }}</td>
                                 <td>
                                     <h2 class="table-avatar">
-                                        <a href="#" class="avatar avatar-sm mr-2">
+                                        <a href="#" class="avatar avatar-sm me-2">
                                             <img class="avatar-img" src="{{ $speciality->image ? asset('storage/'.$speciality->image) : asset('assets/img/specialities/specialities-01.png') }}" alt="Speciality">
                                         </a>
                                         <a href="#">{{ $speciality->name }}</a>
                                     </h2>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-end">
                                     <div class="actions">
                                         <a class="btn btn-sm bg-success-light" href="{{ route('admin.specialities.edit', $speciality->id) }}">
                                             <i class="fe fe-pencil"></i> Edit

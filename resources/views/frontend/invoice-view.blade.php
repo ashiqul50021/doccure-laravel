@@ -82,7 +82,7 @@
                                                 <th>Description</th>
                                                 <th class="text-center">Quantity</th>
                                                 <th class="text-center">VAT</th>
-                                                <th class="text-right">Total</th>
+                                                <th class="text-end">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -90,19 +90,19 @@
                                                 <td>General Consultation</td>
                                                 <td class="text-center">1</td>
                                                 <td class="text-center">$0</td>
-                                                <td class="text-right">$100</td>
+                                                <td class="text-end">$100</td>
                                             </tr>
                                             <tr>
                                                 <td>Video Call Booking</td>
                                                 <td class="text-center">1</td>
                                                 <td class="text-center">$0</td>
-                                                <td class="text-right">$250</td>
+                                                <td class="text-end">$250</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-xl-4 ml-auto">
+                            <div class="col-md-6 col-xl-4 ms-auto">
                                 <div class="table-responsive">
                                     <table class="invoice-table-two table">
                                         <tbody>

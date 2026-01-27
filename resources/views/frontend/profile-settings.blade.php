@@ -82,7 +82,7 @@
                         <form>
                             <div class="row form-row">
                                 <div class="col-12 col-md-12">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <div class="change-avatar">
                                             <div class="profile-img">
                                                 <img src="{{ asset('assets/img/patients/patient.jpg') }}" alt="User Image">
@@ -98,19 +98,19 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>First Name</label>
                                         <input type="text" class="form-control" value="Richard">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Last Name</label>
                                         <input type="text" class="form-control" value="Wilson">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Date of Birth</label>
                                         <div class="cal-icon">
                                             <input type="text" class="form-control datetimepicker" value="24-07-1983">
@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Blood Group</label>
                                         <select class="form-control select">
                                             <option>A-</option>
@@ -133,43 +133,43 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Email ID</label>
                                         <input type="email" class="form-control" value="richard@example.com">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Mobile</label>
                                         <input type="text" value="+1 202-555-0125" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                     <label>Address</label>
                                         <input type="text" class="form-control" value="806 Twin Willow Lane">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>City</label>
                                         <input type="text" class="form-control" value="Old Forge">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>State</label>
                                         <input type="text" class="form-control" value="Newyork">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Zip Code</label>
                                         <input type="text" class="form-control" value="13420">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Country</label>
                                         <input type="text" class="form-control" value="United States">
                                     </div>

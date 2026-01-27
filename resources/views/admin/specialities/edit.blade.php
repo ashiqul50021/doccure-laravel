@@ -25,13 +25,13 @@
                     @method('PUT')
                     <div class="row form-row">
                         <div class="col-12 col-sm-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Specialities</label>
                                 <input type="text" name="name" class="form-control" value="{{ $speciality->name }}" required>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Image</label>
                                 <input type="file" name="image" class="form-control">
                                 @if($speciality->image)
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label>Description</label>
                                 <textarea name="description" class="form-control" rows="4">{{ $speciality->description }}</textarea>
                             </div>
