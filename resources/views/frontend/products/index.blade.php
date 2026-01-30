@@ -49,43 +49,61 @@
 
                 <div class="row">
                     @forelse($products as $product)
-                    <div class="col-md-6 col-lg-4 col-xl-4">
-                        <div class="product-item h-100 d-flex flex-column">
-                            <div class="product-img">
+                    <div class="col-md-6 col-lg-4 col-xl-4 mb-4">
+                        <div class="product-card-modern">
+                            <!-- Stock Badge -->
+                            <div class="stock-badge {{ $product->stock > 0 ? 'in-stock' : 'out-of-stock' }}">
+                                {{ $product->stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}
+                            </div>
+
+                            <!-- Product Image -->
+                            <div class="product-image-container">
                                 <a href="{{ route('products.show', $product->id) }}">
-                                    <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/product-1.jpg') }}" class="product-img" alt="{{ $product->name }}" style="height: 200px; object-fit: cover; width: 100%;">
+                                    <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/product-1.jpg') }}" class="product-main-img" alt="{{ $product->name }}">
                                 </a>
                             </div>
-                            <div class="product-info flex-grow-1 d-flex flex-column">
-                                <span class="product-category">{{ $product->category->name ?? 'General' }}</span>
-                                <h4 class="product-title">
+
+                            <!-- Product Details -->
+                            <div class="product-details">
+                                <!-- Rating -->
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span class="rating-value">{{ number_format($product->rating ?? 4.5, 1) }}</span>
+                                    <span class="review-count">({{ $product->reviews_count ?? rand(10, 200) }})</span>
+                                </div>
+
+                                <!-- Brand/Category -->
+                                <div class="product-brand">{{ $product->category->name ?? 'General' }}</div>
+
+                                <!-- Title -->
+                                <h4 class="product-name">
                                     <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
                                 </h4>
-                                <div class="product-price">
-                                    @if($product->sale_price)
-                                        <span class="current-price">৳{{ number_format($product->sale_price, 2) }}</span>
-                                        <span class="original-price">৳{{ number_format($product->price, 2) }}</span>
-                                    @else
-                                        <span class="current-price">৳{{ number_format($product->price, 2) }}</span>
-                                    @endif
-                                </div>
-                                <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form mt-auto">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="quantity" value="1">
-                                    <div class="row gx-2">
-                                        <div class="col-6">
-                                            <button type="submit" class="btn-add-cart w-100">
-                                                <i class="fas fa-shopping-cart"></i> Cart
-                                            </button>
-                                        </div>
-                                        <div class="col-6">
-                                            <button type="submit" name="buy_now" value="1" class="btn-buy-now w-100">
-                                                <i class="fas fa-bolt"></i> Buy
-                                            </button>
-                                        </div>
+
+                                <!-- Price & Actions -->
+                                <div class="product-footer">
+                                    <div class="product-price-tag">
+                                        @if($product->sale_price)
+                                            <span class="price-current">৳{{ number_format($product->sale_price, 2) }}</span>
+                                            <span class="price-original">৳{{ number_format($product->price, 2) }}</span>
+                                        @else
+                                            <span class="price-current">৳{{ number_format($product->price, 2) }}</span>
+                                        @endif
                                     </div>
-                                </form>
+                                    <form action="{{ route('cart.add') }}" method="POST" class="product-actions-form">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <div class="btn-group-modern">
+                                            <button type="submit" class="btn-cart-modern" title="Add to Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </button>
+                                            <button type="submit" name="buy_now" value="1" class="btn-buy-modern">
+                                                Buy
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -119,68 +137,209 @@
 </script>
 @endpush
 
-@push('styles')
 <style>
-    .product-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    .product-card .card-title a {
-        color: #272b41;
-        text-decoration: none;
-    }
-    .product-card .card-title a:hover {
-        color: #09e5ab;
+    /* Product Card Modern */
+    .product-card-modern {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border: 1px solid #f0f0f0;
     }
 
-    /* Button Styles */
-    .btn-add-cart, .btn-buy-now {
-        width: 100%;
-        padding: 8px 5px;
+    .product-card-modern:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0,102,255,0.12);
+    }
+
+    /* Stock Badge */
+    .stock-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        z-index: 10;
+        text-transform: uppercase;
+    }
+
+    .stock-badge.in-stock {
+        background: #e8f5e9;
+        color: #2e7d32;
+    }
+
+    .stock-badge.out-of-stock {
+        background: #ffebee;
+        color: #c62828;
+    }
+
+    /* Product Image */
+    .product-image-container {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .product-main-img {
+        max-width: 100%;
+        max-height: 140px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .product-card-modern:hover .product-main-img {
+        transform: scale(1.05);
+    }
+
+    /* Product Details */
+    .product-details {
+        padding: 16px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Rating */
+    .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+
+    .product-rating i {
+        color: #ffc107;
+        font-size: 12px;
+    }
+
+    .product-rating .rating-value {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .product-rating .review-count {
+        color: #999;
+        font-size: 12px;
+    }
+
+    /* Brand */
+    .product-brand {
+        font-size: 11px;
+        color: #1D4ED8;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+    }
+
+    /* Product Name */
+    .product-name {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 40px;
+    }
+
+    .product-name a {
+        color: #272b41;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .product-name a:hover {
+        color: #1D4ED8;
+    }
+
+    /* Product Footer - Price & Buttons */
+    .product-footer {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .product-price-tag {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .price-current {
+        font-size: 18px;
+        font-weight: 700;
+        color: #272b41;
+    }
+
+    .price-original {
+        font-size: 12px;
+        color: #999;
+        text-decoration: line-through;
+    }
+
+    /* Button Group */
+    .product-actions-form {
+        display: flex;
+    }
+
+    .btn-group-modern {
+        display: flex;
+        gap: 6px;
+    }
+
+    .btn-cart-modern {
+        width: 38px;
+        height: 38px;
         border-radius: 8px;
+        border: 2px solid #1D4ED8;
+        background: transparent;
+        color: #1D4ED8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-cart-modern:hover {
+        background: #1D4ED8;
+        color: #fff;
+    }
+
+    .btn-buy-modern {
+        padding: 0 20px;
+        height: 38px;
+        border-radius: 8px;
+        border: none;
+        background: linear-gradient(135deg, #1D4ED8 0%, #60A5FA 100%);
+        color: #fff;
         font-weight: 600;
         font-size: 13px;
         cursor: pointer;
-        transition: all 0.3s;
-        margin-top: auto;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: 38px;
+        transition: all 0.2s;
     }
 
-    /* Add to Cart Button */
-    .btn-add-cart {
-        background: linear-gradient(135deg, #0066ff, #00c6ff);
-        border: none;
-        color: #fff;
-    }
-
-    .btn-add-cart:hover {
-        background: linear-gradient(135deg, #0052cc, #00a8e0);
+    .btn-buy-modern:hover {
+        background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
         transform: translateY(-2px);
-        color: #fff;
-    }
-
-    /* Buy Now Button */
-    .btn-buy-now {
-        background: #fff;
-        border: 1px solid #0066ff;
-        color: #0066ff;
-    }
-
-    .btn-buy-now:hover {
-        background: #0066ff;
-        color: #fff;
-        transform: translateY(-2px);
-    }
-
-    .btn-add-cart i, .btn-buy-now i {
-        margin-right: 4px;
-        font-size: 12px;
+        box-shadow: 0 4px 15px rgba(0,102,255,0.3);
     }
 </style>
-@endpush

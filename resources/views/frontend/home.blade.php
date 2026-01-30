@@ -261,8 +261,14 @@
                 <div class="row" id="productsGrid">
                     @foreach($products as $product)
                     <div class="col-lg-4 col-md-6 col-sm-6 mb-4 product-grid-item">
-                        <div class="product-card-new">
-                            <div class="product-img-wrapper">
+                        <div class="product-card-modern">
+                            <!-- Stock Badge -->
+                            <div class="stock-badge {{ $product->stock > 0 ? 'in-stock' : 'out-of-stock' }}">
+                                {{ $product->stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}
+                            </div>
+
+                            <!-- Product Image -->
+                            <div class="product-image-container">
                                 <a href="{{ route('products.show', $product->id) }}">
                                     @php
                                         $image = $product->image;
@@ -270,44 +276,51 @@
                                             $image = $product->gallery[0] ?? null;
                                         }
                                     @endphp
-                                    <img src="{{ $image ? asset($image) : asset('assets/img/products/product.jpg') }}" class="product-img" alt="{{ $product->name }}">
+                                    <img src="{{ $image ? asset($image) : asset('assets/img/products/product.jpg') }}" class="product-main-img" alt="{{ $product->name }}">
                                 </a>
-                                @if($product->discount_percentage > 0)
-                                <span class="product-badge badge-discount">-{{ $product->discount_percentage }}%</span>
-                                @elseif($product->is_featured)
-                                <span class="product-badge badge-featured">Featured</span>
-                                @endif
                             </div>
-                            <div class="product-info">
-                                <span class="product-category">{{ $product->category->name ?? 'Medicine' }}</span>
-                                <h4 class="product-title">
+
+                            <!-- Product Details -->
+                            <div class="product-details">
+                                <!-- Rating -->
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span class="rating-value">{{ number_format($product->rating ?? 4.5, 1) }}</span>
+                                    <span class="review-count">({{ $product->reviews_count ?? rand(10, 200) }})</span>
+                                </div>
+
+                                <!-- Brand/Category -->
+                                <div class="product-brand">{{ $product->category->name ?? 'Medicine' }}</div>
+
+                                <!-- Title -->
+                                <h4 class="product-name">
                                     <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
                                 </h4>
-                                <div class="product-price">
-                                    @if($product->sale_price)
-                                        <span class="current-price">৳{{ number_format($product->sale_price, 0) }}</span>
-                                        <span class="original-price">৳{{ number_format($product->price, 0) }}</span>
-                                    @else
-                                        <span class="current-price">৳{{ number_format($product->price, 0) }}</span>
-                                    @endif
-                                </div>
-                                <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="quantity" value="1">
-                                    <div class="row gx-2">
-                                        <div class="col-6">
-                                            <button type="submit" class="btn-add-cart w-100">
-                                                <i class="fas fa-shopping-cart"></i> Cart
-                                            </button>
-                                        </div>
-                                        <div class="col-6">
-                                            <button type="submit" name="buy_now" value="1" class="btn-buy-now w-100">
-                                                <i class="fas fa-bolt"></i> Buy
-                                            </button>
-                                        </div>
+
+                                <!-- Price & Actions -->
+                                <div class="product-footer">
+                                    <div class="product-price-tag">
+                                        @if($product->sale_price)
+                                            <span class="price-current">৳{{ number_format($product->sale_price, 0) }}</span>
+                                            <span class="price-original">৳{{ number_format($product->price, 0) }}</span>
+                                        @else
+                                            <span class="price-current">৳{{ number_format($product->price, 0) }}</span>
+                                        @endif
                                     </div>
-                                </form>
+                                    <form action="{{ route('cart.add') }}" method="POST" class="product-actions-form">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <div class="btn-group-modern">
+                                            <button type="submit" class="btn-cart-modern" title="Add to Cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </button>
+                                            <button type="submit" name="buy_now" value="1" class="btn-buy-modern">
+                                                Buy
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -316,8 +329,8 @@
 
                 <!-- View All Button -->
                 <div class="text-center mt-4">
-                    <a href="{{ route('products') }}" class="btn btn-primary view-all-btn">
-                        <i class="fas fa-th-large me-2"></i> View All Products
+                    <a href="{{ route('products') }}" class="btn-view-all-arrow">
+                        View All Products <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -412,8 +425,8 @@
 
                 <!-- View All Button -->
                 <div class="text-center mt-4">
-                    <a href="{{ route('search') }}" class="btn btn-primary btn-lg view-all-btn">
-                        <i class="fas fa-user-md me-2"></i> View All Doctors
+                    <a href="{{ route('search') }}" class="btn-view-all-arrow">
+                        View All Doctors <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -423,6 +436,129 @@
 </section>
 <!-- /Popular Doctors -->
 
+<!-- Health Packages Section -->
+<section class="section section-health-packages" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); padding: 80px 0;">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header text-center mb-5">
+            <span class="badge badge-soft-blue mb-3">Health Packages</span>
+            <h2 class="mb-3">Choose Your Health Package</h2>
+            <p class="text-muted">Comprehensive health checkup packages at affordable prices</p>
+        </div>
+
+        <!-- Packages Grid -->
+        <div class="row justify-content-center">
+            <!-- Basic Package -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="health-package-card">
+                    <div class="package-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="package-badge">Basic</div>
+                    <h4 class="package-title">Basic Health Checkup</h4>
+                    <p class="package-tests"><i class="fas fa-vial"></i> 15+ Tests Included</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Blood Sugar Test</li>
+                        <li><i class="fas fa-check"></i> Lipid Profile</li>
+                        <li><i class="fas fa-check"></i> Liver Function</li>
+                        <li><i class="fas fa-check"></i> Kidney Function</li>
+                    </ul>
+                    <div class="package-price">
+                        <span class="price">৳1,500</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <a href="{{ route('products') }}" class="btn-package">
+                        Book Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Standard Package -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="health-package-card featured">
+                    <div class="featured-ribbon">Most Popular</div>
+                    <div class="package-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="package-badge">Standard</div>
+                    <h4 class="package-title">Full Body Checkup</h4>
+                    <p class="package-tests"><i class="fas fa-vial"></i> 40+ Tests Included</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Complete Blood Count</li>
+                        <li><i class="fas fa-check"></i> Thyroid Profile</li>
+                        <li><i class="fas fa-check"></i> Vitamin Tests</li>
+                        <li><i class="fas fa-check"></i> ECG & X-Ray</li>
+                    </ul>
+                    <div class="package-price">
+                        <span class="price">৳3,500</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <a href="{{ route('products') }}" class="btn-package">
+                        Book Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="health-package-card">
+                    <div class="package-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="package-badge">Premium</div>
+                    <h4 class="package-title">Executive Checkup</h4>
+                    <p class="package-tests"><i class="fas fa-vial"></i> 70+ Tests Included</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Full Body Screening</li>
+                        <li><i class="fas fa-check"></i> Cardiac Risk Markers</li>
+                        <li><i class="fas fa-check"></i> Cancer Markers</li>
+                        <li><i class="fas fa-check"></i> Doctor Consultation</li>
+                    </ul>
+                    <div class="package-price">
+                        <span class="price">৳7,000</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <a href="{{ route('products') }}" class="btn-package">
+                        Book Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Diabetes Package -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="health-package-card">
+                    <div class="package-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="package-badge">Specialized</div>
+                    <h4 class="package-title">Diabetes Care</h4>
+                    <p class="package-tests"><i class="fas fa-vial"></i> 25+ Tests Included</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> HbA1c Test</li>
+                        <li><i class="fas fa-check"></i> Fasting Blood Sugar</li>
+                        <li><i class="fas fa-check"></i> Insulin Level</li>
+                        <li><i class="fas fa-check"></i> Kidney Profile</li>
+                    </ul>
+                    <div class="package-price">
+                        <span class="price">৳2,500</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <a href="{{ route('products') }}" class="btn-package">
+                        Book Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View All Button -->
+        <div class="text-center mt-4">
+            <a href="{{ route('products') }}" class="btn-view-all-arrow">
+                View All Packages <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- /Health Packages Section -->
 <!-- Video Section -->
 <section class="section section-video-promo">
     <div class="container">
@@ -613,7 +749,7 @@
                 <div class="card text-center border-0 shadow-sm h-100 how-it-works-card" style="border-radius: 15px;">
                     <div class="card-body py-5">
                         <div class="mb-4">
-                            <span style="font-size: 50px; color: #0066ff;"><i class="fas fa-search"></i></span>
+                            <span style="font-size: 50px; color: #1D4ED8;"><i class="fas fa-search"></i></span>
                         </div>
                         <h5 class="card-title font-weight-bold">Search Doctor</h5>
                         <p class="card-text text-muted">Find the right doctor by specialty, name, or location.</p>
@@ -624,7 +760,7 @@
                 <div class="card text-center border-0 shadow-sm h-100 how-it-works-card" style="border-radius: 15px;">
                     <div class="card-body py-5">
                         <div class="mb-4">
-                            <span style="font-size: 50px; color: #0066ff;"><i class="fas fa-user-check"></i></span>
+                            <span style="font-size: 50px; color: #1D4ED8;"><i class="fas fa-user-check"></i></span>
                         </div>
                         <h5 class="card-title font-weight-bold">Check Profile</h5>
                         <p class="card-text text-muted">View doctor's qualifications, reviews, and experience.</p>
@@ -635,7 +771,7 @@
                 <div class="card text-center border-0 shadow-sm h-100 how-it-works-card" style="border-radius: 15px;">
                     <div class="card-body py-5">
                         <div class="mb-4">
-                            <span style="font-size: 50px; color: #0066ff;"><i class="fas fa-calendar-check"></i></span>
+                            <span style="font-size: 50px; color: #1D4ED8;"><i class="fas fa-calendar-check"></i></span>
                         </div>
                         <h5 class="card-title font-weight-bold">Book Appointment</h5>
                         <p class="card-text text-muted">Select a convenient time slot and book your visit.</p>
@@ -646,7 +782,7 @@
                 <div class="card text-center border-0 shadow-sm h-100 how-it-works-card" style="border-radius: 15px;">
                     <div class="card-body py-5">
                         <div class="mb-4">
-                            <span style="font-size: 50px; color: #0066ff;"><i class="fas fa-notes-medical"></i></span>
+                            <span style="font-size: 50px; color: #1D4ED8;"><i class="fas fa-notes-medical"></i></span>
                         </div>
                         <h5 class="card-title font-weight-bold">Get Consultation</h5>
                         <p class="card-text text-muted">Visit the doctor and receive quality care.</p>
@@ -659,7 +795,7 @@
 <!-- /How It Works -->
 
 <!-- Statistics Section -->
-<section class="section section-stats" style="background: linear-gradient(135deg, #0066ff 0%, #00c6ff 100%); padding: 60px 0;">
+<section class="section section-stats" style="background: linear-gradient(135deg, #1D4ED8 0%, #60A5FA 100%); padding: 60px 0;">
     <div class="container">
         <div class="row text-center text-white">
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
@@ -884,51 +1020,53 @@ $(document).ready(function() {
 
             var priceHtml = '';
             if (product.sale_price) {
-                priceHtml = '<span class="current-price">৳' + numberFormat(product.sale_price) + '</span>' +
-                           '<span class="original-price">৳' + numberFormat(product.price) + '</span>';
+                priceHtml = '<span class="price-current">৳' + numberFormat(product.sale_price) + '</span>' +
+                           '<span class="price-original">৳' + numberFormat(product.price) + '</span>';
             } else {
-                priceHtml = '<span class="current-price">৳' + numberFormat(product.price) + '</span>';
+                priceHtml = '<span class="price-current">৳' + numberFormat(product.price) + '</span>';
             }
 
-            var badgeHtml = '';
-            if (product.discount_percentage > 0) {
-                badgeHtml = '<span class="product-badge badge-discount">-' + product.discount_percentage + '%</span>';
-            } else if (product.is_featured) {
-                badgeHtml = '<span class="product-badge badge-featured">Featured</span>';
-            }
+            var stockClass = (product.stock > 0) ? 'in-stock' : 'out-of-stock';
+            var stockText = (product.stock > 0) ? 'IN STOCK' : 'OUT OF STOCK';
+            var rating = product.rating || 4.5;
+            var reviewCount = product.reviews_count || Math.floor(Math.random() * 190) + 10;
+            var categoryName = product.category ? product.category.name : 'Medicine';
 
             var html = `
                 <div class="col-lg-4 col-md-6 col-sm-6 mb-4 product-grid-item">
-                    <div class="product-card-new">
-                        <div class="product-img-wrapper">
+                    <div class="product-card-modern">
+                        <div class="stock-badge ${stockClass}">${stockText}</div>
+                        <div class="product-image-container">
                             <a href="/products/${product.id}">
-                                <img src="${imageSrc}" class="product-img" alt="${product.name}">
+                                <img src="${imageSrc}" class="product-main-img" alt="${product.name}">
                             </a>
-                            ${badgeHtml}
                         </div>
-                        <div class="product-info">
-                            <span class="product-category">${product.category ? product.category.name : 'Medicine'}</span>
-                            <h4 class="product-title">
+                        <div class="product-details">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span class="rating-value">${rating.toFixed(1)}</span>
+                                <span class="review-count">(${reviewCount})</span>
+                            </div>
+                            <div class="product-brand">${categoryName}</div>
+                            <h4 class="product-name">
                                 <a href="/products/${product.id}">${product.name}</a>
                             </h4>
-                            <div class="product-price">${priceHtml}</div>
-                            <form action="/cart/add" method="POST" class="add-to-cart-form">
-                                <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
-                                <input type="hidden" name="product_id" value="${product.id}">
-                                <input type="hidden" name="quantity" value="1">
-                                <div class="row gx-2">
-                                    <div class="col-6">
-                                        <button type="submit" class="btn-add-cart w-100">
-                                            <i class="fas fa-shopping-cart"></i> Cart
+                            <div class="product-footer">
+                                <div class="product-price-tag">${priceHtml}</div>
+                                <form action="/cart/add" method="POST" class="product-actions-form">
+                                    <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
+                                    <input type="hidden" name="product_id" value="${product.id}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <div class="btn-group-modern">
+                                        <button type="submit" class="btn-cart-modern" title="Add to Cart">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                        <button type="submit" name="buy_now" value="1" class="btn-buy-modern">
+                                            Buy
                                         </button>
                                     </div>
-                                    <div class="col-6">
-                                        <button type="submit" name="buy_now" value="1" class="btn-buy-now w-100">
-                                            <i class="fas fa-bolt"></i> Buy
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1065,7 +1203,7 @@ $(document).ready(function() {
 
 /* Doctor Registration CTA Section */
 .section-doctor-cta {
-    background: linear-gradient(135deg, #0066ff 0%, #00c6ff 100%);
+    background: linear-gradient(135deg, #1D4ED8 0%, #60A5FA 100%);
     padding: 25px 0;
     position: relative;
     overflow: hidden;
@@ -1148,7 +1286,7 @@ $(document).ready(function() {
     gap: 10px;
     padding: 14px 30px;
     background: #fff;
-    color: #0066ff;
+    color: #1D4ED8;
     border-radius: 50px;
     font-weight: 700;
     font-size: 15px;
@@ -1255,7 +1393,7 @@ $(document).ready(function() {
 }
 
 .filter-title i {
-    color: #0066ff;
+    color: #1D4ED8;
 }
 
 .search-input-wrapper input {
@@ -1266,7 +1404,7 @@ $(document).ready(function() {
 }
 
 .search-input-wrapper input:focus {
-    border-color: #0066ff;
+    border-color: #1D4ED8;
     box-shadow: 0 0 0 3px rgba(0,102,255,0.1);
 }
 
@@ -1295,7 +1433,7 @@ $(document).ready(function() {
 .category-item input[type="radio"] {
     width: 18px;
     height: 18px;
-    accent-color: #0066ff;
+    accent-color: #1D4ED8;
 }
 
 .category-item .category-name {
@@ -1304,11 +1442,11 @@ $(document).ready(function() {
 }
 
 .category-item input:checked + .category-name {
-    color: #0066ff;
+    color: #1D4ED8;
     font-weight: 600;
 }
 
-/* Product Card New */
+/* Product Card Modern */
 .section-products .row {
     margin: 0 -10px;
 }
@@ -1317,38 +1455,428 @@ $(document).ready(function() {
     padding: 0 10px;
 }
 
-.product-card-new {
+.product-card-modern {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     overflow: hidden;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
     border: 1px solid #f0f0f0;
 }
 
-.product-card-new:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(0,102,255,0.15);
-    border-color: #0066ff;
+.product-card-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,102,255,0.12);
 }
 
-.product-img-wrapper {
+/* Stock Badge */
+.stock-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    text-transform: uppercase;
+}
+
+.stock-badge.in-stock {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.stock-badge.out-of-stock {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* Product Image */
+.product-image-container {
     position: relative;
-    height: 200px;
+    height: 180px;
     overflow: hidden;
-    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.product-img-wrapper .product-img {
-    width: 100%;
+.product-main-img {
+    max-width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-card-modern:hover .product-main-img {
+    transform: scale(1.05);
+}
+
+/* Product Details */
+.product-details {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Rating */
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.product-rating i {
+    color: #ffc107;
+    font-size: 12px;
+}
+
+.product-rating .rating-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.product-rating .review-count {
+    color: #999;
+    font-size: 12px;
+}
+
+/* Brand */
+.product-brand {
+    font-size: 11px;
+    color: #1D4ED8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+/* Product Name */
+.product-name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 40px;
+}
+
+.product-name a {
+    color: #272b41;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.product-name a:hover {
+    color: #1D4ED8;
+}
+
+/* Product Footer - Price & Buttons */
+.product-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.product-price-tag {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-current {
+    font-size: 18px;
+    font-weight: 700;
+    color: #272b41;
+}
+
+.price-original {
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+/* Button Group */
+.product-actions-form {
+    display: flex;
+}
+
+.btn-group-modern {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-cart-modern {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 2px solid #1D4ED8;
+    background: transparent;
+    color: #1D4ED8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cart-modern:hover {
+    background: #1D4ED8;
+    color: #fff;
+}
+
+.btn-buy-modern {
+    padding: 0 20px;
+    height: 38px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #1D4ED8 0%, #60A5FA 100%);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-buy-modern:hover {
+    background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,102,255,0.3);
+}
+
+/* View All Button */
+.view-all-btn {
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+}
+
+.view-all-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,102,255,0.3);
+}
+
+/* Arrow Animation Button */
+.btn-view-all-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 28px;
+    background: linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(29, 78, 216, 0.3);
+}
+
+.btn-view-all-arrow i {
+    transition: transform 0.3s ease;
+}
+
+.btn-view-all-arrow:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(29, 78, 216, 0.4);
+}
+
+.btn-view-all-arrow:hover i {
+    transform: translateX(6px);
+}
+
+/* =====================================
+   HEALTH PACKAGES SECTION
+===================================== */
+.health-package-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 2px solid transparent;
 }
 
+.health-package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(29, 78, 216, 0.15);
+    border-color: #1D4ED8;
+}
+
+.health-package-card.featured {
+    border: 2px solid #1D4ED8;
+    transform: scale(1.02);
+}
+
+.health-package-card.featured:hover {
+    transform: scale(1.02) translateY(-10px);
+}
+
+.featured-ribbon {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background: linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%);
+    color: #fff;
+    padding: 5px 40px;
+    font-size: 11px;
+    font-weight: 600;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 10px rgba(29, 78, 216, 0.3);
+}
+
+.package-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.package-icon i {
+    font-size: 28px;
+    color: #1D4ED8;
+}
+
+.package-badge {
+    display: inline-block;
+    background: #EEF2FF;
+    color: #1D4ED8;
+    padding: 4px 15px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+
+.package-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.package-tests {
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.package-tests i {
+    color: #1D4ED8;
+    margin-right: 5px;
+}
+
+.package-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    text-align: left;
+}
+
+.package-features li {
+    padding: 8px 0;
+    font-size: 13px;
+    color: #4b5563;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.package-features li:last-child {
+    border-bottom: none;
+}
+
+.package-features li i {
+    color: #10b981;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.package-price {
+    margin: auto 0 20px 0;
+    padding-top: 15px;
+}
+
+.package-price .price {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1D4ED8;
+}
+
+.package-price .period {
+    display: block;
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.btn-package {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-package:hover {
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(29, 78, 216, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-package i {
+    transition: transform 0.3s ease;
+}
+
+.btn-package:hover i {
+    transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-filter-card,
+    .doctor-filter-card {
+        position: static;
+        margin-bottom: 20px;
+    }
+}
+
+/* Legacy Product Card Styles (for backward compatibility) */
 .product-card-new:hover .product-img {
     transform: scale(1.05);
 }
@@ -1369,7 +1897,7 @@ $(document).ready(function() {
 }
 
 .badge-featured {
-    background: #0066ff;
+    background: #1D4ED8;
     color: #fff;
 }
 
@@ -1383,7 +1911,7 @@ $(document).ready(function() {
 
 .product-category {
     font-size: 11px;
-    color: #0066ff;
+    color: #1D4ED8;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 8px;
@@ -1408,7 +1936,7 @@ $(document).ready(function() {
 }
 
 .product-title a:hover {
-    color: #0066ff;
+    color: #1D4ED8;
 }
 
 .product-price {
@@ -1419,7 +1947,7 @@ $(document).ready(function() {
 .current-price {
     font-size: 20px;
     font-weight: 700;
-    color: #0066ff;
+    color: #1D4ED8;
 }
 
 .original-price {
@@ -1447,13 +1975,13 @@ $(document).ready(function() {
 
 /* Add to Cart Button */
 .btn-add-cart {
-    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    background: linear-gradient(135deg, #1D4ED8, #60A5FA);
     border: none;
     color: #fff;
 }
 
 .btn-add-cart:hover {
-    background: linear-gradient(135deg, #0052cc, #00a8e0);
+    background: linear-gradient(135deg, #1E40AF, #3B82F6);
     transform: translateY(-2px);
     color: #fff;
 }
@@ -1461,12 +1989,12 @@ $(document).ready(function() {
 /* Buy Now Button */
 .btn-buy-now {
     background: #fff;
-    border: 1px solid #0066ff; /* Thinner border */
-    color: #0066ff;
+    border: 1px solid #1D4ED8; /* Thinner border */
+    color: #1D4ED8;
 }
 
 .btn-buy-now:hover {
-    background: #0066ff;
+    background: #1D4ED8;
     color: #fff;
     transform: translateY(-2px);
 }
@@ -1542,7 +2070,7 @@ $(document).ready(function() {
 .doctor-card-new:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 50px rgba(0,102,255,0.15);
-    border-color: #0066ff;
+    border-color: #1D4ED8;
 }
 
 .doctor-img-wrapper {
@@ -1567,7 +2095,7 @@ $(document).ready(function() {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    background: linear-gradient(135deg, #1D4ED8, #60A5FA);
     color: #fff;
     padding: 8px 15px;
     border-radius: 25px;
@@ -1585,7 +2113,7 @@ $(document).ready(function() {
 
 .doctor-speciality {
     font-size: 11px;
-    color: #0066ff;
+    color: #1D4ED8;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 8px;
@@ -1611,11 +2139,11 @@ $(document).ready(function() {
 }
 
 .doctor-name a:hover {
-    color: #0066ff;
+    color: #1D4ED8;
 }
 
 .verified-badge {
-    color: #0066ff;
+    color: #1D4ED8;
     font-size: 14px;
     margin-left: 5px;
 }
@@ -1647,7 +2175,7 @@ $(document).ready(function() {
 }
 
 .doctor-location i {
-    color: #0066ff;
+    color: #1D4ED8;
 }
 /* Doctor Buttons Container */
 .doctor-buttons {
@@ -1660,9 +2188,9 @@ $(document).ready(function() {
     flex: 1;
     padding: 10px 8px;
     background: transparent;
-    border: 2px solid #0066ff;
+    border: 2px solid #1D4ED8;
     border-radius: 8px;
-    color: #0066ff;
+    color: #1D4ED8;
     font-weight: 600;
     font-size: 12px;
     text-align: center;
@@ -1672,7 +2200,7 @@ $(document).ready(function() {
 }
 
 .btn-view-details:hover {
-    background: #0066ff;
+    background: #1D4ED8;
     color: #fff;
     text-decoration: none;
 }
@@ -1684,7 +2212,7 @@ $(document).ready(function() {
 .btn-book-appointment {
     flex: 1;
     padding: 10px 8px;
-    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    background: linear-gradient(135deg, #1D4ED8, #60A5FA);
     border: none;
     border-radius: 8px;
     color: #fff;
@@ -1697,7 +2225,7 @@ $(document).ready(function() {
 }
 
 .btn-book-appointment:hover {
-    background: linear-gradient(135deg, #0052cc, #00a8e0);
+    background: linear-gradient(135deg, #1E40AF, #3B82F6);
     transform: translateY(-2px);
     color: #fff;
     text-decoration: none;
