@@ -160,8 +160,31 @@
 </section>
 <!-- /Doctor Registration CTA -->
 
+<!-- Video Section -->
+<section class="section-video">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Watch How We Help You</h2>
+            <p class="sub-title">See our platform in action and learn how easy it is to book appointments</p>
+        </div>
+        <div class="video-wrapper">
+            <div class="video-container">
+                <!-- Replace VIDEO_ID with your YouTube video ID -->
+                <iframe
+                    src="https://www.youtube.com/embed/8-8A8E-G4Co?rel=0"
+                    title="Platform Introduction Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Video Section -->
+
 <!-- Clinic and Specialities -->
-<section class="section section-specialities">
+{{-- <section class="section section-specialities">
     <div class="container">
         <div class="section-header text-center">
             <h2>Browse Top Specialities</h2>
@@ -176,7 +199,7 @@
                     <div class="speicality-item text-center">
                         <a href="{{ route('search', ['speciality_id' => $speciality->id]) }}" class="speciality-link">
                             <div class="speicality-img">
-                                <img src="{{ asset('storage/'.$speciality->image) }}" class="img-fluid" alt="Speciality">
+                                <img src="{{ asset($speciality->image) }}" class="img-fluid" alt="Speciality">
                                 <span class="hover-icon"><i class="fas fa-chevron-right"></i></span>
                             </div>
                             <p>{{ $speciality->name }}</p>
@@ -190,7 +213,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- Clinic and Specialities -->
 
 <!-- Medical Products -->
@@ -247,7 +270,7 @@
                                             $image = $product->gallery[0] ?? null;
                                         }
                                     @endphp
-                                    <img src="{{ $image ? asset('storage/'.$image) : asset('assets/img/products/product.jpg') }}" class="product-img" alt="{{ $product->name }}">
+                                    <img src="{{ $image ? asset($image) : asset('assets/img/products/product.jpg') }}" class="product-img" alt="{{ $product->name }}">
                                 </a>
                                 @if($product->discount_percentage > 0)
                                 <span class="product-badge badge-discount">-{{ $product->discount_percentage }}%</span>
@@ -272,9 +295,18 @@
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" class="btn-add-cart">
-                                        <i class="fas fa-shopping-cart"></i> Add to Cart
-                                    </button>
+                                    <div class="row gx-2">
+                                        <div class="col-6">
+                                            <button type="submit" class="btn-add-cart w-100">
+                                                <i class="fas fa-shopping-cart"></i> Cart
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="submit" name="buy_now" value="1" class="btn-buy-now w-100">
+                                                <i class="fas fa-bolt"></i> Buy
+                                            </button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -284,7 +316,7 @@
 
                 <!-- View All Button -->
                 <div class="text-center mt-4">
-                    <a href="{{ route('products') }}" class="btn btn-primary btn-lg view-all-btn">
+                    <a href="{{ route('products') }}" class="btn btn-primary view-all-btn">
                         <i class="fas fa-th-large me-2"></i> View All Products
                     </a>
                 </div>
@@ -343,7 +375,7 @@
                         <div class="doctor-card-new">
                             <div class="doctor-img-wrapper">
                                 <a href="{{ route('doctor.profile', $doctor->id) }}">
-                                    <img src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" class="doctor-img" alt="{{ $doctor->user->name }}">
+                                    <img src="{{ $doctor->profile_image ? asset($doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" class="doctor-img" alt="{{ $doctor->user->name }}">
                                 </a>
                                 <div class="doctor-fee-badge">
                                     <span>৳ {{ $doctor->pricing === 'free' ? 'Free' : number_format($doctor->custom_price, 0) }}</span>
@@ -848,9 +880,7 @@ $(document).ready(function() {
         }
 
         products.forEach(function(product) {
-            var image = product.image || 'assets/img/products/product.jpg';
-            var imageSrc = image.startsWith('http') ? image : '/storage/' + image;
-            if (!product.image) imageSrc = '/assets/img/products/product.jpg';
+            var imageSrc = product.image ? (product.image.startsWith('http') ? product.image : '/' + product.image) : '/assets/img/products/product.jpg';
 
             var priceHtml = '';
             if (product.sale_price) {
@@ -886,9 +916,18 @@ $(document).ready(function() {
                                 <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
                                 <input type="hidden" name="product_id" value="${product.id}">
                                 <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                                </button>
+                                <div class="row gx-2">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn-add-cart w-100">
+                                            <i class="fas fa-shopping-cart"></i> Cart
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" name="buy_now" value="1" class="btn-buy-now w-100">
+                                            <i class="fas fa-bolt"></i> Buy
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -1030,6 +1069,9 @@ $(document).ready(function() {
     padding: 25px 0;
     position: relative;
     overflow: hidden;
+    max-width: 1320px;
+    margin: 20px auto;
+    border-radius: 20px;
 }
 
 .section-doctor-cta::before {
@@ -1140,6 +1182,48 @@ $(document).ready(function() {
     .doctor-cta-text p {
         max-width: 100%;
     }
+}
+
+/* Video Section */
+.section-video {
+    background: linear-gradient(180deg, #e8f4fc 0%, #f0f9ff 100%);
+    padding: 60px 0;
+    margin: 20px 0;
+}
+
+.section-video .section-header h2 {
+    color: #272b41;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.section-video .section-header .sub-title {
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.video-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,102,255,0.15);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
 }
 
 /* Product Filter Card */
@@ -1345,32 +1429,56 @@ $(document).ready(function() {
     margin-left: 8px;
 }
 
-.btn-add-cart {
+/* Button Styles */
+.btn-add-cart, .btn-buy-now {
     width: 100%;
-    padding: 10px;
-    background: linear-gradient(135deg, #0066ff, #00c6ff);
-    border: none;
+    padding: 8px 5px; /* Reduced side padding to prevent overflow */
     border-radius: 8px;
-    color: #fff;
     font-weight: 600;
     font-size: 13px;
     cursor: pointer;
     transition: all 0.3s;
     margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px; /* Fixed height alignment */
+}
+
+/* Add to Cart Button */
+.btn-add-cart {
+    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    border: none;
+    color: #fff;
 }
 
 .btn-add-cart:hover {
     background: linear-gradient(135deg, #0052cc, #00a8e0);
     transform: translateY(-2px);
+    color: #fff;
 }
 
-.btn-add-cart i {
-    margin-right: 5px;
+/* Buy Now Button */
+.btn-buy-now {
+    background: #fff;
+    border: 1px solid #0066ff; /* Thinner border */
+    color: #0066ff;
+}
+
+.btn-buy-now:hover {
+    background: #0066ff;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-add-cart i, .btn-buy-now i {
+    margin-right: 4px;
+    font-size: 12px;
 }
 
 /* View All Button */
 .view-all-btn {
-    padding: 15px 40px;
+    padding: 10px 30px;
     border-radius: 50px;
     font-weight: 600;
     letter-spacing: 0.5px;

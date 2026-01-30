@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="{{ $item['image'] ? asset('storage/'.$item['image']) : asset('assets/img/products/product-1.jpg') }}" alt="{{ $item['name'] }}" class="me-3" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                                <img src="{{ $item['image'] ? asset($item['image']) : asset('assets/img/products/product-1.jpg') }}" alt="{{ $item['name'] }}" class="me-3" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
                                                 <div>
                                                     <h6 class="mb-0">{{ $item['name'] }}</h6>
                                                 </div>

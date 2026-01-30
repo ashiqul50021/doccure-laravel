@@ -72,11 +72,11 @@
 
                 @foreach($doctors as $doctor)
                     @include('components.search-doctor-card', [
-                        'image' => $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg'),
+                        'image' => $doctor->profile_image ? asset($doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg'),
                         'name' => 'Dr. ' . $doctor->user->name,
                         'speciality' => $doctor->speciality->name ?? 'General',
                         'department' => $doctor->speciality->name ?? 'General',
-                        'departmentIcon' => ($doctor->speciality && $doctor->speciality->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($doctor->speciality->image)) ? asset('storage/'.$doctor->speciality->image) : asset('assets/img/specialities/specialities-05.png'),
+                        'departmentIcon' => ($doctor->speciality && $doctor->speciality->image && file_exists(public_path($doctor->speciality->image))) ? asset($doctor->speciality->image) : asset('assets/img/specialities/specialities-05.png'),
                         'rating' => $doctor->average_rating,
                         'reviews' => $doctor->review_count,
                         'location' => $doctor->clinic_name ?? ($doctor->clinic_city ?? 'Location'),
@@ -91,7 +91,7 @@
                         <div class="card mb-3">
                             <div class="card-body p-0">
                                 <a href="{{ $ad->link ?? '#' }}" target="_blank">
-                                    <img src="{{ asset('storage/'.$ad->image) }}" class="img-fluid" alt="{{ $ad->title }}" style="width: 100%; max-height: 200px; object-fit: cover;">
+                                    <img src="{{ asset($ad->image) }}" class="img-fluid" alt="{{ $ad->title }}" style="width: 100%; max-height: 200px; object-fit: cover;">
                                 </a>
                             </div>
                         </div>

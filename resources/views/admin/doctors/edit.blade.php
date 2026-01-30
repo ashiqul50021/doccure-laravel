@@ -28,7 +28,7 @@
                             <div class="mb-3">
                                 <div class="change-avatar">
                                     <div class="profile-img">
-                                        <img src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
+                                        <img src="{{ $doctor->profile_image ? asset($doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                     </div>
                                     <div class="upload-img">
                                         <div class="change-photo-btn">

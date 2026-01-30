@@ -114,7 +114,7 @@
                                 <div class="mt-3">
                                     <label>Current Image:</label>
                                     <div class="border rounded p-2">
-                                        <img src="{{ asset('storage/' . $bannerSettings['banner_image']) }}"
+                                        <img src="{{ asset($bannerSettings['banner_image']) }}"
                                              alt="Banner Image" class="img-fluid rounded" style="max-height: 300px;">
                                     </div>
                                 </div>

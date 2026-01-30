@@ -45,7 +45,7 @@
                         <label>Website Logo</label>
                         @if(!empty($generalSettings['logo']))
                             <div class="mb-2">
-                                <img src="{{ asset('storage/'.$generalSettings['logo']) }}" alt="Logo" style="max-height: 50px;">
+                                <img src="{{ asset($generalSettings['logo']) }}" alt="Logo" style="max-height: 50px;">
                             </div>
                         @endif
                         <input type="file" class="form-control" name="logo">
@@ -56,7 +56,7 @@
                         <label>Favicon</label>
                         @if(!empty($generalSettings['favicon']))
                             <div class="mb-2">
-                                <img src="{{ asset('storage/'.$generalSettings['favicon']) }}" alt="Favicon" style="max-height: 32px;">
+                                <img src="{{ asset($generalSettings['favicon']) }}" alt="Favicon" style="max-height: 32px;">
                             </div>
                         @endif
                         <input type="file" class="form-control" name="favicon">
@@ -175,7 +175,7 @@
                         <label>Banner Image</label>
                         @if(!empty($bannerSettings['banner_image']))
                             <div class="mb-2">
-                                <img src="{{ asset('storage/'.$bannerSettings['banner_image']) }}" alt="Banner" style="max-height: 100px;">
+                                <img src="{{ asset($bannerSettings['banner_image']) }}" alt="Banner" style="max-height: 100px;">
                             </div>
                         @endif
                         <input type="file" class="form-control" name="banner_image">

@@ -80,6 +80,10 @@ class ProductController extends Controller
 
         session()->put('cart', $cart);
 
+        if ($request->has('buy_now')) {
+            return redirect()->route('product.checkout');
+        }
+
         return redirect()->back()->with('success', 'Product added to cart!');
     }
 

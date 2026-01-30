@@ -70,7 +70,7 @@
                                 <label>Image</label>
                                 <input type="file" name="image" class="form-control">
                                 @if($advertisement->image)
-                                    <img src="{{ asset('storage/'.$advertisement->image) }}" alt="" width="50" class="mt-2">
+                                    <img src="{{ asset($advertisement->image) }}" alt="" width="50" class="mt-2">
                                 @endif
                             </div>
                         </div>

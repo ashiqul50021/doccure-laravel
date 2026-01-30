@@ -14,14 +14,14 @@
                 <div class="doctor-widget">
                     <div class="doc-info-left">
                         <div class="doctor-img">
-                            <img src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-02.jpg') }}" class="img-fluid" alt="User Image">
+                            <img src="{{ $doctor->profile_image ? asset($doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-02.jpg') }}" class="img-fluid" alt="User Image">
                         </div>
                         <div class="doc-info-cont">
                             <h4 class="doc-name">Dr. {{ $doctor->user->name }}</h4>
                             <p class="doc-speciality">{{ $doctor->qualifications }}</p>
                             <p class="doc-department">
                                 @if($doctor->speciality && $doctor->speciality->image)
-                                <img src="{{ asset('storage/'.$doctor->speciality->image) }}" class="img-fluid" alt="Speciality">
+                                <img src="{{ asset($doctor->speciality->image) }}" class="img-fluid" alt="Speciality">
                                 @endif
                                 {{ $doctor->speciality->name ?? 'General' }}
                             </p>
@@ -171,7 +171,7 @@
                                 @forelse($doctor->reviews as $review)
                                 <li>
                                     <div class="comment">
-                                        <img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ optional($review->patient->user)->profile_image ? asset('storage/'.$review->patient->user->profile_image) : asset('assets/img/patients/patient.jpg') }}">
+                                        <img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ optional($review->patient->user)->profile_image ? asset($review->patient->user->profile_image) : asset('assets/img/patients/patient.jpg') }}">
                                         <div class="comment-body">
                                             <div class="meta-data">
                                                 <span class="comment-author">{{ $review->patient->user->name ?? 'Patient' }}</span>

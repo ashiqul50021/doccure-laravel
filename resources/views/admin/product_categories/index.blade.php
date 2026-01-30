@@ -42,7 +42,7 @@
                                 <td>
                                     <h2 class="table-avatar">
                                         <a href="#" class="avatar avatar-sm me-2">
-                                            <img class="avatar-img" src="{{ $category->image ? asset('storage/'.$category->image) : asset('assets/img/specialities/specialities-01.png') }}" alt="Category">
+                                            <img class="avatar-img" src="{{ $category->image ? asset($category->image) : asset('assets/img/specialities/specialities-01.png') }}" alt="Category">
                                         </a>
                                         <a href="#">{{ $category->name }}</a>
                                     </h2>

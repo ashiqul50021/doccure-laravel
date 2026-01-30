@@ -43,7 +43,7 @@
                                 <td>
                                     <h2 class="table-avatar">
                                         <a href="#" class="avatar avatar-sm me-2">
-                                            <img class="avatar-img rounded-circle" src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
+                                            <img class="avatar-img rounded-circle" src="{{ $doctor->profile_image ? asset($doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="User Image">
                                         </a>
                                         <a href="#">{{ $doctor->user->name }}</a>
                                     </h2>

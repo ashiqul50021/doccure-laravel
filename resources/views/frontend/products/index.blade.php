@@ -6,7 +6,7 @@
 
 <!-- Page Content -->
 <div class="content">
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="row">
             <!-- Sidebar Filter -->
@@ -50,33 +50,41 @@
                 <div class="row">
                     @forelse($products as $product)
                     <div class="col-md-6 col-lg-4 col-xl-4">
-                        <div class="card product-card h-100">
-                            <a href="{{ route('products.show', $product->id) }}">
-                                <img src="{{ $product->image ? asset('storage/'.$product->image) : asset('assets/img/products/product-1.jpg') }}" class="card-img-top" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
-                            </a>
-                            <div class="card-body">
-                                <span class="badge bg-primary mb-2">{{ $product->category->name ?? 'General' }}</span>
-                                <h5 class="card-title">
+                        <div class="product-item h-100 d-flex flex-column">
+                            <div class="product-img">
+                                <a href="{{ route('products.show', $product->id) }}">
+                                    <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/product-1.jpg') }}" class="product-img" alt="{{ $product->name }}" style="height: 200px; object-fit: cover; width: 100%;">
+                                </a>
+                            </div>
+                            <div class="product-info flex-grow-1 d-flex flex-column">
+                                <span class="product-category">{{ $product->category->name ?? 'General' }}</span>
+                                <h4 class="product-title">
                                     <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
-                                </h5>
+                                </h4>
                                 <div class="product-price">
                                     @if($product->sale_price)
-                                        <span class="text-muted text-decoration-line-through me-2">৳{{ number_format($product->price, 2) }}</span>
-                                        <span class="text-primary fw-bold">৳{{ number_format($product->sale_price, 2) }}</span>
-                                        <span class="badge bg-danger">{{ $product->discount_percentage }}% OFF</span>
+                                        <span class="current-price">৳{{ number_format($product->sale_price, 2) }}</span>
+                                        <span class="original-price">৳{{ number_format($product->price, 2) }}</span>
                                     @else
-                                        <span class="text-primary fw-bold">৳{{ number_format($product->price, 2) }}</span>
+                                        <span class="current-price">৳{{ number_format($product->price, 2) }}</span>
                                     @endif
                                 </div>
-                            </div>
-                            <div class="card-footer bg-transparent border-0 pt-0">
-                                <form action="{{ route('cart.add') }}" method="POST">
+                                <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form mt-auto">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" class="btn btn-primary w-100">
-                                        <i class="fas fa-shopping-cart me-2"></i>Add to Cart
-                                    </button>
+                                    <div class="row gx-2">
+                                        <div class="col-6">
+                                            <button type="submit" class="btn-add-cart w-100">
+                                                <i class="fas fa-shopping-cart"></i> Cart
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="submit" name="buy_now" value="1" class="btn-buy-now w-100">
+                                                <i class="fas fa-bolt"></i> Buy
+                                            </button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -100,6 +108,17 @@
 <!-- /Page Content -->
 @endsection
 
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        // Auto submit form when category is changed
+        $('input[name="category"]').on('change', function() {
+            $(this).closest('form').submit();
+        });
+    });
+</script>
+@endpush
+
 @push('styles')
 <style>
     .product-card {
@@ -115,6 +134,53 @@
     }
     .product-card .card-title a:hover {
         color: #09e5ab;
+    }
+
+    /* Button Styles */
+    .btn-add-cart, .btn-buy-now {
+        width: 100%;
+        padding: 8px 5px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+    }
+
+    /* Add to Cart Button */
+    .btn-add-cart {
+        background: linear-gradient(135deg, #0066ff, #00c6ff);
+        border: none;
+        color: #fff;
+    }
+
+    .btn-add-cart:hover {
+        background: linear-gradient(135deg, #0052cc, #00a8e0);
+        transform: translateY(-2px);
+        color: #fff;
+    }
+
+    /* Buy Now Button */
+    .btn-buy-now {
+        background: #fff;
+        border: 1px solid #0066ff;
+        color: #0066ff;
+    }
+
+    .btn-buy-now:hover {
+        background: #0066ff;
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    .btn-add-cart i, .btn-buy-now i {
+        margin-right: 4px;
+        font-size: 12px;
     }
 </style>
 @endpush
