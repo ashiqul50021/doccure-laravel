@@ -559,6 +559,114 @@
     </div>
 </section>
 <!-- /Health Packages Section -->
+
+<!-- Health Courses Section -->
+<section class="section section-courses" style="background: #fff; padding: 80px 0;">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header text-center mb-5">
+            <span class="badge badge-soft-blue mb-3">Learn & Grow</span>
+            <h2 class="mb-3">Health Education Courses</h2>
+            <p class="text-muted">Free and paid courses to help you understand and manage your health better</p>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="row">
+            <!-- Course 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="{{ asset('assets/img/features/feature-01.jpg') }}" alt="Diabetes Management">
+                        <div class="play-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <span class="course-badge free">Free</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 2h 30m</span>
+                            <span><i class="fas fa-book"></i> 8 Lessons</span>
+                        </div>
+                        <h4 class="course-title">Diabetes Management</h4>
+                        <p class="course-desc">Learn how to manage blood sugar levels, diet plans, and lifestyle changes for diabetes control.</p>
+                        <div class="course-footer">
+                            <div class="course-instructor">
+                                <img src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="Instructor">
+                                <span>Dr. Sarah Wilson</span>
+                            </div>
+                            <a href="{{ route('products') }}" class="btn-enroll">Enroll <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="{{ asset('assets/img/features/feature-02.jpg') }}" alt="Heart Health">
+                        <div class="play-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <span class="course-badge premium">৳500</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 3h 15m</span>
+                            <span><i class="fas fa-book"></i> 12 Lessons</span>
+                        </div>
+                        <h4 class="course-title">Heart Health Awareness</h4>
+                        <p class="course-desc">Understanding cardiovascular health, risk factors, prevention strategies and heart-healthy lifestyle.</p>
+                        <div class="course-footer">
+                            <div class="course-instructor">
+                                <img src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}" alt="Instructor">
+                                <span>Dr. John Smith</span>
+                            </div>
+                            <a href="{{ route('products') }}" class="btn-enroll">Enroll <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="{{ asset('assets/img/features/feature-03.jpg') }}" alt="Mental Health">
+                        <div class="play-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <span class="course-badge free">Free</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 1h 45m</span>
+                            <span><i class="fas fa-book"></i> 6 Lessons</span>
+                        </div>
+                        <h4 class="course-title">Mental Health & Wellness</h4>
+                        <p class="course-desc">Techniques for stress management, anxiety relief, and maintaining positive mental health.</p>
+                        <div class="course-footer">
+                            <div class="course-instructor">
+                                <img src="{{ asset('assets/img/doctors/doctor-thumb-03.jpg') }}" alt="Instructor">
+                                <span>Dr. Emily Brown</span>
+                            </div>
+                            <a href="{{ route('products') }}" class="btn-enroll">Enroll <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View All Button -->
+        <div class="text-center mt-4">
+            <a href="{{ route('products') }}" class="btn-view-all-arrow">
+                View All Courses <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- /Health Courses Section -->
+
 <!-- Video Section -->
 <section class="section section-video-promo">
     <div class="container">
@@ -795,31 +903,51 @@
 <!-- /How It Works -->
 
 <!-- Statistics Section -->
-<section class="section section-stats" style="background: linear-gradient(135deg, #1D4ED8 0%, #60A5FA 100%); padding: 60px 0;">
+<section class="section section-stats" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); padding: 80px 0;">
     <div class="container">
-        <div class="row text-center text-white">
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <div class="counter-box">
-                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-user-md me-2"></i>500+</h2>
-                    <p class="mb-0" style="font-size: 18px;">Expert Doctors</p>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h2 class="stat-number">
+                        <span class="counter-number" data-target="500">0</span>+
+                    </h2>
+                    <p class="stat-label">Expert Doctors</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <div class="counter-box">
-                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-users me-2"></i>10K+</h2>
-                    <p class="mb-0" style="font-size: 18px;">Happy Patients</p>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2 class="stat-number">
+                        <span class="counter-number" data-target="10000" data-suffix="K">0</span>+
+                    </h2>
+                    <p class="stat-label">Happy Patients</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <div class="counter-box">
-                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-hospital me-2"></i>100+</h2>
-                    <p class="mb-0" style="font-size: 18px;">Clinics & Hospitals</p>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h2 class="stat-number">
+                        <span class="counter-number" data-target="100">0</span>+
+                    </h2>
+                    <p class="stat-label">Clinics & Hospitals</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="counter-box">
-                    <h2 class="display-4 font-weight-bold mb-2"><i class="fas fa-award me-2"></i>15+</h2>
-                    <p class="mb-0" style="font-size: 18px;">Years of Experience</p>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h2 class="stat-number">
+                        <span class="counter-number" data-target="15">0</span>+
+                    </h2>
+                    <p class="stat-label">Years of Experience</p>
                 </div>
             </div>
         </div>
@@ -927,6 +1055,52 @@
 @push('scripts')
 <script>
 $(document).ready(function() {
+    // Counter Animation for Statistics Section
+    const counters = document.querySelectorAll('.counter-number');
+    let hasAnimated = false;
+
+    function animateCounter(counter) {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const duration = 1500; // 1.5 seconds
+        const step = target / (duration / 16); // 60fps
+        let current = 0;
+
+        const updateCounter = () => {
+            current += step;
+            if (current < target) {
+                if (suffix === 'K') {
+                    counter.textContent = Math.floor(current / 1000) + 'K';
+                } else {
+                    counter.textContent = Math.floor(current);
+                }
+                requestAnimationFrame(updateCounter);
+            } else {
+                if (suffix === 'K') {
+                    counter.textContent = (target / 1000) + 'K';
+                } else {
+                    counter.textContent = target;
+                }
+            }
+        };
+        updateCounter();
+    }
+
+    // Intersection Observer to trigger animation when section is visible
+    const statsSection = document.querySelector('.section-stats');
+    if (statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    hasAnimated = true;
+                    counters.forEach(counter => animateCounter(counter));
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(statsSection);
+    }
+
     // Hero Slider Initialization - Explicit Call
     if($('.hero-slider').length > 0) {
         $('.hero-slider').slick({
@@ -1701,6 +1875,238 @@ $(document).ready(function() {
 
 .btn-view-all-arrow:hover i {
     transform: translateX(6px);
+}
+
+/* =====================================
+   STATISTICS CARDS SECTION
+===================================== */
+.stat-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(29, 78, 216, 0.15);
+    border-color: #1D4ED8;
+}
+
+.stat-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.stat-icon i {
+    font-size: 32px;
+    color: #1D4ED8;
+}
+
+.stat-number {
+    font-size: 42px;
+    font-weight: 700;
+    color: #1D4ED8;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 15px;
+    color: #6b7280;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* =====================================
+   HEALTH COURSES SECTION
+===================================== */
+.course-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(29, 78, 216, 0.15);
+}
+
+.course-thumbnail {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.course-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover .course-thumbnail img {
+    transform: scale(1.08);
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.course-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-overlay i {
+    font-size: 60px;
+    color: #fff;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover .play-overlay i {
+    transform: scale(1.1);
+}
+
+.course-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.course-badge.free {
+    background: #10b981;
+    color: #fff;
+}
+
+.course-badge.premium {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    color: #fff;
+}
+
+.course-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.course-meta span {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.course-meta i {
+    color: #1D4ED8;
+    margin-right: 5px;
+}
+
+.course-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.course-desc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.course-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.course-instructor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.course-instructor img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.course-instructor span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.btn-enroll {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-enroll:hover {
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(29, 78, 216, 0.4);
+}
+
+.btn-enroll i {
+    font-size: 11px;
+    transition: transform 0.3s ease;
+}
+
+.btn-enroll:hover i {
+    transform: translateX(4px);
 }
 
 /* =====================================

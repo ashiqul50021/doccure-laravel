@@ -66,6 +66,10 @@
                         <a href="{{ route('products') }}" style="text-transform: capitalize;">Products</a>
                     </li>
                 @endif
+                <!-- Always show Courses menu -->
+                <li class="{{ request()->routeIs('courses*') ? 'active' : '' }}">
+                    <a href="{{ route('products') }}" style="text-transform: capitalize;">Courses</a>
+                </li>
             </ul>
 
             <!-- Mobile Menu Buttons -->
