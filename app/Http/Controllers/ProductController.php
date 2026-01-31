@@ -7,6 +7,11 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\User;
+use App\Models\Patient;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -159,8 +164,46 @@ class ProductController extends Controller
             $total += $item['price'] * $item['quantity'];
         }
 
+        $user = Auth::user();
+
+        if (!$user) {
+            $request->validate([
+                'email' => 'required|email|unique:users,email',
+            ], [
+                'email.unique' => 'This email is already registered. Please login to continue.'
+            ]);
+
+            // Create User
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make(Str::random(10)), // Random password
+                'role' => 'patient',
+            ]);
+
+            // Create Patient Profile
+            Patient::create([
+                'user_id' => $user->id,
+                'phone' => $request->phone,
+                'address' => $request->address,
+            ]);
+
+            Auth::login($user);
+        }
+
+        // Ensure Patient profile exists
+        if (!$user->patient) {
+            Patient::create([
+                'user_id' => $user->id,
+                'phone' => $request->phone,
+                'address' => $request->address,
+            ]);
+            $user->refresh();
+        }
+
         // Create order
         $order = Order::create([
+            'patient_id' => $user->patient->id,
             'order_number' => 'ORD-' . strtoupper(uniqid()),
             'customer_name' => $request->name,
             'customer_email' => $request->email,

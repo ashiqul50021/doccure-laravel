@@ -3,66 +3,97 @@
 @section('title', 'Doctor Register - Doccure')
 
 @section('content')
-<!-- Page Content -->
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
 
-                <!-- Account Content -->
-                <div class="account-content">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-7 col-lg-6 login-left">
-                            <img src="{{ asset('assets/img/login-banner.png') }}" class="img-fluid" alt="Login Banner">
-                        </div>
-                        <div class="col-md-12 col-lg-6 login-right">
-                            <div class="login-header">
-                                <h3>Doctor Register <a href="{{ route('register') }}">Not a Doctor?</a></h3>
+                    <!-- Account Content -->
+                    <div class="account-content">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-7 col-lg-6 login-left">
+                                <img src="{{ asset('assets/img/login-banner.png') }}" class="img-fluid" alt="Login Banner">
                             </div>
+                            <div class="col-md-12 col-lg-6 login-right">
+                                <div class="login-header">
+                                    <h3>Doctor Register <a href="{{ route('register') }}">Not a Doctor?</a></h3>
+                                </div>
 
-                            <!-- Register Form -->
-                            <form action="{{ route('doctor.dashboard') }}">
-                                <div class="mb-3 form-focus">
-                                    <input type="text" class="form-control floating">
-                                    <label class="focus-label">Name</label>
-                                </div>
-                                <div class="mb-3 form-focus">
-                                    <input type="text" class="form-control floating">
-                                    <label class="focus-label">Mobile Number</label>
-                                </div>
-                                <div class="mb-3 form-focus">
-                                    <input type="password" class="form-control floating">
-                                    <label class="focus-label">Create Password</label>
-                                </div>
-                                <div class="text-end">
-                                    <a class="forgot-link" href="{{ route('login') }}">Already have an account?</a>
-                                </div>
-                                <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
-                                <div class="login-or">
-                                    <span class="or-line"></span>
-                                    <span class="span-or">or</span>
-                                </div>
-                                <div class="row form-row social-login">
-                                    <div class="col-6">
-                                        <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f me-1"></i> Login</a>
+                                <!-- Register Form -->
+                                <form action="{{ route('doctor.register.submit') }}" method="POST">
+                                    @csrf
+                                    <div class="mb-3 form-focus">
+                                        <input type="text" class="form-control floating" name="name" required
+                                            value="{{ old('name') }}">
+                                        <label class="focus-label">Name</label>
+                                        @error('name') <span class="text-danger small">{{ $message }}</span> @enderror
                                     </div>
-                                    <div class="col-6">
-                                        <a href="#" class="btn btn-google btn-block"><i class="fab fa-google me-1"></i> Login</a>
+                                    <div class="mb-3 form-focus">
+                                        <input type="email" class="form-control floating" name="email" required
+                                            value="{{ old('email') }}">
+                                        <label class="focus-label">Email Address</label>
+                                        @error('email') <span class="text-danger small">{{ $message }}</span> @enderror
                                     </div>
-                                </div>
-                            </form>
-                            <!-- /Register Form -->
+                                    <div class="mb-3 form-focus">
+                                        <input type="text" class="form-control floating" name="mobile" required
+                                            value="{{ old('mobile') }}">
+                                        <label class="focus-label">Mobile Number</label>
+                                        @error('mobile') <span class="text-danger small">{{ $message }}</span> @enderror
+                                    </div>
+                                    <div class="mb-3 form-focus">
+                                        <input type="password" class="form-control floating" name="password" required>
+                                        <label class="focus-label">Create Password</label>
+                                        @error('password') <span class="text-danger small">{{ $message }}</span> @enderror
+                                    </div>
+                                    <div class="mb-3 form-focus">
+                                        <input type="password" class="form-control floating" name="password_confirmation"
+                                            required>
+                                        <label class="focus-label">Confirm Password</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="terms-accept">
+                                            <div class="custom-checkbox">
+                                                <input type="checkbox" id="terms_accept" name="terms_accept" required>
+                                                <label for="terms_accept">I have read and accept <a href="#">Terms &amp;
+                                                        Conditions</a></label>
+                                            </div>
+                                        </div>
+                                        @error('terms_accept') <span class="text-danger small">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="text-end">
+                                        <a class="forgot-link" href="{{ route('login') }}">Already have an account?</a>
+                                    </div>
+                                    <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Register
+                                        Now</button>
+                                    <div class="login-or">
+                                        <span class="or-line"></span>
+                                        <span class="span-or">or</span>
+                                    </div>
+                                    <div class="row form-row social-login">
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-facebook btn-block"><i
+                                                    class="fab fa-facebook-f me-1"></i> Login</a>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-google btn-block"><i class="fab fa-google me-1"></i>
+                                                Login</a>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- /Register Form -->
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- /Account Content -->
+                    <!-- /Account Content -->
 
+                </div>
             </div>
+
         </div>
 
     </div>
-
-</div>
-<!-- /Page Content -->
+    <!-- /Page Content -->
 @endsection

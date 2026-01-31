@@ -46,6 +46,11 @@ class BannerController extends Controller
         $data['is_active'] = $request->has('is_active');
         $data['image'] = ImageService::upload($request->file('image'), 'banners');
 
+        // For image_only type, use image_link as button_link
+        if ($request->type === 'image_only' && $request->image_link) {
+            $data['button_link'] = $request->image_link;
+        }
+
         Banner::create($data);
 
         return redirect()->route('admin.banners.index')->with('success', 'Banner created successfully.');
@@ -81,6 +86,11 @@ class BannerController extends Controller
         if ($request->hasFile('image')) {
             ImageService::delete($banner->image);
             $data['image'] = ImageService::upload($request->file('image'), 'banners');
+        }
+
+        // For image_only type, use image_link as button_link
+        if ($request->type === 'image_only' && $request->image_link) {
+            $data['button_link'] = $request->image_link;
         }
 
         $banner->update($data);

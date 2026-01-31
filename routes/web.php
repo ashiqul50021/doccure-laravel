@@ -34,7 +34,8 @@ Route::get('/order-success', [App\Http\Controllers\ProductController::class, 'or
 // Doctor Pages
 Route::get('/doctor-profile/{id}', [App\Http\Controllers\DoctorController::class, 'show'])->name('doctor.profile');
 Route::view('/doctor-dashboard', 'frontend.doctor-dashboard')->name('doctor.dashboard');
-Route::view('/doctor-register', 'frontend.doctor-register')->name('doctor.register');
+Route::get('/doctor-register', [App\Http\Controllers\AuthController::class, 'showDoctorRegisterForm'])->name('doctor.register');
+Route::post('/doctor-register', [App\Http\Controllers\AuthController::class, 'registerDoctor'])->name('doctor.register.submit');
 Route::view('/doctor-profile-settings', 'frontend.doctor-profile-settings')->name('doctor.profile.settings');
 Route::view('/doctor-change-password', 'frontend.doctor-change-password')->name('doctor.change.password');
 
@@ -71,9 +72,15 @@ Route::view('/video-call', 'frontend.video-call')->name('video.call');
 Route::view('/reviews', 'frontend.reviews')->name('reviews');
 
 // Auth Pages
-Route::view('/login', 'frontend.login')->name('login');
-Route::view('/register', 'frontend.register')->name('register');
-Route::view('/forgot-password', 'frontend.forgot-password')->name('forgot.password');
+// Auth Routes
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.submit');
+Route::get('/register', [App\Http\Controllers\AuthController::class, 'showPatientRegisterForm'])->name('register');
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'registerPatient'])->name('register.submit');
+Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+Route::get('/forgot-password', function () {
+    return view('frontend.forgot-password');
+})->name('forgot.password');
 
 // Static Pages
 Route::view('/components', 'frontend.components')->name('components');
@@ -128,9 +135,13 @@ Route::get('/api/doctors/filter', function (Illuminate\Http\Request $request) {
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::view('/', 'admin.dashboard')->name('dashboard');
-    Route::resource('doctors', App\Http\Controllers\Admin\DoctorController::class);
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/doctors', [App\Http\Controllers\AdminController::class, 'doctors'])->name('doctors.index');
+    Route::post('/doctors/{id}/approve', [App\Http\Controllers\AdminController::class, 'approveDoctor'])->name('doctors.approve');
+    Route::post('/doctors/{id}/reject', [App\Http\Controllers\AdminController::class, 'rejectDoctor'])->name('doctors.reject');
+
+    // Route::resource('doctors', App\Http\Controllers\Admin\DoctorController::class); // Replaced by above
     Route::view('/patients', 'admin.patient-list')->name('patients');
     Route::view('/appointments', 'admin.appointment-list')->name('appointments');
     Route::resource('specialities', App\Http\Controllers\Admin\SpecialityController::class);
