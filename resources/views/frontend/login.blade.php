@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login - Doccure')
+@section('title', 'Login - ' . ($siteSettings['site_name'] ?? 'Doccure'))
 
 @push('styles')
     <style>

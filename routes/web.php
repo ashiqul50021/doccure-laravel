@@ -160,6 +160,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Site Settings
     Route::get('/site-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'index'])->name('site-settings.index');
     Route::put('/site-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'update'])->name('site-settings.update');
+    Route::put('/site-settings/banner', [App\Http\Controllers\Admin\SiteSettingController::class, 'updateBanner'])->name('site-settings.update-banner');
 
     // Banners
     Route::resource('banners', App\Http\Controllers\Admin\BannerController::class);

@@ -67,11 +67,11 @@
                     <a href="{{ route('admin.site-settings.index') }}"><i class="fe fe-settings"></i> <span>Site
                             Settings</span></a>
                 </li>
-                <li class="{{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.banners.index') }}"><i class="fe fe-star"></i> <span>Banners</span></a>
-                </li>
                 <li class="{{ request()->routeIs('admin.menus.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.menus.index') }}"><i class="fe fe-list"></i> <span>Menu Manager</span></a>
+                </li>
+                <li class="{{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.banners.index') }}"><i class="fe fe-star"></i> <span>Banners</span></a>
                 </li>
                 <li class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}">
                     <a href="{{ route('admin.profile') }}"><i class="fe fe-user-plus"></i> <span>Profile</span></a>

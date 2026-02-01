@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Register - Doccure')
+@section('title', 'Register - ' . ($siteSettings['site_name'] ?? 'Doccure'))
 
 @section('content')
     <!-- Page Content -->

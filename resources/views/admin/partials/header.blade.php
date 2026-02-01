@@ -4,10 +4,12 @@
     <!-- Logo -->
     <div class="header-left">
         <a href="{{ route('admin.dashboard') }}" class="logo">
-            <img src="{{ asset('backend/img/logo.png') }}" alt="Logo">
+            <img src="{{ !empty($siteSettings['logo']) ? asset($siteSettings['logo']) : asset('backend/img/logo.png') }}"
+                alt="Logo">
         </a>
         <a href="{{ route('admin.dashboard') }}" class="logo logo-small">
-            <img src="{{ asset('backend/img/logo-small.png') }}" alt="Logo" width="30" height="30">
+            <img src="{{ !empty($siteSettings['favicon']) ? asset($siteSettings['favicon']) : asset('backend/img/logo-small.png') }}"
+                alt="Logo" width="30" height="30">
         </a>
     </div>
     <!-- /Logo -->
@@ -48,10 +50,12 @@
                             <a href="#">
                                 <div class="media">
                                     <span class="avatar avatar-sm">
-                                        <img class="avatar-img rounded-circle" alt="User Image" src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}">
+                                        <img class="avatar-img rounded-circle" alt="User Image"
+                                            src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}">
                                     </span>
                                     <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
+                                        <p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule
+                                            <span class="noti-title">her appointment</span></p>
                                         <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
                                     </div>
                                 </div>
@@ -61,10 +65,12 @@
                             <a href="#">
                                 <div class="media">
                                     <span class="avatar avatar-sm">
-                                        <img class="avatar-img rounded-circle" alt="User Image" src="{{ asset('assets/img/patients/patient1.jpg') }}">
+                                        <img class="avatar-img rounded-circle" alt="User Image"
+                                            src="{{ asset('assets/img/patients/patient1.jpg') }}">
                                     </span>
                                     <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
+                                        <p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked
+                                            her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
                                         <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
                                     </div>
                                 </div>
@@ -74,11 +80,13 @@
                             <a href="#">
                                 <div class="media">
                                     <span class="avatar avatar-sm">
-                                        <img class="avatar-img rounded-circle" alt="User Image" src="{{ asset('assets/img/patients/patient2.jpg') }}">
+                                        <img class="avatar-img rounded-circle" alt="User Image"
+                                            src="{{ asset('assets/img/patients/patient2.jpg') }}">
                                     </span>
                                     <div class="media-body">
-                                    <p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
-                                    <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+                                        <p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a
+                                            amount of $210 for his <span class="noti-title">appointment</span></p>
+                                        <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
                                     </div>
                                 </div>
                             </a>
@@ -95,12 +103,14 @@
         <!-- User Menu -->
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                <span class="user-img"><img class="rounded-circle" src="{{ asset('backend/img/profiles/avatar-01.jpg') }}" width="31" alt="Ryan Taylor"></span>
+                <span class="user-img"><img class="rounded-circle"
+                        src="{{ asset('backend/img/profiles/avatar-01.jpg') }}" width="31" alt="Ryan Taylor"></span>
             </a>
             <div class="dropdown-menu">
                 <div class="user-header">
                     <div class="avatar avatar-sm">
-                        <img src="{{ asset('backend/img/profiles/avatar-01.jpg') }}" alt="User Image" class="avatar-img rounded-circle">
+                        <img src="{{ asset('backend/img/profiles/avatar-01.jpg') }}" alt="User Image"
+                            class="avatar-img rounded-circle">
                     </div>
                     <div class="user-text">
                         <h6>Ryan Taylor</h6>

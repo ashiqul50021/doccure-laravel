@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Doccure - Doctor Appointment Booking')
+@section('title', ($siteSettings['site_name'] ?? 'Doccure') . ' - ' . ($siteSettings['site_tagline'] ?? 'Doctor Appointment Booking'))
 
 @section('content')
     <!-- Home Banner - DocTime Inspired -->
@@ -1357,44 +1357,44 @@
                     var categoryName = product.category ? product.category.name : 'Medicine';
 
                     var html = `
-                                                                                                        <div class="col-lg-4 col-md-6 col-sm-6 mb-4 product-grid-item">
-                                                                                                            <div class="product-card-modern">
-                                                                                                                <div class="stock-badge ${stockClass}">${stockText}</div>
-                                                                                                                <div class="product-image-container">
-                                                                                                                    <a href="/products/${product.id}">
-                                                                                                                        <img src="${imageSrc}" class="product-main-img" alt="${product.name}">
-                                                                                                                    </a>
-                                                                                                                </div>
-                                                                                                                <div class="product-details">
-                                                                                                                    <div class="product-rating">
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <span class="rating-value">${rating.toFixed(1)}</span>
-                                                                                                                        <span class="review-count">(${reviewCount})</span>
+                                                                                                            <div class="col-lg-4 col-md-6 col-sm-6 mb-4 product-grid-item">
+                                                                                                                <div class="product-card-modern">
+                                                                                                                    <div class="stock-badge ${stockClass}">${stockText}</div>
+                                                                                                                    <div class="product-image-container">
+                                                                                                                        <a href="/products/${product.id}">
+                                                                                                                            <img src="${imageSrc}" class="product-main-img" alt="${product.name}">
+                                                                                                                        </a>
                                                                                                                     </div>
-                                                                                                                    <div class="product-brand">${categoryName}</div>
-                                                                                                                    <h4 class="product-name">
-                                                                                                                        <a href="/products/${product.id}">${product.name}</a>
-                                                                                                                    </h4>
-                                                                                                                    <div class="product-footer">
-                                                                                                                        <div class="product-price-tag">${priceHtml}</div>
-                                                                                                                        <form action="/cart/add" method="POST" class="product-actions-form">
-                                                                                                                            <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
-                                                                                                                            <input type="hidden" name="product_id" value="${product.id}">
-                                                                                                                            <input type="hidden" name="quantity" value="1">
-                                                                                                                            <div class="btn-group-modern">
-                                                                                                                                <button type="submit" class="btn-cart-modern" title="Add to Cart">
-                                                                                                                                    <i class="fas fa-shopping-cart"></i>
-                                                                                                                                </button>
-                                                                                                                                <button type="submit" name="buy_now" value="1" class="btn-buy-modern">
-                                                                                                                                    Buy
-                                                                                                                                </button>
-                                                                                                                            </div>
-                                                                                                                        </form>
+                                                                                                                    <div class="product-details">
+                                                                                                                        <div class="product-rating">
+                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                            <span class="rating-value">${rating.toFixed(1)}</span>
+                                                                                                                            <span class="review-count">(${reviewCount})</span>
+                                                                                                                        </div>
+                                                                                                                        <div class="product-brand">${categoryName}</div>
+                                                                                                                        <h4 class="product-name">
+                                                                                                                            <a href="/products/${product.id}">${product.name}</a>
+                                                                                                                        </h4>
+                                                                                                                        <div class="product-footer">
+                                                                                                                            <div class="product-price-tag">${priceHtml}</div>
+                                                                                                                            <form action="/cart/add" method="POST" class="product-actions-form">
+                                                                                                                                <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
+                                                                                                                                <input type="hidden" name="product_id" value="${product.id}">
+                                                                                                                                <input type="hidden" name="quantity" value="1">
+                                                                                                                                <div class="btn-group-modern">
+                                                                                                                                    <button type="submit" class="btn-cart-modern" title="Add to Cart">
+                                                                                                                                        <i class="fas fa-shopping-cart"></i>
+                                                                                                                                    </button>
+                                                                                                                                    <button type="submit" name="buy_now" value="1" class="btn-buy-modern">
+                                                                                                                                        Buy
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                            </form>
+                                                                                                                        </div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                        </div>
-                                                                                                    `;
+                                                                                                        `;
                     grid.append(html);
                 });
             }
@@ -1446,43 +1446,43 @@
                     var fee = doctor.pricing === 'free' ? 'Free' : '৳ ' + numberFormat(doctor.custom_price || 0);
 
                     var html = `
-                                                                                                        <div class="col-lg-4 col-md-6 col-sm-6 mb-4 doctor-grid-item">
-                                                                                                            <div class="doctor-card-new">
-                                                                                                                <div class="doctor-img-wrapper">
-                                                                                                                    <a href="/doctor-profile/${doctor.id}">
-                                                                                                                        <img src="${imageSrc}" class="doctor-img" alt="${doctor.name}">
-                                                                                                                    </a>
-                                                                                                                    <div class="doctor-fee-badge">
-                                                                                                                        <span>${fee}</span>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                                <div class="doctor-info">
-                                                                                                                    <span class="doctor-speciality">${doctor.speciality}</span>
-                                                                                                                    <h4 class="doctor-name">
-                                                                                                                        <a href="/doctor-profile/${doctor.id}">Dr. ${doctor.name}</a>
-                                                                                                                        <i class="fas fa-check-circle verified-badge" title="Verified"></i>
-                                                                                                                    </h4>
-                                                                                                                    <div class="doctor-rating">
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <span>${parseFloat(doctor.average_rating || 0).toFixed(1)}</span>
-                                                                                                                        <span class="rating-count">(${doctor.review_count || 0} reviews)</span>
-                                                                                                                    </div>
-                                                                                                                    <div class="doctor-location">
-                                                                                                                        <i class="fas fa-map-marker-alt"></i>
-                                                                                                                        <span>${doctor.clinic_name || doctor.area_name}</span>
-                                                                                                                    </div>
-                                                                                                                    <div class="doctor-buttons">
-                                                                                                                        <a href="/doctor-profile/${doctor.id}" class="btn-view-details">
-                                                                                                                            <i class="fas fa-user"></i> Details
+                                                                                                            <div class="col-lg-4 col-md-6 col-sm-6 mb-4 doctor-grid-item">
+                                                                                                                <div class="doctor-card-new">
+                                                                                                                    <div class="doctor-img-wrapper">
+                                                                                                                        <a href="/doctor-profile/${doctor.id}">
+                                                                                                                            <img src="${imageSrc}" class="doctor-img" alt="${doctor.name}">
                                                                                                                         </a>
-                                                                                                                        <a href="/booking/${doctor.id}" class="btn-book-appointment">
-                                                                                                                            <i class="fas fa-calendar-check"></i> Appointment
-                                                                                                                        </a>
+                                                                                                                        <div class="doctor-fee-badge">
+                                                                                                                            <span>${fee}</span>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div class="doctor-info">
+                                                                                                                        <span class="doctor-speciality">${doctor.speciality}</span>
+                                                                                                                        <h4 class="doctor-name">
+                                                                                                                            <a href="/doctor-profile/${doctor.id}">Dr. ${doctor.name}</a>
+                                                                                                                            <i class="fas fa-check-circle verified-badge" title="Verified"></i>
+                                                                                                                        </h4>
+                                                                                                                        <div class="doctor-rating">
+                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                            <span>${parseFloat(doctor.average_rating || 0).toFixed(1)}</span>
+                                                                                                                            <span class="rating-count">(${doctor.review_count || 0} reviews)</span>
+                                                                                                                        </div>
+                                                                                                                        <div class="doctor-location">
+                                                                                                                            <i class="fas fa-map-marker-alt"></i>
+                                                                                                                            <span>${doctor.clinic_name || doctor.area_name}</span>
+                                                                                                                        </div>
+                                                                                                                        <div class="doctor-buttons">
+                                                                                                                            <a href="/doctor-profile/${doctor.id}" class="btn-view-details">
+                                                                                                                                <i class="fas fa-user"></i> Details
+                                                                                                                            </a>
+                                                                                                                            <a href="/booking/${doctor.id}" class="btn-book-appointment">
+                                                                                                                                <i class="fas fa-calendar-check"></i> Appointment
+                                                                                                                            </a>
+                                                                                                                        </div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                        </div>
-                                                                                                    `;
+                                                                                                        `;
                     grid.append(html);
                 });
             }
@@ -2029,8 +2029,8 @@
         }
 
         /* =====================================
-                                                                                       STATISTICS CARDS SECTION
-                                                                                    ===================================== */
+                                                                                           STATISTICS CARDS SECTION
+                                                                                        ===================================== */
         .stat-card {
             background: #fff;
             border-radius: 20px;
@@ -2078,8 +2078,8 @@
         }
 
         /* =====================================
-                                                                                       HEALTH COURSES SECTION
-                                                                                    ===================================== */
+                                                                                           HEALTH COURSES SECTION
+                                                                                        ===================================== */
         .course-card {
             background: #fff;
             border-radius: 16px;
@@ -2261,8 +2261,8 @@
         }
 
         /* =====================================
-                                                                                       HEALTH PACKAGES SECTION
-                                                                                    ===================================== */
+                                                                                           HEALTH PACKAGES SECTION
+                                                                                        ===================================== */
         .health-package-card {
             background: #fff;
             border-radius: 20px;

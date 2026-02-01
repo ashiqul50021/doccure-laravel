@@ -10,7 +10,8 @@
                     <!-- Footer Widget -->
                     <div class="footer-widget footer-about">
                         <div class="footer-logo">
-                            <img src="{{ asset('assets/img/footer-logo.png') }}" alt="logo">
+                            <img src="{{ !empty($siteSettings['footer_logo']) ? asset($siteSettings['footer_logo']) : asset('assets/img/footer-logo.png') }}"
+                                alt="logo">
                         </div>
                         <div class="footer-about-content">
                             <p>Book appointments with the best doctors and specialists nearest to you. </p>
@@ -45,11 +46,15 @@
                     <div class="footer-widget footer-menu">
                         <h2 class="footer-title">For Patients</h2>
                         <ul>
-                            <li><a href="{{ route('search') }}"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
+                            <li><a href="{{ route('search') }}"><i class="fas fa-angle-double-right"></i> Search for
+                                    Doctors</a></li>
                             <li><a href="{{ route('login') }}"><i class="fas fa-angle-double-right"></i> Login</a></li>
-                            <li><a href="{{ route('register') }}"><i class="fas fa-angle-double-right"></i> Register</a></li>
-                            <li><a href="{{ route('search') }}"><i class="fas fa-angle-double-right"></i> Booking</a></li>
-                            <li><a href="{{ route('patient.dashboard') }}"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
+                            <li><a href="{{ route('register') }}"><i class="fas fa-angle-double-right"></i> Register</a>
+                            </li>
+                            <li><a href="{{ route('search') }}"><i class="fas fa-angle-double-right"></i> Booking</a>
+                            </li>
+                            <li><a href="{{ route('patient.dashboard') }}"><i class="fas fa-angle-double-right"></i>
+                                    Patient Dashboard</a></li>
                         </ul>
                     </div>
                     <!-- /Footer Widget -->
@@ -62,11 +67,14 @@
                     <div class="footer-widget footer-menu">
                         <h2 class="footer-title">For Doctors</h2>
                         <ul>
-                            <li><a href="{{ route('appointments') }}"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
+                            <li><a href="{{ route('appointments') }}"><i class="fas fa-angle-double-right"></i>
+                                    Appointments</a></li>
                             <li><a href="{{ route('chat') }}"><i class="fas fa-angle-double-right"></i> Chat</a></li>
                             <li><a href="{{ route('login') }}"><i class="fas fa-angle-double-right"></i> Login</a></li>
-                            <li><a href="{{ route('doctor.register') }}"><i class="fas fa-angle-double-right"></i> Register</a></li>
-                            <li><a href="{{ route('doctor.dashboard') }}"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
+                            <li><a href="{{ route('doctor.register') }}"><i class="fas fa-angle-double-right"></i>
+                                    Register</a></li>
+                            <li><a href="{{ route('doctor.dashboard') }}"><i class="fas fa-angle-double-right"></i>
+                                    Doctor Dashboard</a></li>
                         </ul>
                     </div>
                     <!-- /Footer Widget -->
@@ -81,7 +89,7 @@
                         <div class="footer-contact-info">
                             <div class="footer-address">
                                 <span><i class="fas fa-map-marker-alt"></i></span>
-                                <p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
                             </div>
                             <p>
                                 <i class="fas fa-phone-alt"></i>

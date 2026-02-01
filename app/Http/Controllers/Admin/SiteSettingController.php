@@ -60,9 +60,15 @@ class SiteSettingController extends Controller
 
         // Text settings
         $textSettings = [
-            'site_name', 'site_tagline',
-            'contact_email', 'contact_phone', 'contact_address',
-            'facebook_url', 'twitter_url', 'instagram_url', 'linkedin_url'
+            'site_name',
+            'site_tagline',
+            'contact_email',
+            'contact_phone',
+            'contact_address',
+            'facebook_url',
+            'twitter_url',
+            'instagram_url',
+            'linkedin_url'
         ];
 
         foreach ($textSettings as $key) {
@@ -125,7 +131,7 @@ class SiteSettingController extends Controller
             SiteSetting::set('banner_image', $path, 'image', 'banner');
         }
 
-        return redirect()->route('admin.banner-settings.index')->with('success', 'Banner settings updated successfully!');
+        return back()->with('success', 'Banner settings updated successfully!');
     }
 
     /**
@@ -133,9 +139,12 @@ class SiteSettingController extends Controller
      */
     private function getGroupForKey($key)
     {
-        if (str_starts_with($key, 'contact_')) return 'contact';
-        if (str_ends_with($key, '_url')) return 'social';
-        if (str_starts_with($key, 'banner_')) return 'banner';
+        if (str_starts_with($key, 'contact_'))
+            return 'contact';
+        if (str_ends_with($key, '_url'))
+            return 'social';
+        if (str_starts_with($key, 'banner_'))
+            return 'banner';
         return 'general';
     }
 }

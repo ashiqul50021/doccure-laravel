@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>@yield('title', 'Admin - abcsheba.com')</title>
+    <title>@yield('title', 'Admin - ' . ($siteSettings['site_name'] ?? 'abcsheba.com'))</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">

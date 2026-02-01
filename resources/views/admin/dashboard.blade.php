@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin Dashboard - Doccure')
+@section('title', 'Admin Dashboard - ' . ($siteSettings['site_name'] ?? 'Doccure'))
 
 @section('content')
     <!-- Page Header -->
@@ -235,80 +235,80 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script>
-    $(document).ready(function() {
-        
-        // Revenue Chart (Area Chart)
-        var optionsRevenue = {
-            series: [{
-                name: 'Revenue',
-                data: [3100, 4000, 2800, 5100, 4200, 6900, 10000]
-            }, {
-                name: 'Expenses',
-                data: [1100, 3200, 4500, 3200, 3400, 5200, 4100]
-            }],
-            chart: {
-                height: 350,
-                type: 'area',
-                toolbar: {
-                    show: false
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            xaxis: {
-                type: 'datetime',
-                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-            },
-            tooltip: {
-                x: {
-                    format: 'dd/MM/yy HH:mm'
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Revenue Chart (Area Chart)
+            var optionsRevenue = {
+                series: [{
+                    name: 'Revenue',
+                    data: [3100, 4000, 2800, 5100, 4200, 6900, 10000]
+                }, {
+                    name: 'Expenses',
+                    data: [1100, 3200, 4500, 3200, 3400, 5200, 4100]
+                }],
+                chart: {
+                    height: 350,
+                    type: 'area',
+                    toolbar: {
+                        show: false
+                    }
                 },
-            },
-            colors: ['#1E40AF', '#00D0F1'], // Premium Blue & Cyan
-            fill: {
-                type: 'gradient',
-                gradient: {
-                    shadeIntensity: 1,
-                    opacityFrom: 0.7,
-                    opacityTo: 0.9,
-                    stops: [0, 90, 100]
-                }
-            }
-        };
-
-        var chartRevenue = new ApexCharts(document.querySelector("#revenue_chart"), optionsRevenue);
-        chartRevenue.render();
-
-        // Users Chart (Donut)
-        var optionsUsers = {
-            series: [{{ $doctorCount }}, {{ $patientCount }}, 25], // Added mock 'Others' for visual balance
-            chart: {
-                type: 'donut',
-                height: 350,
-            },
-            labels: ['Doctors', 'Patients', 'Staff'],
-            colors: ['#1E40AF', '#10B981', '#F59E0B'], // Blue, Green, Amber
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                xaxis: {
+                    type: 'datetime',
+                    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                },
+                tooltip: {
+                    x: {
+                        format: 'dd/MM/yy HH:mm'
                     },
-                    legend: {
-                        position: 'bottom'
+                },
+                colors: ['#1E40AF', '#00D0F1'], // Premium Blue & Cyan
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.7,
+                        opacityTo: 0.9,
+                        stops: [0, 90, 100]
                     }
                 }
-            }]
-        };
+            };
 
-        var chartUsers = new ApexCharts(document.querySelector("#users_chart"), optionsUsers);
-        chartUsers.render();
-    });
-</script>
+            var chartRevenue = new ApexCharts(document.querySelector("#revenue_chart"), optionsRevenue);
+            chartRevenue.render();
+
+            // Users Chart (Donut)
+            var optionsUsers = {
+                series: [{{ $doctorCount }}, {{ $patientCount }}, 25], // Added mock 'Others' for visual balance
+                chart: {
+                    type: 'donut',
+                    height: 350,
+                },
+                labels: ['Doctors', 'Patients', 'Staff'],
+                colors: ['#1E40AF', '#10B981', '#F59E0B'], // Blue, Green, Amber
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            var chartUsers = new ApexCharts(document.querySelector("#users_chart"), optionsUsers);
+            chartUsers.render();
+        });
+    </script>
 @endpush

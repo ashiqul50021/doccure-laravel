@@ -65,6 +65,13 @@
     border-bottom: 1px solid #f1f5f9;
 }
 
+.header .header-left .logo img {
+    max-height: 40px !important;
+    max-width: 100% !important;
+    width: auto !important;
+    object-fit: contain;
+}
+
 /* Dashboard Cards */
 .card {
     border: none !important;

@@ -1,24 +1,24 @@
 @extends('layouts.admin')
 
-@section('title', 'General Settings - Doccure Admin')
+@section('title', 'General Settings - ' . ($siteSettings['site_name'] ?? 'Doccure Admin'))
 
 @section('content')
-<div class="page-header">
-    <div class="row">
-        <div class="col-sm-12">
-            <h3 class="page-title">General Settings</h3>
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="javascript:(0);">Settings</a></li>
-                <li class="breadcrumb-item active">General Settings</li>
-            </ul>
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">General Settings</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:(0);">Settings</a></li>
+                    <li class="breadcrumb-item active">General Settings</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-12">
-        <!-- General -->
+    <div class="row">
+        <div class="col-12">
+            <!-- General -->
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">General</h4>
@@ -45,7 +45,7 @@
                     </form>
                 </div>
             </div>
-        <!-- /General -->
+            <!-- /General -->
+        </div>
     </div>
-</div>
 @endsection

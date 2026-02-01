@@ -152,6 +152,8 @@
 /* Logo */
 .header-nav .logo img {
     height: 50px;
+    width: auto;
+    object-fit: contain;
     transition: var(--transition-smooth);
 }
 
