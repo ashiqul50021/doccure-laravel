@@ -89,6 +89,17 @@ Route::view('/privacy-policy', 'frontend.privacy-policy')->name('privacy');
 Route::view('/terms-condition', 'frontend.term-condition')->name('terms');
 Route::view('/social-media', 'frontend.social-media')->name('social.media');
 
+// Maintenance Routes
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return 'Migration run successfully!';
+});
+
+Route::get('/migrate-fresh', function () {
+    Artisan::call('migrate:fresh --seed');
+    return 'Migration Fresh with Seed run successfully!';
+});
+
 // API Routes for AJAX
 Route::get('/api/areas/{district}', function (App\Models\District $district) {
     return response()->json($district->areas()->orderBy('name')->get());
@@ -135,26 +146,35 @@ Route::get('/api/doctors/filter', function (Illuminate\Http\Request $request) {
 |--------------------------------------------------------------------------
 */
 
+// Admin Auth Routes (Guest)
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('login.submit');
+    Route::post('/logout', [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
+});
+
+// Admin Protected Routes
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
+
+    // Core Modules
     Route::get('/doctors', [App\Http\Controllers\AdminController::class, 'doctors'])->name('doctors.index');
     Route::post('/doctors/{id}/approve', [App\Http\Controllers\AdminController::class, 'approveDoctor'])->name('doctors.approve');
     Route::post('/doctors/{id}/reject', [App\Http\Controllers\AdminController::class, 'rejectDoctor'])->name('doctors.reject');
 
-    // Route::resource('doctors', App\Http\Controllers\Admin\DoctorController::class); // Replaced by above
-    Route::view('/patients', 'admin.patient-list')->name('patients');
-    Route::view('/appointments', 'admin.appointment-list')->name('appointments');
+    // Resource Routes
+    Route::resource('doctors', App\Http\Controllers\Admin\DoctorController::class)->except(['index']);
+    // Uses AdminController@doctors for index, resource for others if needed
+
+    Route::get('/patients', [App\Http\Controllers\AdminController::class, 'patients'])->name('patients');
+    Route::get('/appointments', [App\Http\Controllers\AdminController::class, 'appointments'])->name('appointments');
+    Route::get('/reviews', [App\Http\Controllers\AdminController::class, 'reviews'])->name('reviews');
+    Route::get('/transactions', [App\Http\Controllers\AdminController::class, 'transactions'])->name('transactions');
+    Route::get('/invoice-report', [App\Http\Controllers\AdminController::class, 'reports'])->name('invoice.report');
+
     Route::resource('specialities', App\Http\Controllers\Admin\SpecialityController::class);
-    Route::view('/reviews', 'admin.reviews')->name('reviews');
-    Route::view('/transactions', 'admin.transactions-list')->name('transactions');
     Route::resource('product-categories', App\Http\Controllers\Admin\ProductCategoryController::class);
     Route::resource('products', App\Http\Controllers\Admin\ProductController::class);
-    Route::view('/invoice-report', 'admin.invoice-report')->name('invoice.report');
-    Route::view('/invoice', 'admin.invoice')->name('invoice');
-    Route::view('/profile', 'admin.profile')->name('profile');
-    Route::view('/login', 'admin.login')->name('login');
-    Route::view('/register', 'admin.register')->name('register');
-    Route::view('/forgot-password', 'admin.forgot-password')->name('forgot.password');
     Route::resource('advertisements', App\Http\Controllers\Admin\AdvertisementController::class);
 
     // Site Settings
@@ -165,38 +185,20 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Banners
     Route::resource('banners', App\Http\Controllers\Admin\BannerController::class);
 
-    // Banner Settings (separate page)
+    // Banner Settings
     Route::get('/banner-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'bannerIndex'])->name('banner-settings.index');
     Route::put('/banner-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'updateBanner'])->name('banner-settings.update');
 
     // Menu Manager
     Route::get('menus/{menu}/delete', [App\Http\Controllers\Admin\MenuController::class, 'delete'])->name('menus.delete');
     Route::resource('menus', App\Http\Controllers\Admin\MenuController::class);
+
+    // Profile
+    Route::view('/profile', 'admin.profile')->name('profile');
 });
 
-// Temporary route to fix storage link on live server
-Route::get('/fix-storage', function () {
-    try {
-        Illuminate\Support\Facades\Artisan::call('storage:link');
-        return 'The [public/storage] link has been connected to [storage/app/public].';
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-});
-
-
+// Utility
 Route::get('/link', function () {
     Artisan::call('storage:link');
     return 'Storage linked successfully!';
-});
-
-// Maintenance Routes
-Route::get('/migrate', function () {
-    Artisan::call('migrate');
-    return 'Migration run successfully!';
-});
-
-Route::get('/migrate-fresh', function () {
-    Artisan::call('migrate:fresh --seed');
-    return 'Migration Fresh with Seed run successfully!';
 });

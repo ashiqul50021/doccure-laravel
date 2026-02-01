@@ -47,4 +47,39 @@ class AdminController extends Controller
 
         return back()->with('success', 'Doctor rejected successfully.');
     }
+
+    public function patients()
+    {
+        $patients = Patient::with('user')->latest()->get();
+        return view('admin.patient-list', compact('patients'));
+    }
+
+    public function appointments()
+    {
+        $appointments = Appointment::with(['doctor.user', 'patient.user', 'speciality'])->latest()->get();
+        return view('admin.appointment-list', compact('appointments'));
+    }
+
+    public function reviews()
+    {
+        $reviews = \App\Models\Review::with(['doctor.user', 'patient.user'])->latest()->get();
+        return view('admin.reviews', compact('reviews'));
+    }
+
+    public function transactions()
+    {
+        // Assuming Order or Transaction model exists
+        if (class_exists('App\Models\Transaction')) {
+            $transactions = \App\Models\Transaction::with('patient.user')->latest()->get();
+        } else {
+            $transactions = []; // Fallback
+        }
+        return view('admin.transactions-list', compact('transactions'));
+    }
+
+    public function reports()
+    {
+        // Placeholder for reports
+        return view('admin.invoice-report');
+    }
 }

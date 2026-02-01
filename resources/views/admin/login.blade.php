@@ -16,12 +16,14 @@
                             <p class="account-subtitle">Access to our dashboard</p>
 
                             <!-- Form -->
-                            <form action="{{ route('admin.dashboard') }}">
+                            <form action="{{ route('admin.login.submit') }}" method="POST">
+                                @csrf
                                 <div class="mb-3">
-                                    <input class="form-control" type="text" placeholder="Email">
+                                    <input class="form-control" type="text" name="email" placeholder="Email" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input class="form-control" type="text" placeholder="Password">
+                                    <input class="form-control" type="password" name="password" placeholder="Password"
+                                        required>
                                 </div>
                                 <div class="mb-3">
                                     <button class="btn btn-primary btn-block" type="submit">Login</button>
