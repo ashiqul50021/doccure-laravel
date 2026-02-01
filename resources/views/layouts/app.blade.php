@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -25,7 +26,11 @@
 
     <!-- Custom Header & Banner CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/header-banner-custom.css') }}">
+
+    <!-- Mobile Bottom Nav CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/mobile-nav.css') }}">
 </head>
+
 <body class="@yield('body_class')">
     <!-- Main Wrapper -->
     <div class="main-wrapper">
@@ -35,6 +40,8 @@
         @yield('content')
 
         @include('layouts.partials.footer')
+
+        @include('layouts.partials.bottom-nav')
 
     </div>
     <!-- /Main Wrapper -->
@@ -56,4 +63,5 @@
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
+
 </html>

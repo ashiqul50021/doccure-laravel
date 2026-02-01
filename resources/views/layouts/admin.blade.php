@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -22,7 +23,11 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
+
+    <!-- Custom Admin CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/css/admin-custom.css') }}">
 </head>
+
 <body>
     <!-- Main Wrapper -->
     <div class="main-wrapper">
@@ -74,4 +79,5 @@
     <!-- Custom JS -->
     <script src="{{ asset('backend/js/script.js') }}"></script>
 </body>
+
 </html>
