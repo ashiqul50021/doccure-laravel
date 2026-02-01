@@ -20,6 +20,16 @@
                     <form action="{{ route('admin.banners.update', $banner->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         @method('PUT')
 
                         <div class="mb-3">
@@ -44,7 +54,10 @@
 
                         <div class="mb-3">
                             <label>Banner Image</label>
-                            <input type="file" class="form-control" name="image">
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+                            @error('image')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             <small class="form-text text-muted">Leave empty to keep current image</small>
                             @if($banner->image)
                                 <div class="mt-2">

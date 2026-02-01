@@ -18,6 +18,9 @@ class ImageService
      */
     public static function upload(UploadedFile $file, string $folder, int $quality = 80, ?int $maxWidth = 1200): string
     {
+        // Increase memory limit for image processing
+        ini_set('memory_limit', '512M');
+
         // Create directory if not exists
         $uploadPath = public_path("uploads/{$folder}");
         if (!file_exists($uploadPath)) {
@@ -33,7 +36,7 @@ class ImageService
         $mimeType = $imageInfo['mime'] ?? '';
 
         // Create image resource based on type
-        $sourceImage = match($mimeType) {
+        $sourceImage = match ($mimeType) {
             'image/jpeg', 'image/jpg' => imagecreatefromjpeg($file->getPathname()),
             'image/png' => imagecreatefrompng($file->getPathname()),
             'image/gif' => imagecreatefromgif($file->getPathname()),
@@ -56,7 +59,7 @@ class ImageService
         if ($maxWidth && $origWidth > $maxWidth) {
             $ratio = $maxWidth / $origWidth;
             $newWidth = $maxWidth;
-            $newHeight = (int)($origHeight * $ratio);
+            $newHeight = (int) ($origHeight * $ratio);
 
             // Create resized image
             $resizedImage = imagecreatetruecolor($newWidth, $newHeight);

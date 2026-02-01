@@ -53,9 +53,9 @@ class SiteSettingController extends Controller
             'twitter_url' => 'nullable|url',
             'instagram_url' => 'nullable|url',
             'linkedin_url' => 'nullable|url',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'favicon' => 'nullable|image|mimes:png,ico|max:1024',
-            'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:20480',
+            'favicon' => 'nullable|image|mimes:png,ico,webp|max:1024',
+            'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:20480',
         ]);
 
         // Text settings
@@ -109,7 +109,7 @@ class SiteSettingController extends Controller
             'banner_feature_3' => 'nullable|string|max:100',
             'banner_stats_text' => 'nullable|string|max:100',
             'banner_rating' => 'nullable|string|max:10',
-            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
         ]);
 
         // Text settings

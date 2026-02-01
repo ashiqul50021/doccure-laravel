@@ -33,7 +33,7 @@ class BannerController extends Controller
     {
         $request->validate([
             'type' => 'required|in:content_image,image_only',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
             'title' => 'nullable|required_if:type,content_image|string|max:255',
             'subtitle' => 'nullable|string',
             'button_text' => 'nullable|string|max:50',
@@ -71,7 +71,7 @@ class BannerController extends Controller
     {
         $request->validate([
             'type' => 'required|in:content_image,image_only',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
             'title' => 'nullable|required_if:type,content_image|string|max:255',
             'subtitle' => 'nullable|string',
             'button_text' => 'nullable|string|max:50',
