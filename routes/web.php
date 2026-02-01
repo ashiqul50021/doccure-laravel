@@ -210,3 +210,16 @@ Route::get('/optimize-clear', function () {
     Artisan::call('view:clear');
     return 'Optimization and Cache Cleared!';
 });
+
+// Composer Routes
+Route::get('/composer-install', function () {
+    set_time_limit(0);
+    $output = shell_exec('cd ' . base_path() . ' && composer install 2>&1');
+    return '<pre>' . $output . '</pre>';
+});
+
+Route::get('/composer-update', function () {
+    set_time_limit(0);
+    $output = shell_exec('cd ' . base_path() . ' && composer update 2>&1');
+    return '<pre>' . $output . '</pre>';
+});
