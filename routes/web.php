@@ -189,3 +189,14 @@ Route::get('/link', function () {
     Artisan::call('storage:link');
     return 'Storage linked successfully!';
 });
+
+// Maintenance Routes
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return 'Migration run successfully!';
+});
+
+Route::get('/migrate-fresh', function () {
+    Artisan::call('migrate:fresh --seed');
+    return 'Migration Fresh with Seed run successfully!';
+});
