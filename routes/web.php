@@ -202,3 +202,11 @@ Route::get('/link', function () {
     Artisan::call('storage:link');
     return 'Storage linked successfully!';
 });
+
+Route::get('/optimize-clear', function () {
+    Artisan::call('optimize:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return 'Optimization and Cache Cleared!';
+});
