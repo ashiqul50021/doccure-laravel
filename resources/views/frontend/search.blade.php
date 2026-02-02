@@ -14,344 +14,249 @@
    PREMIUM SEARCH FILTER STYLES
 ===================================== */
 
+/* =====================================
+   V2 MINIMALIST LUXURY FILTER STYLES
+===================================== */
+
 .search-filter-premium {
     background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border-radius: 16px; /* Soft rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Reduced shadow spread */
     overflow: hidden;
-    border: 1px solid #e5e7eb;
+    border: none; /* No border for clean look */
+    margin-bottom: 30px;
+}
+
+/* Fix Rating Stars empty issue: ensure font-family is correct for filled */
+.rating-option .stars i, .rating .fa-star {
+    font-weight: 900; /* Font Awesome 'Solid' requires 900 weight */
+}
+.rating-option .stars i.empty, .rating .fa-star.empty {
+    color: #e5e7eb;
 }
 
 .search-filter-premium .filter-header {
-    background: #f8fafc;
-    color: #1f2937;
-    padding: 14px 16px;
+    background: #ffffff;
+    padding: 20px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .search-filter-premium .filter-header h4 {
     margin: 0;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #374151;
+    font-size: 16px; /* Slightly larger */
+    font-weight: 700; /* Bold */
+    color: #111827;
+    letter-spacing: -0.01em;
+    text-transform: uppercase; /* Modern touch */
 }
 
-.search-filter-premium .filter-header h4 i {
-    color: #6b7280;
-    font-size: 14px;
-}
-
+/* Reset Button - Clean Link style */
 .search-filter-premium .filter-header .reset-btn {
     background: transparent;
     color: #2563eb;
     border: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 400;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .search-filter-premium .filter-header .reset-btn:hover {
-    background: #eff6ff;
+    color: #1d4ed8;
+    text-decoration: underline;
 }
 
 .filter-body {
-    padding: 0;
+    padding: 24px; /* More breathing room */
 }
 
 /* Filter Section */
 .filter-section {
-    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 24px;
 }
 
 .filter-section:last-child {
-    border-bottom: none;
+    margin-bottom: 0;
 }
 
 .filter-section-header {
-    padding: 12px 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.2s ease;
-}
-
-.filter-section-header:hover {
-    background: #f9fafb;
+    margin-bottom: 12px;
 }
 
 .filter-section-header h5 {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #9ca3af; /* Muted label */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Filled Inputs */
+.custom-filter-select, 
+.fee-range-inputs input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid transparent; /* No border initially */
+    border-radius: 12px; /* Smooth corners */
+    font-size: 14px;
+    color: #1f2937;
+    background: #f3f4f6; /* Filled style */
+    transition: all 0.2s ease;
     font-weight: 500;
-    color: #374151;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
-.filter-section-header h5 i {
-    color: #9ca3af;
-    font-size: 13px;
-    width: 16px;
+.custom-filter-select:focus,
+.fee-range-inputs input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
-.filter-section-header .toggle-icon {
-    color: #9ca3af;
-    transition: transform 0.3s ease;
-}
-
-.filter-section.collapsed .toggle-icon {
-    transform: rotate(-90deg);
-}
-
-.filter-section-content {
-    padding: 0 16px 12px 16px;
-}
-
-.filter-section.collapsed .filter-section-content {
-    display: none;
-}
-
-/* Custom Checkbox */
-/* Custom Checkbox */
+/* Checkboxes as Interactive Rows */
 .custom-filter-check {
     display: flex;
     align-items: center;
-    padding: 6px 10px;
-    margin: 2px 0;
-    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 4px 0;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
+    color: #4b5563;
+}
+
+.custom-filter-check input {
+    display: none; /* FIX: Hide default checkbox */
 }
 
 .custom-filter-check:hover {
-    background: #f8fafc;
-}
-
-.custom-filter-check input[type="checkbox"] {
-    display: none;
-}
-
-.custom-filter-check .check-box {
-    width: 16px;
-    height: 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    background: white;
+    background: #f9fafb;
+    color: #111827;
 }
 
 .custom-filter-check input:checked + .check-box {
     background: #2563eb;
     border-color: #2563eb;
+    transform: scale(1.1);
+}
+
+.custom-filter-check .check-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d1d5db; /* Thicker border */
+    border-radius: 6px; /* Soft square */
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
 }
 
 .custom-filter-check input:checked + .check-box::after {
-    content: '\f00c';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    color: white;
-    font-size: 9px;
+    font-size: 10px;
 }
 
 .custom-filter-check .check-label {
-    font-size: 13px;
-    color: #4b5563;
-    flex: 1;
-}
-
-.custom-filter-check .check-count {
-    background: #f3f4f6;
-    color: #6b7280;
-    padding: 2px 6px;
-    border-radius: 10px;
-    font-size: 11px;
-}
-
-/* Custom Select Dropdown */
-/* Custom Select Dropdown */
-.custom-filter-select {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    font-size: 13px;
-    color: #374151;
-    background: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-}
-
-.custom-filter-select:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
-}
-
-/* Fee Range Slider */
-.fee-range-container {
-    padding: 8px 0;
-}
-
-.fee-range-inputs {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.fee-range-inputs .input-group {
-    position: relative;
-    flex: 1;
-    min-width: 0; /* Prevents flex item from overflowing */
-}
-
-.fee-range-inputs input {
-    width: 100%;
-    padding: 8px 10px 8px 24px; /* Space for currency symbol */
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    font-size: 13px;
-    text-align: left;
-    transition: all 0.2s;
-    background: #fff;
-    color: #374151;
-}
-
-.fee-range-inputs .currency-symbol {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9ca3af;
-    font-size: 13px;
-    pointer-events: none;
-}
-
-.fee-range-inputs input::placeholder {
-    color: #9ca3af;
-}
-
-.fee-range-inputs input:focus {
-    outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.05);
-}
-
-.fee-range-inputs .separator {
-    color: #9ca3af;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
 }
 
-/* Rating Stars */
-/* Rating Stars */
-.rating-filter {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.rating-option {
+/* Gender Pills V2 - Segmented Control Look */
+.gender-pill {
+    flex: 1;
     display: flex;
     align-items: center;
-    padding: 8px 10px;
-    border-radius: 6px;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: #f3f4f6; /* Filled default */
+    border: 1px solid transparent;
+    border-radius: 12px;
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.rating-option:hover {
-    background: #f8fafc;
-}
-
-.rating-option input[type="radio"] {
-    display: none;
-}
-
-.rating-option .stars {
-    display: flex;
-    gap: 2px;
-    margin-right: 8px;
-}
-
-.rating-option .stars i {
-    color: #fbbf24;
-    font-size: 13px;
-}
-
-.rating-option .stars i.empty {
-    color: #e5e7eb;
-}
-
-.rating-option input:checked ~ .stars i:not(.empty) {
-    color: #f59e0b;
-}
-
-.rating-option.selected {
-    background: #fffbeb;
-}
-
-.rating-option span {
-    font-size: 13px;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 600;
     color: #6b7280;
 }
 
-/* Toggle Switch */
-/* Toggle Switch */
+.gender-pill input {
+    display: none; /* FIX: Hide default checkbox in pills */
+}
+
+.gender-pill:hover {
+    background: #e5e7eb;
+}
+
+.gender-pill.active {
+    background: #2563eb; /* Brand Blue */
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); /* Glow */
+}
+
+/* Search Button V2 */
+.filter-search-btn button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transition: all 0.3s ease;
+}
+
+.filter-search-btn button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+
+/* Toggle Switch (IOS Style) */
 .toggle-filter {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 12px;
-    background: #f8fafc;
-    border-radius: 8px;
-    margin: 6px 0;
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 12px;
+    margin-bottom: 8px;
     border: 1px solid #f3f4f6;
+    transition: all 0.2s ease;
+}
+
+.toggle-filter:hover {
+    border-color: #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
 .toggle-filter .toggle-label {
-    font-size: 13px;
+    font-size: 14px;
     color: #374151;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.toggle-filter .toggle-label i {
-    color: #6b7280;
-    font-size: 13px;
+    font-weight: 500;
 }
 
 .toggle-switch {
     position: relative;
-    width: 36px;
-    height: 20px;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
 }
 
 .toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+    display: none;
 }
 
 .toggle-slider {
@@ -361,21 +266,22 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #d1d5db;
+    background-color: #e5e7eb;
     transition: .3s;
-    border-radius: 20px;
+    border-radius: 24px;
 }
 
 .toggle-slider:before {
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
+    height: 20px;
+    width: 20px;
     left: 2px;
     bottom: 2px;
     background-color: white;
     transition: .3s;
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .toggle-switch input:checked + .toggle-slider {
@@ -383,180 +289,151 @@
 }
 
 .toggle-switch input:checked + .toggle-slider:before {
-    transform: translateX(16px);
+    transform: translateX(20px);
 }
 
-/* Search Button */
-/* Search Button */
-.filter-search-btn {
-    margin: 16px;
-    margin-top: 0;
-}
-
-.filter-search-btn button {
-    width: 100%;
-    padding: 10px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
+/* Rating Stars V2 (Vertical List) */
+.rating-filter {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     gap: 8px;
 }
 
-.filter-search-btn button:hover {
-    background: #1d4ed8;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
-}
-
-/* Active Filters Tags */
-.active-filters {
-    padding: 12px 16px;
-    background: #f8fafc;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.active-filters-title {
-    font-size: 11px;
-    color: #6b7280;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-}
-
-.filter-tags {
+.rating-option {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    background: #f9fafb;
 }
 
-.filter-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 2px 8px;
-    background: #e0e7ff;
-    color: #3730a3;
-    border-radius: 12px;
-    font-size: 11px;
+.rating-option:hover {
+    background: #f3f4f6;
+    border-color: #e5e7eb;
+}
+
+.rating-option.selected {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    box-shadow: 0 2px 5px rgba(37, 99, 235, 0.05);
+}
+
+.rating-option input {
+    display: none;
+}
+
+.rating-option .stars {
+    display: flex;
+    gap: 3px;
+    margin-right: 12px;
+}
+
+.rating-option .stars i {
+    font-size: 13px;
+    color: #fbbf24;
+}
+
+.rating-option .stars i.empty {
+    color: #d1d5db;
+}
+
+.rating-option span {
+    font-size: 14px;
+    color: #4b5563;
     font-weight: 500;
 }
 
-.filter-tag .remove-tag {
-    cursor: pointer;
-    opacity: 0.6;
-    font-size: 10px;
+.rating-option.selected span {
+    color: #1e40af;
+    font-weight: 600;
 }
 
-.filter-tag .remove-tag:hover {
-    opacity: 1;
+/* Fee Range Fixes */
+.fee-range-inputs .input-group {
+    position: relative;
+    display: block; /* Ensure correct block formatting context */
 }
-
-/* Sort Bar */
+.fee-range-inputs .currency-symbol {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    color: #9ca3af;
+    line-height: 1; /* Fix vertical alignment */
+}
+.fee-range-inputs input {
+    padding-left: 28px;
+    height: 44px; /* Explicit height for better vertical align */
+}
 /* Sort Bar */
 .sort-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 16px 24px;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
-    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Premium soft shadow */
+    margin-bottom: 24px;
+    border: 1px solid #f3f4f6;
 }
 
 .sort-bar .results-count {
-    font-size: 13px;
-    color: #6b7280;
+    font-size: 14px;
+    color: #4b5563;
+    font-weight: 500;
 }
 
 .sort-bar .results-count strong {
-    color: #1f2937;
-    font-weight: 600;
+    color: #111827;
+    font-weight: 700;
+    font-size: 15px;
 }
 
 .sort-bar .sort-options {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 
 .sort-bar .sort-options label {
-    font-size: 13px;
+    font-size: 14px;
     color: #6b7280;
+    margin: 0;
+    font-weight: 500;
 }
 
 .sort-bar .sort-select {
-    padding: 6px 28px 6px 10px;
+    padding: 10px 36px 10px 16px;
     border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    font-size: 13px;
-    background: white;
+    border-radius: 50px; /* Pill shape */
+    font-size: 14px;
+    font-weight: 500;
+    background: #f9fafb;
     cursor: pointer;
     color: #374151;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.sort-bar .sort-select:hover {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
 }
 
 .sort-bar .sort-select:focus {
     outline: none;
-    border-color: #3b82f6;
-}
-
-/* Pagination Custom */
-.pagination {
-    justify-content: center;
-    gap: 6px;
-    margin-top: 20px;
-}
-
-.page-item .page-link {
-    border: none;
-    border-radius: 8px;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #4b5563;
-    font-weight: 500;
-    font-size: 14px;
-    background: white;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    transition: all 0.2s;
-}
-
-.page-item .page-link:hover {
-    background: #f3f4f6;
-    color: #1f2937;
-    transform: translateY(-1px);
-}
-
-.page-item.active .page-link {
-    background: #2563eb;
-    color: white;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-}
-
-.page-item.disabled .page-link {
-    background: #f9fafb;
-    color: #d1d5db;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-/* Responsive */
-@media (max-width: 991px) {
-    .search-filter-premium {
-        margin-bottom: 20px;
-    }
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background-color: white;
 }
 </style>
 @endpush
@@ -575,9 +452,9 @@
                 <div class="search-filter-premium">
                     <!-- Header -->
                     <div class="filter-header">
-                        <h4><i class="fas fa-filter"></i> Search Filter</h4>
+                        <h4>FILTERS</h4>
                         <button type="button" class="reset-btn" onclick="resetFilters()">
-                            <i class="fas fa-redo"></i> Reset
+                            Clear All
                         </button>
                     </div>
 
@@ -587,12 +464,12 @@
                         <!-- Location Section -->
                         <div class="filter-section">
                             <div class="filter-section-header" onclick="toggleSection(this)">
-                                <h5><i class="fas fa-map-marker-alt"></i> Location</h5>
+                                <h5>LOCATION</h5>
                                 <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
                             <div class="filter-section-content">
                                 <select name="district_id" class="custom-filter-select" id="filterDistrict">
-                                    <option value="">All Districts</option>
+                                    <option value="">Select District</option>
                                     @foreach($districts as $district)
                                         <option value="{{ $district->id }}" {{ request('district_id') == $district->id ? 'selected' : '' }}>
                                             {{ $district->name }}
@@ -601,7 +478,7 @@
                                 </select>
                                 <div style="margin-top: 12px;">
                                     <select name="area_id" class="custom-filter-select" id="filterArea" {{ !request('district_id') ? 'disabled' : '' }}>
-                                        <option value="">Select District First</option>
+                                        <option value="">Select Area</option>
                                     </select>
                                 </div>
                             </div>
@@ -610,10 +487,10 @@
                         <!-- Speciality Section -->
                         <div class="filter-section">
                             <div class="filter-section-header" onclick="toggleSection(this)">
-                                <h5><i class="fas fa-stethoscope"></i> Speciality</h5>
+                                <h5>SPECIALITY</h5>
                                 <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
-                            <div class="filter-section-content" style="max-height: 200px; overflow-y: auto;">
+                            <div class="filter-section-content" style="max-height: 240px; overflow-y: auto; padding-right: 4px;">
                                 @foreach($specialities as $speciality)
                                 <label class="custom-filter-check">
                                     <input type="checkbox" name="select_specialist[]" value="{{ $speciality->id }}"
@@ -628,29 +505,29 @@
                         <!-- Gender Section -->
                         <div class="filter-section">
                             <div class="filter-section-header" onclick="toggleSection(this)">
-                                <h5><i class="fas fa-venus-mars"></i> Gender</h5>
+                                <h5>GENDER</h5>
                                 <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
                             <div class="filter-section-content">
-                                <label class="custom-filter-check">
-                                    <input type="checkbox" name="gender[]" value="male"
-                                        {{ in_array('male', (array)request('gender')) ? 'checked' : '' }}>
-                                    <span class="check-box"></span>
-                                    <span class="check-label">Male Doctor</span>
-                                </label>
-                                <label class="custom-filter-check">
-                                    <input type="checkbox" name="gender[]" value="female"
-                                        {{ in_array('female', (array)request('gender')) ? 'checked' : '' }}>
-                                    <span class="check-box"></span>
-                                    <span class="check-label">Female Doctor</span>
-                                </label>
+                                <div class="d-flex align-items-center" style="gap: 12px; background: #f3f4f6; padding: 4px; border-radius: 14px;">
+                                    <label class="gender-pill {{ in_array('male', (array)request('gender')) ? 'active' : '' }}" style="margin: 0;">
+                                        <input type="checkbox" name="gender[]" value="male"
+                                            {{ in_array('male', (array)request('gender')) ? 'checked' : '' }}>
+                                        Male
+                                    </label>
+                                    <label class="gender-pill {{ in_array('female', (array)request('gender')) ? 'active' : '' }}" style="margin: 0;">
+                                        <input type="checkbox" name="gender[]" value="female"
+                                            {{ in_array('female', (array)request('gender')) ? 'checked' : '' }}>
+                                        Female
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Fee Range Section -->
                         <div class="filter-section">
                             <div class="filter-section-header" onclick="toggleSection(this)">
-                                <h5><i class="fas fa-money-bill-wave"></i> Consultation Fee</h5>
+                                <h5>CONSULTATION FEE</h5>
                                 <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
                             <div class="filter-section-content">
@@ -660,7 +537,7 @@
                                             <span class="currency-symbol">৳</span>
                                             <input type="number" name="fee_min" placeholder="Min" value="{{ request('fee_min') }}">
                                         </div>
-                                        <span class="separator">-</span>
+                                        <span class="separator"></span>
                                         <div class="input-group">
                                             <span class="currency-symbol">৳</span>
                                             <input type="number" name="fee_max" placeholder="Max" value="{{ request('fee_max') }}">
@@ -673,7 +550,7 @@
                         <!-- Experience Section -->
                         <div class="filter-section">
                             <div class="filter-section-header" onclick="toggleSection(this)">
-                                <h5><i class="fas fa-briefcase-medical"></i> Experience</h5>
+                                <h5>EXPERIENCE</h5>
                                 <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
                             <div class="filter-section-content">
@@ -691,7 +568,7 @@
                         <!-- Rating Section -->
                         <div class="filter-section">
                             <div class="filter-section-header" onclick="toggleSection(this)">
-                                <h5><i class="fas fa-star"></i> Rating</h5>
+                                <h5>RATING</h5>
                                 <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
                             <div class="filter-section-content">
@@ -736,13 +613,13 @@
                         <!-- Services Section -->
                         <div class="filter-section">
                             <div class="filter-section-header" onclick="toggleSection(this)">
-                                <h5><i class="fas fa-concierge-bell"></i> Services</h5>
+                                <h5>SERVICES</h5>
                                 <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
                             <div class="filter-section-content">
                                 <div class="toggle-filter">
                                     <span class="toggle-label">
-                                        <i class="fas fa-video"></i> Online Consultation
+                                        Online Consultation
                                     </span>
                                     <label class="toggle-switch">
                                         <input type="checkbox" name="online_consultation" value="1"
@@ -752,7 +629,7 @@
                                 </div>
                                 <div class="toggle-filter">
                                     <span class="toggle-label">
-                                        <i class="fas fa-home"></i> Home Visit
+                                        Home Visit
                                     </span>
                                     <label class="toggle-switch">
                                         <input type="checkbox" name="home_visit" value="1"
@@ -762,7 +639,7 @@
                                 </div>
                                 <div class="toggle-filter">
                                     <span class="toggle-label">
-                                        <i class="fas fa-check-circle"></i> Verified Only
+                                        Verified Only
                                     </span>
                                     <label class="toggle-switch">
                                         <input type="checkbox" name="verified_only" value="1"

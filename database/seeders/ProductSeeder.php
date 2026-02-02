@@ -108,7 +108,7 @@ class ProductSeeder extends Seeder
                 'stock' => 100,
                 'is_featured' => false,
             ],
-             [
+            [
                 'name' => 'Glucometer Kit',
                 'category_slug' => 'devices',
                 'price' => 1500.00,
@@ -143,8 +143,14 @@ class ProductSeeder extends Seeder
 
         // Seed Doctor Specialities if needed
         $specialities = [
-            'Cardiology', 'Neurology', 'Orthopedic', 'Dentist',
-            'Urology', 'MRI Scans', 'Pediaterics', 'Gynecology'
+            'Cardiology',
+            'Neurology',
+            'Orthopedic',
+            'Dentist',
+            'Urology',
+            'MRI Scans',
+            'Pediatrics',
+            'Gynecology'
         ];
 
         foreach ($specialities as $spName) {

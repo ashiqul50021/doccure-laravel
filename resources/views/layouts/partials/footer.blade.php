@@ -10,8 +10,7 @@
                     <!-- Footer Widget -->
                     <div class="footer-widget footer-about">
                         <div class="footer-logo">
-                            <img src="{{ !empty($siteSettings['footer_logo']) ? asset($siteSettings['footer_logo']) : asset('assets/img/footer-logo.png') }}"
-                                alt="logo">
+                            <h2 style="color: #fff; font-weight: 700; margin-bottom: 0;">ABCSHEBA</h2>
                         </div>
                         <div class="footer-about-content">
                             <p>Book appointments with the best doctors and specialists nearest to you. </p>
@@ -89,15 +88,15 @@
                         <div class="footer-contact-info">
                             <div class="footer-address">
                                 <span><i class="fas fa-map-marker-alt"></i></span>
-                                <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                <p> House 12, Road 5, Dhanmondi,<br> Dhaka, Bangladesh </p>
                             </div>
                             <p>
                                 <i class="fas fa-phone-alt"></i>
-                                +1 315 369 5943
+                                +880 1712 345 678
                             </p>
                             <p class="mb-0">
                                 <i class="fas fa-envelope"></i>
-                                doccure@example.com
+                                info@abcsheba.com
                             </p>
                         </div>
                     </div>
@@ -118,7 +117,7 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-6">
                         <div class="copyright-text">
-                            <p class="mb-0">&copy; {{ date('Y') }} abcsheba.com. All rights reserved.</p>
+                            <p class="mb-0">&copy; {{ date('Y') }} ABCSHEBA. All rights reserved.</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6">

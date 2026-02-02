@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        \Illuminate\Pagination\Paginator::useBootstrap();
+
         // Share global data with all views
         View::composer('*', function ($view) {
             // Check if tables exist before querying

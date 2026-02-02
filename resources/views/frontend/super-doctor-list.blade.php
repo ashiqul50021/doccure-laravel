@@ -18,7 +18,7 @@
 @forelse($doctors as $doctor)
     @include('components.search-doctor-card', [
         'image' => $doctor->profile_image ? (filter_var($doctor->profile_image, FILTER_VALIDATE_URL) ? $doctor->profile_image : asset($doctor->profile_image)) : asset('assets/img/doctors/doctor-thumb-01.jpg'),
-        'name' => 'Dr. ' . $doctor->user->name,
+        'name' => $doctor->user->name,
         'speciality' => $doctor->speciality->name ?? 'General',
         'department' => $doctor->speciality->name ?? 'General',
         'departmentIcon' => ($doctor->speciality && $doctor->speciality->image && file_exists(public_path($doctor->speciality->image))) ? asset($doctor->speciality->image) : asset('assets/img/specialities/specialities-05.png'),
@@ -27,6 +27,7 @@
         'location' => ($doctor->area ? $doctor->area->name . ', ' : '') . ($doctor->district ? $doctor->district->name : 'Location'),
         'price' => $doctor->consultation_fee > 0 ? $doctor->consultation_fee : 'Free',
         'thumbsUp' => '99%',
+        'experience' => $doctor->experience_years ?? 0,
         'profileLink' => route('doctor.profile', $doctor->id),
         'bookingLink' => route('booking', $doctor->id)
     ])
