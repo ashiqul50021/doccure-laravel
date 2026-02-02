@@ -31,15 +31,23 @@
         'bookingLink' => route('booking', $doctor->id)
     ])
 
-           @if(($loop->index + 1) % 3 == 0 && isset($advertisements) && $advertisements->isNotEmpty())
-            @php $ad = $advertisements->random(); @endphp
-            <div class="card mb-3" style="border-radius: 12px; overflow: hidden;">
-                <div class="card-body p-0">
-                    <a href="{{ $ad->link ?? '#' }}" target="_blank">
-                        <img src="{{ asset($ad->image) }}" class="img-fluid" alt="{{ $ad->title }}" style="width: 100%; max-height: 200px; object-fit: cover;">
+           @if(($loop->index + 1) % 3 == 0 && isset($advertisements) && $advertisements->count() > 0)
+            @php
+                // Calculate sequential index: (3rd item -> 0, 6th item -> 1, 9th item -> 2)
+                $adIndex = (int)(($loop->iteration / 3) - 1);
+                // Get ad using modulo to rotate if we have fewer ads than slots
+                $ad = $advertisements->values()->get($adIndex % $advertisements->count());
+            @endphp
+            @if($ad)
+                <div class="card mb-3 shadow-sm" style="border-radius: 12px; overflow: hidden; border: 1px solid #e4e4e4;">
+                    <div class="card-body p-0 position-relative">
+                        <a href="{{ $ad->link ?? '#' }}" target="_blank" class="d-block text-center" style="background: #f8f9fa;">
+                            <img src="{{ asset($ad->image) }}" class="img-fluid" alt="{{ $ad->title }}" style="width: 100%; max-height: 250px; object-fit: cover;">
                         </a>
+                        <span class="badge badge-light text-muted position-absolute" style="top: 10px; right: 10px; background: rgba(255,255,255,0.8);">Sponsored</span>
                     </div>
                 </div>
+            @endif
         @endif
 @empty
     <div class="text-center py-5">

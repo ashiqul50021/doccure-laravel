@@ -35,7 +35,7 @@ class AdvertisementController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
             'link' => 'nullable|url',
             'speciality_id' => 'nullable|exists:specialities,id',
             'priority' => 'required|integer|min:0',
@@ -86,7 +86,7 @@ class AdvertisementController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
             'link' => 'nullable|url',
             'speciality_id' => 'nullable|exists:specialities,id',
             'priority' => 'required|integer|min:0',
