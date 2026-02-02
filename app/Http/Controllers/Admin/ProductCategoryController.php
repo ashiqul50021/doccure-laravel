@@ -35,12 +35,12 @@ class ProductCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:51200',
         ]);
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = ImageService::upload($request->file('image'), 'product_categories');
+            $imagePath = ImageService::upload($request->file('image'), 'product_categories', 70, 500);
         }
 
         ProductCategory::create([
@@ -78,7 +78,7 @@ class ProductCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:51200',
             'is_active' => 'boolean',
         ]);
 
@@ -93,7 +93,7 @@ class ProductCategoryController extends Controller
             if ($productCategory->image) {
                 ImageService::delete($productCategory->image);
             }
-            $data['image'] = ImageService::upload($request->file('image'), 'product_categories');
+            $data['image'] = ImageService::upload($request->file('image'), 'product_categories', 70, 500);
         }
 
         $productCategory->update($data);

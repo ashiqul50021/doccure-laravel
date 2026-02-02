@@ -26,32 +26,33 @@
         'reviews' => $doctor->review_count,
         'location' => ($doctor->area ? $doctor->area->name . ', ' : '') . ($doctor->district ? $doctor->district->name : 'Location'),
         'price' => $doctor->consultation_fee > 0 ? $doctor->consultation_fee : 'Free',
-        'thumbsUp' => '99%',
+        'thumbsUp' => $doctor->average_rating > 0 ? round(($doctor->average_rating / 5) * 100) . '%' : '0%',
         'experience' => $doctor->experience_years ?? 0,
+        'qualification' => $doctor->qualification ?? '',
         'profileLink' => route('doctor.profile', $doctor->id),
         'bookingLink' => route('booking', $doctor->id)
     ])
 
-           @if(($loop->index + 1) % 3 == 0 && isset($advertisements) && $advertisements->count() > 0)
-            @php
-                // Calculate sequential index: (3rd item -> 0, 6th item -> 1, 9th item -> 2)
-                $adIndex = (int)(($loop->iteration / 3) - 1);
-                // Get ad using modulo to rotate if we have fewer ads than slots
-                $ad = $advertisements->values()->get($adIndex % $advertisements->count());
-            @endphp
-            @if($ad)
-                <div class="card mb-3 shadow-sm" style="border-radius: 12px; overflow: hidden; border: 1px solid #e4e4e4;">
-                    <div class="card-body p-0 position-relative">
-                        <a href="{{ $ad->link ?? '#' }}" target="_blank" class="d-block text-center" style="background: #f8f9fa;">
-                            <img src="{{ asset($ad->image) }}" class="img-fluid" alt="{{ $ad->title }}" style="width: 100%; max-height: 250px; object-fit: cover;">
-                        </a>
-                        <span class="badge badge-light text-muted position-absolute" style="top: 10px; right: 10px; background: rgba(255,255,255,0.8);">Sponsored</span>
-                    </div>
-                </div>
+
+               @if(($loop->index + 1) % 3 == 0 && isset($advertisements) && $advertisements->count() > 0)
+                @php
+                    // Calculate sequential index: (3rd item -> 0, 6th item -> 1, 9th item -> 2)
+                    $adIndex = (int) (($loop->iteration / 3) - 1);
+                    // Get ad using modulo to rotate if we have fewer ads than slots
+                    $ad = $advertisements->values()->get($adIndex % $advertisements->count());
+                @endphp
+                        @if($ad)
+                            <div class="card mb-3 shadow-sm" style="border-radius: 12px; overflow: hidden; border: 1px solid #e4e4e4;">
+                                <div class="card-body p-0 position-relative">
+                                    <a href="{{ $ad->link ?? '#' }}" target="_blank" class="d-block text-center" style="background: #f8f9fa;">
+                                        <img src="{{ asset($ad->image) }}" class="img-fluid" alt="{{ $ad->title }}" style="width: 100%; max-height: 250px; object-fit: cover;">
+                                        </a>
+                                        <span class="badge badge-light text-muted position-absolute" style="top: 10px; right: 10px; background: rgba(255,255,255,0.8);">Sponsored</span>
+                                    </div>
+                            </div>
+                        @endif
             @endif
-        @endif
-@empty
-    <div class="text-center py-5">
+@empty    <div class="text-center py-5">
         <img src="{{ asset('assets/img/no-results.svg') }}" alt="No Results" style="max-width: 200px; opacity: 0.5;" onerror="this.style.display='none'">
         <h4 class="mt-4" style="color: #6b7280;">No doctors found</h4>
         <p style="color: #9ca3af;">Try adjusting your search filters</p>

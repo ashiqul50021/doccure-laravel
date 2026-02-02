@@ -21,8 +21,7 @@
                     <a href="{{ $profileLink }}"
                         style="color: #272b41; font-weight: 700; font-size: 1.25rem; text-decoration: none;">{{ $name }}</a>
                 </h4>
-                <p class="doc-speciality mb-3" style="font-size: 0.9rem; color: #757575;">BDS, MDS - Oral &
-                    Maxillofacial Surgery</p>
+                <p class="doc-speciality mb-3" style="font-size: 0.9rem; color: #757575;">{{ $qualification }}</p>
 
                 <div class="d-flex flex-wrap gap-2 mb-3" style="gap: 10px;">
                     <span class="badge badge-pill"

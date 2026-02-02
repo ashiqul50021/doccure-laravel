@@ -4,137 +4,139 @@
 
 @section('content')
 
-<!-- Page Content -->
-<div class="content">
-    <div class="container">
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container">
 
-        <div class="row">
-            <!-- Sidebar Filter -->
-            <div class="col-md-12 col-lg-4 col-xl-3">
-                <div class="card search-filter">
-                    <div class="card-header">
-                        <h4 class="card-title mb-0">Filter Products</h4>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('products') }}" method="GET">
-                            <div class="filter-widget">
-                                <h4>Search</h4>
-                                <input type="text" name="search" class="form-control" placeholder="Search products..." value="{{ request('search') }}">
-                            </div>
-                            <div class="filter-widget">
-                                <h4>Categories</h4>
-                                @foreach($categories as $category)
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="radio" name="category" value="{{ $category->id }}" {{ request('category') == $category->id ? 'checked' : '' }}>
-                                        <span class="checkmark"></span> {{ $category->name }}
-                                    </label>
+            <div class="row">
+                <!-- Sidebar Filter -->
+                <div class="col-md-12 col-lg-4 col-xl-3">
+                    <div class="card search-filter">
+                        <div class="card-header">
+                            <h4 class="card-title mb-0">Filter Products</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('products') }}" method="GET">
+                                <div class="filter-widget">
+                                    <h4>Search</h4>
+                                    <input type="text" name="search" class="form-control" placeholder="Search products..."
+                                        value="{{ request('search') }}">
                                 </div>
-                                @endforeach
-                            </div>
-                            <div class="btn-search">
-                                <button type="submit" class="btn btn-block w-100">Filter</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- /Sidebar Filter -->
-
-            <!-- Product Grid -->
-            <div class="col-md-12 col-lg-8 col-xl-9">
-                @if(session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
-
-                <div class="row">
-                    @forelse($products as $product)
-                    <div class="col-md-6 col-lg-4 col-xl-4 mb-4">
-                        <div class="product-card-modern">
-                            <!-- Stock Badge -->
-                            <div class="stock-badge {{ $product->stock > 0 ? 'in-stock' : 'out-of-stock' }}">
-                                {{ $product->stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}
-                            </div>
-
-                            <!-- Product Image -->
-                            <div class="product-image-container">
-                                <a href="{{ route('products.show', $product->id) }}">
-                                    <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/product-1.jpg') }}" class="product-main-img" alt="{{ $product->name }}">
-                                </a>
-                            </div>
-
-                            <!-- Product Details -->
-                            <div class="product-details">
-                                <!-- Rating -->
-                                <div class="product-rating">
-                                    <i class="fas fa-star"></i>
-                                    <span class="rating-value">{{ number_format($product->rating ?? 4.5, 1) }}</span>
-                                    <span class="review-count">({{ $product->reviews_count ?? rand(10, 200) }})</span>
-                                </div>
-
-                                <!-- Brand/Category -->
-                                <div class="product-brand">{{ $product->category->name ?? 'General' }}</div>
-
-                                <!-- Title -->
-                                <h4 class="product-name">
-                                    <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
-                                </h4>
-
-                                <!-- Price & Actions -->
-                                <div class="product-footer">
-                                    <div class="product-price-tag">
-                                        @if($product->sale_price)
-                                            <span class="price-current">৳{{ number_format($product->sale_price, 2) }}</span>
-                                            <span class="price-original">৳{{ number_format($product->price, 2) }}</span>
-                                        @else
-                                            <span class="price-current">৳{{ number_format($product->price, 2) }}</span>
-                                        @endif
-                                    </div>
-                                    <form action="{{ route('cart.add') }}" method="POST" class="product-actions-form">
-                                        @csrf
-                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <div class="btn-group-modern">
-                                            <button type="submit" class="btn-cart-modern" title="Add to Cart">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </button>
-                                            <button type="submit" name="buy_now" value="1" class="btn-buy-modern">
-                                                Buy
-                                            </button>
+                                <div class="filter-widget">
+                                    <h4>Categories</h4>
+                                    @foreach($categories as $category)
+                                        <div>
+                                            <label class="custom_check">
+                                                <input type="radio" name="category" value="{{ $category->id }}" {{ request('category') == $category->id ? 'checked' : '' }}>
+                                                <span class="checkmark"></span> {{ $category->name }}
+                                            </label>
                                         </div>
-                                    </form>
+                                    @endforeach
                                 </div>
-                            </div>
+                                <div class="btn-search">
+                                    <button type="submit" class="btn btn-block w-100">Filter</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    @empty
-                    <div class="col-12">
-                        <div class="alert alert-info">No products found.</div>
+                </div>
+                <!-- /Sidebar Filter -->
+
+                <!-- Product Grid -->
+                <div class="col-md-12 col-lg-8 col-xl-9">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
+                    <div class="row">
+                        @forelse($products as $product)
+                            <div class="col-md-6 col-lg-4 col-xl-4 mb-4">
+                                <div class="product-card-modern">
+                                    <!-- Stock Badge -->
+                                    <div class="stock-badge {{ $product->stock > 0 ? 'in-stock' : 'out-of-stock' }}">
+                                        {{ $product->stock > 0 ? 'IN STOCK' : 'OUT OF STOCK' }}
+                                    </div>
+
+                                    <!-- Product Image -->
+                                    <div class="product-image-container">
+                                        <a href="{{ route('products.show', $product->id) }}">
+                                            <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/product-1.jpg') }}"
+                                                class="product-main-img" alt="{{ $product->name }}">
+                                        </a>
+                                    </div>
+
+                                    <!-- Product Details -->
+                                    <div class="product-details">
+                                        <!-- Rating -->
+                                        <div class="product-rating">
+                                            <i class="fas fa-star"></i>
+                                            <span class="rating-value">{{ number_format($product->rating ?? 4.5, 1) }}</span>
+                                            <span class="review-count">({{ $product->reviews_count ?? rand(10, 200) }})</span>
+                                        </div>
+
+                                        <!-- Brand/Category -->
+                                        <div class="product-brand">{{ $product->category->name ?? 'General' }}</div>
+
+                                        <!-- Title -->
+                                        <h4 class="product-name">
+                                            <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
+                                        </h4>
+
+                                        <!-- Price & Actions -->
+                                        <div class="product-footer">
+                                            <div class="product-price-tag">
+                                                @if($product->sale_price)
+                                                    <span class="price-current">৳{{ number_format($product->sale_price, 2) }}</span>
+                                                    <span class="price-original">৳{{ number_format($product->price, 2) }}</span>
+                                                @else
+                                                    <span class="price-current">৳{{ number_format($product->price, 2) }}</span>
+                                                @endif
+                                            </div>
+                                            <form action="{{ route('cart.add') }}" method="POST" class="product-actions-form">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <div class="btn-group-modern">
+                                                    <button type="submit" class="btn-cart-modern" title="Add to Cart">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                    </button>
+                                                    <button type="submit" name="buy_now" value="1" class="btn-buy-modern">
+                                                        Buy
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-12">
+                                <div class="alert alert-info">No products found.</div>
+                            </div>
+                        @endforelse
                     </div>
-                    @endforelse
-                </div>
 
-                <div class="load-more text-center mt-4">
-                    {{ $products->withQueryString()->links() }}
+                    <div class="load-more text-center mt-4">
+                        {{ $products->withQueryString()->links() }}
+                    </div>
                 </div>
+                <!-- /Product Grid -->
             </div>
-            <!-- /Product Grid -->
-        </div>
 
+        </div>
     </div>
-</div>
-<!-- /Page Content -->
+    <!-- /Page Content -->
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function() {
-        // Auto submit form when category is changed
-        $('input[name="category"]').on('change', function() {
-            $(this).closest('form').submit();
+    <script>
+        $(document).ready(function () {
+            // Auto submit form when category is changed
+            $('input[name="category"]').on('change', function () {
+                $(this).closest('form').submit();
+            });
         });
-    });
-</script>
+    </script>
 @endpush
 
 <style>
@@ -142,7 +144,7 @@
     .product-card-modern {
         background: #fff;
         border-radius: 16px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         overflow: hidden;
         transition: all 0.3s ease;
         height: 100%;
@@ -154,7 +156,7 @@
 
     .product-card-modern:hover {
         transform: translateY(-5px);
-        box-shadow: 0 12px 35px rgba(0,102,255,0.12);
+        box-shadow: 0 12px 35px rgba(0, 102, 255, 0.12);
     }
 
     /* Stock Badge */
@@ -190,13 +192,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
     }
 
     .product-main-img {
-        max-width: 100%;
-        max-height: 140px;
-        object-fit: contain;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         transition: transform 0.3s ease;
     }
 
@@ -340,6 +341,6 @@
     .btn-buy-modern:hover {
         background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
         transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(0,102,255,0.3);
+        box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
     }
 </style>
