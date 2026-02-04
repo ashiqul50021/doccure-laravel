@@ -4057,7 +4057,8 @@ body {
 
 /* Mobile Buttons Area */
 .mobile-menu-buttons {
-    padding: 20px;
+    padding: 20px 20px 120px;
+    /* significantly increased to clear bottom nav */
     margin-top: auto;
     display: flex;
     flex-direction: column;
@@ -4066,34 +4067,42 @@ body {
     background: #ffffff;
 }
 
-.mobile-btn-signup,
-.mobile-btn-login,
-.mobile-btn-for-doctors {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.2s;
-}
+@media (max-width: 991.98px) {
 
-.mobile-btn-signup {
-    background: #1E40AF;
-    color: white !important;
-}
+    .mobile-btn-signup,
+    .mobile-btn-login,
+    .mobile-btn-for-doctors {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.2s;
+        text-decoration: none;
+        /* Ensure no underline */
+    }
 
-.mobile-btn-login {
-    background: transparent;
-    color: #374151 !important;
-    border: 2px solid #e5e7eb;
-}
+    .mobile-btn-signup {
+        background: #1E40AF !important;
+        color: #ffffff !important;
+        box-shadow: none !important;
+    }
 
-.mobile-btn-for-doctors {
-    background: #eff6ff;
-    color: #1E40AF !important;
+    .mobile-btn-login {
+        background: transparent !important;
+        color: #374151 !important;
+        /* Dark Text */
+        border: 2px solid #e5e7eb !important;
+    }
+
+    .mobile-btn-for-doctors {
+        background: #eff6ff !important;
+        color: #1E40AF !important;
+        box-shadow: none !important;
+    }
 }
 
 /* Mobile Hamburger Enhancements */
@@ -4173,7 +4182,7 @@ body {
         align-items: center;
         transition: opacity 0.2s ease;
     }
-    
+
     /* Hide main logo when menu is open to prevent overlap */
     .menu-opened .header .navbar-brand.logo {
         opacity: 0;
