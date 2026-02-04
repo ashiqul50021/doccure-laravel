@@ -10,31 +10,55 @@
 
             <div class="row">
                 <!-- Sidebar Filter -->
-                <div class="col-md-12 col-lg-4 col-xl-3">
-                    <div class="card search-filter">
-                        <div class="card-header">
+                <div class="col-md-12 col-lg-4 col-xl-3 remove-padding-mobile">
+                    <div class="card search-filter sticky-sidebar">
+                        <div class="card-header d-flex justify-content-between align-items-center">
                             <h4 class="card-title mb-0">Filter Products</h4>
+                            <a href="{{ route('products') }}" class="small text-danger fw-bold">Reset</a>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('products') }}" method="GET">
+                            <form action="{{ route('products') }}" method="GET" id="filter-form">
+                                <!-- Search -->
                                 <div class="filter-widget">
-                                    <h4>Search</h4>
-                                    <input type="text" name="search" class="form-control" placeholder="Search products..."
-                                        value="{{ request('search') }}">
+                                    <h4 class="filter-booking-title">Search</h4>
+                                    <div class="search-input-wrapper">
+                                        <i class="fas fa-search search-icon"></i>
+                                        <input type="text" name="search" class="form-control" placeholder="Search..."
+                                            value="{{ request('search') }}">
+                                    </div>
                                 </div>
+
+                                <!-- Price Range -->
                                 <div class="filter-widget">
-                                    <h4>Categories</h4>
-                                    @foreach($categories as $category)
-                                        <div>
-                                            <label class="custom_check">
-                                                <input type="radio" name="category" value="{{ $category->id }}" {{ request('category') == $category->id ? 'checked' : '' }}>
-                                                <span class="checkmark"></span> {{ $category->name }}
-                                            </label>
-                                        </div>
-                                    @endforeach
+                                    <h4 class="filter-booking-title">Price Range</h4>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="number" name="min_price" class="form-control form-control-sm"
+                                            placeholder="Min" value="{{ request('min_price') }}">
+                                        <span class="text-muted">-</span>
+                                        <input type="number" name="max_price" class="form-control form-control-sm"
+                                            placeholder="Max" value="{{ request('max_price') }}">
+                                    </div>
                                 </div>
+
+                                <!-- Categories -->
+                                <div class="filter-widget">
+                                    <h4 class="filter-booking-title">Categories</h4>
+                                    <div class="filter-scroll">
+                                        @foreach($categories as $category)
+                                            <div class="filter-checkbox">
+                                                <label class="custom_check">
+                                                    <input type="radio" name="category" value="{{ $category->id }}" {{ request('category') == $category->id ? 'checked' : '' }}>
+                                                    <span class="checkmark"></span>
+                                                    <span class="category-name">{{ $category->name }}</span>
+                                                    {{-- <span class="count">(0)</span> --}}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
                                 <div class="btn-search">
-                                    <button type="submit" class="btn btn-block w-100">Filter</button>
+                                    <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
                                 </div>
                             </form>
                         </div>
@@ -342,5 +366,104 @@
         background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+    }
+
+    /* Sticky Sidebar */
+    .sticky-sidebar {
+        position: sticky;
+        top: 90px; /* Adjust based on header height */
+        z-index: 9;
+    }
+
+    /* Filter Headers */
+    .filter-booking-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #272b41;
+        position: relative;
+        padding-bottom: 8px;
+    }
+
+    .filter-booking-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 30px;
+        height: 2px;
+        background: #1D4ED8;
+        border-radius: 2px;
+    }
+
+    /* Search Input */
+    .search-input-wrapper {
+        position: relative;
+    }
+
+    .search-input-wrapper .search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+        font-size: 14px;
+        pointer-events: none;
+    }
+
+    .search-input-wrapper input {
+        padding-left: 35px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        font-size: 14px;
+    }
+
+    .search-input-wrapper input:focus {
+        border-color: #1D4ED8;
+        box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+    }
+
+    /* Filter Checkbox styles override or enhance if needed */
+    .custom_check {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        cursor: pointer;
+        padding: 5px 0;
+        transition: all 0.2s;
+    }
+
+    .custom_check:hover .category-name {
+        color: #1D4ED8;
+    }
+
+    .custom_check .checkmark {
+        border-radius: 4px; /* Softer look */
+    }
+
+    .custom_check input:checked ~ .checkmark {
+        background-color: #1D4ED8;
+        border-color: #1D4ED8;
+    }
+
+    .category-name {
+        font-size: 14px;
+        color: #444;
+        transition: color 0.2s;
+    }
+
+    .filter-scroll {
+        max-height: 250px;
+        overflow-y: auto;
+        padding-right: 5px;
+    }
+
+    /* Scrollbar styling */
+    .filter-scroll::-webkit-scrollbar {
+        width: 4px;
+    }
+    .filter-scroll::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 4px;
     }
 </style>

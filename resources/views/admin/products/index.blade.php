@@ -25,6 +25,9 @@
                     @if(session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
 
                     <div class="table-responsive">
                         <table class="datatable table table-hover table-center mb-0">
@@ -69,10 +72,10 @@
                                                     <i class="fe fe-pencil"></i> Edit
                                                 </a>
                                                 <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
-                                                    style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
+                                                    style="display:inline-block;" class="delete-form-{{ $product->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm bg-danger-light">
+                                                    <button type="button" class="btn btn-sm bg-danger-light" onclick="confirmDelete({{ $product->id }})">
                                                         <i class="fe fe-trash"></i> Delete
                                                     </button>
                                                 </form>
@@ -88,3 +91,24 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    function confirmDelete(productId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form
+                document.querySelector('.delete-form-' + productId).submit();
+            }
+        })
+    }
+</script>
+@endpush

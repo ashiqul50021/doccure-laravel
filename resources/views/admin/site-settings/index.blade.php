@@ -108,6 +108,42 @@
     </div>
 
     <div class="row">
+        <!-- Ecommerce Settings -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"><i class="fas fa-shopping-cart me-2"></i>Ecommerce Settings</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.site-settings.update') }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label>Shipping Charge (Inside Dhaka)</label>
+                                    <input type="number" class="form-control" name="shipping_inside_dhaka"
+                                        value="{{ $ecommerceSettings['shipping_inside_dhaka'] ?? '60' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label>Shipping Charge (Outside Dhaka)</label>
+                                    <input type="number" class="form-control" name="shipping_outside_dhaka"
+                                        value="{{ $ecommerceSettings['shipping_outside_dhaka'] ?? '120' }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Ecommerce Settings</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <!-- Social Links -->
         <div class="col-lg-6">
             <div class="card">

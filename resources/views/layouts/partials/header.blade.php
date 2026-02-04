@@ -87,7 +87,7 @@
             </div>
             <ul class="nav header-navbar-rht">
                 <li class="nav-item">
-                    <a class="nav-link position-relative" href="{{ route('cart') }}">
+                    <a class="nav-link position-relative" href="{{ route('cart') }}" id="cart-icon-btn">
                         <i class="fas fa-shopping-cart"></i>
                         @php $cartCount = count(session('cart', [])); @endphp
                         @if($cartCount > 0)

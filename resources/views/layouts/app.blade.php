@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
 
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <!-- Select2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
 
@@ -57,6 +62,103 @@
 
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "3000"
+        };
+        @if(session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+        @if(session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Intercept Add to Cart forms (excluding 'buy_now')
+            $('form[action*="cart"]').on('submit', function (e) {
+                // Check if it's a Buy Now submit
+                if ($(document.activeElement).hasClass('btn-buy-modern') || $(document.activeElement).val() == '1') {
+                    return; // Allow default submission
+                }
+
+                e.preventDefault();
+                var $form = $(this);
+                var $btn = $form.find('button[title="Add to Cart"], button[type="submit"]:not(.btn-buy-modern)');
+
+                // Animation Logic
+                var cartIcon = $('#cart-icon-btn');
+                var imgToClone = $form.closest('.product-card-modern').find('img').eq(0);
+
+                // Fallback for details page
+                if (imgToClone.length === 0) {
+                    imgToClone = $('.product-image-main img').eq(0);
+                }
+
+                if (imgToClone.length && cartIcon.length) {
+                    var imgClone = imgToClone.clone()
+                        .offset({
+                            top: imgToClone.offset().top,
+                            left: imgToClone.offset().left
+                        })
+                        .css({
+                            'opacity': '0.8',
+                            'position': 'absolute',
+                            'height': '150px',
+                            'width': '150px',
+                            'z-index': '9999',
+                            'border-radius': '50%'
+                        })
+                        .appendTo($('body'))
+                        .animate({
+                            'top': cartIcon.offset().top + 10,
+                            'left': cartIcon.offset().left + 10,
+                            'width': '20px',
+                            'height': '20px'
+                        }, 800, 'swing'); // Reduced speed for better visibility
+
+                    imgClone.animate({
+                        'width': 0,
+                        'height': 0
+                    }, function () {
+                        $(this).detach();
+                    });
+                }
+
+                $.ajax({
+                    url: $form.attr('action'),
+                    method: 'POST',
+                    data: $form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success(response.message);
+                            // Update cart count
+                            var badge = $('#cart-icon-btn .badge');
+                            if (badge.length) {
+                                badge.text(response.cartCount);
+                            } else {
+                                $('#cart-icon-btn').append('<span class="badge bg-danger position-absolute translate-middle" style="top: 10px; left: 75%;">' + response.cartCount + '</span>');
+                            }
+                        } else {
+                            toastr.error('Something went wrong!'); // Fallback
+                        }
+                    },
+                    error: function (xhr) {
+                        toastr.error('Failed to add to cart.');
+                    }
+                });
+            });
+        });
+    </script>
 
     @stack('scripts')
 

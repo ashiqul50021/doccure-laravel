@@ -21,7 +21,7 @@
                     <a href="{{ route('admin.specialities.index') }}"><i class="fe fe-users"></i>
                         <span>Specialities</span></a>
                 </li>
-                <li class="{{ request()->routeIs('admin.doctors.*') ? 'active' : '' }}">
+                <li class="{{ Route::is('admin.doctors.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.doctors.index') }}"><i class="fe fe-user-plus"></i>
                         <span>Doctors</span></a>
                 </li>
@@ -42,6 +42,12 @@
                 <li class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.products.index') }}"><i class="fe fe-shopping-cart"></i>
                         <span>Products</span></a>
+                </li>
+                <li class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders.index') }}"><i class="fe fe-cart"></i> <span>Orders</span></a>
+                </li>
+                <li class="{{ request()->routeIs('admin.coupons.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.coupons.index') }}"><i class="fe fe-star"></i> <span>Coupons</span></a>
                 </li>
                 <li class="{{ request()->routeIs('admin.advertisements.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.advertisements.index') }}"><i class="fe fe-image"></i>

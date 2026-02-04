@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\User;
 use App\Models\Patient;
+use App\Models\Coupon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -25,6 +29,15 @@ class ProductController extends Controller
 
         if ($request->has('search') && $request->search) {
             $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Price Filter
+        if ($request->has('min_price') && $request->min_price != '') {
+            $query->where('price', '>=', $request->min_price);
+        }
+
+        if ($request->has('max_price') && $request->max_price != '') {
+            $query->where('price', '<=', $request->max_price);
         }
 
         $products = $query->latest()->paginate(12);
@@ -89,6 +102,14 @@ class ProductController extends Controller
             return redirect()->route('product.checkout');
         }
 
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Product added to cart!',
+                'cartCount' => count($cart)
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Product added to cart!');
     }
 
@@ -113,6 +134,19 @@ class ProductController extends Controller
             session()->put('cart', $cart);
         }
 
+        if ($request->ajax()) {
+            $total = 0;
+            foreach ($cart as $item) {
+                $total += $item['price'] * $item['quantity'];
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Product removed from cart!',
+                'cartCount' => count($cart),
+                'total' => $total
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Product removed from cart!');
     }
 
@@ -123,6 +157,26 @@ class ProductController extends Controller
         if (isset($cart[$request->product_id])) {
             $cart[$request->product_id]['quantity'] = $request->quantity;
             session()->put('cart', $cart);
+        }
+
+        if ($request->ajax()) {
+            $total = 0;
+            foreach ($cart as $item) {
+                $total += $item['price'] * $item['quantity'];
+            }
+            // Item subtotal
+            $itemSubtotal = 0;
+            if (isset($cart[$request->product_id])) {
+                $itemSubtotal = $cart[$request->product_id]['price'] * $cart[$request->product_id]['quantity'];
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Cart updated!',
+                'cartCount' => count($cart),
+                'total' => $total,
+                'itemSubtotal' => $itemSubtotal
+            ]);
         }
 
         return redirect()->back()->with('success', 'Cart updated!');
@@ -141,14 +195,16 @@ class ProductController extends Controller
             $total += $item['price'] * $item['quantity'];
         }
 
-        return view('frontend.product-checkout', compact('cart', 'total'));
+        $ecommerceSettings = SiteSetting::getByGroup('ecommerce');
+
+        return view('frontend.product-checkout', compact('cart', 'total', 'ecommerceSettings'));
     }
 
     public function placeOrder(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email',
+            'email' => 'nullable|email',
             'phone' => 'required|string|max:20',
             'address' => 'required|string',
         ]);
@@ -164,81 +220,155 @@ class ProductController extends Controller
             $total += $item['price'] * $item['quantity'];
         }
 
+        // Coupon Logic
+        $discount = 0;
+        $couponCode = null;
+        if ($request->coupon_code) {
+            $coupon = Coupon::where('code', $request->coupon_code)->first();
+            if ($coupon && $coupon->isValid()) {
+                if ($coupon->type == 'fixed') {
+                    $discount = $coupon->amount;
+                } else {
+                    $discount = ($total * $coupon->amount) / 100;
+                }
+                $couponCode = $coupon->code;
+
+                // Increment usage
+                $coupon->increment('used_count');
+            }
+        }
+
         $user = Auth::user();
+        $patientId = null;
 
-        if (!$user) {
-            $request->validate([
-                'email' => 'required|email|unique:users,email',
-            ], [
-                'email.unique' => 'This email is already registered. Please login to continue.'
-            ]);
+        if ($user) {
+            // Logged in user
+            if (!$user->patient) {
+                Patient::create([
+                    'user_id' => $user->id,
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                ]);
+                $user = $user->fresh('patient');
+            }
+            $patientId = $user->patient ? $user->patient->id : null;
+        } else {
+            // Guest or Login check (if email provided)
+            if ($request->email) {
+                $existingUser = User::where('email', $request->email)->first();
+                if ($existingUser) {
+                    // Cannot auto-login, but maybe link? For now, treat as Guest if not logged in.
+                    // Or validation error: "Email exists, please login".
+                    return redirect()->back()->with('error', 'Email already registered. Please login to continue.');
+                }
 
-            // Create User
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make(Str::random(10)), // Random password
-                'role' => 'patient',
-            ]);
-
-            // Create Patient Profile
-            Patient::create([
-                'user_id' => $user->id,
-                'phone' => $request->phone,
-                'address' => $request->address,
-            ]);
-
-            Auth::login($user);
+                // Optional: Create User if desired, but requirement says "Email Optional", implies Guest Checkout.
+                // We will NOT create user accounts for guest checkout to keep it simple as per "optional" request.
+            }
         }
 
-        // Ensure Patient profile exists
-        if (!$user->patient) {
-            Patient::create([
-                'user_id' => $user->id,
-                'phone' => $request->phone,
-                'address' => $request->address,
-            ]);
-            $user->refresh();
+        // Calculate Shipping
+        $ecommerceSettings = SiteSetting::getByGroup('ecommerce');
+        $shippingCost = 0;
+        $shippingMethod = $request->shipping_method ?? 'inside';
+
+        if ($shippingMethod === 'inside') {
+            $shippingCost = $ecommerceSettings['shipping_inside_dhaka'] ?? 60;
+        } else {
+            $shippingCost = $ecommerceSettings['shipping_outside_dhaka'] ?? 120;
         }
+
+        // Final Calculation
+        $grandTotal = max(0, ($total - $discount) + $shippingCost);
 
         // Create order
         $order = Order::create([
-            'patient_id' => $user->patient->id,
             'order_number' => 'ORD-' . strtoupper(uniqid()),
+            'patient_id' => $patientId,
             'customer_name' => $request->name,
             'customer_email' => $request->email,
             'customer_phone' => $request->phone,
-            'shipping_address' => $request->address,
-            'shipping_city' => $request->city ?? 'Dhaka',
-            'shipping_phone' => $request->phone,
             'subtotal' => $total,
-            'shipping' => 0,
-            'total' => $total,
+            'discount' => $discount,
+            'coupon_code' => $couponCode,
+            'shipping' => $shippingCost,
+            'total' => $grandTotal,
             'status' => 'pending',
+            'shipping_address' => $request->address,
+            'shipping_city' => 'Dhaka', // Default or from form
+            'shipping_phone' => $request->phone,
             'notes' => $request->notes,
         ]);
 
-        // Create order items
-        foreach ($cart as $productId => $item) {
+        foreach ($cart as $id => $item) {
             OrderItem::create([
                 'order_id' => $order->id,
-                'product_id' => $productId,
+                'product_id' => $id,
                 'quantity' => $item['quantity'],
                 'price' => $item['price'],
-                'total' => $item['price'] * $item['quantity'],
+                'total' => $item['quantity'] * $item['price'],
             ]);
         }
 
-        // Clear cart
         session()->forget('cart');
 
-        return redirect()->route('order.success', ['order' => $order->id]);
+
+
+        return redirect()->route('order.success', ['id' => $order->id])->with('success', 'Order placed successfully!');
     }
 
-    public function orderSuccess(Request $request)
+    public function applyCoupon(Request $request)
     {
-        $order = Order::with('items.product')->findOrFail($request->order);
+        $request->validate([
+            'coupon_code' => 'required|string'
+        ]);
+
+        $coupon = Coupon::where('code', $request->coupon_code)->first();
+
+        if (!$coupon) {
+            return response()->json(['success' => false, 'message' => 'Invalid coupon code.']);
+        }
+
+        if (!$coupon->isValid()) {
+            return response()->json(['success' => false, 'message' => 'Coupon is expired or usage limit reached.']);
+        }
+
+        // Calculate discount
+        $cart = session()->get('cart', []);
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+
+        $discount = 0;
+        if ($coupon->type == 'fixed') {
+            $discount = $coupon->amount;
+        } else {
+            $discount = ($total * $coupon->amount) / 100;
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Coupon applied successfully!',
+            'discount' => $discount,
+            'code' => $coupon->code,
+            'type' => $coupon->type,
+            'amount' => $coupon->amount
+        ]);
+    }
+
+    public function orderSuccess($id)
+    {
+        $order = Order::with('items.product')->findOrFail($id);
 
         return view('frontend.order-success', compact('order'));
+    }
+
+    public function invoice($id)
+    {
+        $order = Order::with('items.product')->findOrFail($id);
+        $siteSettings = SiteSetting::pluck('value', 'key'); // Assuming SiteSetting model exists and has key-value pairs
+
+        return view('frontend.order-invoice', compact('order', 'siteSettings'));
     }
 }

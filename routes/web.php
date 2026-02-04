@@ -27,9 +27,11 @@ Route::post('/cart/add', [App\Http\Controllers\ProductController::class, 'addToC
 Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('cart');
 Route::post('/cart/remove', [App\Http\Controllers\ProductController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/cart/update', [App\Http\Controllers\ProductController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/apply-coupon', [App\Http\Controllers\ProductController::class, 'applyCoupon'])->name('cart.coupon');
 Route::get('/product-checkout', [App\Http\Controllers\ProductController::class, 'checkout'])->name('product.checkout');
 Route::post('/place-order', [App\Http\Controllers\ProductController::class, 'placeOrder'])->name('order.place');
-Route::get('/order-success', [App\Http\Controllers\ProductController::class, 'orderSuccess'])->name('order.success');
+Route::get('/order-success/{id}', [App\Http\Controllers\ProductController::class, 'orderSuccess'])->name('order.success');
+Route::get('/orders/{id}/invoice', [App\Http\Controllers\ProductController::class, 'invoice'])->name('order.invoice');
 
 // Doctor Pages
 Route::get('/doctor-profile/{id}', [App\Http\Controllers\DoctorController::class, 'show'])->name('doctor.profile');
@@ -165,6 +167,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Resource Routes
     Route::resource('doctors', App\Http\Controllers\Admin\DoctorController::class)->except(['index']);
     // Uses AdminController@doctors for index, resource for others if needed
+
+    // Order Management
+    Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+    Route::post('/orders/{id}/status', [App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('orders.status');
+
+    // Coupon Management
+    Route::resource('coupons', App\Http\Controllers\Admin\CouponController::class);
 
     Route::get('/patients', [App\Http\Controllers\AdminController::class, 'patients'])->name('patients');
     Route::get('/appointments', [App\Http\Controllers\AdminController::class, 'appointments'])->name('appointments');

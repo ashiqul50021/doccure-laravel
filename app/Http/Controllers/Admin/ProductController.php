@@ -38,8 +38,16 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'product_category_id' => 'required|exists:product_categories,id',
             'price' => 'required|numeric|min:0',
+            'sale_price' => 'nullable|numeric|min:0|lt:price',
             'stock' => 'required|integer|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:51200',
+            // Max 5MB image
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'description' => 'nullable|string',
+            'sku' => 'nullable|string|unique:products,sku',
+            'brand' => 'nullable|string|max:255',
+            'tags' => 'nullable|string',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
         ]);
 
         $imagePath = null;
@@ -56,8 +64,13 @@ class ProductController extends Controller
             'sale_price' => $request->sale_price,
             'stock' => $request->stock,
             'image' => $imagePath,
-            'is_active' => true,
+            'is_active' => $request->has('is_active'),
             'is_featured' => $request->has('is_featured'),
+            'sku' => $request->sku,
+            'brand' => $request->brand,
+            'tags' => $request->tags,
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
         ]);
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
@@ -89,8 +102,15 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'product_category_id' => 'required|exists:product_categories,id',
             'price' => 'required|numeric|min:0',
+            'sale_price' => 'nullable|numeric|min:0|lt:price',
             'stock' => 'required|integer|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:51200',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'description' => 'nullable|string',
+            'sku' => 'nullable|string|unique:products,sku,' . $product->id,
+            'brand' => 'nullable|string|max:255',
+            'tags' => 'nullable|string',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
         ]);
 
         $data = [
@@ -103,6 +123,11 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'is_active' => $request->has('is_active'),
             'is_featured' => $request->has('is_featured'),
+            'sku' => $request->sku,
+            'brand' => $request->brand,
+            'tags' => $request->tags,
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
         ];
 
         if ($request->hasFile('image')) {
@@ -120,9 +145,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        ImageService::delete($product->image);
-        $product->delete();
-
-        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+        try {
+            if ($product->image) {
+                ImageService::delete($product->image);
+            }
+            $product->delete();
+            return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.products.index')->with('error', 'Failed to delete product: ' . $e->getMessage());
+        }
     }
 }

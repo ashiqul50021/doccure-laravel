@@ -18,6 +18,7 @@ class SiteSettingController extends Controller
         $generalSettings = SiteSetting::getByGroup('general');
         $contactSettings = SiteSetting::getByGroup('contact');
         $socialSettings = SiteSetting::getByGroup('social');
+        $ecommerceSettings = SiteSetting::getByGroup('ecommerce');
         $bannerSettings = SiteSetting::getByGroup('banner');
 
         return view('admin.site-settings.index', compact(
@@ -25,6 +26,7 @@ class SiteSettingController extends Controller
             'generalSettings',
             'contactSettings',
             'socialSettings',
+            'ecommerceSettings',
             'bannerSettings'
         ));
     }
@@ -56,6 +58,9 @@ class SiteSettingController extends Controller
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:20480',
             'favicon' => 'nullable|image|mimes:png,ico,webp|max:1024',
             'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:20480',
+            'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:20480',
+            'shipping_inside_dhaka' => 'nullable|numeric|min:0',
+            'shipping_outside_dhaka' => 'nullable|numeric|min:0',
         ]);
 
         // Text settings
@@ -68,7 +73,9 @@ class SiteSettingController extends Controller
             'facebook_url',
             'twitter_url',
             'instagram_url',
-            'linkedin_url'
+            'linkedin_url',
+            'shipping_inside_dhaka',
+            'shipping_outside_dhaka'
         ];
 
         foreach ($textSettings as $key) {
@@ -145,6 +152,8 @@ class SiteSettingController extends Controller
             return 'social';
         if (str_starts_with($key, 'banner_'))
             return 'banner';
+        if (str_starts_with($key, 'shipping_'))
+            return 'ecommerce';
         return 'general';
     }
 }
