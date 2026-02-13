@@ -142,12 +142,16 @@
                         if (response.success) {
                             toastr.success(response.message);
                             // Update cart count
-                            var badge = $('#cart-icon-btn .badge');
+                            var badge = $('#cart-icon-btn .cart-badge');
                             if (badge.length) {
                                 badge.text(response.cartCount);
                             } else {
-                                $('#cart-icon-btn').append('<span class="badge bg-danger position-absolute translate-middle" style="top: 10px; left: 75%;">' + response.cartCount + '</span>');
+                                $('#cart-icon-btn').append('<span class="cart-badge">' + response.cartCount + '</span>');
                             }
+                            // Trigger wiggle animation
+                            var $cartWrapper = $('#cart-icon-btn');
+                            $cartWrapper.addClass('wiggle');
+                            setTimeout(function() { $cartWrapper.removeClass('wiggle'); }, 600);
                         } else {
                             toastr.error('Something went wrong!'); // Fallback
                         }
