@@ -2,6 +2,10 @@
 
 @section('title', 'Products - abcsheba.com')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/premium-search.css') }}">
+@endpush
+
 @section('content')
 
     <!-- Page Content -->
@@ -11,58 +15,88 @@
             <div class="row">
                 <!-- Sidebar Filter -->
                 <div class="col-md-12 col-lg-4 col-xl-3 remove-padding-mobile">
-                    <div class="card search-filter sticky-sidebar">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="card-title mb-0">Filter Products</h4>
-                            <a href="{{ route('products') }}" class="small text-danger fw-bold">Reset</a>
+                    <form id="productFilterForm" method="GET" action="{{ route('products') }}">
+                    <div class="search-filter-premium sticky-sidebar">
+                        <!-- Header -->
+                        <div class="filter-header">
+                            <h4>FILTERS</h4>
+                            <a href="{{ route('products') }}" class="reset-btn" style="text-decoration: none;">
+                                Clear All
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <form action="{{ route('products') }}" method="GET" id="filter-form">
-                                <!-- Search -->
-                                <div class="filter-widget">
-                                    <h4 class="filter-booking-title">Search</h4>
-                                    <div class="search-input-wrapper">
-                                        <i class="fas fa-search search-icon"></i>
-                                        <input type="text" name="search" class="form-control" placeholder="Search..."
-                                            value="{{ request('search') }}">
+
+                        <!-- Filter Body -->
+                        <div class="filter-body">
+
+                            <!-- Search Section -->
+                            <div class="filter-section">
+                                <div class="filter-section-header" onclick="toggleSection(this)">
+                                    <h5>SEARCH</h5>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </div>
+                                <div class="filter-section-content">
+                                    <div class="fee-range-inputs">
+                                        <div class="input-group" style="position: relative; display: block;">
+                                            <span class="currency-symbol" style="left: 12px;"><i class="fas fa-search" style="font-size: 13px;"></i></span>
+                                            <input type="text" name="search" placeholder="Search products..."
+                                                value="{{ request('search') }}" style="padding-left: 35px;">
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- Price Range -->
-                                <div class="filter-widget">
-                                    <h4 class="filter-booking-title">Price Range</h4>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <input type="number" name="min_price" class="form-control form-control-sm"
-                                            placeholder="Min" value="{{ request('min_price') }}">
-                                        <span class="text-muted">-</span>
-                                        <input type="number" name="max_price" class="form-control form-control-sm"
-                                            placeholder="Max" value="{{ request('max_price') }}">
-                                    </div>
+                            <!-- Price Range Section -->
+                            <div class="filter-section">
+                                <div class="filter-section-header" onclick="toggleSection(this)">
+                                    <h5>PRICE RANGE</h5>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
                                 </div>
-
-                                <!-- Categories -->
-                                <div class="filter-widget">
-                                    <h4 class="filter-booking-title">Categories</h4>
-                                    <div class="filter-scroll">
-                                        @foreach($categories as $category)
-                                            <div class="filter-checkbox">
-                                                <label class="custom_check">
-                                                    <input type="radio" name="category" value="{{ $category->id }}" {{ request('category') == $category->id ? 'checked' : '' }}>
-                                                    <span class="checkmark"></span>
-                                                    <span class="category-name">{{ $category->name }}</span>
-                                                    {{-- <span class="count">(0)</span> --}}
-                                                </label>
+                                <div class="filter-section-content">
+                                    <div class="fee-range-container">
+                                        <div class="fee-range-inputs">
+                                            <div class="input-group">
+                                                <span class="currency-symbol">৳</span>
+                                                <input type="number" name="min_price" placeholder="Min" value="{{ request('min_price') }}">
                                             </div>
-                                        @endforeach
+                                        </div>
+                                        <div class="fee-range-inputs" style="margin-top: 12px;">
+                                            <div class="input-group">
+                                                <span class="currency-symbol">৳</span>
+                                                <input type="number" name="max_price" placeholder="Max" value="{{ request('max_price') }}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="btn-search">
-                                    <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+                            <!-- Categories Section -->
+                            <div class="filter-section">
+                                <div class="filter-section-header" onclick="toggleSection(this)">
+                                    <h5>CATEGORIES</h5>
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
                                 </div>
-                            </form>
+                                <div class="filter-section-content">
+                                    @foreach($categories as $category)
+                                    <label class="custom-filter-check">
+                                        <input type="radio" name="category" value="{{ $category->id }}"
+                                            {{ request('category') == $category->id ? 'checked' : '' }}>
+                                        <span class="check-box"></span>
+                                        <span class="check-label">{{ $category->name }}</span>
+                                    </label>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Search Button -->
+                        <div class="filter-search-btn">
+                            <button type="submit">
+                                <i class="fas fa-search"></i> Apply Filters
+                            </button>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <!-- /Sidebar Filter -->
 
@@ -84,7 +118,7 @@
                                     <!-- Product Image -->
                                     <div class="product-image-container">
                                         <a href="{{ route('products.show', $product->id) }}">
-                                            <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/product-1.jpg') }}"
+                                            <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/default-product.png') }}"
                                                 class="product-main-img" alt="{{ $product->name }}">
                                         </a>
                                     </div>
@@ -154,6 +188,12 @@
 
 @push('scripts')
     <script>
+        // Toggle filter section (same as search page)
+        function toggleSection(header) {
+            var section = header.closest('.filter-section');
+            section.classList.toggle('collapsed');
+        }
+
         $(document).ready(function () {
             // Auto submit form when category is changed
             $('input[name="category"]').on('change', function () {
@@ -164,7 +204,53 @@
 @endpush
 
 <style>
-    /* Product Card Modern */
+    /* Collapsed filter section animation */
+    .filter-section.collapsed .filter-section-content {
+        display: none;
+    }
+    .filter-section.collapsed .toggle-icon {
+        transform: rotate(-90deg);
+    }
+    .toggle-icon {
+        transition: transform 0.2s ease;
+        font-size: 12px;
+        color: #9ca3af;
+    }
+
+    /* Custom checkbox checked state for radio (product category) */
+    .custom-filter-check input[type="radio"] {
+        display: none;
+    }
+    .custom-filter-check input[type="radio"]:checked + .check-box {
+        background: #2563eb;
+        border-color: #2563eb;
+        transform: scale(1.1);
+    }
+    .custom-filter-check input[type="radio"]:checked + .check-box::after {
+        content: '✓';
+        color: white;
+        font-size: 10px;
+    }
+
+    /* Scrollbar styling for filter */
+    .filter-section-content::-webkit-scrollbar {
+        width: 4px;
+    }
+    .filter-section-content::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 4px;
+    }
+
+    /* Sticky Sidebar */
+    .sticky-sidebar {
+        position: sticky;
+        top: 90px;
+        z-index: 9;
+    }
+
+    /* ========================================
+       PRODUCT CARDS
+       ======================================== */
     .product-card-modern {
         background: #fff;
         border-radius: 16px;
@@ -367,103 +453,5 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
     }
-
-    /* Sticky Sidebar */
-    .sticky-sidebar {
-        position: sticky;
-        top: 90px; /* Adjust based on header height */
-        z-index: 9;
-    }
-
-    /* Filter Headers */
-    .filter-booking-title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #272b41;
-        position: relative;
-        padding-bottom: 8px;
-    }
-
-    .filter-booking-title::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 30px;
-        height: 2px;
-        background: #1D4ED8;
-        border-radius: 2px;
-    }
-
-    /* Search Input */
-    .search-input-wrapper {
-        position: relative;
-    }
-
-    .search-input-wrapper .search-icon {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #999;
-        font-size: 14px;
-        pointer-events: none;
-    }
-
-    .search-input-wrapper input {
-        padding-left: 35px;
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-        font-size: 14px;
-    }
-
-    .search-input-wrapper input:focus {
-        border-color: #1D4ED8;
-        box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
-    }
-
-    /* Filter Checkbox styles override or enhance if needed */
-    .custom_check {
-        display: flex;
-        align-items: center;
-        margin-bottom: 8px;
-        cursor: pointer;
-        padding: 5px 0;
-        transition: all 0.2s;
-    }
-
-    .custom_check:hover .category-name {
-        color: #1D4ED8;
-    }
-
-    .custom_check .checkmark {
-        border-radius: 4px; /* Softer look */
-    }
-
-    .custom_check input:checked ~ .checkmark {
-        background-color: #1D4ED8;
-        border-color: #1D4ED8;
-    }
-
-    .category-name {
-        font-size: 14px;
-        color: #444;
-        transition: color 0.2s;
-    }
-
-    .filter-scroll {
-        max-height: 250px;
-        overflow-y: auto;
-        padding-right: 5px;
-    }
-
-    /* Scrollbar styling */
-    .filter-scroll::-webkit-scrollbar {
-        width: 4px;
-    }
-    .filter-scroll::-webkit-scrollbar-thumb {
-        background: #ccc;
-        border-radius: 4px;
-    }
 </style>
+

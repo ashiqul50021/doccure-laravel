@@ -89,7 +89,7 @@
 }
 
 /* Filled Inputs */
-.custom-filter-select, 
+.custom-filter-select,
 .fee-range-inputs input {
     width: 100%;
     padding: 12px 16px;
@@ -194,12 +194,12 @@
 /* Search Button V2 */
 .filter-search-btn button {
     width: 100%;
-    padding: 14px;
+    padding: 10px;
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: white;
     border: none;
     border-radius: 12px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);

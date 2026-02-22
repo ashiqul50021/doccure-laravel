@@ -18,7 +18,7 @@
                     <!-- Product Image -->
                     <div class="col-md-5">
                         <div class="product-image-main">
-                            <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/product-1.jpg') }}" class="img-fluid rounded" alt="{{ $product->name }}" style="width: 100%; max-height: 400px; object-fit: cover;">
+                            <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/default-product.png') }}" class="img-fluid rounded" alt="{{ $product->name }}" style="width: 100%; max-height: 400px; object-fit: cover;">
                         </div>
                         @if($product->gallery && count($product->gallery) > 0)
                         <div class="product-gallery mt-3">
@@ -98,7 +98,7 @@
                     <div class="col-md-6 col-lg-3">
                         <div class="card product-card h-100">
                             <a href="{{ route('products.show', $relProduct->id) }}">
-                                <img src="{{ $relProduct->image ? asset($relProduct->image) : asset('assets/img/products/product-1.jpg') }}" class="card-img-top" alt="{{ $relProduct->name }}" style="height: 150px; object-fit: cover;">
+                                <img src="{{ $relProduct->image ? asset($relProduct->image) : asset('assets/img/products/default-product.png') }}" class="card-img-top" alt="{{ $relProduct->name }}" style="height: 150px; object-fit: cover;">
                             </a>
                             <div class="card-body">
                                 <h6 class="card-title">

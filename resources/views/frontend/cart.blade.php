@@ -222,7 +222,7 @@
                                             <tr id="row-{{ $productId }}">
                                                 <td>
                                                     <div class="d-flex align-items-center">
-                                                        <img src="{{ $item['image'] ? asset($item['image']) : asset('assets/img/products/product-1.jpg') }}"
+                                                        <img src="{{ $item['image'] ? asset($item['image']) : asset('assets/img/products/default-product.png') }}"
                                                             alt="{{ $item['name'] }}" class="cart-product-img me-3">
                                                         <div>
                                                             <a href="{{ route('products.show', $productId) }}"
