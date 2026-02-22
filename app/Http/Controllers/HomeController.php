@@ -59,6 +59,9 @@ class HomeController extends Controller
                               ->get();
         }
 
+        // Get active health packages
+        $healthPackages = \App\Models\HealthPackage::active()->ordered()->get();
+
         return view('frontend.home', compact(
             'specialities',
             'searchSpecialities',
@@ -68,7 +71,8 @@ class HomeController extends Controller
             'bannerSettings',
             'banners',
             'districts',
-            'products' // Added products
+            'products',
+            'healthPackages'
         ));
     }
 }

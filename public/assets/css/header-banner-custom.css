@@ -255,28 +255,88 @@
     font-size: 14px;
 }
 
-/* Cart Icon Styling */
-.header-navbar-rht .nav-link.position-relative {
-    color: var(--text-dark);
-    font-size: 18px;
-    padding: 8px 12px !important;
-    transition: var(--transition-smooth);
+/* Cart Icon - Premium Styling */
+.cart-icon-wrapper {
+    position: relative !important;
+    padding: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
 }
 
-.header-navbar-rht .nav-link.position-relative:hover {
-    color: var(--primary-blue);
-}
-
-.header-navbar-rht .nav-link .badge {
-    background: var(--primary-blue) !important;
-    font-size: 10px;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
+.cart-icon-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1.5px solid rgba(29, 78, 216, 0.12);
+    position: relative;
+}
+
+.cart-icon-circle i {
+    font-size: 16px;
+    color: var(--primary-blue);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-icon-wrapper:hover .cart-icon-circle {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #60A5FA 100%);
+    border-color: transparent;
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px rgba(29, 78, 216, 0.35);
+}
+
+.cart-icon-wrapper:hover .cart-icon-circle i {
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+/* Cart Badge */
+.cart-badge {
+    position: absolute !important;
+    top: 0 !important;
+    right: -2px !important;
+    min-width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 100%) !important;
+    color: #fff !important;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    line-height: 1;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+    animation: badge-pop 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 2;
+}
+
+@keyframes badge-pop {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Cart wiggle animation on add */
+.cart-icon-wrapper.wiggle .cart-icon-circle {
+    animation: cart-wiggle 0.5s ease;
+}
+
+@keyframes cart-wiggle {
+    0%   { transform: rotate(0deg); }
+    20%  { transform: rotate(-12deg); }
+    40%  { transform: rotate(10deg); }
+    60%  { transform: rotate(-6deg); }
+    80%  { transform: rotate(4deg); }
+    100% { transform: rotate(0deg); }
 }
 
 /* Sign Up Button */

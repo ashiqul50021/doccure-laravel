@@ -183,6 +183,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Coupon Management
     Route::resource('coupons', App\Http\Controllers\Admin\CouponController::class);
 
+    // Health Packages Management
+    Route::resource('health-packages', App\Http\Controllers\Admin\HealthPackageController::class);
+
     Route::get('/patients', [App\Http\Controllers\AdminController::class, 'patients'])->name('patients');
     Route::get('/appointments', [App\Http\Controllers\AdminController::class, 'appointments'])->name('appointments');
     Route::get('/reviews', [App\Http\Controllers\AdminController::class, 'reviews'])->name('reviews');

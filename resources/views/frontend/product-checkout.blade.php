@@ -237,7 +237,7 @@
                                 @foreach($cart as $productId => $item)
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ $item['image'] ? asset($item['image']) : asset('assets/img/products/product-1.jpg') }}"
+                                            <img src="{{ $item['image'] ? asset($item['image']) : asset('assets/img/products/default-product.png') }}"
                                                 alt="{{ $item['name'] }}" class="me-2"
                                                 style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
                                             <div>

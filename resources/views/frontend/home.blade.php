@@ -479,6 +479,7 @@
     <!-- /Popular Doctors -->
 
     <!-- Health Packages Section -->
+    @if(isset($healthPackages) && $healthPackages->count() > 0)
     <section class="section section-health-packages"
         style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); padding: 80px 0;">
         <div class="container">
@@ -491,106 +492,35 @@
 
             <!-- Packages Grid -->
             <div class="row justify-content-center">
-                <!-- Basic Package -->
+                @foreach($healthPackages as $package)
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="health-package-card">
+                    <div class="health-package-card {{ $package->is_featured ? 'featured' : '' }}">
+                        @if($package->is_featured)
+                            <div class="featured-ribbon">Most Popular</div>
+                        @endif
                         <div class="package-icon">
-                            <i class="fas fa-heartbeat"></i>
+                            <i class="{{ $package->icon }}"></i>
                         </div>
-                        <div class="package-badge">Basic</div>
-                        <h4 class="package-title">Basic Health Checkup</h4>
-                        <p class="package-tests"><i class="fas fa-vial"></i> 15+ Tests Included</p>
+                        <div class="package-badge">{{ $package->badge_label }}</div>
+                        <h4 class="package-title">{{ $package->title }}</h4>
+                        <p class="package-tests"><i class="fas fa-vial"></i> {{ $package->test_count }}+ Tests Included</p>
+                        @if(is_array($package->features) && count($package->features) > 0)
                         <ul class="package-features">
-                            <li><i class="fas fa-check"></i> Blood Sugar Test</li>
-                            <li><i class="fas fa-check"></i> Lipid Profile</li>
-                            <li><i class="fas fa-check"></i> Liver Function</li>
-                            <li><i class="fas fa-check"></i> Kidney Function</li>
+                            @foreach($package->features as $feature)
+                                <li><i class="fas fa-check"></i> {{ $feature }}</li>
+                            @endforeach
                         </ul>
+                        @endif
                         <div class="package-price">
-                            <span class="price">৳1,500</span>
-                            <span class="period">one-time</span>
+                            <span class="price">৳{{ number_format($package->price, 0) }}</span>
+                            <span class="period">{{ $package->price_label }}</span>
                         </div>
-                        <a href="{{ route('products') }}" class="btn-package">
+                        <a href="{{ $package->link ?? route('products') }}" class="btn-package">
                             Book Now <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
-
-                <!-- Standard Package -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="health-package-card featured">
-                        <div class="featured-ribbon">Most Popular</div>
-                        <div class="package-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="package-badge">Standard</div>
-                        <h4 class="package-title">Full Body Checkup</h4>
-                        <p class="package-tests"><i class="fas fa-vial"></i> 40+ Tests Included</p>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check"></i> Complete Blood Count</li>
-                            <li><i class="fas fa-check"></i> Thyroid Profile</li>
-                            <li><i class="fas fa-check"></i> Vitamin Tests</li>
-                            <li><i class="fas fa-check"></i> ECG & X-Ray</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="price">৳3,500</span>
-                            <span class="period">one-time</span>
-                        </div>
-                        <a href="{{ route('products') }}" class="btn-package">
-                            Book Now <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Premium Package -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="health-package-card">
-                        <div class="package-icon">
-                            <i class="fas fa-gem"></i>
-                        </div>
-                        <div class="package-badge">Premium</div>
-                        <h4 class="package-title">Executive Checkup</h4>
-                        <p class="package-tests"><i class="fas fa-vial"></i> 70+ Tests Included</p>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check"></i> Full Body Screening</li>
-                            <li><i class="fas fa-check"></i> Cardiac Risk Markers</li>
-                            <li><i class="fas fa-check"></i> Cancer Markers</li>
-                            <li><i class="fas fa-check"></i> Doctor Consultation</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="price">৳7,000</span>
-                            <span class="period">one-time</span>
-                        </div>
-                        <a href="{{ route('products') }}" class="btn-package">
-                            Book Now <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Diabetes Package -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="health-package-card">
-                        <div class="package-icon">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                        <div class="package-badge">Specialized</div>
-                        <h4 class="package-title">Diabetes Care</h4>
-                        <p class="package-tests"><i class="fas fa-vial"></i> 25+ Tests Included</p>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check"></i> HbA1c Test</li>
-                            <li><i class="fas fa-check"></i> Fasting Blood Sugar</li>
-                            <li><i class="fas fa-check"></i> Insulin Level</li>
-                            <li><i class="fas fa-check"></i> Kidney Profile</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="price">৳2,500</span>
-                            <span class="period">one-time</span>
-                        </div>
-                        <a href="{{ route('products') }}" class="btn-package">
-                            Book Now <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!-- View All Button -->
@@ -601,6 +531,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- /Health Packages Section -->
 
     <!-- Health Courses Section -->

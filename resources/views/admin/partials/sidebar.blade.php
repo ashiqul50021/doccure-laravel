@@ -49,6 +49,10 @@
                 <li class="{{ request()->routeIs('admin.coupons.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.coupons.index') }}"><i class="fe fe-star"></i> <span>Coupons</span></a>
                 </li>
+                <li class="{{ request()->routeIs('admin.health-packages.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.health-packages.index') }}"><i class="fe fe-heart"></i>
+                        <span>Health Packages</span></a>
+                </li>
                 <li class="{{ request()->routeIs('admin.advertisements.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.advertisements.index') }}"><i class="fe fe-image"></i>
                         <span>Advertisements</span></a>
