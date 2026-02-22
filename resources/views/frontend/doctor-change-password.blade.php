@@ -6,7 +6,7 @@
 
 <!-- Page Content -->
 <div class="content">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
 
