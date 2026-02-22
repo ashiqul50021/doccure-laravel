@@ -51,7 +51,10 @@ Route::view('/my-patients', 'frontend.my-patients')->name('my.patients');
 
 // Appointments & Schedule
 Route::view('/appointments', 'frontend.appointments')->name('appointments');
-Route::view('/schedule-timings', 'frontend.schedule-timings')->name('schedule.timings');
+// Schedule Management
+Route::get('/schedule-timings', [App\Http\Controllers\Doctor\ScheduleController::class, 'index'])->name('schedule.timings');
+Route::post('/schedule-timings', [App\Http\Controllers\Doctor\ScheduleController::class, 'store'])->name('schedule.store');
+Route::delete('/schedule-timings/{id}', [App\Http\Controllers\Doctor\ScheduleController::class, 'destroy'])->name('schedule.destroy');
 Route::view('/calendar', 'frontend.calendar')->name('calendar');
 
 // Invoices & Billing
@@ -166,6 +169,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     // Resource Routes
     Route::resource('doctors', App\Http\Controllers\Admin\DoctorController::class)->except(['index']);
+    // Admin Schedule Management
+    Route::get('/doctors/{doctor}/schedule', [App\Http\Controllers\Admin\DoctorScheduleController::class, 'edit'])->name('doctors.schedule');
+    Route::post('/doctors/{doctor}/schedule', [App\Http\Controllers\Admin\DoctorScheduleController::class, 'update'])->name('doctors.schedule.update');
+    Route::delete('/doctors/schedule/{id}', [App\Http\Controllers\Admin\DoctorScheduleController::class, 'destroy'])->name('doctors.schedule.destroy');
     // Uses AdminController@doctors for index, resource for others if needed
 
     // Order Management

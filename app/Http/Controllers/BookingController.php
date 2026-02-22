@@ -24,7 +24,20 @@ class BookingController extends Controller
             $dates[] = now()->addDays($i);
         }
 
-        return view('frontend.booking', compact('doctor', 'dates'));
+        // Fetch booked slots
+        $startDate = now()->format('Y-m-d');
+        $endDate = now()->addDays(7)->format('Y-m-d');
+
+        $bookedAppointments = Appointment::where('doctor_id', $doctor_id)
+            ->whereBetween('appointment_date', [$startDate, $endDate])
+            ->get(['appointment_date', 'appointment_time']);
+
+        $bookedSlots = [];
+        foreach ($bookedAppointments as $appt) {
+            $bookedSlots[$appt->appointment_date->format('Y-m-d')][] = $appt->appointment_time->format('H:i:s'); // Store as H:i:s to match generation logic
+        }
+
+        return view('frontend.booking', compact('doctor', 'dates', 'bookedSlots'));
     }
 
     public function bookAppointment(Request $request, $doctor_id)
@@ -115,8 +128,30 @@ class BookingController extends Controller
         }
 
         $meeting_link = null;
+        $token_number = null;
+
+        // Fetch Doctor for details
+        $doctor = Doctor::with('user')->findOrFail($booking['doctor_id']);
+
         if ($booking['type'] === 'online') {
-            $meeting_link = 'https://meet.jit.si/doccure-' . Str::random(10);
+            try {
+                $meetService = new \App\Services\GoogleMeetService();
+                $meeting_link = $meetService->createMeeting(
+                    'Consultation with Dr. ' . $doctor->user->name,
+                    $booking['date'] . ' ' . $booking['time']
+                );
+            } catch (\Exception $e) {
+                // Fallback if Google API fails or credentials missing
+                \Illuminate\Support\Facades\Log::error('Google Meet Error: ' . $e->getMessage());
+                $meeting_link = null;
+            }
+        } elseif ($booking['type'] === 'offline') {
+            // Generate Token Number: "DOC-{DoctorID}-{Count+1}"
+            $count = Appointment::where('doctor_id', $booking['doctor_id'])
+                ->where('appointment_date', $booking['date'])
+                ->where('type', 'offline')
+                ->count();
+            $token_number = 'TKN-' . ($count + 1);
         }
 
         Appointment::create([
@@ -127,6 +162,7 @@ class BookingController extends Controller
             'status' => 'confirmed', // Assuming instant confirmation for now
             'type' => $booking['type'],
             'meeting_link' => $meeting_link,
+            'token_number' => $token_number,
             'fee' => $booking['fee'],
             'reason' => 'Consultation', // Default
         ]);
@@ -134,6 +170,13 @@ class BookingController extends Controller
         // Clear session
         session()->forget('booking_details');
 
-        return redirect()->route('booking.success');
+        return redirect()->route('booking.success')->with([
+            'meeting_link' => $meeting_link,
+            'token_number' => $token_number,
+            'type' => $booking['type'],
+            'doctor_name' => $doctor->user->name,
+            'date' => $booking['date'],
+            'time' => $booking['time']
+        ]);
     }
 }

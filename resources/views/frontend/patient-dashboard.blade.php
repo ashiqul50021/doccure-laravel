@@ -124,13 +124,14 @@
                                                         <tr>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('doctor.profile') }}"
+                                                                    <a href="{{ route('doctor.profile', 1) }}"
                                                                         class="avatar avatar-sm me-2">
                                                                         <img class="avatar-img rounded-circle"
                                                                             src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                                             alt="User Image">
                                                                     </a>
-                                                                    <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin
+                                                                    <a href="{{ route('doctor.profile', 1) }}">Dr. Ruby
+                                                                        Perrin
                                                                         <span>Dental</span></a>
                                                                 </h2>
                                                             </td>
@@ -183,13 +184,14 @@
                                                             <td>Prescription 1</td>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('doctor.profile') }}"
+                                                                    <a href="{{ route('doctor.profile', 1) }}"
                                                                         class="avatar avatar-sm me-2">
                                                                         <img class="avatar-img rounded-circle"
                                                                             src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                                             alt="User Image">
                                                                     </a>
-                                                                    <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin
+                                                                    <a href="{{ route('doctor.profile', 1) }}">Dr. Ruby
+                                                                        Perrin
                                                                         <span>Dental</span></a>
                                                                 </h2>
                                                             </td>
@@ -238,13 +240,14 @@
                                                             <td><a href="#">dental-test.pdf</a></td>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('doctor.profile') }}"
+                                                                    <a href="{{ route('doctor.profile', 1) }}"
                                                                         class="avatar avatar-sm me-2">
                                                                         <img class="avatar-img rounded-circle"
                                                                             src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                                             alt="User Image">
                                                                     </a>
-                                                                    <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin
+                                                                    <a href="{{ route('doctor.profile', 1) }}">Dr. Ruby
+                                                                        Perrin
                                                                         <span>Dental</span></a>
                                                                 </h2>
                                                             </td>
@@ -291,13 +294,14 @@
                                                             </td>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('doctor.profile') }}"
+                                                                    <a href="{{ route('doctor.profile', 1) }}"
                                                                         class="avatar avatar-sm me-2">
                                                                         <img class="avatar-img rounded-circle"
                                                                             src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                                             alt="User Image">
                                                                     </a>
-                                                                    <a href="{{ route('doctor.profile') }}">Dr. Ruby Perrin
+                                                                    <a href="{{ route('doctor.profile', 1) }}">Dr. Ruby
+                                                                        Perrin
                                                                         <span>Dental</span></a>
                                                                 </h2>
                                                             </td>

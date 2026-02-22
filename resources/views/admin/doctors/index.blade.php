@@ -52,7 +52,8 @@
                                         </td>
                                         <td>{{ $doctor->speciality->name ?? 'N/A' }}</td>
                                         <td>{{ $doctor->created_at->format('d M Y') }}
-                                            <br><small>{{ $doctor->created_at->format('h:i A') }}</small></td>
+                                            <br><small>{{ $doctor->created_at->format('h:i A') }}</small>
+                                        </td>
                                         <td>
                                             <span
                                                 class="badge badge-pill bg-{{ $doctor->status === 'approved' ? 'success' : 'warning' }}-light">{{ ucfirst($doctor->status) }}</span>
@@ -62,6 +63,10 @@
                                                 <a class="btn btn-sm bg-success-light"
                                                     href="{{ route('admin.doctors.edit', $doctor->id) }}">
                                                     <i class="fe fe-pencil"></i> Edit
+                                                </a>
+                                                <a class="btn btn-sm bg-info-light"
+                                                    href="{{ route('admin.doctors.schedule', $doctor->id) }}">
+                                                    <i class="fe fe-clock"></i> Schedule
                                                 </a>
                                                 <form action="{{ route('admin.doctors.destroy', $doctor->id) }}" method="POST"
                                                     style="display:inline-block;" onsubmit="return confirm('Are you sure?');">

@@ -96,17 +96,53 @@
                         @endif
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn-for-doctors" href="{{ route('doctor.register') }}">
-                        <i class="fas fa-stethoscope"></i> For Doctors
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn-signup" href="{{ route('register') }}">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link header-login" href="{{ route('login') }}">Login</a>
-                </li>
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link btn-for-doctors" href="{{ route('doctor.register') }}">
+                            <i class="fas fa-stethoscope"></i> For Doctors
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-signup" href="{{ route('register') }}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link header-login" href="{{ route('login') }}">Login</a>
+                    </li>
+                @else
+                    <li class="nav-item dropdown has-arrow logged-item">
+                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                            <span class="user-img">
+                                <img class="rounded-circle" src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                    width="31" alt="Darren Elder">
+                            </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <div class="user-header">
+                                <div class="avatar avatar-sm">
+                                    <img src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image"
+                                        class="avatar-img rounded-circle">
+                                </div>
+                                <div class="user-text">
+                                    <h6>{{ Auth::user()->name }}</h6>
+                                    <p class="text-muted mb-0">Doctor</p>
+                                </div>
+                            </div>
+                            @if(Auth::user()->role === 'doctor' || Auth::user()->is_doctor)
+                                <!-- Assuming role check or similar -->
+                                <a class="dropdown-item" href="{{ route('doctor.dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('doctor.profile.settings') }}">Profile Settings</a>
+                            @else
+                                <a class="dropdown-item" href="{{ route('patient.dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('profile.settings') }}">Profile Settings</a>
+                            @endif
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
             </ul>
         </div>
     </nav>
