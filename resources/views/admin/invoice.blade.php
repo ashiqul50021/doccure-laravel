@@ -12,7 +12,7 @@
 
             <div class="row">
                 <div class="col-sm-6 m-b-20">
-                    <img alt="Logo" class="inv-logo img-fluid" src="{{ asset('backend/img/logo.png') }}" style="max-height: 50px;">
+                    <img alt="Logo" class="inv-logo img-fluid" src="{{ !empty($siteSettings['logo']) ? asset($siteSettings['logo']) : asset('assets/img/logo.png') }}" style="max-height: 50px;">
                 </div>
                 <div class="col-sm-6 m-b-20">
                     <div class="invoice-details">

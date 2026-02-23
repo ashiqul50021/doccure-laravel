@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="invoice-logo">
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="logo">
+                                        <img src="{{ !empty($siteSettings['logo']) ? asset($siteSettings['logo']) : asset('assets/img/logo.png') }}" alt="logo">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

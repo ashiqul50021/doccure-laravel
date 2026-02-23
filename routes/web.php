@@ -37,6 +37,8 @@ Route::get('/orders/{id}/invoice', [App\Http\Controllers\ProductController::clas
 Route::get('/doctor-profile/{id}', [App\Http\Controllers\DoctorController::class, 'show'])->name('doctor.profile');
 Route::get('/doctor-register', [App\Http\Controllers\AuthController::class, 'showDoctorRegisterForm'])->name('doctor.register');
 Route::post('/doctor-register', [App\Http\Controllers\AuthController::class, 'registerDoctor'])->name('doctor.register.submit');
+Route::get('/doctor-login', [App\Http\Controllers\AuthController::class, 'showDoctorLoginForm'])->name('doctor.login');
+Route::post('/doctor-login', [App\Http\Controllers\AuthController::class, 'doctorLogin'])->name('doctor.login.submit');
 
 // Doctor Backend Routes
 require __DIR__ . '/doctor.php';
@@ -50,8 +52,7 @@ Route::view('/chat-doctor', 'frontend.chat-doctor')->name('chat.doctor');
 Route::view('/voice-call', 'frontend.voice-call')->name('voice.call');
 Route::view('/video-call', 'frontend.video-call')->name('video.call');
 
-// Reviews
-Route::view('/reviews', 'frontend.reviews')->name('reviews');
+
 
 // Auth Pages
 // Auth Routes
@@ -69,7 +70,7 @@ Route::view('/components', 'frontend.components')->name('components');
 Route::view('/blank-page', 'frontend.blank-page')->name('blank.page');
 Route::view('/privacy-policy', 'frontend.privacy-policy')->name('privacy');
 Route::view('/terms-condition', 'frontend.term-condition')->name('terms');
-Route::view('/social-media', 'frontend.social-media')->name('social.media');
+
 
 // Maintenance Routes
 Route::get('/migrate', function () {

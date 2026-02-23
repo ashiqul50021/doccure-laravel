@@ -206,13 +206,13 @@
         <div class="split-right">
             <div class="split-form-container">
                 <img src="{{ !empty($siteSettings['logo']) ? asset($siteSettings['logo']) : asset('assets/img/logo.png') }}" class="form-header-logo" alt="Invision Logo">
-                
+
                 <h3 class="form-title">Join as Doctor</h3>
                 <p class="form-subtitle">Enter your details to create a new account</p>
 
                 <form action="{{ route('doctor.register.submit') }}" method="POST">
                     @csrf
-                    
+
                     <div class="mb-3">
                         <label class="split-label">Full Name</label>
                         <input type="text" class="form-control split-input" name="name" required value="{{ old('name') }}" placeholder="Dr. John Doe">
@@ -261,7 +261,7 @@
                     </div>
 
                     <div class="text-center mt-4">
-                        <span style="font-size: 0.875rem; color: #4b5563;">Already have an account? <a href="{{ route('login') }}" style="color: #345cce; font-weight: 600; text-decoration: none;">Sign In</a></span>
+                        <span style="font-size: 0.875rem; color: #4b5563;">Already have an account? <a href="{{ route('doctor.login') }}" style="color: #345cce; font-weight: 600; text-decoration: none;">Sign In</a></span>
                     </div>
                 </form>
             </div>

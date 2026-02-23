@@ -10,7 +10,9 @@
                     <!-- Footer Widget -->
                     <div class="footer-widget footer-about">
                         <div class="footer-logo">
-                            <h2 style="color: #fff; font-weight: 700; margin-bottom: 0;">ABCSHEBA</h2>
+                            <a href="{{ route('home') }}">
+                                <img src="{{ !empty($siteSettings['logo']) ? asset($siteSettings['logo']) : asset('assets/img/logo.png') }}" alt="Logo" class="img-fluid" style="max-height: 50px;">
+                            </a>
                         </div>
                         <div class="footer-about-content">
                             <p>Book appointments with the best doctors and specialists nearest to you. </p>

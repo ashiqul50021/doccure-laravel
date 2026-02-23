@@ -54,6 +54,9 @@
     <!-- jQuery -->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 
+    <!-- Popper JS (required for Bootstrap 5 dropdowns) -->
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+
     <!-- Bootstrap Core JS -->
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 
