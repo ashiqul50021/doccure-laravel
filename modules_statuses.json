@@ -1,5 +1,6 @@
 {
     "Ecommerce": true,
     "Doctors": true,
-    "Courses": true
+    "Courses": true,
+    "Site": true
 }
