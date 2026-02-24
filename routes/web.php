@@ -31,8 +31,7 @@ Route::view('/chat-doctor', 'frontend.chat-doctor')->name('chat.doctor');
 Route::view('/voice-call', 'frontend.voice-call')->name('voice.call');
 Route::view('/video-call', 'frontend.video-call')->name('video.call');
 
-// Reviews
-Route::view('/reviews', 'frontend.reviews')->name('reviews');
+
 
 // Auth Pages
 // Auth Routes
@@ -50,7 +49,7 @@ Route::view('/components', 'frontend.components')->name('components');
 Route::view('/blank-page', 'frontend.blank-page')->name('blank.page');
 Route::view('/privacy-policy', 'frontend.privacy-policy')->name('privacy');
 Route::view('/terms-condition', 'frontend.term-condition')->name('terms');
-Route::view('/social-media', 'frontend.social-media')->name('social.media');
+
 
 // Maintenance Routes
 Route::get('/migrate', function () {

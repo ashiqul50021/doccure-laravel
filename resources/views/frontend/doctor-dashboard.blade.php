@@ -8,108 +8,9 @@
 <style>
     /* Global Dashboard Adjustments */
     .content {
-        background-color: #f8f9fa; /* Light, clean background for the dashboard */
+        background-color: #f8f9fa;
         padding: 40px 0;
     }
-
-    /* Fixed Sidebar Styling */
-    .profile-sidebar {
-        background: #fff;
-        border-radius: 15px;
-        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05); /* Soft, modern shadow */
-        border: none;
-        overflow: hidden;
-        margin-bottom: 30px;
-        padding-bottom: 1px; /* Prevent margin collapse */
-    }
-
-    .profile-info-widget {
-        padding: 30px 20px;
-        text-align: center;
-        border-bottom: 1px solid #f0f0f0;
-        background: linear-gradient(180deg, rgba(52, 92, 206, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
-    }
-
-    .booking-doc-img {
-        display: inline-block;
-        margin-bottom: 15px;
-        position: relative;
-    }
-
-    .booking-doc-img img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        border: 4px solid #fff;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        object-fit: cover;
-    }
-
-    .profile-det-info h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #272b41;
-        margin-bottom: 5px;
-    }
-
-    .patient-details h5 {
-        font-size: 0.9rem;
-        color: #757575;
-        font-weight: 500;
-    }
-
-    /* Sidebar Menu Styling */
-    .dashboard-menu {
-        padding: 15px 0;
-    }
-
-    .dashboard-menu ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .dashboard-menu ul li a {
-        display: flex;
-        align-items: center;
-        padding: 14px 25px;
-        color: #4b5563;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        border-left: 3px solid transparent;
-        font-size: 0.95rem;
-    }
-
-    /* CRITICAL FIX for broken FontAwesome icons showing as underscores */
-    .dashboard-menu ul li a i {
-        font-family: "Font Awesome 5 Free", "FontAwesome", sans-serif !important;
-        font-weight: 900 !important;
-        font-size: 1.1rem;
-        width: 28px;
-        margin-right: 15px;
-        color: #9ca3af;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
-
-    .dashboard-menu ul li a span {
-        flex: 1;
-    }
-
-    .dashboard-menu ul li a:hover,
-    .dashboard-menu ul li.active a {
-        background-color: rgba(52, 92, 206, 0.05); /* Slight blue highlight */
-        color: #345cce; /* Deep blue from split-screen style */
-        border-left-color: #345cce;
-    }
-
-    .dashboard-menu ul li a:hover i,
-    .dashboard-menu ul li.active a i {
-        color: #345cce;
-    }
-
-    .dashboard-menu ul li a .unread-msg {
         background-color: #f73563;
         color: #fff;
         padding: 2px 8px;
@@ -155,7 +56,7 @@
     .circle-bar1 { background: rgba(52, 92, 206, 0.1); } /* Blue */
     .circle-bar2 { background: rgba(9, 229, 171, 0.1); }  /* Teal */
     .circle-bar3 { background: rgba(247, 53, 99, 0.1); }  /* Red */
-    
+
     .circle-bar img {
         width: 32px;
         height: 32px;
@@ -211,13 +112,16 @@
     }
 
     .appointment-tab .nav-tabs .nav-link:hover {
-        color: #345cce;
+        color: #1D4ED8;
         background: transparent;
     }
 
-    .appointment-tab .nav-tabs .nav-link.active {
-        color: #345cce;
-        background: transparent;
+    .appointment-tab .nav-tabs .nav-link.active,
+    .appointment-tab .nav-tabs .nav-link.active:hover,
+    .appointment-tab .nav-tabs .nav-link.active:focus {
+        color: #1D4ED8 !important;
+        background-color: transparent !important;
+        border-color: transparent !important;
     }
 
     .appointment-tab .nav-tabs .nav-link.active::after {
@@ -227,9 +131,9 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background-color: #345cce;
+        background-color: #1D4ED8;
     }
-    
+
     .card-table {
         border: none;
         border-radius: 15px;
@@ -300,7 +204,7 @@
     .table-avatar a:hover {
         color: #345cce;
     }
-    
+
     .table-avatar span {
         display: block;
         color: #9ca3af;
@@ -351,99 +255,7 @@
             <div class="row">
                 <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
 
-                    <!-- Profile Sidebar -->
-                    <div class="profile-sidebar">
-                        <div class="widget-profile pro-widget-content">
-                            <div class="profile-info-widget">
-                                <a href="#" class="booking-doc-img">
-                                    <img src="{{ $doctor->profile_image ? asset('storage/' . $doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-02.jpg') }}"
-                                        alt="User Image">
-                                </a>
-                                <div class="profile-det-info">
-                                    <h3>{{ $doctor->user->name }}</h3>
-
-                                    <div class="patient-details">
-                                        <h5 class="mb-0">{{ $doctor->qualification ?? 'MBBS, MD' }} -
-                                            {{ $doctor->speciality->name ?? 'General' }}</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dashboard-widget">
-                            <nav class="dashboard-menu">
-                                <ul>
-                                    <li class="active">
-                                        <a href="{{ route('doctor.dashboard') }}">
-                                            <i class="fas fa-columns"></i>
-                                            <span>Dashboard</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('appointments') }}">
-                                            <i class="fas fa-calendar-check"></i>
-                                            <span>Appointments</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('my.patients') }}">
-                                            <i class="fas fa-user-injured"></i>
-                                            <span>My Patients</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('schedule.timings') }}">
-                                            <i class="fas fa-hourglass-start"></i>
-                                            <span>Schedule Timings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('invoices') }}">
-                                            <i class="fas fa-file-invoice"></i>
-                                            <span>Invoices</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('reviews') }}">
-                                            <i class="fas fa-star"></i>
-                                            <span>Reviews</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('chat.doctor') }}">
-                                            <i class="fas fa-comments"></i>
-                                            <span>Message</span>
-                                            <small class="unread-msg">23</small>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('doctor.profile.settings') }}">
-                                            <i class="fas fa-user-cog"></i>
-                                            <span>Profile Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('social.media') }}">
-                                            <i class="fas fa-share-alt"></i>
-                                            <span>Social Media</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('doctor.change.password') }}">
-                                            <i class="fas fa-lock"></i>
-                                            <span>Change Password</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('login') }}">
-                                            <i class="fas fa-sign-out-alt"></i>
-                                            <span>Logout</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <!-- /Profile Sidebar -->
+                    @include('frontend.includes.doctor-sidebar')
 
                 </div>
 
@@ -513,7 +325,7 @@
                             <div class="appointment-tab">
 
                                 <!-- Appointment Tab -->
-                                <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+                                <ul class="nav nav-tabs">
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#upcoming-appointments"
                                             data-bs-toggle="tab">Upcoming</a>

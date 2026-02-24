@@ -11,10 +11,11 @@ class ScheduleController extends Controller
 {
     public function index()
     {
-        $doctor = Auth::user()->doctor; // Assuming relationship user->doctor exists
+        $doctor = Auth::user()->doctor;
         if (!$doctor) {
             return redirect()->route('login');
         }
+        $doctor->load(['user', 'speciality']);
 
         $schedules = Schedule::where('doctor_id', $doctor->id)->get();
         $groupedSchedules = [];
@@ -23,7 +24,7 @@ class ScheduleController extends Controller
             $groupedSchedules[$schedule->day][] = $schedule;
         }
 
-        return view('frontend.schedule-timings', compact('groupedSchedules'));
+        return view('frontend.schedule-timings', compact('doctor', 'groupedSchedules'));
     }
 
     public function store(Request $request)

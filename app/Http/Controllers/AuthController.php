@@ -15,6 +15,11 @@ class AuthController extends Controller
     // Show Patient Login (Default)
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            return Auth::user()->role === 'doctor'
+                ? redirect()->route('doctor.dashboard')
+                : redirect()->route('patient.dashboard');
+        }
         return view('frontend.login');
     }
 
@@ -46,9 +51,53 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
+    // Show Doctor Login
+    public function showDoctorLoginForm()
+    {
+        if (Auth::check() && Auth::user()->role === 'doctor') {
+            return redirect()->route('doctor.dashboard');
+        }
+        return view('frontend.doctor-login');
+    }
+
+    // Handle Doctor Login
+    public function doctorLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            // Check if the user is a doctor
+            if ($user->role !== 'doctor') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return back()->withErrors([
+                    'email' => 'This account is not registered as a doctor. Please use the patient login instead.',
+                ])->onlyInput('email');
+            }
+
+            $request->session()->regenerate();
+            return redirect()->route('doctor.dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
     // Show Patient Register
     public function showPatientRegisterForm()
     {
+        if (Auth::check()) {
+            return Auth::user()->role === 'doctor'
+                ? redirect()->route('doctor.dashboard')
+                : redirect()->route('patient.dashboard');
+        }
         return view('frontend.register');
     }
 
@@ -84,6 +133,11 @@ class AuthController extends Controller
     // Show Doctor Register
     public function showDoctorRegisterForm()
     {
+        if (Auth::check()) {
+            return Auth::user()->role === 'doctor'
+                ? redirect()->route('doctor.dashboard')
+                : redirect()->route('patient.dashboard');
+        }
         return view('frontend.doctor-register');
     }
 

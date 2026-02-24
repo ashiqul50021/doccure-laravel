@@ -391,6 +391,16 @@
     display: none;
 }
 
+/* Fix: Bootstrap 5 dropdown visibility override */
+/* style.css uses visibility/opacity for dropdown transitions but only targets li.show */
+/* Bootstrap 5 adds .show to the .dropdown-menu itself, so we need this rule */
+.header-navbar-rht .dropdown-menu.show {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    display: block !important;
+}
+
 /* =====================================
    HERO BANNER STYLES
 ===================================== */
