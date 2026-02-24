@@ -24,9 +24,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/doctors/{id}/approve', [App\Http\Controllers\AdminController::class, 'approveDoctor'])->name('doctors.approve');
     Route::post('/doctors/{id}/reject', [App\Http\Controllers\AdminController::class, 'rejectDoctor'])->name('doctors.reject');
 
-    // Resource Routes
-    Route::resource('doctors', App\Http\Controllers\Admin\DoctorController::class)->except(['index']);
-
     // Admin Schedule Management
     Route::get('/doctors/{doctor}/schedule', [App\Http\Controllers\Admin\DoctorScheduleController::class, 'edit'])->name('doctors.schedule');
     Route::post('/doctors/{doctor}/schedule', [App\Http\Controllers\Admin\DoctorScheduleController::class, 'update'])->name('doctors.schedule.update');
@@ -48,11 +45,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/reviews', [App\Http\Controllers\AdminController::class, 'reviews'])->name('reviews');
     Route::get('/transactions', [App\Http\Controllers\AdminController::class, 'transactions'])->name('transactions');
     Route::get('/invoice-report', [App\Http\Controllers\AdminController::class, 'reports'])->name('invoice.report');
-
-    Route::resource('specialities', App\Http\Controllers\Admin\SpecialityController::class);
-    Route::resource('product-categories', App\Http\Controllers\Admin\ProductCategoryController::class);
-    Route::resource('products', App\Http\Controllers\Admin\ProductController::class);
-    Route::resource('advertisements', App\Http\Controllers\Admin\AdvertisementController::class);
 
     // Site Settings
     Route::get('/site-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'index'])->name('site-settings.index');
