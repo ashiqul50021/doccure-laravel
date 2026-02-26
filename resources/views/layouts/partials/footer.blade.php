@@ -47,12 +47,12 @@
                     <div class="footer-widget footer-menu">
                         <h2 class="footer-title">For Patients</h2>
                         <ul>
-                            <li><a href="{{ route('search') }}"><i class="fas fa-angle-double-right"></i> Search for
+                            <li><a href="{{ route('doctors.search') }}"><i class="fas fa-angle-double-right"></i> Search for
                                     Doctors</a></li>
                             <li><a href="{{ route('login') }}"><i class="fas fa-angle-double-right"></i> Login</a></li>
                             <li><a href="{{ route('register') }}"><i class="fas fa-angle-double-right"></i> Register</a>
                             </li>
-                            <li><a href="{{ route('search') }}"><i class="fas fa-angle-double-right"></i> Booking</a>
+                            <li><a href="{{ route('doctors.search') }}"><i class="fas fa-angle-double-right"></i> Booking</a>
                             </li>
                             <li><a href="{{ route('patient.dashboard') }}"><i class="fas fa-angle-double-right"></i>
                                     Patient Dashboard</a></li>
@@ -68,13 +68,13 @@
                     <div class="footer-widget footer-menu">
                         <h2 class="footer-title">For Doctors</h2>
                         <ul>
-                            <li><a href="{{ route('appointments') }}"><i class="fas fa-angle-double-right"></i>
+                            <li><a href="{{ route('doctors.appointments') }}"><i class="fas fa-angle-double-right"></i>
                                     Appointments</a></li>
                             <li><a href="{{ route('chat') }}"><i class="fas fa-angle-double-right"></i> Chat</a></li>
                             <li><a href="{{ route('login') }}"><i class="fas fa-angle-double-right"></i> Login</a></li>
                             <li><a href="{{ route('doctor.register') }}"><i class="fas fa-angle-double-right"></i>
                                     Register</a></li>
-                            <li><a href="{{ route('doctor.dashboard') }}"><i class="fas fa-angle-double-right"></i>
+                            <li><a href="{{ route('doctors.dashboard') }}"><i class="fas fa-angle-double-right"></i>
                                     Doctor Dashboard</a></li>
                         </ul>
                     </div>

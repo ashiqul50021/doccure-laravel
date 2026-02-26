@@ -95,7 +95,7 @@
                                             class="btn btn-outline-primary me-2">
                                             <i class="fas fa-file-invoice me-2"></i>Invoice
                                         </a>
-                                        <a href="{{ route('products') }}" class="btn btn-primary">
+                                        <a href="{{ route('ecommerce.products') }}" class="btn btn-primary">
                                             <i class="fas fa-shopping-bag me-2"></i>Continue Shopping
                                         </a>
                                         <a href="{{ route('home') }}" class="btn btn-outline-secondary">

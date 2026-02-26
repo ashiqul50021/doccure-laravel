@@ -62,10 +62,10 @@
                             <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="{{ request()->routeIs('search') ? 'active' : '' }}">
-                            <a href="{{ route('search') }}">Doctors</a>
+                            <a href="{{ route('doctors.search') }}">Doctors</a>
                         </li>
                         <li class="{{ request()->routeIs('products*') ? 'active' : '' }}">
-                            <a href="{{ route('products') }}" style="text-transform: capitalize;">Products</a>
+                            <a href="{{ route('ecommerce.products') }}" style="text-transform: capitalize;">Products</a>
                         </li>
                     @endif
                     <!-- Always show Courses menu -->
@@ -87,7 +87,7 @@
             </div>
             <ul class="nav header-navbar-rht">
                 <li class="nav-item">
-                    <a class="nav-link cart-icon-wrapper" href="{{ route('cart') }}" id="cart-icon-btn" title="Shopping Cart">
+                    <a class="nav-link cart-icon-wrapper" href="{{ route('ecommerce.cart') }}" id="cart-icon-btn" title="Shopping Cart">
                         <div class="cart-icon-circle">
                             <i class="fas fa-shopping-bag"></i>
                         </div>
@@ -130,7 +130,7 @@
                             </div>
                             @if(Auth::user()->role === 'doctor' || Auth::user()->is_doctor)
                                 <!-- Assuming role check or similar -->
-                                <a class="dropdown-item" href="{{ route('doctor.dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('doctors.dashboard') }}">Dashboard</a>
                                 <a class="dropdown-item" href="{{ route('doctor.profile.settings') }}">Profile Settings</a>
                             @else
                                 <a class="dropdown-item" href="{{ route('patient.dashboard') }}">Dashboard</a>

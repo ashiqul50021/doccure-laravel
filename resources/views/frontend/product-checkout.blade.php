@@ -116,7 +116,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('order.place') }}" method="POST">
+            <form action="{{ route('ecommerce.order.place') }}" method="POST">
                 @csrf
                 <div class="row">
                     <!-- Billing Details -->
@@ -306,7 +306,7 @@
                                 <button type="submit" class="btn btn-primary w-100 btn-sm py-2">
                                     <i class="fas fa-check-circle me-2"></i>Place Order
                                 </button>
-                                <a href="{{ route('cart') }}" class="btn btn-outline-secondary w-100 mt-3">
+                                <a href="{{ route('ecommerce.cart') }}" class="btn btn-outline-secondary w-100 mt-3">
                                     <i class="fas fa-arrow-left me-2"></i>Back to Cart
                                 </a>
                             </div>

@@ -9,7 +9,7 @@
         </a>
 
         <!-- Products (Pharmacy) -->
-        <a href="{{ route('products') }}"
+        <a href="{{ route('ecommerce.products') }}"
             class="nav-item {{ Route::is('products') || Route::is('cart') ? 'active' : '' }}">
             <div class="nav-icon-container">
                 <i class="fas fa-capsules"></i>
@@ -27,7 +27,7 @@
         </a>
 
         <!-- Doctors -->
-        <a href="{{ route('search') }}"
+        <a href="{{ route('doctors.search') }}"
             class="nav-item {{ Route::is('search') || Route::is('doctor.profile') ? 'active' : '' }}">
             <div class="nav-icon-container">
                 <i class="fas fa-user-md"></i>

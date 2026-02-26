@@ -225,7 +225,7 @@
                                                         <img src="{{ $item['image'] ? asset($item['image']) : asset('assets/img/products/default-product.png') }}"
                                                             alt="{{ $item['name'] }}" class="cart-product-img me-3">
                                                         <div>
-                                                            <a href="{{ route('products.show', $productId) }}"
+                                                            <a href="{{ route('ecommerce.products.show', $productId) }}"
                                                                 class="cart-product-name">{{ $item['name'] }}</a>
                                                             <div class="text-muted small mt-1">ID: #{{ $productId }}</div>
                                                         </div>
@@ -279,7 +279,7 @@
                                     Proceed to Checkout <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
 
-                                <a href="{{ route('products') }}"
+                                <a href="{{ route('ecommerce.products') }}"
                                     class="d-block text-center mt-3 text-muted text-decoration-none small">
                                     <i class="fas fa-long-arrow-alt-left me-1"></i> Continue Shopping
                                 </a>
@@ -297,7 +297,7 @@
                     </div>
                     <h3>Your cart is empty</h3>
                     <p class="text-muted mb-4">Start shopping to add items to your cart.</p>
-                    <a href="{{ route('products') }}" class="btn btn-primary btn-lg px-5 rounded-pill">
+                    <a href="{{ route('ecommerce.products') }}" class="btn btn-primary btn-lg px-5 rounded-pill">
                         Browse Products
                     </a>
                 </div>

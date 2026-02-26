@@ -261,7 +261,7 @@
                     </div>
 
                     <div class="text-center mt-4">
-                        <span style="font-size: 0.875rem; color: #4b5563;">Already have an account? <a href="{{ route('doctor.login') }}" style="color: #345cce; font-weight: 600; text-decoration: none;">Sign In</a></span>
+                        <span style="font-size: 0.875rem; color: #4b5563;">Already have an account? <a href="{{ route('login') }}" style="color: #345cce; font-weight: 600; text-decoration: none;">Sign In</a></span>
                     </div>
                 </form>
             </div>

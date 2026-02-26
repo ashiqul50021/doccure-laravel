@@ -70,7 +70,7 @@
                                     <span>Trusted By <strong>{{ $bannerSettings['banner_stats_text'] ?? '700,000' }}</strong>
                                         Patients</span>
                                 </div>
-                                <a href="{{ route('search') }}" class="btn-hero-cta">
+                                <a href="{{ route('doctors.search') }}" class="btn-hero-cta">
                                     Consult a Doctor Now <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -93,7 +93,7 @@
             <div class="hero-search-section">
                 <!-- Main Search Bar -->
                 <div class="hero-search-bar">
-                    <form action="{{ route('search') }}" class="hero-search-form" id="filterSearchForm">
+                    <form action="{{ route('doctors.search') }}" class="hero-search-form" id="filterSearchForm">
                         <!-- District - Custom Searchable Dropdown -->
                         <div class="search-field search-select">
                             <i class="fas fa-map-marker-alt"></i>
@@ -233,7 +233,7 @@
                         @foreach($searchSpecialities as $speciality)
                         <!-- Slider Item -->
                         <div class="speicality-item text-center">
-                            <a href="{{ route('search', ['speciality_id' => $speciality->id]) }}" class="speciality-link">
+                            <a href="{{ route('doctors.search', ['speciality_id' => $speciality->id]) }}" class="speciality-link">
                                 <div class="speicality-img">
                                     <img src="{{ asset($speciality->image) }}" class="img-fluid" alt="Speciality">
                                     <span class="hover-icon"><i class="fas fa-chevron-right"></i></span>
@@ -306,7 +306,7 @@
 
                                     <!-- Product Image -->
                                     <div class="product-image-container">
-                                        <a href="{{ route('products.show', $product->id) }}">
+                                        <a href="{{ route('ecommerce.products.show', $product->id) }}">
                                             @php
                                                 $image = $product->image;
                                                 if (!$image && !empty($product->gallery) && is_array($product->gallery)) {
@@ -332,7 +332,7 @@
 
                                         <!-- Title -->
                                         <h4 class="product-name">
-                                            <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
+                                            <a href="{{ route('ecommerce.products.show', $product->id) }}">{{ $product->name }}</a>
                                         </h4>
 
                                         <!-- Price & Actions -->
@@ -345,7 +345,7 @@
                                                     <span class="price-current">৳{{ number_format($product->price, 0) }}</span>
                                                 @endif
                                             </div>
-                                            <form action="{{ route('cart.add') }}" method="POST" class="product-actions-form">
+                                            <form action="{{ route('ecommerce.cart.add') }}" method="POST" class="product-actions-form">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <input type="hidden" name="quantity" value="1">
@@ -367,7 +367,7 @@
 
                     <!-- View All Button -->
                     <div class="text-center mt-4">
-                        <a href="{{ route('products') }}" class="btn-view-all-arrow">
+                        <a href="{{ route('ecommerce.products') }}" class="btn-view-all-arrow">
                             View All Products <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -467,7 +467,7 @@
 
                     <!-- View All Button -->
                     <div class="text-center mt-4">
-                        <a href="{{ route('search') }}" class="btn-view-all-arrow">
+                        <a href="{{ route('doctors.search') }}" class="btn-view-all-arrow">
                             View All Doctors <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -515,7 +515,7 @@
                             <span class="price">৳{{ number_format($package->price, 0) }}</span>
                             <span class="period">{{ $package->price_label }}</span>
                         </div>
-                        <a href="{{ $package->link ?? route('products') }}" class="btn-package">
+                        <a href="{{ $package->link ?? route('ecommerce.products') }}" class="btn-package">
                             Book Now <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -525,7 +525,7 @@
 
             <!-- View All Button -->
             <div class="text-center mt-4">
-                <a href="{{ route('products') }}" class="btn-view-all-arrow">
+                <a href="{{ route('ecommerce.products') }}" class="btn-view-all-arrow">
                     View All Packages <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -569,7 +569,7 @@
                                     <img src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}" alt="Instructor">
                                     <span>Dr. Sarah Wilson</span>
                                 </div>
-                                <a href="{{ route('products') }}" class="btn-enroll">Enroll <i
+                                <a href="{{ route('ecommerce.products') }}" class="btn-enroll">Enroll <i
                                         class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -599,7 +599,7 @@
                                     <img src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}" alt="Instructor">
                                     <span>Dr. John Smith</span>
                                 </div>
-                                <a href="{{ route('products') }}" class="btn-enroll">Enroll <i
+                                <a href="{{ route('ecommerce.products') }}" class="btn-enroll">Enroll <i
                                         class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -629,7 +629,7 @@
                                     <img src="{{ asset('assets/img/doctors/doctor-thumb-03.jpg') }}" alt="Instructor">
                                     <span>Dr. Emily Brown</span>
                                 </div>
-                                <a href="{{ route('products') }}" class="btn-enroll">Enroll <i
+                                <a href="{{ route('ecommerce.products') }}" class="btn-enroll">Enroll <i
                                         class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -639,7 +639,7 @@
 
             <!-- View All Button -->
             <div class="text-center mt-4">
-                <a href="{{ route('products') }}" class="btn-view-all-arrow">
+                <a href="{{ route('ecommerce.products') }}" class="btn-view-all-arrow">
                     View All Courses <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -665,7 +665,7 @@
                             <li><i class="fas fa-check-circle text-primary me-2"></i> Experienced Doctors</li>
                         </ul>
 
-                        <a href="{{ route('search') }}" class="btn btn-primary">Book Now</a>
+                        <a href="{{ route('doctors.search') }}" class="btn btn-primary">Book Now</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -1032,7 +1032,7 @@
         <div class="container text-center position-relative z-index-1">
             <h2 class="display-5 font-weight-bold mb-3 text-white">Ready to Book Your Appointment?</h2>
             <p class="lead mb-5 text-white-50">Join thousands of patients who trust Doccure for their healthcare needs.</p>
-            <a href="{{ route('search') }}" class="btn btn-light cta-btn">
+            <a href="{{ route('doctors.search') }}" class="btn btn-light cta-btn">
                 <i class="fas fa-calendar-check me-2"></i> Find a Doctor Now
             </a>
         </div>

@@ -15,12 +15,12 @@
             <div class="row">
                 <!-- Sidebar Filter -->
                 <div class="col-md-12 col-lg-4 col-xl-3 remove-padding-mobile">
-                    <form id="productFilterForm" method="GET" action="{{ route('products') }}">
+                    <form id="productFilterForm" method="GET" action="{{ route('ecommerce.products') }}">
                     <div class="search-filter-premium sticky-sidebar">
                         <!-- Header -->
                         <div class="filter-header">
                             <h4>FILTERS</h4>
-                            <a href="{{ route('products') }}" class="reset-btn" style="text-decoration: none;">
+                            <a href="{{ route('ecommerce.products') }}" class="reset-btn" style="text-decoration: none;">
                                 Clear All
                             </a>
                         </div>
@@ -117,7 +117,7 @@
 
                                     <!-- Product Image -->
                                     <div class="product-image-container">
-                                        <a href="{{ route('products.show', $product->id) }}">
+                                        <a href="{{ route('ecommerce.products.show', $product->id) }}">
                                             <img src="{{ $product->image ? asset($product->image) : asset('assets/img/products/default-product.png') }}"
                                                 class="product-main-img" alt="{{ $product->name }}">
                                         </a>
@@ -137,7 +137,7 @@
 
                                         <!-- Title -->
                                         <h4 class="product-name">
-                                            <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
+                                            <a href="{{ route('ecommerce.products.show', $product->id) }}">{{ $product->name }}</a>
                                         </h4>
 
                                         <!-- Price & Actions -->
@@ -150,7 +150,7 @@
                                                     <span class="price-current">৳{{ number_format($product->price, 2) }}</span>
                                                 @endif
                                             </div>
-                                            <form action="{{ route('cart.add') }}" method="POST" class="product-actions-form">
+                                            <form action="{{ route('ecommerce.cart.add') }}" method="POST" class="product-actions-form">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <input type="hidden" name="quantity" value="1">

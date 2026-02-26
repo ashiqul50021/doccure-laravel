@@ -22,7 +22,7 @@
             <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
 
                 <!-- Premium Search Filter -->
-                <form id="searchFilterForm" method="GET" action="{{ route('search') }}">
+                <form id="searchFilterForm" method="GET" action="{{ route('doctors.search') }}">
                 <div class="search-filter-premium">
                     <!-- Header -->
                     <div class="filter-header">
@@ -283,7 +283,7 @@
         var url = new URL(window.location.href);
         url.searchParams.set('sort_by', value);
         window.history.pushState({}, '', url);
-        
+
         submitFilterForm();
     }
 
@@ -292,7 +292,7 @@
         var $form = $('#searchFilterForm');
         var formData = $form.serialize();
         var sortBy = new URL(window.location.href).searchParams.get('sort_by') || 'relevance';
-        
+
         // Add sort_by to formData
         if (formData) {
             formData += '&sort_by=' + sortBy;
@@ -309,7 +309,7 @@
             data: formData,
             success: function(response) {
                 $('#doctor-list-container').html(response).css('opacity', '1');
-                
+
                 // Update URL without reload
                 var newUrl = new URL(window.location.href);
                 // We should update all params from form but for now just pushState is enough visually
@@ -338,11 +338,11 @@
 
         // Allow interacting with form without reload
         submitFilterForm();
-        
+
         if (districtId) {
             $areaSelect.prop('disabled', false);
             // Don't clear content immediately, looks bad. Just load.
-            
+
             $.ajax({
                 url: '/api/areas/' + districtId,
                 type: 'GET',
@@ -365,12 +365,12 @@
     $('#filterArea, input[name="select_specialist[]"], input[name="gender[]"], input[name="experience"], input[name="rating"], input[name="online_consultation"], input[name="home_visit"], input[name="verified_only"]').on('change', function() {
         submitFilterForm();
     });
-    
+
     // Select dropdowns specifically (if not covered above)
     $('select[name="experience"]').on('change', function() {
         submitFilterForm();
     });
-    
+
     // Prevent form actual submit
     $('#searchFilterForm').on('submit', function(e) {
         e.preventDefault();
@@ -421,7 +421,7 @@
                 additionalMarginTop: 100
             });
         }
-        
+
         // Hide submit button since we have auto-submit and AJAX
         $('.filter-search-btn').hide();
 
@@ -440,7 +440,7 @@
                         html += '<option value="' + area.id + '" ' + isSelected + '>' + area.name + '</option>';
                     });
                     $('#filterArea').html(html).prop('disabled', false);
-                    
+
                     // Re-attach event listener for new elements
                     $('#filterArea').off('change').on('change', function() {
                         submitFilterForm();

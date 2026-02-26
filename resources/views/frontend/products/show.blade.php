@@ -61,7 +61,7 @@
                                 <p class="text-danger"><i class="fas fa-times-circle me-2"></i>Out of Stock</p>
                             @endif
 
-                            <form action="{{ route('cart.add') }}" method="POST" class="mt-4">
+                            <form action="{{ route('ecommerce.cart.add') }}" method="POST" class="mt-4">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <div class="row align-items-center">
@@ -73,7 +73,7 @@
                                         <button type="submit" class="btn btn-primary btn-lg mt-4" {{ ($product->stock_quantity ?? 0) < 1 ? 'disabled' : '' }}>
                                             <i class="fas fa-shopping-cart me-2"></i>Add to Cart
                                         </button>
-                                        <a href="{{ route('cart') }}" class="btn btn-outline-primary btn-lg mt-4">
+                                        <a href="{{ route('ecommerce.cart') }}" class="btn btn-outline-primary btn-lg mt-4">
                                             <i class="fas fa-eye me-2"></i>View Cart
                                         </a>
                                     </div>
@@ -97,12 +97,12 @@
                     @foreach($relatedProducts as $relProduct)
                     <div class="col-md-6 col-lg-3">
                         <div class="card product-card h-100">
-                            <a href="{{ route('products.show', $relProduct->id) }}">
+                            <a href="{{ route('ecommerce.products.show', $relProduct->id) }}">
                                 <img src="{{ $relProduct->image ? asset($relProduct->image) : asset('assets/img/products/default-product.png') }}" class="card-img-top" alt="{{ $relProduct->name }}" style="height: 150px; object-fit: cover;">
                             </a>
                             <div class="card-body">
                                 <h6 class="card-title">
-                                    <a href="{{ route('products.show', $relProduct->id) }}">{{ $relProduct->name }}</a>
+                                    <a href="{{ route('ecommerce.products.show', $relProduct->id) }}">{{ $relProduct->name }}</a>
                                 </h6>
                                 <div class="product-price">
                                     @if($relProduct->sale_price)
