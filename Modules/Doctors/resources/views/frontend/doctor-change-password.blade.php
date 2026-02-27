@@ -30,7 +30,7 @@
                         <nav class="dashboard-menu">
                             <ul>
                                 <li>
-                                    <a href="{{ route('doctor.dashboard') }}">
+                                    <a href="{{ route('doctors.dashboard') }}">
                                         <i class="fas fa-columns"></i>
                                         <span>Dashboard</span>
                                     </a>

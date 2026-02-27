@@ -125,7 +125,7 @@
     <div class="dashboard-widget">
         <nav class="dashboard-menu">
             <ul>
-                <li class="{{ request()->routeIs('doctor.dashboard') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('doctors.dashboard') ? 'active' : '' }}">
                     <a href="{{ route('doctors.dashboard') }}">
                         <i class="fas fa-columns"></i>
                         <span>Dashboard</span>

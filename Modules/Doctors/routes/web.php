@@ -28,6 +28,7 @@ Route::name('doctors.')->group(function () {
     Route::view('/booking-success', 'doctors::frontend.booking-success')->name('booking.success');
 
     // Doctor Dashboard & Settings
+    Route::middleware(['auth', 'role:doctor'])->group(function () {
     Route::get('/doctor-dashboard', [\App\Http\Controllers\Doctor\DashboardController::class, 'index'])->name('dashboard');
     Route::post('/appointment/accept/{id}', [\App\Http\Controllers\Doctor\DashboardController::class, 'acceptAppointment'])->name('appointment.accept');
     Route::post('/appointment/cancel/{id}', [\App\Http\Controllers\Doctor\DashboardController::class, 'cancelAppointment'])->name('appointment.cancel');
@@ -71,6 +72,7 @@ Route::name('doctors.')->group(function () {
     // Prescriptions
     Route::view('/add-prescription', 'frontend.add-prescription')->name('add.prescription');
     Route::view('/edit-prescription', 'frontend.edit-prescription')->name('edit.prescription');
+    });
 });
 
 /*
@@ -79,7 +81,7 @@ Route::name('doctors.')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->name('doctors.admin.')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('doctors.admin.')->group(function () {
     Route::resource('doctors', AdminDoctorController::class);
     Route::resource('specialities', AdminSpecialityController::class);
 });

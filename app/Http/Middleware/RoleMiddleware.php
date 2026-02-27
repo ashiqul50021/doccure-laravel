@@ -17,7 +17,15 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, $role): Response
     {
         if (!Auth::check()) {
-            return redirect()->route('login');
+            if ($role === 'admin') {
+                return redirect()->route('admin.login');
+            }
+
+            if ($role === 'doctor') {
+                return redirect()->route('doctor.login');
+            }
+
+            return redirect()->route('patient.login');
         }
 
         $user = Auth::user();
@@ -26,7 +34,7 @@ class RoleMiddleware
             if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             } elseif ($user->role === 'doctor') {
-                return redirect()->route('doctor.dashboard');
+                return redirect()->route('doctors.dashboard');
             }
             return redirect()->route('patient.dashboard');
         }

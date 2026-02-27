@@ -1,4 +1,48 @@
 <!-- Header -->
+<style>
+    .header .navbar .container {
+        display: flex;
+        align-items: center;
+    }
+
+    .header .main-menu-wrapper {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+    }
+
+    .header .main-nav {
+        display: flex !important;
+        align-items: center;
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header .main-nav > li {
+        display: inline-flex !important;
+        visibility: visible !important;
+    }
+
+    .header .main-nav > li > a {
+        color: #1e293b !important;
+        opacity: 1 !important;
+        font-weight: 600;
+    }
+
+    .header .main-nav > li > a:hover,
+    .header .main-nav > li.active > a {
+        color: #2563eb !important;
+    }
+
+    @media (max-width: 991.98px) {
+        .header .main-menu-wrapper {
+            display: block !important;
+        }
+    }
+</style>
 <header class="header">
     <nav class="navbar navbar-expand-lg header-nav">
         <div class="container">
@@ -26,8 +70,14 @@
                     </a>
                 </div>
                 <ul class="main-nav">
-                    @if(isset($mainMenu) && $mainMenu->count() > 0)
-                        @foreach($mainMenu as $menu)
+                    @php
+                        $renderedMainMenu = isset($mainMenu)
+                            ? $mainMenu->filter(fn($menu) => !empty(trim((string) $menu->title)))
+                            : collect();
+                    @endphp
+
+                    @if($renderedMainMenu->count() > 0)
+                        @foreach($renderedMainMenu as $menu)
                             @if($menu->children->count() > 0)
                                 {{-- Menu with submenu --}}
                                 <li class="has-submenu">
@@ -61,15 +111,16 @@
                         <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
                             <a href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="{{ request()->routeIs('search') ? 'active' : '' }}">
+                        <li class="{{ request()->routeIs('doctors.search') ? 'active' : '' }}">
                             <a href="{{ route('doctors.search') }}">Doctors</a>
                         </li>
-                        <li class="{{ request()->routeIs('products*') ? 'active' : '' }}">
+                        <li class="{{ request()->routeIs('ecommerce.products*') ? 'active' : '' }}">
                             <a href="{{ route('ecommerce.products') }}" style="text-transform: capitalize;">Products</a>
                         </li>
+                        <li class="{{ request()->routeIs('courses.*') ? 'active' : '' }}">
+                            <a href="{{ route('courses.index') }}">Courses</a>
+                        </li>
                     @endif
-                    <!-- Always show Courses menu -->
-
                 </ul>
 
                 <!-- Mobile Menu Buttons -->
@@ -131,10 +182,10 @@
                             @if(Auth::user()->role === 'doctor' || Auth::user()->is_doctor)
                                 <!-- Assuming role check or similar -->
                                 <a class="dropdown-item" href="{{ route('doctors.dashboard') }}">Dashboard</a>
-                                <a class="dropdown-item" href="{{ route('doctor.profile.settings') }}">Profile Settings</a>
+                                <a class="dropdown-item" href="{{ route('doctors.profile.settings') }}">Profile Settings</a>
                             @else
                                 <a class="dropdown-item" href="{{ route('patient.dashboard') }}">Dashboard</a>
-                                <a class="dropdown-item" href="{{ route('profile.settings') }}">Profile Settings</a>
+                                <a class="dropdown-item" href="{{ route('patient.profile.settings') }}">Profile Settings</a>
                             @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

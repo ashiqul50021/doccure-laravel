@@ -147,12 +147,12 @@
                             <tbody>
                                 <tr>
                                     <td class="table-avatar">
-                                        <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm me-2">
+                                        <a href="{{ route('doctors.admin.doctors.index') }}" class="avatar avatar-sm me-2">
                                             <img class="avatar-img rounded-circle"
                                                 src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                 alt="User Image">
                                         </a>
-                                        <a href="{{ route('admin.doctors.index') }}">Dr. Ruby Perrin</a>
+                                        <a href="{{ route('doctors.admin.doctors.index') }}">Dr. Ruby Perrin</a>
                                     </td>
                                     <td>Dental</td>
                                     <td>
@@ -173,12 +173,12 @@
                                 </tr>
                                 <tr>
                                     <td class="table-avatar">
-                                        <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm me-2">
+                                        <a href="{{ route('doctors.admin.doctors.index') }}" class="avatar avatar-sm me-2">
                                             <img class="avatar-img rounded-circle"
                                                 src="{{ asset('assets/img/doctors/doctor-thumb-02.jpg') }}"
                                                 alt="User Image">
                                         </a>
-                                        <a href="{{ route('admin.doctors.index') }}">Dr. Darren Elder</a>
+                                        <a href="{{ route('doctors.admin.doctors.index') }}">Dr. Darren Elder</a>
                                     </td>
                                     <td>Dental</td>
                                     <td>
@@ -199,12 +199,12 @@
                                 </tr>
                                 <tr>
                                     <td class="table-avatar">
-                                        <a href="{{ route('admin.doctors.index') }}" class="avatar avatar-sm me-2">
+                                        <a href="{{ route('doctors.admin.doctors.index') }}" class="avatar avatar-sm me-2">
                                             <img class="avatar-img rounded-circle"
                                                 src="{{ asset('assets/img/doctors/doctor-thumb-03.jpg') }}"
                                                 alt="User Image">
                                         </a>
-                                        <a href="{{ route('admin.doctors.index') }}">Dr. Deborah Angel</a>
+                                        <a href="{{ route('doctors.admin.doctors.index') }}">Dr. Deborah Angel</a>
                                     </td>
                                     <td>Cardiology</td>
                                     <td>

@@ -133,7 +133,7 @@ class ProductController extends Controller
             $total += $item['price'] * $item['quantity'];
         }
 
-        return view('ecommerce::frontend.checkout', compact('cart', 'total'));
+        return view('ecommerce::frontend.product-checkout', compact('cart', 'total'));
     }
 
     public function placeOrder(Request $request)

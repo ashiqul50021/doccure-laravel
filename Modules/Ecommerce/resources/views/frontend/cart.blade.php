@@ -91,10 +91,10 @@
                             <span class="h5">Total</span>
                             <span class="h5 text-primary fw-bold">৳{{ number_format($total, 2) }}</span>
                         </div>
-                        <a href="{{ route('product.checkout') }}" class="btn btn-primary w-100 btn-lg">
+                        <a href="{{ route('ecommerce.checkout') }}" class="btn btn-primary w-100 btn-lg">
                             <i class="fas fa-credit-card me-2"></i>Proceed to Checkout
                         </a>
-                        <a href="{{ route('products') }}" class="btn btn-outline-secondary w-100 mt-3">
+                        <a href="{{ route('ecommerce.products') }}" class="btn btn-outline-secondary w-100 mt-3">
                             <i class="fas fa-arrow-left me-2"></i>Continue Shopping
                         </a>
                     </div>
@@ -107,7 +107,7 @@
                 <i class="fas fa-shopping-cart fa-4x text-muted mb-4"></i>
                 <h3>Your cart is empty</h3>
                 <p class="text-muted mb-4">Looks like you haven't added any products to your cart yet.</p>
-                <a href="{{ route('products') }}" class="btn btn-primary btn-lg">
+                <a href="{{ route('ecommerce.products') }}" class="btn btn-primary btn-lg">
                     <i class="fas fa-shopping-bag me-2"></i>Browse Products
                 </a>
             </div>

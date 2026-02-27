@@ -25,6 +25,6 @@ Route::get('/my-courses', [CourseController::class, 'myCourses'])->name('courses
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->name('courses.admin.')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('courses.admin.')->group(function () {
     Route::resource('courses', AdminCourseController::class);
 });

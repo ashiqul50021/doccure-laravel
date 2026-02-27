@@ -85,7 +85,7 @@
                                     <small class="text-muted ms-2">Payment: Cash on Delivery</small>
                                 </div>
                                 <div>
-                                    <a href="{{ route('products') }}" class="btn btn-primary">
+                                    <a href="{{ route('ecommerce.products') }}" class="btn btn-primary">
                                         <i class="fas fa-shopping-bag me-2"></i>Continue Shopping
                                     </a>
                                     <a href="{{ route('home') }}" class="btn btn-outline-secondary">

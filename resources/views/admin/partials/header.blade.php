@@ -104,7 +104,7 @@
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                 <span class="user-img"><img class="rounded-circle"
-                        src="{{ asset('backend/img/profiles/avatar-01.jpg') }}" width="31" alt="Ryan Taylor"></span>
+                        src="{{ asset('backend/img/profiles/avatar-01.jpg') }}" width="31" alt="{{ Auth::user()->name ?? 'Admin' }}"></span>
             </a>
             <div class="dropdown-menu">
                 <div class="user-header">
@@ -113,13 +113,17 @@
                             class="avatar-img rounded-circle">
                     </div>
                     <div class="user-text">
-                        <h6>Ryan Taylor</h6>
-                        <p class="text-muted mb-0">Administrator</p>
+                        <h6>{{ Auth::user()->name ?? 'Admin' }}</h6>
+                        <p class="text-muted mb-0">{{ ucfirst(Auth::user()->role ?? 'administrator') }}</p>
                     </div>
                 </div>
                 <a class="dropdown-item" href="{{ route('admin.profile') }}">My Profile</a>
-                <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="{{ route('admin.login') }}">Logout</a>
+                <a class="dropdown-item" href="{{ route('admin.site-settings.index') }}">Settings</a>
+                <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();">Logout</a>
+                <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </li>
         <!-- /User Menu -->

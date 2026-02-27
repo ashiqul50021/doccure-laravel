@@ -58,7 +58,6 @@ class SiteSettingController extends Controller
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:20480',
             'favicon' => 'nullable|image|mimes:png,ico,webp|max:1024',
             'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:20480',
-            'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:20480',
             'shipping_inside_dhaka' => 'nullable|numeric|min:0',
             'shipping_outside_dhaka' => 'nullable|numeric|min:0',
         ]);

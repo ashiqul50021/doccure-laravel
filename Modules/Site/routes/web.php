@@ -26,6 +26,12 @@ Route::view('/voice-call', 'frontend.voice-call')->name('voice.call');
 Route::view('/video-call', 'frontend.video-call')->name('video.call');
 
 // Auth Routes
+Route::get('/patient/login', [App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('patient.login');
+Route::post('/patient/login', [App\Http\Controllers\AuthController::class, 'login'])->name('patient.login.submit');
+Route::get('/doctor/login', [App\Http\Controllers\AuthController::class, 'showDoctorLoginForm'])->name('doctor.login');
+Route::post('/doctor/login', [App\Http\Controllers\AuthController::class, 'doctorLogin'])->name('doctor.login.submit');
+
+// Legacy login aliases (keep for compatibility with existing links/middleware)
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.submit');
 Route::get('/register', [App\Http\Controllers\AuthController::class, 'showPatientRegisterForm'])->name('register');
@@ -43,40 +49,48 @@ Route::view('/blank-page', 'frontend.blank-page')->name('blank.page');
 Route::view('/privacy-policy', 'frontend.privacy-policy')->name('privacy');
 Route::view('/terms-condition', 'frontend.term-condition')->name('terms');
 
-// Maintenance & Utility Routes
-Route::get('/migrate', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate');
-    return 'Migration run successfully!';
-});
+// Maintenance & Utility Routes (local + admin only)
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/migrate', function () {
+        abort_unless(app()->environment('local'), 404);
+        \Illuminate\Support\Facades\Artisan::call('migrate');
+        return 'Migration run successfully!';
+    });
 
-Route::get('/migrate-fresh', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed');
-    return 'Migration Fresh with Seed run successfully!';
-});
+    Route::get('/migrate-fresh', function () {
+        abort_unless(app()->environment('local'), 404);
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed');
+        return 'Migration Fresh with Seed run successfully!';
+    });
 
-Route::get('/link', function () {
-    \Illuminate\Support\Facades\Artisan::call('storage:link');
-    return 'Storage linked successfully!';
-});
+    Route::get('/link', function () {
+        abort_unless(app()->environment('local'), 404);
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        return 'Storage linked successfully!';
+    });
 
-Route::get('/optimize-clear', function () {
-    \Illuminate\Support\Facades\Artisan::call('optimize:clear');
-    \Illuminate\Support\Facades\Artisan::call('config:clear');
-    \Illuminate\Support\Facades\Artisan::call('route:clear');
-    \Illuminate\Support\Facades\Artisan::call('view:clear');
-    return 'Optimization and Cache Cleared!';
-});
+    Route::get('/optimize-clear', function () {
+        abort_unless(app()->environment('local'), 404);
+        \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        \Illuminate\Support\Facades\Artisan::call('route:clear');
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
+        return 'Optimization and Cache Cleared!';
+    });
 
-Route::get('/composer-install', function () {
-    set_time_limit(0);
-    $output = shell_exec('cd ' . base_path() . ' && composer install 2>&1');
-    return '<pre>' . $output . '</pre>';
-});
+    Route::get('/composer-install', function () {
+        abort_unless(app()->environment('local'), 404);
+        set_time_limit(0);
+        $output = shell_exec('cd ' . base_path() . ' && composer install 2>&1');
+        return '<pre>' . $output . '</pre>';
+    });
 
-Route::get('/composer-update', function () {
-    set_time_limit(0);
-    $output = shell_exec('cd ' . base_path() . ' && composer update 2>&1');
-    return '<pre>' . $output . '</pre>';
+    Route::get('/composer-update', function () {
+        abort_unless(app()->environment('local'), 404);
+        set_time_limit(0);
+        $output = shell_exec('cd ' . base_path() . ' && composer update 2>&1');
+        return '<pre>' . $output . '</pre>';
+    });
 });
 
 // API Routes for AJAX
@@ -91,11 +105,10 @@ Route::get('/api/areas/{district}', function (App\Models\District $district) {
 */
 
 // Patient Pages
-Route::name('patient.')->group(function () {
+Route::middleware(['auth', 'role:patient'])->name('patient.')->group(function () {
     Route::view('/patient-dashboard', 'frontend.patient-dashboard')->name('dashboard');
     Route::view('/patient-profile', 'frontend.patient-profile')->name('profile');
     Route::view('/profile-settings', 'frontend.profile-settings')->name('profile.settings');
     Route::view('/change-password', 'frontend.change-password')->name('change.password');
     Route::view('/favourites', 'frontend.favourites')->name('favourites');
 });
-

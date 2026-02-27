@@ -35,7 +35,7 @@ Route::get('/api/products/filter', [ProductController::class, 'filter'])->name('
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->name('ecommerce.admin.')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('ecommerce.admin.')->group(function () {
     Route::resource('products', AdminProductController::class);
     Route::resource('product-categories', AdminProductCategoryController::class);
 });

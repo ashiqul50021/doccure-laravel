@@ -45,23 +45,25 @@
 
                         <div class="mb-3">
                             <label>Website Logo</label>
-                            @if(!empty($generalSettings['logo']))
-                                <div class="mb-2">
-                                    <img src="{{ asset($generalSettings['logo']) }}" alt="Logo" style="max-height: 50px;">
-                                </div>
-                            @endif
-                            <input type="file" class="form-control" name="logo">
+                            <div class="mb-2">
+                                <img id="logoPreview"
+                                    src="{{ !empty($generalSettings['logo']) ? asset($generalSettings['logo']) : '' }}"
+                                    alt="Logo Preview"
+                                    style="max-height: 50px; {{ empty($generalSettings['logo']) ? 'display:none;' : '' }}">
+                            </div>
+                            <input type="file" class="form-control" name="logo" id="logoInput" accept="image/*">
                             <small class="text-muted">Recommended size: 200px x 50px</small>
                         </div>
 
                         <div class="mb-3">
                             <label>Favicon</label>
-                            @if(!empty($generalSettings['favicon']))
-                                <div class="mb-2">
-                                    <img src="{{ asset($generalSettings['favicon']) }}" alt="Favicon" style="max-height: 32px;">
-                                </div>
-                            @endif
-                            <input type="file" class="form-control" name="favicon">
+                            <div class="mb-2">
+                                <img id="faviconPreview"
+                                    src="{{ !empty($generalSettings['favicon']) ? asset($generalSettings['favicon']) : '' }}"
+                                    alt="Favicon Preview"
+                                    style="max-height: 32px; {{ empty($generalSettings['favicon']) ? 'display:none;' : '' }}">
+                            </div>
+                            <input type="file" class="form-control" name="favicon" id="faviconInput" accept="image/*">
                             <small class="text-muted">Recommended size: 32px x 32px (PNG or ICO)</small>
                         </div>
 
@@ -188,3 +190,31 @@
 
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        (function () {
+            function bindPreview(inputId, previewId) {
+                const input = document.getElementById(inputId);
+                const preview = document.getElementById(previewId);
+                if (!input || !preview) return;
+
+                input.addEventListener('change', function (event) {
+                    const file = event.target.files && event.target.files[0];
+                    if (!file) return;
+                    if (!file.type.startsWith('image/')) return;
+
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'inline-block';
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            bindPreview('logoInput', 'logoPreview');
+            bindPreview('faviconInput', 'faviconPreview');
+        })();
+    </script>
+@endpush

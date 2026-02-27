@@ -17,12 +17,12 @@
                     <a href="{{ route('admin.appointments') }}"><i class="fe fe-layout"></i>
                         <span>Appointments</span></a>
                 </li>
-                <li class="{{ request()->routeIs('admin.specialities.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.specialities.index') }}"><i class="fe fe-users"></i>
+                <li class="{{ request()->routeIs('doctors.admin.specialities.*') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.admin.specialities.index') }}"><i class="fe fe-users"></i>
                         <span>Specialities</span></a>
                 </li>
-                <li class="{{ Route::is('admin.doctors.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.doctors.index') }}"><i class="fe fe-user-plus"></i>
+                <li class="{{ request()->routeIs('doctors.admin.doctors.*') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.admin.doctors.index') }}"><i class="fe fe-user-plus"></i>
                         <span>Doctors</span></a>
                 </li>
                 <li class="{{ request()->routeIs('admin.patients') ? 'active' : '' }}">
@@ -35,12 +35,12 @@
                 <li class="menu-title">
                     <span>Ecommerce</span>
                 </li>
-                <li class="{{ request()->routeIs('admin.product-categories.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.product-categories.index') }}"><i class="fe fe-layout"></i> <span>Product
+                <li class="{{ request()->routeIs('ecommerce.admin.product-categories.*') ? 'active' : '' }}">
+                    <a href="{{ route('ecommerce.admin.product-categories.index') }}"><i class="fe fe-layout"></i> <span>Product
                             Categories</span></a>
                 </li>
-                <li class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.products.index') }}"><i class="fe fe-shopping-cart"></i>
+                <li class="{{ request()->routeIs('ecommerce.admin.products.*') ? 'active' : '' }}">
+                    <a href="{{ route('ecommerce.admin.products.index') }}"><i class="fe fe-shopping-cart"></i>
                         <span>Products</span></a>
                 </li>
                 <li class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
@@ -53,10 +53,12 @@
                     <a href="{{ route('admin.health-packages.index') }}"><i class="fe fe-heart"></i>
                         <span>Health Packages</span></a>
                 </li>
-                <li class="{{ request()->routeIs('admin.advertisements.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.advertisements.index') }}"><i class="fe fe-image"></i>
-                        <span>Advertisements</span></a>
-                </li>
+                @if(Route::has('admin.advertisements.index'))
+                    <li class="{{ request()->routeIs('admin.advertisements.*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.advertisements.index') }}"><i class="fe fe-image"></i>
+                            <span>Advertisements</span></a>
+                    </li>
+                @endif
                 <li class="{{ request()->routeIs('admin.transactions') ? 'active' : '' }}">
                     <a href="{{ route('admin.transactions') }}"><i class="fe fe-activity"></i>
                         <span>Transactions</span></a>

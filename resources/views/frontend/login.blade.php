@@ -6,89 +6,33 @@
 
 @section('content')
     <style>
-        /* Hide default layout elements for a standalone login page */
-        .header,
-        .footer,
-        .mobile-bottom-nav {
-            display: none !important;
-        }
-
         .main-wrapper {
             padding: 0;
             margin: 0;
-            height: 100vh;
-            overflow: hidden;
             background-color: #fff;
         }
 
         .content {
-            padding: 0;
-            height: 100%;
+            padding: 40px 0;
         }
 
-        /* Split-Screen Layout Base */
+        /* Centered Layout */
         .split-layout {
             display: flex;
             min-height: 100vh;
-        }
-
-        /* Left Side - Image & Overlay */
-        .split-left {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background-image: url("{{ asset('assets/img/doctor-01.jpg') }}");
-            /* Reference image */
-            background-size: cover;
-            background-position: top center;
-            position: relative;
-            color: #fff;
-        }
-
-        .split-left-overlay {
-            background-color: #345cce;
-            /* The specific blue from the image */
-            padding: 4rem;
-            margin-top: auto;
-            /* Push to bottom */
-            width: 100%;
-        }
-
-        .overlay-content {
-            border-left: 3px solid #fff;
-            padding-left: 2rem;
-            max-width: 500px;
-        }
-
-        .overlay-logo {
-            filter: brightness(0) invert(1);
-            max-width: 150px;
-            margin-bottom: 2rem;
-        }
-
-        .overlay-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #fff;
-            line-height: 1.2;
-        }
-
-        .overlay-text {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            line-height: 1.5;
-            margin: 0;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
         }
 
         /* Right Side - Form */
         .split-right {
-            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: #fff;
             padding: 2rem;
+            width: 100%;
         }
 
         .split-form-container {
@@ -179,28 +123,10 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 991.98px) {
-            .split-left {
-                display: none;
-            }
-        }
     </style>
 
     <div class="split-layout">
-        <!-- Left Side: Brand & Illustration -->
-        <div class="split-left">
-            <div class="split-left-overlay">
-                <img src="{{ !empty($siteSettings['logo']) ? asset($siteSettings['logo']) : asset('assets/img/logo.png') }}"
-                    class="overlay-logo" alt="Logo">
-                <div class="overlay-content">
-                    <h1 class="overlay-title">Welcome to Invision Hospital Management System</h1>
-                    <p class="overlay-text">Cloud Based Streamline Hospital Management system with centralized user friendly
-                        platform.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Side: Login Form -->
+        <!-- Centered Login Form -->
         <div class="split-right">
             <div class="split-form-container">
                 <img src="{{ !empty($siteSettings['logo']) ? asset($siteSettings['logo']) : asset('assets/img/logo.png') }}"
@@ -209,7 +135,7 @@
                 <h3 class="form-title">Login</h3>
                 <p class="form-subtitle">Enter your credentials to login to your account</p>
 
-                <form action="{{ route('login.submit') }}" method="POST">
+                <form action="{{ route('patient.login.submit') }}" method="POST">
                     @csrf
 
                     <div class="mb-4">

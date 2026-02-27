@@ -3,7 +3,6 @@
 @section('title', 'My Profile - ' . ($siteSettings['site_name'] ?? 'Doccure Admin'))
 
 @section('content')
-    <!-- Page Header -->
     <div class="page-header">
         <div class="row">
             <div class="col">
@@ -15,33 +14,27 @@
             </div>
         </div>
     </div>
-    <!-- /Page Header -->
+
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
     <div class="row">
         <div class="col-md-12">
             <div class="profile-header">
                 <div class="row align-items-center">
                     <div class="col-auto profile-image">
-                        <a href="#">
-                            <img class="rounded-circle" alt="User Image"
-                                src="{{ asset('backend/img/profiles/avatar-01.jpg') }}">
-                        </a>
+                        <img class="rounded-circle" alt="User Image" src="{{ asset('backend/img/profiles/avatar-01.jpg') }}">
                     </div>
                     <div class="col ms-md-n2 profile-user-info">
-                        <h4 class="user-name mb-0">Ryan Taylor</h4>
-                        <h6 class="text-muted">ryantaylor@admin.com</h6>
-                        <div class="user-Location"><i class="fa fa-map-marker"></i> Florida, United States</div>
-                        <div class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</div>
-                    </div>
-                    <div class="col-auto profile-btn">
-
-                        <a href="" class="btn btn-primary">
-                            Edit
-                        </a>
+                        <h4 class="user-name mb-0">{{ $admin->name }}</h4>
+                        <h6 class="text-muted">{{ $admin->email }}</h6>
+                        <div class="user-Location"><i class="fa fa-shield-alt"></i> Administrator</div>
+                        <div class="about-text">Manage your account information and security from here.</div>
                     </div>
                 </div>
             </div>
+
             <div class="profile-menu">
                 <ul class="nav nav-tabs nav-tabs-solid">
                     <li class="nav-item">
@@ -52,173 +45,83 @@
                     </li>
                 </ul>
             </div>
+
             <div class="tab-content profile-tab-cont">
-
-                <!-- Personal Details Tab -->
                 <div class="tab-pane fade show active" id="per_details_tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Personal Details</h5>
 
-                    <!-- Personal Details -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title d-flex justify-content-between">
-                                        <span>Personal Details</span>
-                                        <a class="edit-link" data-bs-toggle="modal" href="#edit_personal_details"><i
-                                                class="fa fa-edit me-1"></i>Edit</a>
-                                    </h5>
-                                    <div class="row">
-                                        <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
-                                        <p class="col-sm-10">John Doe</p>
+                            <form action="{{ route('admin.profile.update') }}" method="POST">
+                                @csrf
+                                @method('PUT')
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                                            value="{{ old('name', $admin->name) }}" required>
+                                        @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="row">
-                                        <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Date of Birth</p>
-                                        <p class="col-sm-10">24 Jul 1983</p>
-                                    </div>
-                                    <div class="row">
-                                        <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Email ID</p>
-                                        <p class="col-sm-10">johndoe@example.com</p>
-                                    </div>
-                                    <div class="row">
-                                        <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Mobile</p>
-                                        <p class="col-sm-10">305-310-5857</p>
-                                    </div>
-                                    <div class="row">
-                                        <p class="col-sm-2 text-muted text-sm-right mb-0">Address</p>
-                                        <p class="col-sm-10 mb-0">4663 Agriculture Lane,<br>
-                                            Miami,<br>
-                                            Florida - 33165,<br>
-                                            United States.</p>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                            value="{{ old('email', $admin->email) }}" required>
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Edit Details Modal -->
-                            <div class="modal fade" id="edit_personal_details" aria-hidden="true" role="dialog">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Personal Details</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <div class="row form-row">
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label>First Name</label>
-                                                            <input type="text" class="form-control" value="John">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label>Last Name</label>
-                                                            <input type="text" class="form-control" value="Doe">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="mb-3">
-                                                            <label>Date of Birth</label>
-                                                            <div class="cal-icon">
-                                                                <input type="text" class="form-control" value="24-07-1983">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label>Email ID</label>
-                                                            <input type="email" class="form-control"
-                                                                value="johndoe@example.com">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label>Mobile</label>
-                                                            <input type="text" value="+1 202-555-0125" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <h5 class="form-title"><span>Address</span></h5>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="mb-3">
-                                                            <label>Address</label>
-                                                            <input type="text" class="form-control"
-                                                                value="4663 Agriculture Lane">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label>City</label>
-                                                            <input type="text" class="form-control" value="Miami">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label>State</label>
-                                                            <input type="text" class="form-control" value="Florida">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label>Zip Code</label>
-                                                            <input type="text" class="form-control" value="22434">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="mb-3">
-                                                            <label>Country</label>
-                                                            <input type="text" class="form-control" value="United States">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary btn-block">Save
-                                                    Changes</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Edit Details Modal -->
-
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
                         </div>
                     </div>
-                    <!-- /Personal Details -->
-
                 </div>
-                <!-- /Personal Details Tab -->
 
-                <!-- Change Password Tab -->
                 <div id="password_tab" class="tab-pane fade">
-
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Change Password</h5>
                             <div class="row">
                                 <div class="col-md-10 col-lg-6">
-                                    <form>
+                                    <form action="{{ route('admin.profile.password.update') }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+
                                         <div class="mb-3">
-                                            <label>Old Password</label>
-                                            <input type="password" class="form-control">
+                                            <label>Current Password</label>
+                                            <input type="password" name="current_password"
+                                                class="form-control @error('current_password') is-invalid @enderror" required>
+                                            @error('current_password')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
+
                                         <div class="mb-3">
                                             <label>New Password</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" name="password"
+                                                class="form-control @error('password') is-invalid @enderror" required>
+                                            @error('password')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
+
                                         <div class="mb-3">
                                             <label>Confirm Password</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" name="password_confirmation" class="form-control" required>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Save Changes</button>
+
+                                        <button class="btn btn-primary" type="submit">Update Password</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /Change Password Tab -->
-
             </div>
         </div>
     </div>

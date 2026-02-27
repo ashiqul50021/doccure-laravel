@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             return Auth::user()->role === 'doctor'
-                ? redirect()->route('doctor.dashboard')
+                ? redirect()->route('doctors.dashboard')
                 : redirect()->route('patient.dashboard');
         }
         return view('frontend.login');
@@ -36,11 +36,20 @@ class AuthController extends Controller
 
             $user = Auth::user();
 
+            // Block admin accounts from normal/patient login form.
+            if ($user->role === 'admin') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return redirect()->route('admin.login')->withErrors([
+                    'email' => 'Admin account detected. Please use the admin login page.',
+                ])->onlyInput('email');
+            }
+
             // Redirect based on role
             if ($user->role === 'doctor') {
-                return redirect()->route('doctor.dashboard');
-            } elseif ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard'); // Assuming route exists
+                return redirect()->route('doctors.dashboard');
             }
 
             return redirect()->route('patient.dashboard');
@@ -55,7 +64,7 @@ class AuthController extends Controller
     public function showDoctorLoginForm()
     {
         if (Auth::check() && Auth::user()->role === 'doctor') {
-            return redirect()->route('doctor.dashboard');
+            return redirect()->route('doctors.dashboard');
         }
         return view('frontend.doctor-login');
     }
@@ -82,7 +91,7 @@ class AuthController extends Controller
             }
 
             $request->session()->regenerate();
-            return redirect()->route('doctor.dashboard');
+            return redirect()->route('doctors.dashboard');
         }
 
         return back()->withErrors([
@@ -95,7 +104,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             return Auth::user()->role === 'doctor'
-                ? redirect()->route('doctor.dashboard')
+                ? redirect()->route('doctors.dashboard')
                 : redirect()->route('patient.dashboard');
         }
         return view('frontend.register');
@@ -135,7 +144,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             return Auth::user()->role === 'doctor'
-                ? redirect()->route('doctor.dashboard')
+                ? redirect()->route('doctors.dashboard')
                 : redirect()->route('patient.dashboard');
         }
         return view('frontend.doctor-register');
@@ -169,7 +178,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('doctor.dashboard')->with('status', 'Your account is pending approval.');
+        return redirect()->route('doctors.dashboard')->with('status', 'Your account is pending approval.');
     }
 
     public function logout(Request $request)

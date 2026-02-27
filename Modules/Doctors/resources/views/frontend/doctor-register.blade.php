@@ -21,7 +21,7 @@
                             </div>
 
                             <!-- Register Form -->
-                            <form action="{{ route('doctor.dashboard') }}">
+                            <form action="{{ route('doctors.dashboard') }}">
                                 <div class="form-group form-focus">
                                     <input type="text" class="form-control floating">
                                     <label class="focus-label">Name</label>
