@@ -28,7 +28,7 @@
 
         <!-- Doctors -->
         <a href="{{ route('doctors.search') }}"
-            class="nav-item {{ Route::is('search') || Route::is('doctor.profile') ? 'active' : '' }}">
+            class="nav-item {{ Route::is('search') || Route::is('doctors.profile') ? 'active' : '' }}">
             <div class="nav-icon-container">
                 <i class="fas fa-user-md"></i>
             </div>

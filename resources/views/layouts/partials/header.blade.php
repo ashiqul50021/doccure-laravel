@@ -71,12 +71,19 @@
                 </div>
                 <ul class="main-nav">
                     @php
-                        $renderedMainMenu = isset($mainMenu)
-                            ? $mainMenu->filter(fn($menu) => !empty(trim((string) $menu->title)))
-                            : collect();
+                        $renderedMainMenu = collect($mainMenu ?? [])
+                            ->filter(fn($menu) => !empty(trim((string) ($menu->title ?? ''))))
+                            ->values();
+
+                        // If DB menus exist but none has a usable URL/child, fallback to default static menu.
+                        $hasUsableMenu = $renderedMainMenu->contains(function ($menu) {
+                            $hasChildren = method_exists($menu, 'children') && $menu->children && $menu->children->count() > 0;
+                            $url = method_exists($menu, 'getUrl') ? $menu->getUrl() : '#';
+                            return $hasChildren || ($url !== '#');
+                        });
                     @endphp
 
-                    @if($renderedMainMenu->count() > 0)
+                    @if($renderedMainMenu->count() > 0 && $hasUsableMenu)
                         @foreach($renderedMainMenu as $menu)
                             @if($menu->children->count() > 0)
                                 {{-- Menu with submenu --}}

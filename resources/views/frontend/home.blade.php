@@ -313,7 +313,7 @@
                                                     $image = $product->gallery[0] ?? null;
                                                 }
                                             @endphp
-                                            <img src="{{ $image ? asset($image) : asset('assets/img/products/product.jpg') }}"
+                                            <img src="{{ $image ? asset($image) : asset('assets/img/products/default-product.png') }}"
                                                 class="product-main-img" alt="{{ $product->name }}">
                                         </a>
                                     </div>
@@ -426,7 +426,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 mb-4 doctor-grid-item">
                                 <div class="doctor-card-new">
                                     <div class="doctor-img-wrapper">
-                                        <a href="{{ route('doctor.profile', $doctor->id) }}">
+                                        <a href="{{ route('doctors.profile', $doctor->id) }}">
                                             <img src="{{ $doctor->profile_image ? asset($doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                 class="doctor-img" alt="{{ $doctor->user->name }}">
                                         </a>
@@ -438,7 +438,7 @@
                                     <div class="doctor-info">
                                         <span class="doctor-speciality">{{ $doctor->speciality->name ?? 'General' }}</span>
                                         <h4 class="doctor-name">
-                                            <a href="{{ route('doctor.profile', $doctor->id) }}">Dr.
+                                            <a href="{{ route('doctors.profile', $doctor->id) }}">Dr.
                                                 {{ $doctor->user->name }}</a>
                                             <i class="fas fa-check-circle verified-badge" title="Verified"></i>
                                         </h4>
@@ -452,7 +452,7 @@
                                             <span>{{ $doctor->clinic_name ?? ($doctor->area->name ?? 'Dhaka') }}</span>
                                         </div>
                                         <div class="doctor-buttons">
-                                            <a href="{{ route('doctor.profile', $doctor->id) }}" class="btn-view-details">
+                                            <a href="{{ route('doctors.profile', $doctor->id) }}" class="btn-view-details">
                                                 <i class="fas fa-user"></i> Details
                                             </a>
                                             <a href="{{ route('booking', $doctor->id) }}" class="btn-book-appointment">
@@ -1271,7 +1271,7 @@
                 }
 
                 products.forEach(function (product) {
-                    var imageSrc = product.image ? (product.image.startsWith('http') ? product.image : '/' + product.image) : '/assets/img/products/product.jpg';
+                    var imageSrc = product.image ? (product.image.startsWith('http') ? product.image : '/' + product.image) : '/assets/img/products/default-product.png';
 
                     var priceHtml = '';
                     if (product.sale_price) {

@@ -9,6 +9,7 @@ use App\Models\Patient;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
+use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
@@ -16,9 +17,10 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         if (Auth::check()) {
-            return Auth::user()->role === 'doctor'
-                ? redirect()->route('doctors.dashboard')
-                : redirect()->route('patient.dashboard');
+            if (Auth::user()->role === 'doctor') {
+                return $this->redirectDoctorAfterAuth(Auth::user()->doctor);
+            }
+            return redirect()->route('patient.dashboard');
         }
         return view('frontend.login');
     }
@@ -49,7 +51,7 @@ class AuthController extends Controller
 
             // Redirect based on role
             if ($user->role === 'doctor') {
-                return redirect()->route('doctors.dashboard');
+                return $this->redirectDoctorAfterAuth($user->doctor);
             }
 
             return redirect()->route('patient.dashboard');
@@ -64,7 +66,7 @@ class AuthController extends Controller
     public function showDoctorLoginForm()
     {
         if (Auth::check() && Auth::user()->role === 'doctor') {
-            return redirect()->route('doctors.dashboard');
+            return $this->redirectDoctorAfterAuth(Auth::user()->doctor);
         }
         return view('frontend.doctor-login');
     }
@@ -91,7 +93,7 @@ class AuthController extends Controller
             }
 
             $request->session()->regenerate();
-            return redirect()->route('doctors.dashboard');
+            return $this->redirectDoctorAfterAuth($user->doctor);
         }
 
         return back()->withErrors([
@@ -103,9 +105,10 @@ class AuthController extends Controller
     public function showPatientRegisterForm()
     {
         if (Auth::check()) {
-            return Auth::user()->role === 'doctor'
-                ? redirect()->route('doctors.dashboard')
-                : redirect()->route('patient.dashboard');
+            if (Auth::user()->role === 'doctor') {
+                return $this->redirectDoctorAfterAuth(Auth::user()->doctor);
+            }
+            return redirect()->route('patient.dashboard');
         }
         return view('frontend.register');
     }
@@ -143,9 +146,10 @@ class AuthController extends Controller
     public function showDoctorRegisterForm()
     {
         if (Auth::check()) {
-            return Auth::user()->role === 'doctor'
-                ? redirect()->route('doctors.dashboard')
-                : redirect()->route('patient.dashboard');
+            if (Auth::user()->role === 'doctor') {
+                return $this->redirectDoctorAfterAuth(Auth::user()->doctor);
+            }
+            return redirect()->route('patient.dashboard');
         }
         return view('frontend.doctor-register');
     }
@@ -178,7 +182,18 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('doctors.dashboard')->with('status', 'Your account is pending approval.');
+        return redirect()->route('doctors.profile.settings')
+            ->with('warning', 'Please complete your profile to activate your doctor account.');
+    }
+
+    private function redirectDoctorAfterAuth(?Doctor $doctor): RedirectResponse
+    {
+        if (!$doctor || !$doctor->isProfileComplete()) {
+            return redirect()->route('doctors.profile.settings')
+                ->with('warning', 'Please complete your profile to activate your doctor account.');
+        }
+
+        return redirect()->route('doctors.dashboard');
     }
 
     public function logout(Request $request)

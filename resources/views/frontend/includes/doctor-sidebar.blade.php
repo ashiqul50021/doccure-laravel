@@ -108,11 +108,18 @@
 @endpush
 
 <div class="profile-sidebar">
+    @php
+        $doctorImage = asset('assets/img/doctors/doctor-thumb-02.jpg');
+        if (!empty($doctor->profile_image)) {
+            $doctorImage = str_starts_with($doctor->profile_image, 'uploads/')
+                ? asset($doctor->profile_image)
+                : asset('storage/' . $doctor->profile_image);
+        }
+    @endphp
     <div class="widget-profile pro-widget-content">
         <div class="profile-info-widget">
             <a href="#" class="booking-doc-img">
-                <img src="{{ $doctor->profile_image ? asset('storage/' . $doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-02.jpg') }}"
-                    alt="User Image">
+                <img src="{{ $doctorImage }}" alt="User Image">
             </a>
             <div class="profile-det-info">
                 <h3>{{ $doctor->user->name ?? 'Doctor' }}</h3>
@@ -131,32 +138,32 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('appointments') ? 'active' : '' }}">
-                    <a href="{{ route('appointments') }}">
+                <li class="{{ request()->routeIs('doctors.appointments') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.appointments') }}">
                         <i class="fas fa-calendar-check"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('my.patients') ? 'active' : '' }}">
-                    <a href="{{ route('my.patients') }}">
+                <li class="{{ request()->routeIs('doctors.my.patients') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.my.patients') }}">
                         <i class="fas fa-user-injured"></i>
                         <span>My Patients</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('schedule.timings') ? 'active' : '' }}">
-                    <a href="{{ route('schedule.timings') }}">
+                <li class="{{ request()->routeIs('doctors.schedule.timings') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.schedule.timings') }}">
                         <i class="fas fa-hourglass-start"></i>
                         <span>Schedule Timings</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('invoices') ? 'active' : '' }}">
-                    <a href="{{ route('invoices') }}">
+                <li class="{{ request()->routeIs('doctors.invoices') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.invoices') }}">
                         <i class="fas fa-file-invoice"></i>
                         <span>Invoices</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('reviews') ? 'active' : '' }}">
-                    <a href="{{ route('reviews') }}">
+                <li class="{{ request()->routeIs('doctors.reviews') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.reviews') }}">
                         <i class="fas fa-star"></i>
                         <span>Reviews</span>
                     </a>
@@ -167,20 +174,20 @@
                         <span>Message</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('doctor.profile.settings') ? 'active' : '' }}">
-                    <a href="{{ route('doctor.profile.settings') }}">
+                <li class="{{ request()->routeIs('doctors.profile.settings') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.profile.settings') }}">
                         <i class="fas fa-user-cog"></i>
                         <span>Profile Settings</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('social.media') ? 'active' : '' }}">
-                    <a href="{{ route('social.media') }}">
+                <li class="{{ request()->routeIs('doctors.social.media') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.social.media') }}">
                         <i class="fas fa-share-alt"></i>
                         <span>Social Media</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('doctor.change.password') ? 'active' : '' }}">
-                    <a href="{{ route('doctor.change.password') }}">
+                <li class="{{ request()->routeIs('doctors.change.password') ? 'active' : '' }}">
+                    <a href="{{ route('doctors.change.password') }}">
                         <i class="fas fa-lock"></i>
                         <span>Change Password</span>
                     </a>

@@ -82,7 +82,7 @@
                         'location' => $doctor->clinic_name ?? ($doctor->clinic_city ?? 'Location'),
                         'price' => '$' . ($doctor->pricing === 'free' ? 'Free' : ($doctor->pricing === 'custom_price' ? $doctor->custom_price : '0')),
                         'thumbsUp' => '99%',
-                        'profileLink' => route('doctor.profile', $doctor->id),
+                        'profileLink' => route('doctors.profile', $doctor->id),
                         'bookingLink' => route('booking', $doctor->id)
                     ])
 

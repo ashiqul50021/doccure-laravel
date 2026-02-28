@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
+            'doctor.profile.completed' => \App\Http\Middleware\EnsureDoctorProfileCompleted::class,
         ]);
 
         $middleware->redirectGuestsTo(function (Request $request) {

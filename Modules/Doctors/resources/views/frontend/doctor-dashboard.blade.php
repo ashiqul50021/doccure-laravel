@@ -74,7 +74,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('doctor.profile.settings') }}">
+                                    <a href="{{ route('doctors.profile.settings') }}">
                                         <i class="fas fa-user-cog"></i>
                                         <span>Profile Settings</span>
                                     </a>

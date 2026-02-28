@@ -29,7 +29,7 @@
         'thumbsUp' => $doctor->average_rating > 0 ? round(($doctor->average_rating / 5) * 100) . '%' : '0%',
         'experience' => $doctor->experience_years ?? 0,
         'qualification' => $doctor->qualification ?? '',
-        'profileLink' => route('doctor.profile', $doctor->id),
+        'profileLink' => route('doctors.profile', $doctor->id),
         'bookingLink' => route('booking', $doctor->id)
     ])
 

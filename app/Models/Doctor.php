@@ -55,4 +55,30 @@ class Doctor extends Model
     {
         return $this->reviews()->where('is_approved', true)->count();
     }
+
+    public function isProfileComplete(): bool
+    {
+        $requiredFields = [
+            'phone',
+            'gender',
+            'date_of_birth',
+            'speciality_id',
+            'qualification',
+            'registration_number',
+            'registration_date',
+            'bio',
+            'clinic_name',
+            'clinic_address',
+            'district_id',
+            'area_id',
+        ];
+
+        foreach ($requiredFields as $field) {
+            if (blank($this->{$field})) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

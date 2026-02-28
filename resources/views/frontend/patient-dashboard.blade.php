@@ -124,13 +124,13 @@
                                                         <tr>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('doctor.profile', 1) }}"
+                                                                    <a href="{{ route('doctors.profile', 1) }}"
                                                                         class="avatar avatar-sm me-2">
                                                                         <img class="avatar-img rounded-circle"
                                                                             src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                                             alt="User Image">
                                                                     </a>
-                                                                    <a href="{{ route('doctor.profile', 1) }}">Dr. Ruby
+                                                                    <a href="{{ route('doctors.profile', 1) }}">Dr. Ruby
                                                                         Perrin
                                                                         <span>Dental</span></a>
                                                                 </h2>
@@ -184,13 +184,13 @@
                                                             <td>Prescription 1</td>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('doctor.profile', 1) }}"
+                                                                    <a href="{{ route('doctors.profile', 1) }}"
                                                                         class="avatar avatar-sm me-2">
                                                                         <img class="avatar-img rounded-circle"
                                                                             src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                                             alt="User Image">
                                                                     </a>
-                                                                    <a href="{{ route('doctor.profile', 1) }}">Dr. Ruby
+                                                                    <a href="{{ route('doctors.profile', 1) }}">Dr. Ruby
                                                                         Perrin
                                                                         <span>Dental</span></a>
                                                                 </h2>
@@ -240,13 +240,13 @@
                                                             <td><a href="#">dental-test.pdf</a></td>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('doctor.profile', 1) }}"
+                                                                    <a href="{{ route('doctors.profile', 1) }}"
                                                                         class="avatar avatar-sm me-2">
                                                                         <img class="avatar-img rounded-circle"
                                                                             src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                                             alt="User Image">
                                                                     </a>
-                                                                    <a href="{{ route('doctor.profile', 1) }}">Dr. Ruby
+                                                                    <a href="{{ route('doctors.profile', 1) }}">Dr. Ruby
                                                                         Perrin
                                                                         <span>Dental</span></a>
                                                                 </h2>
@@ -294,13 +294,13 @@
                                                             </td>
                                                             <td>
                                                                 <h2 class="table-avatar">
-                                                                    <a href="{{ route('doctor.profile', 1) }}"
+                                                                    <a href="{{ route('doctors.profile', 1) }}"
                                                                         class="avatar avatar-sm me-2">
                                                                         <img class="avatar-img rounded-circle"
                                                                             src="{{ asset('assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                                             alt="User Image">
                                                                     </a>
-                                                                    <a href="{{ route('doctor.profile', 1) }}">Dr. Ruby
+                                                                    <a href="{{ route('doctors.profile', 1) }}">Dr. Ruby
                                                                         Perrin
                                                                         <span>Dental</span></a>
                                                                 </h2>

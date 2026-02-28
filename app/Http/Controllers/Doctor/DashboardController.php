@@ -8,8 +8,11 @@ use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\Review;
 use App\Models\Schedule;
+use App\Models\Area;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class DashboardController extends Controller
 {
@@ -188,8 +191,132 @@ class DashboardController extends Controller
         $doctor = $this->getDoctor();
         $specialities = \App\Models\Speciality::orderBy('name')->get();
         $districts = \App\Models\District::orderBy('name')->get();
+        $areas = collect();
 
-        return view('frontend.doctor-profile-settings', compact('doctor', 'specialities', 'districts'));
+        if (!empty($doctor->district_id)) {
+            $areas = Area::where('district_id', $doctor->district_id)->orderBy('name')->get();
+        }
+
+        return view('frontend.doctor-profile-settings', compact('doctor', 'specialities', 'districts', 'areas'));
+    }
+
+    /**
+     * Update profile settings page
+     */
+    public function updateProfileSettings(Request $request)
+    {
+        $doctor = $this->getDoctor();
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'first_name' => ['required', 'string', 'max:100'],
+            'last_name' => ['nullable', 'string', 'max:100'],
+            'phone' => ['nullable', 'string', 'max:20'],
+            'gender' => ['nullable', Rule::in(['male', 'female', 'other'])],
+            'date_of_birth' => ['nullable', 'date'],
+            'profile_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'qualification' => ['nullable', 'string', 'max:255'],
+            'speciality_id' => ['nullable', 'exists:specialities,id'],
+            'registration_number' => ['nullable', 'string', 'max:255'],
+            'registration_date' => ['nullable', 'date'],
+            'experience_years' => ['nullable', 'integer', 'min:0', 'max:80'],
+            'bio' => ['nullable', 'string'],
+            'clinic_name' => ['nullable', 'string', 'max:255'],
+            'clinic_address' => ['nullable', 'string', 'max:255'],
+            'district_id' => ['nullable', 'exists:districts,id'],
+            'area_id' => [
+                'nullable',
+                Rule::exists('areas', 'id')->where(function ($query) use ($request) {
+                    if ($request->filled('district_id')) {
+                        $query->where('district_id', $request->district_id);
+                    }
+                }),
+            ],
+            'consultation_fee' => ['nullable', 'numeric', 'min:0'],
+            'online_consultation' => ['nullable', 'boolean'],
+            'online_fee' => ['nullable', 'numeric', 'min:0'],
+            'home_visit' => ['nullable', 'boolean'],
+            'home_visit_fee' => ['nullable', 'numeric', 'min:0'],
+            'website' => ['nullable', 'url', 'max:255'],
+            'facebook' => ['nullable', 'url', 'max:255'],
+            'linkedin' => ['nullable', 'url', 'max:255'],
+            'languages' => ['nullable', 'string'],
+            'services' => ['nullable', 'string'],
+            'education' => ['nullable', 'string'],
+            'awards' => ['nullable', 'string'],
+        ]);
+
+        $fullName = trim(($validated['first_name'] ?? '') . ' ' . ($validated['last_name'] ?? ''));
+        $user->update([
+            'name' => $fullName !== '' ? $fullName : $user->name,
+        ]);
+
+        if ($request->hasFile('profile_image')) {
+            if ($doctor->profile_image) {
+                ImageService::delete($doctor->profile_image);
+            }
+            $validated['profile_image'] = ImageService::upload($request->file('profile_image'), 'doctors');
+        }
+
+        $doctor->update([
+            'phone' => $validated['phone'] ?? null,
+            'gender' => $validated['gender'] ?? null,
+            'date_of_birth' => $validated['date_of_birth'] ?? null,
+            'profile_image' => $validated['profile_image'] ?? $doctor->profile_image,
+            'qualification' => $validated['qualification'] ?? null,
+            'speciality_id' => $validated['speciality_id'] ?? null,
+            'registration_number' => $validated['registration_number'] ?? null,
+            'registration_date' => $validated['registration_date'] ?? null,
+            'experience_years' => $validated['experience_years'] ?? 0,
+            'bio' => $validated['bio'] ?? null,
+            'clinic_name' => $validated['clinic_name'] ?? null,
+            'clinic_address' => $validated['clinic_address'] ?? null,
+            'district_id' => $validated['district_id'] ?? null,
+            'area_id' => $validated['area_id'] ?? null,
+            'consultation_fee' => $validated['consultation_fee'] ?? 0,
+            'online_consultation' => (bool) $request->boolean('online_consultation'),
+            'online_fee' => $validated['online_fee'] ?? null,
+            'home_visit' => (bool) $request->boolean('home_visit'),
+            'home_visit_fee' => $validated['home_visit_fee'] ?? null,
+            'website' => $validated['website'] ?? null,
+            'facebook' => $validated['facebook'] ?? null,
+            'linkedin' => $validated['linkedin'] ?? null,
+            'languages' => $this->toJsonList($validated['languages'] ?? null),
+            'services' => $this->toJsonList($validated['services'] ?? null),
+            'education' => $this->toJsonLines($validated['education'] ?? null),
+            'awards' => $this->toJsonLines($validated['awards'] ?? null),
+        ]);
+
+        $doctor->refresh();
+
+        if ($doctor->isProfileComplete()) {
+            return redirect()->route('doctors.dashboard')
+                ->with('success', 'Profile updated successfully. Your doctor account is now active.');
+        }
+
+        return redirect()->route('doctors.profile.settings')
+            ->with('warning', 'Profile saved, but some required fields are still missing.');
+    }
+
+    private function toJsonList(?string $value): ?string
+    {
+        if ($value === null || trim($value) === '') {
+            return null;
+        }
+
+        $items = array_values(array_filter(array_map('trim', explode(',', $value))));
+        return empty($items) ? null : json_encode($items);
+    }
+
+    private function toJsonLines(?string $value): ?string
+    {
+        if ($value === null || trim($value) === '') {
+            return null;
+        }
+
+        $lines = preg_split('/\r\n|\r|\n/', trim($value));
+        $items = array_values(array_filter(array_map('trim', $lines)));
+        return empty($items) ? null : json_encode($items);
     }
 
     /**

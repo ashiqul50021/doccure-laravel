@@ -2,20 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Menu;
+use Illuminate\Database\Seeder;
 
 class MenuSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // Clear existing menus
-        Menu::truncate();
-
-        // Main Navigation Menus
         $menus = [
             [
                 'title' => 'Home',
@@ -25,62 +18,37 @@ class MenuSeeder extends Seeder
             ],
             [
                 'title' => 'Doctors',
-                'route_name' => null,
+                'route_name' => 'doctors.search',
                 'order' => 2,
                 'location' => 'main',
                 'children' => [
-                    ['title' => 'Doctor Dashboard', 'route_name' => 'doctor.dashboard', 'order' => 1],
-                    ['title' => 'Appointments', 'route_name' => 'appointments', 'order' => 2],
-                    ['title' => 'Schedule Timing', 'route_name' => 'schedule.timings', 'order' => 3],
-                    ['title' => 'Patients List', 'route_name' => 'my.patients', 'order' => 4],
-                    ['title' => 'Chat', 'route_name' => 'chat.doctor', 'order' => 5],
-                    ['title' => 'Invoices', 'route_name' => 'invoices', 'order' => 6],
-                    ['title' => 'Profile Settings', 'route_name' => 'doctor.profile.settings', 'order' => 7],
-                    ['title' => 'Reviews', 'route_name' => 'reviews', 'order' => 8],
-                    ['title' => 'Doctor Register', 'route_name' => 'doctor.register', 'order' => 9],
+                    ['title' => 'Find Doctors', 'route_name' => 'doctors.search', 'order' => 1],
+                    ['title' => 'Doctor Register', 'route_name' => 'doctor.register', 'order' => 2],
+                    ['title' => 'Doctor Login', 'route_name' => 'doctor.login', 'order' => 3],
                 ],
             ],
             [
-                'title' => 'Patients',
-                'route_name' => null,
+                'title' => 'Products',
+                'route_name' => 'ecommerce.products',
                 'order' => 3,
                 'location' => 'main',
-                'children' => [
-                    ['title' => 'Search Doctor', 'route_name' => 'search', 'order' => 1],
-                    ['title' => 'Patient Dashboard', 'route_name' => 'patient.dashboard', 'order' => 2],
-                    ['title' => 'Favourites', 'route_name' => 'favourites', 'order' => 3],
-                    ['title' => 'Chat', 'route_name' => 'chat', 'order' => 4],
-                    ['title' => 'Profile Settings', 'route_name' => 'profile.settings', 'order' => 5],
-                    ['title' => 'Change Password', 'route_name' => 'change.password', 'order' => 6],
-                ],
+            ],
+            [
+                'title' => 'Courses',
+                'route_name' => 'courses.index',
+                'order' => 4,
+                'location' => 'main',
             ],
             [
                 'title' => 'Pages',
                 'route_name' => null,
-                'order' => 4,
-                'location' => 'main',
-                'children' => [
-                    ['title' => 'Voice Call', 'route_name' => 'voice.call', 'order' => 1],
-                    ['title' => 'Video Call', 'route_name' => 'video.call', 'order' => 2],
-                    ['title' => 'Calendar', 'route_name' => 'calendar', 'order' => 3],
-                    ['title' => 'Components', 'route_name' => 'components', 'order' => 4],
-                    ['title' => 'Invoices', 'route_name' => 'invoices', 'order' => 5],
-                    ['title' => 'Login', 'route_name' => 'login', 'order' => 6],
-                    ['title' => 'Register', 'route_name' => 'register', 'order' => 7],
-                ],
-            ],
-            [
-                'title' => 'Blog',
-                'url' => '#',
                 'order' => 5,
                 'location' => 'main',
-            ],
-            [
-                'title' => 'Admin',
-                'route_name' => 'admin.dashboard',
-                'order' => 6,
-                'location' => 'main',
-                'open_in_new_tab' => true,
+                'children' => [
+                    ['title' => 'Privacy Policy', 'route_name' => 'privacy', 'order' => 1],
+                    ['title' => 'Terms & Conditions', 'route_name' => 'terms', 'order' => 2],
+                    ['title' => 'Contact/Components', 'route_name' => 'components', 'order' => 3],
+                ],
             ],
         ];
 
@@ -88,12 +56,38 @@ class MenuSeeder extends Seeder
             $children = $menuData['children'] ?? [];
             unset($menuData['children']);
 
-            $menu = Menu::create($menuData);
+            $menu = Menu::updateOrCreate(
+                [
+                    'title' => $menuData['title'],
+                    'location' => $menuData['location'],
+                    'parent_id' => null,
+                ],
+                [
+                    'url' => $menuData['url'] ?? null,
+                    'route_name' => $menuData['route_name'] ?? null,
+                    'icon' => $menuData['icon'] ?? null,
+                    'order' => $menuData['order'] ?? 0,
+                    'is_active' => true,
+                    'open_in_new_tab' => $menuData['open_in_new_tab'] ?? false,
+                ]
+            );
 
             foreach ($children as $childData) {
-                $childData['parent_id'] = $menu->id;
-                $childData['location'] = 'main';
-                Menu::create($childData);
+                Menu::updateOrCreate(
+                    [
+                        'title' => $childData['title'],
+                        'location' => 'main',
+                        'parent_id' => $menu->id,
+                    ],
+                    [
+                        'url' => $childData['url'] ?? null,
+                        'route_name' => $childData['route_name'] ?? null,
+                        'icon' => $childData['icon'] ?? null,
+                        'order' => $childData['order'] ?? 0,
+                        'is_active' => true,
+                        'open_in_new_tab' => $childData['open_in_new_tab'] ?? false,
+                    ]
+                );
             }
         }
     }
