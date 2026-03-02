@@ -15,7 +15,8 @@ use Modules\Doctors\Http\Controllers\Backend\SpecialityController as AdminSpecia
 
 Route::name('doctors.')->group(function () {
     // Search
-    Route::get('/search', [SearchController::class, 'index'])->name('search');
+    Route::get('/doctors', [SearchController::class, 'index'])->name('search');
+    Route::redirect('/search', '/doctors', 301);
 
     // Doctor Profile
     Route::get('/doctor-profile/{id}', [DoctorController::class, 'show'])->name('profile');

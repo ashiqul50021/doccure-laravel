@@ -8,6 +8,7 @@ use Modules\Doctors\Models\Doctor;
 use Modules\Doctors\Models\Speciality;
 use App\Models\Advertisement;
 use App\Models\District;
+use App\Models\Area;
 
 class SearchController extends Controller
 {
@@ -60,6 +61,11 @@ class SearchController extends Controller
         $doctors = $query->paginate(10);
         $specialities = Speciality::where('is_active', true)->get();
         $districts = District::orderBy('name')->get();
+        $areas = collect();
+
+        if ($request->filled('district_id')) {
+            $areas = Area::where('district_id', $request->district_id)->orderBy('name')->get();
+        }
 
         // Fetch ads
         $advertisements = Advertisement::where('is_active', true)
@@ -72,6 +78,6 @@ class SearchController extends Controller
                                        ->inRandomOrder()
                                        ->get();
 
-        return view('doctors::frontend.search', compact('doctors', 'specialities', 'districts', 'advertisements'));
+        return view('doctors::frontend.search', compact('doctors', 'specialities', 'districts', 'areas', 'advertisements'));
     }
 }

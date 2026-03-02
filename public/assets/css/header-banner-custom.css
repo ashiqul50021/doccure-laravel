@@ -4254,8 +4254,50 @@ body {
     }
 
     /* Hide main logo when menu is open to prevent overlap */
-    .menu-opened .header .navbar-brand.logo {
+.menu-opened .header .navbar-brand.logo {
         opacity: 0;
         visibility: hidden;
+    }
+}
+
+/* Desktop header/menu reset: keep nav visible on >= 992px */
+@media (min-width: 992px) {
+    .main-menu-wrapper {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        transform: none !important;
+        transition: none !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex: 1 !important;
+    }
+
+    .menu-header,
+    .mobile-menu-buttons {
+        display: none !important;
+    }
+
+    .main-nav {
+        padding: 0 !important;
+    }
+
+    .main-nav > li {
+        margin: 0 !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
+    }
+
+    .main-nav > li > a {
+        background: transparent !important;
+        border-radius: 0 !important;
+        justify-content: flex-start !important;
     }
 }

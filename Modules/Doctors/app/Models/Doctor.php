@@ -2,6 +2,9 @@
 
 namespace Modules\Doctors\Models;
 
+use App\Models\User;
+use App\Models\District;
+use App\Models\Area;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
