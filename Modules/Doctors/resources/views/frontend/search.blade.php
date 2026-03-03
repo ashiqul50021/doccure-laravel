@@ -351,7 +351,8 @@
                         'reviews' => $doctor->review_count,
                         'location' => $doctor->clinic_name ?? ($doctor->clinic_city ?? 'Location'),
                         'qualification' => $doctor->qualification ?? '',
-                        'price' => '$' . ($doctor->pricing === 'free' ? 'Free' : ($doctor->pricing === 'custom_price' ? $doctor->custom_price : '0')),
+                        'price' => ((float) ($doctor->consultation_fee ?? 0)) > 0 ? (float) $doctor->consultation_fee : 'Free',
+                        'feeLabel' => 'Consultation Fee',
                         'thumbsUp' => $doctor->average_rating > 0 ? round(($doctor->average_rating / 5) * 100) . '%' : '0%',
                         'profileLink' => route('doctors.profile', $doctor->id),
                         'bookingLink' => route('booking', $doctor->id)

@@ -124,12 +124,19 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="clinic-content">
-                                        <h4 class="clinic-name text-primary font-weight-bold mb-2">
-                                            {{ $doctor->clinic_name ?? 'Main Clinic' }}</h4>
                                         <p class="doc-speciality mb-2">{{ $doctor->qualifications }}</p>
                                         <div class="clinic-details mb-0">
-                                            <p class="mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i>
-                                                {{ $doctor->clinic_address }}, {{ $doctor->clinic_city }}</p>
+                                            @forelse($doctor->clinic_locations as $location)
+                                                <h4 class="clinic-name text-primary font-weight-bold mb-2">
+                                                    {{ $location['name'] ?? 'Main Clinic' }}
+                                                </h4>
+                                                <p class="mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i>
+                                                    {{ $location['address'] ?? 'Address not available' }}{{ $doctor->clinic_city ? ', ' . $doctor->clinic_city : '' }}</p>
+                                            @empty
+                                                <h4 class="clinic-name text-primary font-weight-bold mb-2">Main Clinic</h4>
+                                                <p class="mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i>
+                                                    {{ $doctor->primary_clinic_address ?? 'Address not available' }}{{ $doctor->clinic_city ? ', ' . $doctor->clinic_city : '' }}</p>
+                                            @endforelse
                                             <p class="mb-0 text-primary" style="cursor: pointer;"><i
                                                     class="fas fa-directions me-2"></i> Get Directions</p>
                                         </div>

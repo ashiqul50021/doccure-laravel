@@ -25,6 +25,9 @@ class DashboardController extends Controller
         if (!$doctor) {
             abort(redirect()->route('home')->with('error', 'Doctor profile not found.'));
         }
+        if ($doctor->isProfileComplete() && $doctor->status !== 'approved') {
+            $doctor->update(['status' => 'approved']);
+        }
         $doctor->load(['user', 'speciality']);
         return $doctor;
     }
@@ -221,8 +224,10 @@ class DashboardController extends Controller
             'registration_date' => ['nullable', 'date'],
             'experience_years' => ['nullable', 'integer', 'min:0', 'max:80'],
             'bio' => ['nullable', 'string'],
-            'clinic_name' => ['nullable', 'string', 'max:255'],
-            'clinic_address' => ['nullable', 'string', 'max:255'],
+            'clinic_names' => ['nullable', 'array', 'max:10'],
+            'clinic_names.*' => ['nullable', 'string', 'max:120'],
+            'clinic_addresses' => ['nullable', 'array', 'max:10'],
+            'clinic_addresses.*' => ['nullable', 'string', 'max:180'],
             'district_id' => ['nullable', 'exists:districts,id'],
             'area_id' => [
                 'nullable',
@@ -258,6 +263,11 @@ class DashboardController extends Controller
             $validated['profile_image'] = ImageService::upload($request->file('profile_image'), 'doctors');
         }
 
+        [$clinicNames, $clinicAddresses] = $this->toJsonClinicPairs(
+            $validated['clinic_names'] ?? [],
+            $validated['clinic_addresses'] ?? []
+        );
+
         $doctor->update([
             'phone' => $validated['phone'] ?? null,
             'gender' => $validated['gender'] ?? null,
@@ -269,8 +279,8 @@ class DashboardController extends Controller
             'registration_date' => $validated['registration_date'] ?? null,
             'experience_years' => $validated['experience_years'] ?? 0,
             'bio' => $validated['bio'] ?? null,
-            'clinic_name' => $validated['clinic_name'] ?? null,
-            'clinic_address' => $validated['clinic_address'] ?? null,
+            'clinic_name' => $clinicNames,
+            'clinic_address' => $clinicAddresses,
             'district_id' => $validated['district_id'] ?? null,
             'area_id' => $validated['area_id'] ?? null,
             'consultation_fee' => $validated['consultation_fee'] ?? 0,
@@ -290,12 +300,47 @@ class DashboardController extends Controller
         $doctor->refresh();
 
         if ($doctor->isProfileComplete()) {
+            if ($doctor->status !== 'approved') {
+                $doctor->update(['status' => 'approved']);
+            }
+
             return redirect()->route('doctors.dashboard')
                 ->with('success', 'Profile updated successfully. Your doctor account is now active.');
         }
 
         return redirect()->route('doctors.profile.settings')
             ->with('warning', 'Profile saved, but some required fields are still missing.');
+    }
+
+    private function toJsonClinicPairs(array $names, array $addresses): array
+    {
+        $names = array_values(array_map(function ($name) {
+            return is_string($name) ? trim($name) : '';
+        }, $names));
+        $addresses = array_values(array_map(function ($address) {
+            return is_string($address) ? trim($address) : '';
+        }, $addresses));
+
+        $count = max(count($names), count($addresses));
+        $cleanNames = [];
+        $cleanAddresses = [];
+
+        for ($i = 0; $i < $count; $i++) {
+            $name = $names[$i] ?? '';
+            $address = $addresses[$i] ?? '';
+
+            if ($name === '' || $address === '') {
+                continue;
+            }
+
+            $cleanNames[] = $name;
+            $cleanAddresses[] = $address;
+        }
+
+        return [
+            empty($cleanNames) ? null : json_encode($cleanNames),
+            empty($cleanAddresses) ? null : json_encode($cleanAddresses),
+        ];
     }
 
     private function toJsonList(?string $value): ?string

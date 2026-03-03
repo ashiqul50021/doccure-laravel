@@ -16,6 +16,11 @@
 </div>
 
 @forelse($doctors as $doctor)
+    @php
+        $consultationFee = (float) ($doctor->consultation_fee ?? 0);
+        $price = $consultationFee > 0 ? $consultationFee : 'Free';
+    @endphp
+
     @include('components.search-doctor-card', [
         'image' => $doctor->profile_image ? (filter_var($doctor->profile_image, FILTER_VALIDATE_URL) ? $doctor->profile_image : asset($doctor->profile_image)) : asset('assets/img/doctors/doctor-thumb-01.jpg'),
         'name' => $doctor->user->name,
@@ -25,7 +30,8 @@
         'rating' => $doctor->average_rating,
         'reviews' => $doctor->review_count,
         'location' => ($doctor->area ? $doctor->area->name . ', ' : '') . ($doctor->district ? $doctor->district->name : 'Location'),
-        'price' => $doctor->consultation_fee > 0 ? $doctor->consultation_fee : 'Free',
+        'price' => $price,
+        'feeLabel' => 'Consultation Fee',
         'thumbsUp' => $doctor->average_rating > 0 ? round(($doctor->average_rating / 5) * 100) . '%' : '0%',
         'experience' => $doctor->experience_years ?? 0,
         'qualification' => $doctor->qualification ?? '',

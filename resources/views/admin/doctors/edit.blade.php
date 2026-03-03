@@ -83,7 +83,7 @@
                          <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <label>Clinic Address</label>
-                                <input type="text" name="clinic_address" class="form-control" value="{{ $doctor->clinic_address }}">
+                                <input type="text" name="clinic_address" class="form-control" value="{{ $doctor->primary_clinic_address }}">
                             </div>
                         </div>
                         <div class="col-12">

@@ -56,6 +56,78 @@ class Doctor extends Model
         return $this->reviews()->where('is_approved', true)->count();
     }
 
+    public function getClinicNameAttribute($value): ?string
+    {
+        $names = $this->parseStoredList($value);
+        return $names[0] ?? null;
+    }
+
+    public function getClinicAddressAttribute($value): ?string
+    {
+        $addresses = $this->parseStoredList($value);
+        return $addresses[0] ?? null;
+    }
+
+    public function getClinicNamesAttribute(): array
+    {
+        return $this->parseStoredList($this->attributes['clinic_name'] ?? null);
+    }
+
+    public function getClinicAddressesAttribute(): array
+    {
+        return $this->parseStoredList($this->attributes['clinic_address'] ?? null);
+    }
+
+    public function getPrimaryClinicNameAttribute(): ?string
+    {
+        return $this->clinic_names[0] ?? null;
+    }
+
+    public function getPrimaryClinicAddressAttribute(): ?string
+    {
+        return $this->clinic_addresses[0] ?? null;
+    }
+
+    public function getClinicLocationsAttribute(): array
+    {
+        $names = $this->clinic_names;
+        $addresses = $this->clinic_addresses;
+        $count = max(count($names), count($addresses));
+        $locations = [];
+
+        for ($i = 0; $i < $count; $i++) {
+            $name = $names[$i] ?? null;
+            $address = $addresses[$i] ?? null;
+
+            if (blank($name) && blank($address)) {
+                continue;
+            }
+
+            $locations[] = [
+                'name' => $name ?: 'Main Clinic',
+                'address' => $address,
+            ];
+        }
+
+        return $locations;
+    }
+
+    private function parseStoredList(?string $rawValue): array
+    {
+        if (blank($rawValue)) {
+            return [];
+        }
+
+        $decoded = json_decode($rawValue, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return array_values(array_filter(array_map(function ($item) {
+                return is_string($item) ? trim($item) : '';
+            }, $decoded)));
+        }
+
+        return [trim((string) $rawValue)];
+    }
+
     public function isProfileComplete(): bool
     {
         $requiredFields = [

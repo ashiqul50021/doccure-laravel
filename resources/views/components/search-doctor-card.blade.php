@@ -45,8 +45,16 @@
             <div class="col-md-auto text-center text-md-right mt-3 mt-md-0 border-left-md pl-md-4"
                 style="border-left: 1px solid #f0f0f0;">
                 <div class="price-box mb-2">
+                    <div style="font-size: 0.8rem; color: #6b7280; font-weight: 600; margin-bottom: 2px;">
+                        {{ $feeLabel ?? 'Consultation Fee' }}
+                    </div>
                     <span style="font-size: 1.25rem; font-weight: 700; color: #111827;">
-                        @if($price == 'Free') Free @else ৳{{ str_replace(['$', 'Free'], '', $price) }} @endif
+                        @if($price === 'Free')
+                            Free
+                        @else
+                            @php $amount = (float) $price; @endphp
+                            {{ $amount > 0 ? '৳' . number_format($amount, 0) : 'Free' }}
+                        @endif
                     </span>
                 </div>
 

@@ -58,4 +58,32 @@ class Doctor extends Model
     {
         return $this->reviews()->where('is_approved', true)->count();
     }
+
+    public function getClinicNameAttribute($value): ?string
+    {
+        $names = $this->parseStoredList($value);
+        return $names[0] ?? null;
+    }
+
+    public function getClinicAddressAttribute($value): ?string
+    {
+        $addresses = $this->parseStoredList($value);
+        return $addresses[0] ?? null;
+    }
+
+    private function parseStoredList(?string $rawValue): array
+    {
+        if (blank($rawValue)) {
+            return [];
+        }
+
+        $decoded = json_decode($rawValue, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return array_values(array_filter(array_map(function ($item) {
+                return is_string($item) ? trim($item) : '';
+            }, $decoded)));
+        }
+
+        return [trim((string) $rawValue)];
+    }
 }

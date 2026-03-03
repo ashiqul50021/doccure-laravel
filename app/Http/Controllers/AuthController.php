@@ -193,6 +193,10 @@ class AuthController extends Controller
                 ->with('warning', 'Please complete your profile to activate your doctor account.');
         }
 
+        if ($doctor->status !== 'approved') {
+            $doctor->update(['status' => 'approved']);
+        }
+
         return redirect()->route('doctors.dashboard');
     }
 

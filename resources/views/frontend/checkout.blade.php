@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="clinic-details">
                                         <p class="doc-location"><i class="fas fa-map-marker-alt"></i>
-                                            {{ $doctor->clinic_city }}, {{ $doctor->clinic_address }}</p>
+                                            {{ $doctor->clinic_city }}, {{ $doctor->primary_clinic_address }}</p>
                                     </div>
                                 </div>
                             </div>
