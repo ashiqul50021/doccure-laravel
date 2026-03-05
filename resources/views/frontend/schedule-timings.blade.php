@@ -114,7 +114,7 @@
                                                                                 -
                                                                                 {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:i a') }}
                                                                                 <form
-                                                                                    action="{{ route('schedule.destroy', $schedule->id) }}"
+                                                                                    action="{{ route('doctors.schedule.destroy', $schedule->id) }}"
                                                                                     method="POST" style="display:inline;">
                                                                                     @csrf
                                                                                     @method('DELETE')
@@ -161,7 +161,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('schedule.store') }}" method="POST">
+                    <form action="{{ route('doctors.schedule.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="day" id="selected_day">
                         <div class="hours-info">

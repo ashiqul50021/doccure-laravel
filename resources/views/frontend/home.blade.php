@@ -402,12 +402,12 @@
                         <!-- Specialities -->
                         <div class="filter-section">
                             <h5 class="filter-title"><i class="fas fa-stethoscope"></i> Speciality</h5>
-                            <div class="category-list">
+                            <div class="category-list speciality-list">
                                 <label class="category-item">
                                     <input type="radio" name="doctor_speciality" value="all" checked>
                                     <span class="category-name">All Doctors</span>
                                 </label>
-                                @foreach($searchSpecialities->take(6) as $speciality)
+                                @foreach($searchSpecialities as $speciality)
                                     <label class="category-item">
                                         <input type="radio" name="doctor_speciality" value="{{ $speciality->id }}">
                                         <span class="category-name">{{ $speciality->name }}</span>
@@ -1354,11 +1354,14 @@
                 var search = $('#doctorSearchInput').val();
 
                 $.ajax({
-                    url: '/api/doctors/filter',
+                    url: '{{ route('api.doctors.filter') }}',
                     type: 'GET',
                     data: { speciality: speciality, search: search },
                     success: function (doctors) {
                         renderDoctors(doctors);
+                    },
+                    error: function () {
+                        $('#doctorsGrid').html('<div class="col-12"><div class="alert alert-danger text-center">Failed to load doctors.</div></div>');
                     }
                 });
             }
@@ -1373,7 +1376,7 @@
                 }
 
                 doctors.forEach(function (doctor) {
-                    var imageSrc = doctor.profile_image ? '/storage/' + doctor.profile_image : '/assets/img/doctors/doctor-thumb-01.jpg';
+                    var imageSrc = doctor.profile_image || '/assets/img/doctors/doctor-thumb-01.jpg';
                     var fee = doctor.pricing === 'free' ? 'Free' : '৳ ' + numberFormat(doctor.custom_price || 0);
 
                     var html = `
@@ -1669,6 +1672,25 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+        }
+
+        .speciality-list .category-item {
+            padding: 7px 8px;
+            gap: 8px;
+        }
+
+        .speciality-list .category-item input[type="radio"] {
+            width: 15px;
+            height: 15px;
+            flex: 0 0 15px;
+        }
+
+        .speciality-list .category-name {
+            font-size: 12px;
+            line-height: 1.3;
+            white-space: normal;
+            word-break: break-word;
+            text-transform: uppercase;
         }
 
         .category-item {
@@ -2528,6 +2550,10 @@
 
             .category-item {
                 flex: 0 0 auto;
+            }
+
+            .speciality-list {
+                flex-direction: column;
             }
         }
 

@@ -75,4 +75,40 @@ class HomeController extends Controller
             'healthPackages'
         ));
     }
+
+    public function filterDoctors(Request $request)
+    {
+        $query = Doctor::with(['user', 'speciality', 'area'])
+            ->where('status', 'approved')
+            ->whereHas('user');
+
+        $speciality = $request->string('speciality')->toString();
+        if ($speciality !== '' && $speciality !== 'all') {
+            $query->where('speciality_id', (int) $speciality);
+        }
+
+        $search = trim((string) $request->input('search'));
+        if ($search !== '') {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        $doctors = $query->latest()->take(24)->get()->map(function ($doctor) {
+            return [
+                'id' => $doctor->id,
+                'name' => $doctor->user->name ?? 'Doctor',
+                'profile_image' => $doctor->profile_image ? asset($doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-01.jpg'),
+                'pricing' => $doctor->pricing,
+                'custom_price' => $doctor->custom_price,
+                'speciality' => $doctor->speciality->name ?? 'General',
+                'average_rating' => (float) $doctor->average_rating,
+                'review_count' => (int) $doctor->review_count,
+                'clinic_name' => $doctor->clinic_name,
+                'area_name' => $doctor->area->name ?? 'Dhaka',
+            ];
+        });
+
+        return response()->json($doctors);
+    }
 }

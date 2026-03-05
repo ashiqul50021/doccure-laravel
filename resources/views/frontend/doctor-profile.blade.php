@@ -35,6 +35,22 @@
                                 Reviews)</span>
                         </div>
 
+                        <div class="mb-2">
+                            @php
+                                $isOnline = optional($doctor->user)->isOnline();
+                                $lastSeen = optional($doctor->user?->last_seen_at)->diffForHumans();
+                            @endphp
+                            <span class="badge"
+                                style="background: {{ $isOnline ? '#dcfce7' : '#f3f4f6' }}; color: {{ $isOnline ? '#166534' : '#4b5563' }}; padding: 8px 12px; border-radius: 999px; font-weight: 600;">
+                                <i class="fas fa-circle"
+                                    style="font-size: 9px; margin-right: 6px; color: {{ $isOnline ? '#22c55e' : '#9ca3af' }};"></i>
+                                {{ $isOnline ? 'Online Now' : 'Offline' }}
+                                @if(!$isOnline && $lastSeen)
+                                    <small class="ms-1">(Last seen {{ $lastSeen }})</small>
+                                @endif
+                            </span>
+                        </div>
+
                         <div class="doctor-stats">
                             <div class="doctor-stat-item">
                                 <i class="far fa-comment"></i> {{ $doctor->review_count }} Feedback

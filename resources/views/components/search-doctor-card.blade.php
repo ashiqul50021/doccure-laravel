@@ -25,6 +25,15 @@
 
                 <div class="d-flex flex-wrap gap-2 mb-3" style="gap: 10px;">
                     <span class="badge badge-pill"
+                        style="background: {{ !empty($isOnline) ? '#dcfce7' : '#f3f4f6' }}; color: {{ !empty($isOnline) ? '#166534' : '#4b5563' }}; padding: 8px 12px; font-weight: 600;">
+                        <i class="fas fa-circle"
+                            style="font-size: 9px; margin-right: 6px; color: {{ !empty($isOnline) ? '#22c55e' : '#9ca3af' }};"></i>
+                        {{ !empty($isOnline) ? 'Online' : 'Offline' }}
+                        @if(empty($isOnline) && !empty($lastSeenText))
+                            <small style="margin-left: 6px;">({{ $lastSeenText }})</small>
+                        @endif
+                    </span>
+                    <span class="badge badge-pill"
                         style="background: #e2f6ff; color: #0de0fe; padding: 8px 12px; font-weight: 500;">
                         <img src="{{ $departmentIcon }}" alt=""
                             style="width: 16px; height: 16px; margin-right: 4px; vertical-align: text-bottom;">

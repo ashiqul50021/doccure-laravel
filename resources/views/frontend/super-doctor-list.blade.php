@@ -36,7 +36,9 @@
         'experience' => $doctor->experience_years ?? 0,
         'qualification' => $doctor->qualification ?? '',
         'profileLink' => route('doctors.profile', $doctor->id),
-        'bookingLink' => route('booking', $doctor->id)
+        'bookingLink' => route('booking', $doctor->id),
+        'isOnline' => optional($doctor->user)->isOnline(),
+        'lastSeenText' => optional($doctor->user?->last_seen_at)->diffForHumans()
     ])
 
 

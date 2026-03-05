@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use Modules\Site\Http\Controllers\SiteController;
 
 /*
@@ -39,6 +40,13 @@ Route::post('/register', [App\Http\Controllers\AuthController::class, 'registerP
 Route::get('/doctor-register', [App\Http\Controllers\AuthController::class, 'showDoctorRegisterForm'])->name('doctor.register');
 Route::post('/doctor-register', [App\Http\Controllers\AuthController::class, 'registerDoctor'])->name('doctor.register.submit');
 Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+Route::post('/heartbeat', function (Request $request) {
+    $request->user()->forceFill([
+        'last_seen_at' => now(),
+    ])->saveQuietly();
+
+    return response()->json(['ok' => true]);
+})->middleware('auth')->name('heartbeat');
 Route::get('/forgot-password', function () {
     return view('frontend.forgot-password');
 })->name('forgot.password');
@@ -97,6 +105,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::get('/api/areas/{district}', function (App\Models\District $district) {
     return response()->json($district->areas()->orderBy('name')->get());
 })->name('api.areas');
+Route::get('/api/doctors/filter', [App\Http\Controllers\HomeController::class, 'filterDoctors'])->name('api.doctors.filter');
 
 /*
 |--------------------------------------------------------------------------

@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', $siteSettings['site_name'] ?? 'abcsheba.com')</title>
 
     <!-- Favicons -->
@@ -166,6 +167,31 @@
             });
         });
     </script>
+
+    @auth
+        <script>
+            (function () {
+                const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+                if (!token) return;
+
+                const pingHeartbeat = function () {
+                    fetch('{{ route('heartbeat') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': token,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: '{}',
+                        keepalive: true
+                    }).catch(function () {});
+                };
+
+                pingHeartbeat();
+                setInterval(pingHeartbeat, 60000);
+            })();
+        </script>
+    @endauth
 
     @stack('scripts')
 

@@ -2,299 +2,456 @@
 
 @section('title', 'Doctor Profile - Doccure')
 
+@push('styles')
+<style>
+    .doctor-page {
+        background: linear-gradient(180deg, #f8fbff 0%, #f5f7fb 100%);
+        min-height: 100vh;
+        padding: 120px 0 60px;
+    }
+
+    .doctor-shell {
+        border-radius: 20px;
+        border: 1px solid #e5eaf3;
+        background: #fff;
+        box-shadow: 0 16px 45px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+    }
+
+    .doctor-hero {
+        padding: 28px;
+        background: radial-gradient(circle at top right, #dbeafe 0%, #eff6ff 38%, #fff 100%);
+        border-bottom: 1px solid #e5eaf3;
+    }
+
+    .doctor-avatar {
+        width: 180px;
+        height: 180px;
+        border-radius: 20px;
+        object-fit: cover;
+        border: 4px solid #fff;
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.16);
+    }
+
+    .doctor-name {
+        margin: 0 0 6px;
+        font-size: 32px;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1.1;
+    }
+
+    .doctor-subtitle {
+        margin: 0 0 10px;
+        color: #334155;
+        font-weight: 600;
+    }
+
+    .doctor-chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .doctor-chip {
+        border: 1px solid #dbe5f3;
+        background: #fff;
+        color: #1e293b;
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .doctor-chip.online {
+        background: #dcfce7;
+        border-color: #86efac;
+        color: #166534;
+    }
+
+    .doctor-rating {
+        color: #f59e0b;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .doctor-rating .muted {
+        color: #64748b;
+        font-weight: 600;
+    }
+
+    .doctor-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .metric {
+        padding: 11px 12px;
+        border-radius: 12px;
+        border: 1px solid #e5eaf3;
+        background: #fff;
+        font-size: 13px;
+        color: #475569;
+    }
+
+    .metric strong {
+        display: block;
+        font-size: 16px;
+        color: #0f172a;
+        margin-top: 2px;
+    }
+
+    .doctor-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+    }
+
+    .doctor-actions .btn {
+        border-radius: 10px;
+        font-weight: 700;
+        padding: 7px 12px;
+        font-size: 14px;
+        line-height: 1.2;
+        min-height: 40px;
+        box-shadow: none !important;
+    }
+
+    .doctor-content {
+        padding: 26px;
+    }
+
+    .doctor-section {
+        border: 1px solid #e5eaf3;
+        border-radius: 16px;
+        background: #fff;
+        padding: 20px;
+        margin-bottom: 16px;
+    }
+
+    .doctor-section h5 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 14px;
+    }
+
+    .detail-item {
+        border: 1px solid #e8edf5;
+        border-radius: 12px;
+        background: #fafcff;
+        padding: 10px 12px;
+    }
+
+    .detail-item .label {
+        font-size: 12px;
+        color: #64748b;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .2px;
+    }
+
+    .detail-item .value {
+        font-size: 14px;
+        color: #0f172a;
+        font-weight: 600;
+        margin-top: 3px;
+        word-break: break-word;
+    }
+
+    .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pill-list span {
+        padding: 7px 10px;
+        background: #eef4ff;
+        border: 1px solid #dbe7ff;
+        color: #1e3a8a;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .schedule-list {
+        display: grid;
+        gap: 10px;
+    }
+
+    .schedule-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        border: 1px solid #e8edf5;
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: #fff;
+    }
+
+    .schedule-row .day {
+        font-weight: 800;
+        color: #1e293b;
+        text-transform: capitalize;
+    }
+
+    .review-item {
+        border: 1px solid #e8edf5;
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+        margin-bottom: 10px;
+    }
+
+    .review-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+
+    .review-name {
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    .review-date {
+        color: #64748b;
+        font-size: 12px;
+    }
+
+    @media (max-width: 991.98px) {
+        .doctor-page {
+            padding-top: 95px;
+        }
+
+        .doctor-avatar {
+            width: 130px;
+            height: 130px;
+            margin-bottom: 14px;
+        }
+
+        .doctor-name {
+            font-size: 26px;
+        }
+
+        .detail-grid,
+        .doctor-metrics {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+@endpush
+
 @section('content')
+@php
+    $profileImage = $doctor->profile_image
+        ? (filter_var($doctor->profile_image, FILTER_VALIDATE_URL) ? $doctor->profile_image : asset($doctor->profile_image))
+        : asset('assets/img/doctors/doctor-thumb-02.jpg');
 
-<!-- Page Content -->
-<div class="content">
+    $specialityImage = ($doctor->speciality && $doctor->speciality->image)
+        ? (filter_var($doctor->speciality->image, FILTER_VALIDATE_URL) ? $doctor->speciality->image : asset($doctor->speciality->image))
+        : null;
+
+    $parseList = function ($value) {
+        if (blank($value)) {
+            return [];
+        }
+        if (is_array($value)) {
+            return array_values(array_filter($value, fn ($item) => filled($item)));
+        }
+        $decoded = json_decode((string) $value, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return array_values(array_filter(array_map(fn ($item) => is_string($item) ? trim($item) : '', $decoded)));
+        }
+        return [trim((string) $value)];
+    };
+
+    $education = $parseList($doctor->education ?? null);
+    $services = $parseList($doctor->services ?? null);
+    $awards = $parseList($doctor->awards ?? null);
+    $languages = $parseList($doctor->languages ?? null);
+    $isOnline = optional($doctor->user)->isOnline();
+    $lastSeen = optional($doctor->user?->last_seen_at)->diffForHumans();
+    $locationText = trim(($doctor->clinic_address ?? '') . ', ' . ($doctor->area->name ?? '') . ', ' . ($doctor->district->name ?? ''), ', ');
+@endphp
+
+<div class="doctor-page">
     <div class="container">
-
-        <!-- Doctor Widget -->
-        <div class="card">
-            <div class="card-body">
-                <div class="doctor-widget">
-                    <div class="doc-info-left">
-                        <div class="doctor-img">
-                            <img src="{{ $doctor->profile_image ? asset('storage/'.$doctor->profile_image) : asset('assets/img/doctors/doctor-thumb-02.jpg') }}" class="img-fluid" alt="User Image">
-                        </div>
-                        <div class="doc-info-cont">
-                            <h4 class="doc-name">Dr. {{ $doctor->user->name }}</h4>
-                            <p class="doc-speciality">{{ $doctor->qualifications }}</p>
-                            <p class="doc-department">
-                                @if($doctor->speciality && $doctor->speciality->image)
-                                <img src="{{ asset('storage/'.$doctor->speciality->image) }}" class="img-fluid" alt="Speciality">
+        <div class="doctor-shell">
+            <div class="doctor-hero">
+                <div class="row g-4 align-items-start">
+                    <div class="col-lg-3 col-md-4 text-center text-md-start">
+                        <img src="{{ $profileImage }}" alt="{{ $doctor->user->name }}" class="doctor-avatar">
+                    </div>
+                    <div class="col-lg-6 col-md-8">
+                        <h1 class="doctor-name">Dr. {{ $doctor->user->name }}</h1>
+                        <p class="doctor-subtitle">{{ $doctor->qualification ?? $doctor->qualifications ?? 'Medical Specialist' }}</p>
+                        <div class="doctor-chip-row">
+                            <span class="doctor-chip">
+                                @if($specialityImage)
+                                    <img src="{{ $specialityImage }}" alt="Speciality" style="width:16px;height:16px;border-radius:50%;margin-right:6px;object-fit:cover;">
                                 @endif
                                 {{ $doctor->speciality->name ?? 'General' }}
-                            </p>
-                            <div class="rating">
-                                @for($i = 1; $i <= 5; $i++)
-                                    <i class="fas fa-star {{ $i <= $doctor->average_rating ? 'filled' : '' }}"></i>
-                                @endfor
-                                <span class="d-inline-block average-rating">({{ $doctor->review_count }})</span>
-                            </div>
-                            <div class="clinic-details">
-                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $doctor->clinic_city }}, {{ $doctor->clinic_address }}</p>
-                            </div>
+                            </span>
+                            @if($doctor->is_verified)
+                                <span class="doctor-chip">Verified</span>
+                            @endif
+                            <span class="doctor-chip {{ $isOnline ? 'online' : '' }}">
+                                {{ $isOnline ? 'Online Now' : 'Offline' }}{{ !$isOnline && $lastSeen ? ' • Last seen ' . $lastSeen : '' }}
+                            </span>
+                        </div>
+                        <div class="doctor-rating mb-2">
+                            @for($i = 1; $i <= 5; $i++)
+                                <i class="fas fa-star {{ $i <= round($doctor->average_rating) ? 'filled' : '' }}"></i>
+                            @endfor
+                            <span class="muted"> {{ number_format($doctor->average_rating, 1) }} ({{ $doctor->review_count }} reviews)</span>
+                        </div>
+                        <div class="text-muted">
+                            <i class="fas fa-map-marker-alt me-2"></i>{{ $locationText !== '' ? $locationText : 'Location not provided' }}
+                        </div>
+                        <div class="doctor-actions">
+                            <a href="{{ route('booking', $doctor->id) }}" class="btn btn-primary">
+                                <i class="fas fa-calendar-check me-1"></i> Book Appointment
+                            </a>
+                            <a href="{{ route('chat') }}" class="btn btn-outline-primary">
+                                <i class="far fa-comment-dots me-1"></i> Chat
+                            </a>
+                            <a href="{{ route('voice.call') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-phone-alt me-1"></i> Voice Call
+                            </a>
+                            <a href="{{ route('video.call') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-video me-1"></i> Video Call
+                            </a>
                         </div>
                     </div>
-                    <div class="doc-info-right">
-                        <div class="clini-infos">
-                            <ul>
-                                <li><i class="far fa-thumbs-up"></i> 100%</li>
-                                <li><i class="far fa-comment"></i> {{ $doctor->review_count }} Feedback</li>
-                                <li><i class="fas fa-map-marker-alt"></i> {{ $doctor->clinic_city }}</li>
-                                <li><i class="far fa-money-bill-alt"></i> {{ $doctor->pricing === 'free' ? 'Free' : ($doctor->pricing === 'custom_price' ? '$'.$doctor->custom_price : 'N/A') }} </li>
-                            </ul>
-                        </div>
-                        <div class="doctor-action">
-                            <a href="javascript:void(0)" class="btn btn-white fav-btn">
-                                <i class="far fa-bookmark"></i>
-                            </a>
-                            <a href="{{ route('chat') }}" class="btn btn-white msg-btn">
-                                <i class="far fa-comment-alt"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
-                                <i class="fas fa-phone"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
-                                <i class="fas fa-video"></i>
-                            </a>
-                        </div>
-                        <div class="clinic-booking">
-                            <a class="apt-btn" href="{{ route('booking', $doctor->id) }}">Book Appointment</a>
+                    <div class="col-lg-3">
+                        <div class="doctor-metrics">
+                            <div class="metric">Consultation Fee<strong>৳{{ number_format((float) ($doctor->consultation_fee ?? 0), 0) }}</strong></div>
+                            <div class="metric">Experience<strong>{{ (int) ($doctor->experience_years ?? 0) }} years</strong></div>
+                            <div class="metric">Status<strong>{{ ucfirst($doctor->status ?? 'N/A') }}</strong></div>
+                            <div class="metric">Home Visit<strong>{{ !empty($doctor->home_visit) ? 'Available' : 'No' }}</strong></div>
+                            <div class="metric">Online Consult<strong>{{ !empty($doctor->online_consultation) ? 'Available' : 'No' }}</strong></div>
+                            <div class="metric">Online Fee<strong>৳{{ number_format((float) ($doctor->online_fee ?? 0), 0) }}</strong></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- /Doctor Widget -->
 
-        <!-- Doctor Details Tab -->
-        <div class="card">
-            <div class="card-body pt-0">
+            <div class="doctor-content">
+                <div class="doctor-section">
+                    <h5>About Doctor</h5>
+                    <p class="mb-0 text-muted">{{ $doctor->bio ?? 'No biography added yet.' }}</p>
+                </div>
 
-                <!-- Tab Menu -->
-                <nav class="user-tabs mb-4">
-                    <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#doc_overview" data-toggle="tab">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#doc_locations" data-toggle="tab">Locations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#doc_reviews" data-toggle="tab">Reviews</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#doc_business_hours" data-toggle="tab">Business Hours</a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- /Tab Menu -->
+                <div class="doctor-section">
+                    <h5>Professional Details</h5>
+                    <div class="detail-grid">
+                        <div class="detail-item"><div class="label">Phone</div><div class="value">{{ $doctor->phone ?? 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Gender</div><div class="value">{{ $doctor->gender ? ucfirst($doctor->gender) : 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Date Of Birth</div><div class="value">{{ !empty($doctor->date_of_birth) ? \Carbon\Carbon::parse($doctor->date_of_birth)->format('d M Y') : 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Registration No</div><div class="value">{{ $doctor->registration_number ?? 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Registration Date</div><div class="value">{{ !empty($doctor->registration_date) ? \Carbon\Carbon::parse($doctor->registration_date)->format('d M Y') : 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Clinic Name</div><div class="value">{{ $doctor->clinic_name ?? 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Clinic Address</div><div class="value">{{ $doctor->clinic_address ?? 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Area / District</div><div class="value">{{ ($doctor->area->name ?? 'N/A') . ' / ' . ($doctor->district->name ?? 'N/A') }}</div></div>
+                        <div class="detail-item"><div class="label">Website</div><div class="value">{{ $doctor->website ?? 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Facebook</div><div class="value">{{ $doctor->facebook ?? 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">LinkedIn</div><div class="value">{{ $doctor->linkedin ?? 'N/A' }}</div></div>
+                        <div class="detail-item"><div class="label">Featured</div><div class="value">{{ !empty($doctor->is_featured) ? 'Yes' : 'No' }}</div></div>
+                    </div>
+                </div>
 
-                <!-- Tab Content -->
-                <div class="tab-content pt-0">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="doctor-section">
+                            <h5>Languages</h5>
+                            @if(count($languages))
+                                <div class="pill-list">@foreach($languages as $item)<span>{{ $item }}</span>@endforeach</div>
+                            @else
+                                <p class="text-muted mb-0">No languages added.</p>
+                            @endif
+                        </div>
 
-                    <!-- Overview Content -->
-                    <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-9">
+                        <div class="doctor-section">
+                            <h5>Services</h5>
+                            @if(count($services))
+                                <div class="pill-list">@foreach($services as $item)<span>{{ $item }}</span>@endforeach</div>
+                            @else
+                                <p class="text-muted mb-0">No services listed.</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="doctor-section">
+                            <h5>Education</h5>
+                            @if(count($education))
+                                <div class="pill-list">@foreach($education as $item)<span>{{ $item }}</span>@endforeach</div>
+                            @else
+                                <p class="text-muted mb-0">No education history listed.</p>
+                            @endif
+                        </div>
 
-                                <!-- About Details -->
-                                <div class="widget about-widget">
-                                    <h4 class="widget-title">About Me</h4>
-                                    <p>{{ $doctor->bio }}</p>
+                        <div class="doctor-section">
+                            <h5>Awards</h5>
+                            @if(count($awards))
+                                <div class="pill-list">@foreach($awards as $item)<span>{{ $item }}</span>@endforeach</div>
+                            @else
+                                <p class="text-muted mb-0">No awards listed.</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-section">
+                    <h5>Business Hours</h5>
+                    @if($doctor->schedules->count())
+                        <div class="schedule-list">
+                            @foreach($doctor->schedules as $schedule)
+                                <div class="schedule-row">
+                                    <span class="day">{{ $schedule->day }}</span>
+                                    <span>{{ \Carbon\Carbon::parse($schedule->start_time)->format('g:i A') }} - {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:i A') }}</span>
                                 </div>
-                                <!-- /About Details -->
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="text-muted mb-0">No schedules available.</p>
+                    @endif
+                </div>
 
+                <div class="doctor-section mb-0">
+                    <h5>Patient Reviews</h5>
+                    @forelse($doctor->reviews as $review)
+                        <div class="review-item">
+                            <div class="review-head">
+                                <div>
+                                    <div class="review-name">{{ $review->patient->user->name ?? 'Patient' }}</div>
+                                    <div class="doctor-rating">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fas fa-star {{ $i <= $review->rating ? 'filled' : '' }}"></i>
+                                        @endfor
+                                    </div>
+                                </div>
+                                <div class="review-date">{{ $review->created_at->diffForHumans() }}</div>
                             </div>
+                            <p class="mb-0 text-muted">{{ $review->comment ?: 'No comment provided.' }}</p>
                         </div>
-                    </div>
-                    <!-- /Overview Content -->
-
-                    <!-- Locations Content -->
-                    <div role="tabpanel" id="doc_locations" class="tab-pane fade">
-
-                        <!-- Location List -->
-                        <div class="location-list">
-                            <div class="row">
-                                <!-- Clinic Content -->
-                                <div class="col-md-6">
-                                    <div class="clinic-content">
-                                        <h4 class="clinic-name"><a href="#">{{ $doctor->clinic_name ?? 'Clone Clinic' }}</a></h4>
-                                        <p class="doc-speciality">{{ $doctor->qualifications }}</p>
-                                        <div class="rating">
-                                            @for($i = 1; $i <= 5; $i++)
-                                                <i class="fas fa-star {{ $i <= $doctor->average_rating ? 'filled' : '' }}"></i>
-                                            @endfor
-                                            <span class="d-inline-block average-rating">({{ $doctor->review_count }})</span>
-                                        </div>
-                                        <div class="clinic-details mb-0">
-                                            <h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> {{ $doctor->clinic_address }}, {{ $doctor->clinic_city }} <br><a href="javascript:void(0);">Get Directions</a></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Clinic Content -->
-
-                                <!-- Clinic Timing -->
-                                <div class="col-md-4">
-                                    <div class="clinic-timing">
-                                        @forelse($doctor->schedules as $schedule)
-                                        <div>
-                                            <p class="timings-days">{{ ucfirst($schedule->day) }}</p>
-                                            <p class="timings-times">{{ \Carbon\Carbon::parse($schedule->start_time)->format('g:i A') }} - {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:i A') }}</p>
-                                        </div>
-                                        @empty
-                                        <div><p>No schedules available</p></div>
-                                        @endforelse
-                                    </div>
-                                </div>
-                                <!-- /Clinic Timing -->
-
-                                <div class="col-md-2">
-                                    <div class="consult-price">
-                                        {{ $doctor->pricing === 'free' ? 'Free' : ($doctor->pricing === 'custom_price' ? '$'.$doctor->custom_price : 'N/A') }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Location List -->
-
-                    </div>
-                    <!-- /Locations Content -->
-
-                    <!-- Reviews Content -->
-                    <div role="tabpanel" id="doc_reviews" class="tab-pane fade">
-                        <!-- Review Listing -->
-                        <div class="widget review-listing">
-                            <ul class="comments-list">
-                                <!-- Comment List -->
-                                @forelse($doctor->reviews as $review)
-                                <li>
-                                    <div class="comment">
-                                        <img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ optional($review->patient->user)->profile_image ? asset('storage/'.$review->patient->user->profile_image) : asset('assets/img/patients/patient.jpg') }}">
-                                        <div class="comment-body">
-                                            <div class="meta-data">
-                                                <span class="comment-author">{{ $review->patient->user->name ?? 'Patient' }}</span>
-                                                <span class="comment-date">{{ $review->created_at->diffForHumans() }}</span>
-                                                <div class="review-count rating">
-                                                    @for($i = 1; $i <= 5; $i++)
-                                                        <i class="fas fa-star {{ $i <= $review->rating ? 'filled' : '' }}"></i>
-                                                    @endfor
-                                                </div>
-                                            </div>
-                                            <p class="comment-content">
-                                                {{ $review->comment }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                @empty
-                                <li><p>No reviews yet.</p></li>
-                                @endforelse
-                                <!-- /Comment List -->
-                            </ul>
-                        </div>
-                        <!-- /Review Listing -->
-
-                        <!-- Write Review -->
-                        <div class="write-review">
-                            <h4>Write a review for <strong>Dr. Darren Elder</strong></h4>
-
-                            <!-- Write Review Form -->
-                            <form>
-                                <div class="form-group">
-                                    <label>Review</label>
-                                    <div class="star-rating">
-                                        <input id="star-5" type="radio" name="rating" value="5">
-                                        <label for="star-5" title="5 stars">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                        <input id="star-4" type="radio" name="rating" value="4">
-                                        <label for="star-4" title="4 stars">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                        <input id="star-3" type="radio" name="rating" value="3">
-                                        <label for="star-3" title="3 stars">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                        <input id="star-2" type="radio" name="rating" value="2">
-                                        <label for="star-2" title="2 stars">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                        <input id="star-1" type="radio" name="rating" value="1">
-                                        <label for="star-1" title="1 star">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Title of your review</label>
-                                    <input class="form-control" type="text" placeholder="If you could say it in one sentence, what would you say?">
-                                </div>
-                                <div class="form-group">
-                                    <label>Your review</label>
-                                    <textarea id="review_desc" maxlength="100" class="form-control"></textarea>
-
-                                    <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <div class="terms-accept">
-                                        <div class="custom-checkbox">
-                                           <input type="checkbox" id="terms_accept">
-                                           <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Add Review</button>
-                                </div>
-                            </form>
-                            <!-- /Write Review Form -->
-
-                        </div>
-                        <!-- /Write Review -->
-
-                    </div>
-                    <!-- /Reviews Content -->
-
-                    <!-- Business Hours Content -->
-                    <div role="tabpanel" id="doc_business_hours" class="tab-pane fade">
-                        <div class="row">
-                            <div class="col-md-6 offset-md-3">
-
-                                <!-- Business Hours Widget -->
-                                <div class="widget business-widget">
-                                    <div class="widget-content">
-                                        <div class="listing-hours">
-                                            @forelse($doctor->schedules as $schedule)
-                                            <div class="listing-day">
-                                                <div class="day">{{ ucfirst($schedule->day) }}</div>
-                                                <div class="time-items">
-                                                    <span class="time">{{ \Carbon\Carbon::parse($schedule->start_time)->format('g:i A') }} - {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:i A') }}</span>
-                                                </div>
-                                            </div>
-                                            @empty
-                                            <div class="listing-day">
-                                                <div class="day">No schedules available</div>
-                                            </div>
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Business Hours Widget -->
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Business Hours Content -->
-
+                    @empty
+                        <p class="text-muted mb-0">No reviews yet.</p>
+                    @endforelse
                 </div>
             </div>
         </div>
-        <!-- /Doctor Details Tab -->
-
     </div>
 </div>
-<!-- /Page Content -->
 @endsection

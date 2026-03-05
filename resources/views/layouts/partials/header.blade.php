@@ -42,6 +42,46 @@
             display: block !important;
         }
     }
+
+    .doctor-entry .dropdown-menu {
+        min-width: 210px;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 8px;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    .doctor-entry .dropdown-item {
+        border-radius: 8px;
+        font-weight: 600;
+        padding: 9px 12px;
+    }
+
+    .doctor-entry .dropdown-item:hover {
+        background: #eff6ff;
+        color: #1d4ed8;
+    }
+
+    .mobile-doctor-submenu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: -2px;
+    }
+
+    .mobile-doctor-submenu-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff !important;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 10px;
+        padding: 11px 14px;
+        font-weight: 600;
+        text-decoration: none;
+    }
 </style>
 <header class="header">
     <nav class="navbar navbar-expand-lg header-nav">
@@ -132,9 +172,19 @@
 
                 <!-- Mobile Menu Buttons -->
                 <div class="mobile-menu-buttons">
-                    <a class="mobile-btn-for-doctors" href="{{ route('doctor.register') }}">
+                    <a class="mobile-btn-for-doctors" data-bs-toggle="collapse" href="#mobileDoctorMenu" role="button"
+                        aria-expanded="false" aria-controls="mobileDoctorMenu">
                         <i class="fas fa-stethoscope"></i> For Doctors
+                        <i class="fas fa-chevron-down ms-auto"></i>
                     </a>
+                    <div class="collapse mobile-doctor-submenu" id="mobileDoctorMenu">
+                        <a class="mobile-doctor-submenu-link" href="{{ route('doctor.login') }}">
+                            <i class="fas fa-sign-in-alt"></i> Doctor Login
+                        </a>
+                        <a class="mobile-doctor-submenu-link" href="{{ route('doctor.register') }}">
+                            <i class="fas fa-user-plus"></i> Doctor Registration
+                        </a>
+                    </div>
                     <a class="mobile-btn-login" href="{{ route('login') }}">
                         <i class="fas fa-sign-in-alt"></i> Login
                     </a>
@@ -156,10 +206,19 @@
                     </a>
                 </li>
                 @guest
-                    <li class="nav-item">
-                        <a class="nav-link btn-for-doctors" href="{{ route('doctor.register') }}">
+                    <li class="nav-item dropdown doctor-entry">
+                        <a class="nav-link btn-for-doctors dropdown-toggle" href="#" id="doctorMenuDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-stethoscope"></i> For Doctors
                         </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="doctorMenuDropdown">
+                            <a class="dropdown-item" href="{{ route('doctor.login') }}">
+                                <i class="fas fa-sign-in-alt me-2"></i>Doctor Login
+                            </a>
+                            <a class="dropdown-item" href="{{ route('doctor.register') }}">
+                                <i class="fas fa-user-plus me-2"></i>Doctor Registration
+                            </a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn-signup" href="{{ route('register') }}">Sign Up</a>
